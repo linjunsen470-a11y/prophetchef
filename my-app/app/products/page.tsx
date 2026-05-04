@@ -18,22 +18,33 @@ export default function ProductsPage() {
   return (
     <>
       <PageHero 
+        eyebrow="Products"
         title="Commercial Kitchen Equipment Products"
         description="Explore our complete product range for restaurants, hotels, canteens and central kitchens."
         backgroundImage="https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=1600&q=80"
-      />
+      >
+        <div className="product-hero-metrics" aria-label="Product capabilities">
+          <span>Factory direct</span>
+          <span>OEM / ODM</span>
+          <span>Export-ready</span>
+        </div>
+      </PageHero>
       
-      <section className="py-[100px] md:py-[60px]">
-        <Container className="grid grid-cols-[280px_1fr] gap-8 lg:grid-cols-1">
+      <section className="products-showcase">
+        <Container className="products-layout">
           <ProductSidebar 
             activeCategory={activeCategory} 
             onCategoryChange={setActiveCategory} 
           />
-          <div>
-            <div className="mb-5 text-muted">
-              <p><strong>{filteredProducts.length}+</strong> product models for commercial foodservice equipment procurement.</p>
+          <div className="products-main">
+            <div className="product-toolbar">
+              <div>
+                <span className="eyebrow">Catalog</span>
+                <p><strong>{filteredProducts.length}</strong> product models for commercial foodservice equipment procurement.</p>
+              </div>
+              <span className="product-count-pill">{activeCategory}</span>
             </div>
-            <div className="grid grid-cols-3 gap-6 md:grid-cols-2 sm:grid-cols-1">
+            <div className="product-grid products-page-grid">
               {filteredProducts.map((product, index) => (
                 <ProductCard key={product.id} product={product} index={index} />
               ))}

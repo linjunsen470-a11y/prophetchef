@@ -10,20 +10,21 @@ export const ProductGallery: React.FC<ProductGalleryProps> = ({ images }) => {
   const [activeImage, setActiveImage] = useState(images[0]);
 
   return (
-    <div className="w-full">
-      <div className="bg-white border border-border rounded-custom overflow-hidden shadow-custom mb-5">
-        <img src={activeImage} alt="Product" className="w-full h-[520px] object-cover transition-all duration-300 sm:h-[320px]" />
+    <div className="product-gallery">
+      <div className="main-product-image">
+        <img src={activeImage} alt="Product" />
       </div>
-      <div className="flex gap-3">
+      <div className="thumbnail-row">
         {images.map((img, i) => (
           <button 
             key={i} 
-            className={`w-[84px] h-[84px] rounded-2 overflow-hidden border-2 p-0 cursor-pointer transition-all duration-200 ${
-              activeImage === img ? "border-orange" : "border-transparent opacity-70 hover:opacity-100"
+            className={`thumb ${
+              activeImage === img ? "active" : ""
             }`}
             onClick={() => setActiveImage(img)}
+            aria-label={`Show product image ${i + 1}`}
           >
-            <img src={img} alt={`View ${i}`} className="w-full h-full object-cover" />
+            <img src={img} alt={`Product view ${i + 1}`} />
           </button>
         ))}
       </div>

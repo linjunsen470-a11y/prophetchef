@@ -1,5 +1,5 @@
 import React from "react";
-import { Container } from "../common/Container";
+import Link from "next/link";
 import { BlogCard } from "../blog/BlogCard";
 
 export const NewsPreview = () => {
@@ -37,7 +37,7 @@ export const NewsPreview = () => {
           <span className="eyebrow">News</span>
           <h2>Industry Insights and Product Knowledge</h2>
         </div>
-        <a className="btn btn-secondary" href="/news">View All News</a>
+        <Link className="btn btn-secondary" href="/news">View All News</Link>
       </div>
       <div className="container news-grid">
         {news.map((item) => (

@@ -12,9 +12,13 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, index }) => {
     <article className="product-card" data-category={product.category}>
       <div className="product-media">
         <img src={product.image} alt={product.name} loading="lazy" />
+        <span className="product-category-badge">{product.category}</span>
       </div>
       <div className="product-body">
-        <div className="product-number">{(index + 1).toString().padStart(2, "0")}</div>
+        <div className="product-card-topline">
+          <div className="product-number">{(index + 1).toString().padStart(2, "0")}</div>
+          <span>Factory supply</span>
+        </div>
         <h3>{product.name}</h3>
         <p>{product.description}</p>
         <div className="tag-row">

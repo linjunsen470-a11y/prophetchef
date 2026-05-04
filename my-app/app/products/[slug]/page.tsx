@@ -1,7 +1,7 @@
 import React from "react";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
-import { products, Product } from "@/data/products";
+import { products } from "@/data/products";
 import { siteConfig } from "@/data/site";
 import { Breadcrumb } from "@/components/common/Breadcrumb";
 import { Container } from "@/components/common/Container";
@@ -55,26 +55,22 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
         ]} 
       />
 
-      <section className="py-[100px] md:py-[60px]">
-        <Container className="grid grid-cols-[1.05fr_0.95fr] gap-14 items-start lg:grid-cols-1">
+      <section className="product-detail-hero">
+        <Container className="product-detail-grid">
           <ProductGallery images={[product.image, ...products.slice(0, 2).map(p => p.image)]} />
           
           <div className="product-summary">
             <span className="eyebrow">{product.category}</span>
-            <h1 className="text-[clamp(34px,4.5vw,56px)] leading-[1.08] tracking-[-0.05em] my-[12px] mx-0 mb-[18px] font-800">
-              {product.name}
-            </h1>
-            <p className="text-muted text-[17px]">{product.description}</p>
-            <div className="flex flex-wrap gap-[7px] my-[14px] mx-0 mb-[18px]">
+            <h1>{product.name}</h1>
+            <p>{product.description}</p>
+            <div className="tag-row large">
               {product.tags.map(tag => (
-                <span key={tag} className="bg-[#eff6ff] text-blue border border-[#dbeafe] py-2 px-[11px] rounded-full text-[13px] font-750">
-                  {tag}
-                </span>
+                <span key={tag}>{tag}</span>
               ))}
-              <span className="bg-[#eff6ff] text-blue border border-[#dbeafe] py-2 px-[11px] rounded-full text-[13px] font-750">SUS304 Stainless Steel</span>
-              <span className="bg-[#eff6ff] text-blue border border-[#dbeafe] py-2 px-[11px] rounded-full text-[13px] font-750">CE Certified</span>
+              <span>SUS304 Stainless Steel</span>
+              <span>CE Certified</span>
             </div>
-            <div className="flex gap-3 mt-6">
+            <div className="hero-actions">
               <Button href="#product-inquiry">Send Inquiry</Button>
               <Button 
                 href={`https://wa.me/${siteConfig.whatsapp}?text=Hello%20ProKitchenTech%2C%20I%20would%20like%20to%20request%20a%20quote.`}
@@ -85,71 +81,86 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
                 Chat on WhatsApp
               </Button>
             </div>
-            <div className="flex gap-[10px] flex-wrap mt-[22px]">
-              <span className="inline-flex py-2 px-3 rounded-full border border-[#dbeafe] bg-[#eff6ff] text-[13px] text-blue">Fast quotation</span>
-              <span className="inline-flex py-2 px-3 rounded-full border border-[#dbeafe] bg-[#eff6ff] text-[13px] text-blue">Factory direct supply</span>
-              <span className="inline-flex py-2 px-3 rounded-full border border-[#dbeafe] bg-[#eff6ff] text-[13px] text-blue">Export packaging</span>
+            <div className="mini-trust">
+              <span>Fast quotation</span>
+              <span>Factory direct supply</span>
+              <span>Export packaging</span>
+            </div>
+            <div className="product-summary-stats" aria-label="Procurement advantages">
+              <div><strong>12 mo</strong><span>Warranty</span></div>
+              <div><strong>OEM</strong><span>Customization</span></div>
+              <div><strong>CE</strong><span>Certified</span></div>
             </div>
           </div>
         </Container>
       </section>
 
-      <section className="py-[100px] bg-light md:py-[60px]">
-        <Container className="mb-10">
+      <section className="section bg-light">
+        <Container className="section-heading">
           <span className="eyebrow">Key Features</span>
-          <h2 className="text-[32px] font-800 mt-2">Engineered for High-Volume Commercial Kitchens</h2>
+          <h2>Engineered for High-Volume Commercial Kitchens</h2>
         </Container>
-        <Container className="grid grid-cols-3 gap-5 md:grid-cols-2 sm:grid-cols-1">
-          <article className="p-6 bg-white border border-border rounded-custom">
-            <h3 className="m-0 mb-[10px] text-[20px] font-800">Fast Heating</h3>
-            <p className="text-muted m-0 text-[14px]">High-efficiency induction coil helps reduce preheating time in busy cooking operations.</p>
+        <Container className="feature-grid six">
+          <article>
+            <span>01</span>
+            <h3>Fast Heating</h3>
+            <p>High-efficiency induction coil helps reduce preheating time in busy cooking operations.</p>
           </article>
-          <article className="p-6 bg-white border border-border rounded-custom">
-            <h3 className="m-0 mb-[10px] text-[20px] font-800">Energy Saving</h3>
-            <p className="text-muted m-0 text-[14px]">Direct heat transfer improves energy use and reduces unnecessary heat loss.</p>
+          <article>
+            <span>02</span>
+            <h3>Energy Saving</h3>
+            <p>Direct heat transfer improves energy use and reduces unnecessary heat loss.</p>
           </article>
-          <article className="p-6 bg-white border border-border rounded-custom">
-            <h3 className="m-0 mb-[10px] text-[20px] font-800">Easy Cleaning</h3>
-            <p className="text-muted m-0 text-[14px]">Smooth stainless steel structure supports fast daily cleaning and maintenance.</p>
+          <article>
+            <span>03</span>
+            <h3>Easy Cleaning</h3>
+            <p>Smooth stainless steel structure supports fast daily cleaning and maintenance.</p>
           </article>
-          <article className="p-6 bg-white border border-border rounded-custom">
-            <h3 className="m-0 mb-[10px] text-[20px] font-800">Safe Operation</h3>
-            <p className="text-muted m-0 text-[14px]">Flameless cooking improves kitchen working conditions and reduces open-fire risk.</p>
+          <article>
+            <span>04</span>
+            <h3>Safe Operation</h3>
+            <p>Flameless cooking improves kitchen working conditions and reduces open-fire risk.</p>
           </article>
-          <article className="p-6 bg-white border border-border rounded-custom">
-            <h3 className="m-0 mb-[10px] text-[20px] font-800">Durable Body</h3>
-            <p className="text-muted m-0 text-[14px]">SUS304 stainless steel construction supports heavy-duty commercial use.</p>
+          <article>
+            <span>05</span>
+            <h3>Durable Body</h3>
+            <p>SUS304 stainless steel construction supports heavy-duty commercial use.</p>
           </article>
-          <article className="p-6 bg-white border border-border rounded-custom">
-            <h3 className="m-0 mb-[10px] text-[20px] font-800">High-Volume Use</h3>
-            <p className="text-muted m-0 text-[14px]">Suitable for restaurants, hotels, canteens and central kitchen production lines.</p>
+          <article>
+            <span>06</span>
+            <h3>High-Volume Use</h3>
+            <p>Suitable for restaurants, hotels, canteens and central kitchen production lines.</p>
           </article>
         </Container>
       </section>
 
-      <section className="py-[100px] md:py-[60px]">
-        <Container className="mb-10">
+      <section className="section">
+        <Container className="section-heading">
           <span className="eyebrow">Technical Parameters</span>
-          <h2 className="text-[32px] font-800 mt-2">Product Specifications</h2>
+          <h2>Product Specifications</h2>
         </Container>
-        <Container className="overflow-hidden border border-border rounded-[18px]">
-          <table className="w-full border-collapse bg-white">
+        <Container className="table-wrap">
+          <table className="spec-table">
             <tbody>
-              <tr className="border-b border-border">
-                <th className="bg-slate-100 p-[18px] text-left w-[220px] text-blue font-800">Model</th>
-                <td className="p-[18px] text-left">PKT-{product.id}-Series</td>
+              <tr>
+                <th>Model</th>
+                <td>PKT-{product.id}-Series</td>
               </tr>
-              <tr className="border-b border-border">
-                <th className="bg-slate-100 p-[18px] text-left w-[220px] text-blue font-800">Material</th>
-                <td className="p-[18px] text-left">SUS304 stainless steel body</td>
+              <tr>
+                <th>Material</th>
+                <td>SUS304 stainless steel body</td>
               </tr>
-              <tr className="border-b border-border">
-                <th className="bg-slate-100 p-[18px] text-left w-[220px] text-blue font-800">Application</th>
-                <td className="p-[18px] text-left">Restaurant, hotel kitchen, school canteen, central kitchen</td>
+              <tr>
+                <th>Application</th>
+                <td>Restaurant, hotel kitchen, school canteen, central kitchen</td>
               </tr>
-              <tr className="border-b border-border">
-                <th className="bg-slate-100 p-[18px] text-left w-[220px] text-blue font-800">Warranty</th>
-                <td className="p-[18px] text-left">12 months standard warranty with spare parts support</td>
+              <tr>
+                <th>Customization</th>
+                <td>Logo, voltage, panel, size and packaging available</td>
+              </tr>
+              <tr>
+                <th>Warranty</th>
+                <td>12 months standard warranty with spare parts support</td>
               </tr>
             </tbody>
           </table>
@@ -157,15 +168,15 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
       </section>
 
       {relatedProducts.length > 0 && (
-        <section className="py-[100px] md:py-[60px]">
-          <Container className="flex items-center justify-between mb-10">
+        <section className="section related-products-section">
+          <Container className="section-heading split-heading">
             <div>
               <span className="eyebrow">Related Products</span>
-              <h2 className="text-[32px] font-800 mt-2">More {product.category}</h2>
+              <h2>More {product.category}</h2>
             </div>
             <Button href="/products" variant="secondary">All Products</Button>
           </Container>
-          <Container className="grid grid-cols-4 gap-5 lg:grid-cols-2 sm:grid-cols-1">
+          <Container className="product-grid related-product-grid">
             {relatedProducts.map((p, idx) => (
               <ProductCard key={p.id} product={p} index={idx} />
             ))}
@@ -173,12 +184,12 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
         </section>
       )}
 
-      <section className="py-[100px] bg-light md:py-[60px]" id="product-inquiry">
-        <Container className="grid grid-cols-[0.85fr_1.15fr] gap-10 items-start lg:grid-cols-1">
-          <div className="inquiry-info">
+      <section className="section bg-light" id="product-inquiry">
+        <Container className="inquiry-layout">
+          <div>
             <span className="eyebrow">Product Inquiry</span>
-            <h2 className="text-[32px] font-800 mt-[10px]">Request Product Price and Specification</h2>
-            <p className="text-muted mt-4">Send your required model, voltage, quantity and destination country. Our sales team will reply with a quotation and product documents.</p>
+            <h2>Request Product Price and Specification</h2>
+            <p>Send your required model, voltage, quantity and destination country. Our sales team will reply with a quotation and product documents.</p>
           </div>
           <ProductInquiryForm productName={product.name} />
         </Container>

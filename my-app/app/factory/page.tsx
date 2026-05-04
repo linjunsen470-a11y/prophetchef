@@ -18,7 +18,7 @@ export default function FactoryPage() {
             <span className="eyebrow">Direct Manufacturer</span>
             <h2 className="text-[clamp(32px,4vw,44px)] leading-[1.1] tracking-[-0.03em] m-[12px_0_24px] font-800">Advanced Production Facility in Foshan</h2>
             <div className="text-[17px] leading-[1.65] text-muted space-y-4">
-              <p>Located in the heart of China's kitchen equipment manufacturing hub, ProKitchenTech operates a 5,000+ square meter facility dedicated to the production of premium induction and automatic cooking equipment.</p>
+              <p>Located in the heart of China&apos;s kitchen equipment manufacturing hub, ProKitchenTech operates a 5,000+ square meter facility dedicated to the production of premium induction and automatic cooking equipment.</p>
               <p>Our facility is equipped with precision CNC laser cutting, specialized assembly lines for electronic controllers, and heavy-duty stainless steel welding stations to ensure every piece of equipment meets global commercial standards.</p>
             </div>
             <div className="grid grid-cols-2 gap-4 mt-8">
