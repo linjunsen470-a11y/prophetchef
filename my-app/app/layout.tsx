@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
+import { draftMode } from "next/headers";
+import { VisualEditing } from "next-sanity/visual-editing";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { siteConfig } from "@/data/site";
 import { FloatingActions } from "@/components/common/FloatingActions";
+import { SanityLive } from "@/sanity/client";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -48,11 +51,13 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const { isEnabled: isDraftModeEnabled } = await draftMode();
+
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
       <body className="flex flex-col min-h-screen">
@@ -60,6 +65,8 @@ export default function RootLayout({
         <main className="flex-grow">{children}</main>
         <Footer />
         <FloatingActions />
+        <SanityLive />
+        {isDraftModeEnabled && <VisualEditing />}
       </body>
     </html>
   );

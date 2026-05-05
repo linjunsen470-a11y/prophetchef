@@ -1,6 +1,7 @@
 import React from "react";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
+import { stegaClean } from "next-sanity";
 import { MessageCircle, Send } from "lucide-react";
 import { siteConfig } from "@/data/site";
 import { Breadcrumb } from "@/components/common/Breadcrumb";
@@ -22,7 +23,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: ProductPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const product = await getProduct(slug);
+  const product = await getProduct(slug, { stega: false });
   if (!product) return {};
 
   return {
@@ -47,7 +48,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
       <Breadcrumb 
         items={[
           { name: "Products", href: "/products" },
-          { name: product.category, href: `/products?category=${encodeURIComponent(product.category)}` },
+          { name: product.category, href: `/products?category=${encodeURIComponent(stegaClean(product.category))}` },
           { name: product.name }
         ]} 
       />

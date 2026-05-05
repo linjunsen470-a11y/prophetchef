@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import { stegaClean } from "next-sanity";
 
 interface BlogCardProps {
   title: string;
@@ -12,6 +13,8 @@ interface BlogCardProps {
 
 export const BlogCard: React.FC<BlogCardProps> = ({ title, excerpt, date, category, image, slug }) => {
   const displayDate = date.slice(0, 10);
+  const cleanImage = stegaClean(image);
+  const cleanSlug = stegaClean(slug);
 
   return (
     <article className="news-card">
@@ -19,7 +22,7 @@ export const BlogCard: React.FC<BlogCardProps> = ({ title, excerpt, date, catego
         className="news-image"
         aria-label={title}
         role="img"
-        style={{ "--card-image": `url('${image}')` } as React.CSSProperties}
+        style={{ "--card-image": `url('${cleanImage}')` } as React.CSSProperties}
       />
       <div className="news-body">
         <div className="news-meta">
@@ -28,7 +31,7 @@ export const BlogCard: React.FC<BlogCardProps> = ({ title, excerpt, date, catego
         </div>
         <h3>{title}</h3>
         <p>{excerpt}</p>
-        <Link href={`/news/${slug}`} className="text-link">
+        <Link href={`/news/${cleanSlug}`} className="text-link">
           Read More -&gt;
         </Link>
       </div>

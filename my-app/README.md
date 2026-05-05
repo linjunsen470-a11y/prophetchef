@@ -1,36 +1,115 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ProKitchenTech Frontend
 
-## Getting Started
+This is the active Next.js frontend for the ProKitchenTech commercial kitchen equipment website.
 
-First, run the development server:
+## Stack
+
+- Next.js App Router
+- React 19
+- TypeScript
+- Tailwind CSS 4
+- Sanity content access through `next-sanity`
+- Lucide React icons
+
+## Development
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Start the dev server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```text
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+If another Next.js server is already using port 3000, use another port:
 
-## Learn More
+```bash
+npm run dev -- -p 3005
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Scripts
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm run dev
+npm run lint
+npm run build
+npm run start
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Project Structure
 
-## Deploy on Vercel
+```text
+app/
+  page.tsx
+  products/
+  news/
+  contact/
+  sitemap.ts
+  robots.ts
+components/
+  blog/
+  common/
+  contact/
+  home/
+  layout/
+  product/
+data/
+  static fallback/site data
+lib/
+  sitemap helpers
+sanity/
+  client, queries, env, frontend types
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Environment
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Sanity connection values are read in `sanity/env.ts`. Set the required values in `.env.local` for local development.
+
+Typical variables:
+
+```text
+NEXT_PUBLIC_SANITY_PROJECT_ID=
+NEXT_PUBLIC_SANITY_DATASET=
+NEXT_PUBLIC_SANITY_API_VERSION=
+```
+
+## Styling
+
+`app/globals.css` currently contains most of the site visual system. It includes page-level styles, shared card styles, responsive behavior, and legacy class names.
+
+Do not bulk-delete global CSS. If reducing it:
+
+- migrate one component/page group at a time
+- preserve visual parity
+- verify with browser screenshots
+- keep shared component APIs stable
+
+## Verification
+
+Before committing frontend changes:
+
+```bash
+npm run lint
+npm run build
+```
+
+For layout or styling changes, inspect these routes in a real browser:
+
+- `/`
+- `/products`
+- `/products/[slug]`
+- `/news`
+- `/news/[slug]`
+- `/contact`
+
+Known lint warnings currently include raw `<img>` usage and a few unused variables. Treat new warnings separately from existing baseline warnings.

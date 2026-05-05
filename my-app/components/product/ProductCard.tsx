@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import { stegaClean } from "next-sanity";
 import { ArrowRight, PackageCheck, Send } from "lucide-react";
 import type { Product } from "@/sanity/types";
 
@@ -9,10 +10,14 @@ interface ProductCardProps {
 }
 
 export const ProductCard: React.FC<ProductCardProps> = ({ product, index }) => {
+  const cleanImage = stegaClean(product.image);
+  const cleanName = stegaClean(product.name);
+  const cleanSlug = stegaClean(product.slug);
+
   return (
     <article className="product-card" data-category={product.category}>
       <div className="product-media">
-        <img src={product.image} alt={product.name} loading="lazy" />
+        <img src={cleanImage} alt={product.name} loading="lazy" />
         <span className="product-category-badge">{product.category}</span>
       </div>
       <div className="product-body">
@@ -29,14 +34,14 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, index }) => {
         </div>
         <div className="card-actions">
           <Link 
-            href={`/contact?product=${encodeURIComponent(product.name)}`} 
+            href={`/contact?product=${encodeURIComponent(cleanName)}`} 
             className="btn btn-primary btn-small quick-inquiry"
           >
             Quick Inquiry
             <Send aria-hidden="true" />
           </Link>
           <Link 
-            href={`/products/${product.slug}`} 
+            href={`/products/${cleanSlug}`} 
             className="btn btn-secondary btn-small"
           >
             View Details

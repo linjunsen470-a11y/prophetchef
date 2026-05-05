@@ -1,5 +1,6 @@
 import React from "react";
 import { notFound } from "next/navigation";
+import { stegaClean } from "next-sanity";
 import { Container } from "@/components/common/Container";
 import { Breadcrumb } from "@/components/common/Breadcrumb";
 import { CTASection } from "@/components/common/CTASection";
@@ -19,6 +20,7 @@ export default async function NewsDetailPage({ params }: { params: Promise<{ slu
   }
 
   const displayDate = item.date.slice(0, 10);
+  const cleanImage = stegaClean(item.image);
 
   return (
     <>
@@ -37,7 +39,7 @@ export default async function NewsDetailPage({ params }: { params: Promise<{ slu
           </div>
           <h1 className="text-[48px] leading-[1.1] tracking-[-0.04em] m-[0_0_32px] font-800 sm:text-[34px]">{item.title}</h1>
           <div className="text-[18px] leading-[1.7] text-slate-700 sm:text-[17px]">
-            <img src={item.image} alt={item.title} className="w-full rounded-[22px] my-8 mx-0 shadow-custom" />
+            <img src={cleanImage} alt={item.title} className="w-full rounded-[22px] my-8 mx-0 shadow-custom" />
             <NewsBody blocks={item.body} fallback={item.excerpt} />
           </div>
         </Container>

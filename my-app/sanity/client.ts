@@ -1,23 +1,47 @@
 import { createClient } from "next-sanity";
-import { apiVersion, dataset, projectId, SANITY_REVALIDATE } from "./env";
+import type { ClientPerspective } from "next-sanity";
+import { defineLive } from "next-sanity/live";
+import { apiVersion, dataset, projectId, SANITY_REVALIDATE, studioUrl } from "./env";
 
 export const client = createClient({
   projectId,
   dataset,
   apiVersion,
+  perspective: "published",
+  stega: {
+    studioUrl,
+  },
   useCdn: false,
 });
 
-export function sanityFetch<QueryResponse>({
+const token = process.env.SANITY_API_READ_TOKEN;
+
+export const { sanityFetch: liveSanityFetch, SanityLive } = defineLive({
+  client,
+  serverToken: token || false,
+  browserToken: false,
+  fetchOptions: {
+    revalidate: SANITY_REVALIDATE,
+  },
+});
+
+export async function sanityFetch<QueryResponse>({
   query,
   params = {},
-  revalidate = SANITY_REVALIDATE,
+  perspective,
+  stega,
 }: {
   query: string;
   params?: Record<string, string | number | boolean>;
-  revalidate?: number;
+  perspective?: Exclude<ClientPerspective, "raw">;
+  stega?: boolean;
 }) {
-  return client.fetch<QueryResponse>(query, params, {
-    next: { revalidate },
+  const { data } = await liveSanityFetch({
+    query,
+    params,
+    perspective,
+    stega,
   });
+
+  return data as QueryResponse;
 }

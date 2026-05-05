@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { stegaClean } from "next-sanity";
 
 interface ProductGalleryProps {
   images: string[];
@@ -8,11 +9,12 @@ interface ProductGalleryProps {
 
 export const ProductGallery: React.FC<ProductGalleryProps> = ({ images }) => {
   const [activeImage, setActiveImage] = useState(images[0]);
+  const cleanActiveImage = stegaClean(activeImage);
 
   return (
     <div className="product-gallery">
       <div className="main-product-image">
-        <img src={activeImage} alt="Product" />
+        <img src={cleanActiveImage} alt="Product" />
       </div>
       <div className="thumbnail-row">
         {images.map((img, i) => (
@@ -24,7 +26,7 @@ export const ProductGallery: React.FC<ProductGalleryProps> = ({ images }) => {
             onClick={() => setActiveImage(img)}
             aria-label={`Show product image ${i + 1}`}
           >
-            <img src={img} alt={`Product view ${i + 1}`} />
+            <img src={stegaClean(img)} alt={`Product view ${i + 1}`} />
           </button>
         ))}
       </div>
