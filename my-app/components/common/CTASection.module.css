@@ -1,0 +1,66 @@
+.siteCta {
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, rgba(249, 115, 22, 0.28), rgba(249, 115, 22, 0) 5px),
+    linear-gradient(135deg, #244a78 0%, var(--blue) 48%, #10243d 100%);
+  color: #fff;
+  padding: 70px 0;
+  border-top: 1px solid rgba(249, 115, 22, 0.36);
+}
+
+.ctaInner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 36px;
+}
+
+.ctaInner h2 {
+  font-size: 42px;
+  line-height: 1.12;
+  margin: 8px 0 12px;
+  letter-spacing: -0.035em;
+  font-weight: 800;
+}
+
+.ctaInner p {
+  color: rgba(226, 232, 240, 0.9);
+  max-width: 680px;
+  margin: 0;
+  font-size: 18px;
+}
+
+.ctaActions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+  flex-shrink: 0;
+  justify-content: flex-end;
+  column-gap: 18px;
+  row-gap: 14px;
+}
+
+@media (max-width: 960px) {
+  .ctaInner {
+    flex-direction: column;
+    text-align: center;
+  }
+  .ctaActions {
+    justify-content: center;
+    width: 100%;
+  }
+}
+
+@media (max-width: 560px) {
+  .ctaInner h2 {
+    font-size: 34px;
+  }
+  .ctaActions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

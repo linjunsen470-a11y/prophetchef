@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { ArrowUp, MessageCircle } from "lucide-react";
 import { siteConfig } from "@/data/site";
 
+import styles from "./FloatingActions.module.css";
+
 export const FloatingActions = () => {
   const [showBackToTop, setShowBackToTop] = useState(false);
 
@@ -18,17 +20,17 @@ export const FloatingActions = () => {
   return (
     <>
       <a
-        className="whatsapp-float"
+        className={styles.whatsappFloat}
         href={`https://wa.me/${siteConfig.whatsapp}?text=Hello%20ProKitchenTech%2C%20I%20would%20like%20to%20request%20a%20quote.`}
         target="_blank"
         rel="noopener"
         aria-label="Chat on WhatsApp"
       >
         <MessageCircle aria-hidden="true" />
-        WhatsApp
+        <span>WhatsApp</span>
       </a>
       <button
-        className={`back-to-top${showBackToTop ? " show" : ""}`}
+        className={`${styles.backToTop}${showBackToTop ? ` ${styles.show}` : ""}`}
         type="button"
         aria-label="Back to top"
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}

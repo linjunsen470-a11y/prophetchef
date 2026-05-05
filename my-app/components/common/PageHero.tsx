@@ -1,5 +1,6 @@
 import React from "react";
 import { Container } from "./Container";
+import styles from "./Hero.module.css";
 
 interface PageHeroProps {
   eyebrow?: string;
@@ -17,9 +18,9 @@ export const PageHero: React.FC<PageHeroProps> = ({
   children,
 }) => {
   return (
-    <section className="page-hero" style={{ "--hero-image": `url('${backgroundImage}')` } as React.CSSProperties}>
-      <div className="hero-overlay"></div>
-      <Container className="page-hero-content">
+    <section className={styles.pageHero} style={{ "--hero-image": `url('${backgroundImage}')` } as React.CSSProperties}>
+      <div className={styles.heroOverlay}></div>
+      <Container className={styles.pageHeroContent}>
         {eyebrow && <span className="eyebrow light">{eyebrow}</span>}
         <h1>{title}</h1>
         {description && <p>{description}</p>}

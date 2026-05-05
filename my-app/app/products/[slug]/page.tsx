@@ -12,6 +12,7 @@ import { ProductInquiryForm } from "@/components/product/ProductInquiryForm";
 import { ProductCard } from "@/components/product/ProductCard";
 import { CTASection } from "@/components/common/CTASection";
 import { getProduct, getProductSlugs, getRelatedProducts } from "@/sanity/queries";
+import styles from "@/components/product/ProductDetail.module.css";
 
 interface ProductPageProps {
   params: Promise<{ slug: string }>;
@@ -53,11 +54,11 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
         ]} 
       />
 
-      <section className="product-detail-hero">
-        <Container className="product-detail-grid">
+      <section className={styles.productDetailHero}>
+        <Container className={styles.productDetailGrid}>
           <ProductGallery images={galleryImages} />
           
-          <div className="product-summary">
+          <div className={styles.productSummary}>
             <span className="eyebrow">{product.category}</span>
             <h1>{product.name}</h1>
             <p>{product.description}</p>
@@ -80,12 +81,12 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
                 Chat on WhatsApp
               </Button>
             </div>
-            <div className="mini-trust">
+            <div className={styles.miniTrust}>
               <span>Fast quotation</span>
               <span>Factory direct supply</span>
               <span>Export packaging</span>
             </div>
-            <div className="product-summary-stats" aria-label="Procurement advantages">
+            <div className={styles.productSummaryStats} aria-label="Procurement advantages">
               <div><strong>12 mo</strong><span>Warranty</span></div>
               <div><strong>OEM</strong><span>Customization</span></div>
               <div><strong>CE</strong><span>Certified</span></div>
@@ -139,7 +140,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
           <h2>Product Specifications</h2>
         </Container>
         <Container className="table-wrap">
-          <table className="spec-table">
+          <table className={styles.specTable}>
             <tbody>
               <tr>
                 <th>Model</th>
@@ -184,7 +185,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
       )}
 
       <section className="section bg-light" id="product-inquiry">
-        <Container className="inquiry-layout">
+        <Container className={styles.inquiryLayout}>
           <div>
             <span className="eyebrow">Product Inquiry</span>
             <h2>Request Product Price and Specification</h2>

@@ -1,0 +1,57 @@
+.trustBar {
+  background: var(--blue);
+  color: #fff;
+}
+
+.trustGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+}
+
+.trustGrid div {
+  padding: 28px 20px;
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
+}
+
+.trustGrid svg {
+  width: 22px;
+  height: 22px;
+  margin: 0 auto 12px;
+  color: #ffb36b;
+}
+
+.trustGrid div:last-child {
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.trustGrid strong {
+  display: block;
+  font-size: 34px;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  font-weight: 900;
+  color: #fff;
+}
+
+.trustGrid span {
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+@media (max-width: 760px) {
+  .trustGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .trustGrid div {
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .trustGrid {
+    grid-template-columns: 1fr;
+  }
+}

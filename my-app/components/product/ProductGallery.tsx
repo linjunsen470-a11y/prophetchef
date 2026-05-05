@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { stegaClean } from "next-sanity";
+import styles from "./ProductGallery.module.css";
 
 interface ProductGalleryProps {
   images: string[];
@@ -12,16 +13,16 @@ export const ProductGallery: React.FC<ProductGalleryProps> = ({ images }) => {
   const cleanActiveImage = stegaClean(activeImage);
 
   return (
-    <div className="product-gallery">
-      <div className="main-product-image">
+    <div className={styles.productGallery}>
+      <div className={styles.mainProductImage}>
         <img src={cleanActiveImage} alt="Product" />
       </div>
-      <div className="thumbnail-row">
+      <div className={styles.thumbnailRow}>
         {images.map((img, i) => (
           <button 
             key={i} 
-            className={`thumb ${
-              activeImage === img ? "active" : ""
+            className={`${styles.thumb} ${
+              activeImage === img ? styles.active : ""
             }`}
             onClick={() => setActiveImage(img)}
             aria-label={`Show product image ${i + 1}`}
