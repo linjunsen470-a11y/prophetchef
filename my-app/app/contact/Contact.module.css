@@ -1,0 +1,101 @@
+.contactSection {
+  padding: 100px 0;
+}
+
+.contactGrid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 62px;
+  align-items: start;
+}
+
+.contactInfo h2 {
+  font-size: 38px;
+  line-height: 1.15;
+  margin: 10px 0 16px;
+  font-weight: 800;
+}
+
+.contactInfo p.lead {
+  font-size: 18px;
+  color: var(--muted);
+  margin-bottom: 32px;
+}
+
+.methodsGrid {
+  display: grid;
+  gap: 24px;
+}
+
+.contactMethod {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.contactMethodIcon {
+  display: inline-grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: #eff6ff;
+  color: var(--blue);
+  flex-shrink: 0;
+}
+
+.contactMethodIcon svg {
+  width: 21px;
+  height: 21px;
+}
+
+.methodContent strong {
+  display: block;
+  font-size: 14px;
+  color: var(--blue);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 4px;
+  font-weight: 800;
+}
+
+.methodLink {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--text);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.methodLink:hover {
+  color: var(--orange);
+}
+
+.methodText {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--text);
+  margin: 0;
+}
+
+@media (max-width: 1080px) {
+  .contactSection {
+    padding: 60px 0;
+  }
+  
+  .contactGrid {
+    grid-template-columns: 1fr;
+    gap: 42px;
+  }
+}
+
+@media (max-width: 760px) {
+  .contactInfo h2 {
+    font-size: 32px;
+  }
+  
+  .methodLink,
+  .methodText {
+    font-size: 18px;
+  }
+}

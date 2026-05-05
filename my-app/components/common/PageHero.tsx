@@ -6,7 +6,8 @@ interface PageHeroProps {
   eyebrow?: string;
   title: string;
   description?: string;
-  backgroundImage: string;
+  backgroundImage?: string;
+  compact?: boolean;
   children?: React.ReactNode;
 }
 
@@ -14,11 +15,15 @@ export const PageHero: React.FC<PageHeroProps> = ({
   eyebrow,
   title,
   description,
-  backgroundImage,
+  backgroundImage = "/images/hero-dark.png",
+  compact = false,
   children,
 }) => {
   return (
-    <section className={styles.pageHero} style={{ "--hero-image": `url('${backgroundImage}')` } as React.CSSProperties}>
+    <section
+      className={`${styles.pageHero} ${compact ? styles.pageHeroCompact : ""}`}
+      style={compact ? undefined : ({ "--hero-image": `url('${backgroundImage}')` } as React.CSSProperties)}
+    >
       <div className={styles.heroOverlay}></div>
       <Container className={styles.pageHeroContent}>
         {eyebrow && <span className="eyebrow light">{eyebrow}</span>}

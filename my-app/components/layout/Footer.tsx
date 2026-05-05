@@ -20,16 +20,36 @@ const companyLinks = [
   ["Contact", "/contact"],
 ];
 
-export const Footer = () => {
+import { SiteSettings } from "@/sanity/types";
+
+interface FooterProps {
+  settings?: SiteSettings | null;
+}
+
+export const Footer = ({ settings }: FooterProps) => {
+  const siteName = settings?.title || siteConfig.name;
+  const description = settings?.description || siteConfig.description;
+  const contact = settings?.contactInfo || {
+    email: siteConfig.email,
+    phone: siteConfig.phone,
+    address: siteConfig.address,
+  };
+
   return (
     <footer className={styles.siteFooter}>
       <div className={`container ${styles.footerGrid}`}>
         <div className={styles.footerIntro}>
           <Link className={styles.footerBrand} href="/">
-            <span className={styles.brandMark}>PKT</span>
-            <span>{siteConfig.name}</span>
+            {settings?.logo?.url ? (
+              <img src={settings.logo.url} alt={siteName} className={styles.footerLogo} />
+            ) : (
+              <>
+                <span className={styles.brandMark}>PKT</span>
+                <span>{siteName}</span>
+              </>
+            )}
           </Link>
-          <p>{siteConfig.description}</p>
+          <p>{description}</p>
           <div className={styles.footerBadges} aria-label="Company capabilities">
             <span><BadgeCheck aria-hidden="true" />OEM / ODM</span>
             <span><BadgeCheck aria-hidden="true" />CE / ISO</span>
@@ -59,20 +79,20 @@ export const Footer = () => {
           <h3>Contact</h3>
           <address>
             <span><Mail aria-hidden="true" />Email</span>
-            <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
+            <a href={`mailto:${contact.email}`}>{contact.email}</a>
             <span><PhoneCall aria-hidden="true" />WhatsApp</span>
             <a href={`https://wa.me/${siteConfig.whatsapp}`} target="_blank" rel="noopener">
-              {siteConfig.phone}
+              {contact.phone}
             </a>
             <span><MapPin aria-hidden="true" />Address</span>
-            <p>{siteConfig.address}</p>
+            <p>{contact.address}</p>
           </address>
         </div>
       </div>
 
       <div className={styles.footerBottom}>
         <div className={`container ${styles.footerBottomInner}`}>
-          <span>&copy; 2026 {siteConfig.name}. All rights reserved.</span>
+          <span>&copy; {new Date().getFullYear()} {siteName}. All rights reserved.</span>
           <nav aria-label="Footer legal links">
             <Link href="/privacy">Privacy Policy</Link>
             <span aria-hidden="true">/</span>

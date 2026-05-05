@@ -14,13 +14,13 @@ export function ProductListClient({ products }: ProductListClientProps) {
   const [activeCategory, setActiveCategory] = useState("All Products");
 
   const categories = useMemo(
-    () => Array.from(new Set(products.map((product) => product.category))).sort(),
+    () => Array.from(new Set(products.map((product) => product.category?.name || "Uncategorized"))).sort(),
     [products],
   );
 
   const filteredProducts = activeCategory === "All Products"
     ? products
-    : products.filter((product) => product.category === activeCategory);
+    : products.filter((product) => (product.category?.name || "Uncategorized") === activeCategory);
 
   return (
     <Container className="products-layout">

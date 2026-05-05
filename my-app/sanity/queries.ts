@@ -1,5 +1,5 @@
 import { sanityFetch } from "./client";
-import type { NewsItem, Product } from "./types";
+import type { NewsItem, Product, Category, HomePageSettings, SiteSettings } from "./types";
 
 interface QueryOptions {
   stega?: boolean;
@@ -16,11 +16,22 @@ const seoFields = `
   }
 `;
 
+const categoryFields = `
+  "id": _id,
+  name,
+  "slug": slug.current,
+  description,
+  "image": image {
+    "url": asset->url,
+    alt
+  }
+`;
+
 const productFields = `
   "id": _id,
   name,
   "slug": slug.current,
-  category,
+  "category": category-> { ${categoryFields} },
   description,
   "coverImage": coverImage {
     "url": asset->url,
@@ -78,10 +89,17 @@ export async function getProductSlugs() {
   });
 }
 
-export async function getRelatedProducts(category: string, slug: string, options: QueryOptions = {}) {
+export async function getRelatedProducts(categoryId: string | undefined, slug: string, options: QueryOptions = {}) {
   return sanityFetch<Product[]>({
-    query: `*[_type == "product" && category == $category && slug.current != $slug && !isArchived] | order(coalesce(orderRank, 9999) asc, name asc)[0...4] {${productFields}}`,
-    params: { category, slug },
+    query: `*[_type == "product" && category._ref == $categoryId && slug.current != $slug && !isArchived] | order(coalesce(orderRank, 9999) asc, name asc)[0...4] {${productFields}}`,
+    params: { categoryId: categoryId || "", slug },
+    ...options,
+  });
+}
+
+export async function getCategories(options: QueryOptions = {}) {
+  return sanityFetch<Category[]>({
+    query: `*[_type == "category"] | order(orderRank asc, name asc) {${categoryFields}}`,
     ...options,
   });
 }
@@ -106,5 +124,43 @@ export async function getNewsSlugs() {
     query: `*[_type == "newsArticle" && defined(slug.current) && !isArchived] {"slug": slug.current}`,
     perspective: "published",
     stega: false,
+  });
+}
+
+export async function getHomePageSettings(options: QueryOptions = {}) {
+  return sanityFetch<HomePageSettings | null>({
+    query: `*[_type == "homePage"][0] {
+      title,
+      hero {
+        eyebrow,
+        title,
+        description,
+        backgroundImage { "url": asset->url },
+        cta
+      },
+      "featuredCategories": featuredCategories[]-> { ${categoryFields} },
+      "featuredProducts": featuredProducts[]-> { ${productFields} },
+      "newsSection": {
+        title,
+        subtitle,
+        "articles": articles[]-> { ${newsFields} }
+      },
+      "seo": seo { ${seoFields} }
+    }`,
+    ...options,
+  });
+}
+
+export async function getSiteSettings(options: QueryOptions = {}) {
+  return sanityFetch<SiteSettings | null>({
+    query: `*[_type == "siteSettings"][0] {
+      title,
+      description,
+      "logo": logo { "url": asset->url },
+      contactInfo,
+      socialLinks,
+      "globalSeo": globalSeo { ${seoFields} }
+    }`,
+    ...options,
   });
 }

@@ -12,7 +12,7 @@ export default async function NewsPage() {
         eyebrow="News"
         title="News & Industry Insights"
         description="Commercial kitchen equipment knowledge, product selection guides and company updates."
-        backgroundImage="https://images.unsplash.com/photo-1556912173-3bb406ef7e8d?auto=format&fit=crop&w=1200&q=80"
+        compact
       />
 
       <section className="section">

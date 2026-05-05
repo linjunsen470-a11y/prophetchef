@@ -51,19 +51,22 @@ export const metadata: Metadata = {
   },
 };
 
+import { getSiteSettings } from "@/sanity/queries";
+
 export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   const { isEnabled: isDraftModeEnabled } = await draftMode();
+  const settings = await getSiteSettings();
 
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
       <body className="flex flex-col min-h-screen">
-        <Header />
+        <Header settings={settings} />
         <main className="flex-grow">{children}</main>
-        <Footer />
+        <Footer settings={settings} />
         <FloatingActions />
         <SanityLive />
         {isDraftModeEnabled && <VisualEditing />}

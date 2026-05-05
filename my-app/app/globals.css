@@ -862,8 +862,10 @@ svg {
 }
 
 .news-image {
+  position: relative;
   height: 210px;
   width: 100%;
+  overflow: hidden;
   background:
     linear-gradient(135deg, rgba(30, 58, 95, 0.2), rgba(249, 115, 22, 0.1)),
     var(--card-image) center / cover,
@@ -873,6 +875,7 @@ svg {
 .news-image img {
   height: 210px;
   width: 100%;
+  object-fit: cover;
 }
 
 .news-meta {
@@ -1051,27 +1054,6 @@ svg {
   width: 16px;
   height: 16px;
   color: var(--orange);
-}
-
-.contact-method {
-  display: flex;
-  align-items: flex-start;
-  gap: 14px;
-}
-
-.contact-method-icon {
-  display: inline-grid;
-  place-items: center;
-  width: 42px;
-  height: 42px;
-  border-radius: 12px;
-  background: #eff6ff;
-  color: var(--blue);
-}
-
-.contact-method-icon svg {
-  width: 21px;
-  height: 21px;
 }
 
 /* Legal pages */

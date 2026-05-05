@@ -1,10 +1,20 @@
 import React from "react";
-import { Container } from "../common/Container";
-import { categories } from "@/data/categories";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { Container } from "../common/Container";
+import { Category } from "@/sanity/types";
+import { categories as staticCategories } from "@/data/categories";
 
-export const ProductCategories = () => {
+type StaticCategory = (typeof staticCategories)[number];
+type DisplayCategory = Category | StaticCategory;
+
+interface ProductCategoriesProps {
+  categories?: Category[];
+}
+
+export const ProductCategories = ({ categories }: ProductCategoriesProps) => {
+  const displayCategories: DisplayCategory[] = categories?.length ? categories : staticCategories;
+
   return (
     <section className="section">
       <Container className="section-heading">
@@ -13,20 +23,27 @@ export const ProductCategories = () => {
         <p>Find core equipment categories for restaurants, hotels, school canteens and central kitchen projects.</p>
       </Container>
       <Container className="category-grid">
-        {categories.map((cat) => (
-          <article key={cat.name} className="category-card">
-            <div className="category-image">
-              <img src={cat.image} alt={cat.name} loading="lazy" />
-            </div>
-            <div className="category-content">
-              <h3>{cat.name}</h3>
-              <p>{cat.description}</p>
-              <Link href={cat.href} className="text-link">
-                View Category <ArrowRight aria-hidden="true" />
-              </Link>
-            </div>
-          </article>
-        ))}
+        {displayCategories.map((cat) => {
+          const name = cat.name;
+          const description = cat.description;
+          const image = typeof cat.image === "object" ? cat.image?.url : cat.image;
+          const href = "slug" in cat ? `/products?category=${cat.slug}` : cat.href;
+
+          return (
+            <article key={name} className="category-card">
+              <div className="category-image">
+                <img src={image} alt={name} loading="lazy" />
+              </div>
+              <div className="category-content">
+                <h3>{name}</h3>
+                <p>{description}</p>
+                <Link href={href} className="text-link">
+                  View Category <ArrowRight aria-hidden="true" />
+                </Link>
+              </div>
+            </article>
+          );
+        })}
       </Container>
     </section>
   );

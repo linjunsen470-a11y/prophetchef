@@ -9,7 +9,14 @@ import { navigation } from "@/data/navigation";
 import { Button } from "@/components/common/Button";
 import styles from "./Header.module.css";
 
-export const Header = () => {
+import { SiteSettings } from "@/sanity/types";
+
+interface HeaderProps {
+  settings?: SiteSettings | null;
+}
+
+export const Header = ({ settings }: HeaderProps) => {
+  const siteName = settings?.title || siteConfig.name;
   const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -28,9 +35,15 @@ export const Header = () => {
   return (
     <header className={headerClasses} id="siteHeader">
       <div className={`container ${styles.headerInner}`}>
-        <Link href="/" className={styles.brand} aria-label={`${siteConfig.name} home`}>
-          <span className={styles.brandMark}>PKT</span>
-          <span>{siteConfig.name}</span>
+        <Link href="/" className={styles.brand} aria-label={`${siteName} home`}>
+          {settings?.logo?.url ? (
+            <img src={settings.logo.url} alt={siteName} className={styles.brandLogo} />
+          ) : (
+            <>
+              <span className={styles.brandMark}>PKT</span>
+              <span>{siteName}</span>
+            </>
+          )}
         </Link>
         
         <nav className={`${styles.mainNav} ${isMobileMenuOpen ? styles.open : ""}`} id="mainNav" aria-label="Main navigation">

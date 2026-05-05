@@ -1,7 +1,7 @@
 import React from "react";
-import Link from "next/link";
+import Image from "next/image";
 import { stegaClean } from "next-sanity";
-import { ArrowRight, PackageCheck, Send } from "lucide-react";
+import { ArrowRight, PackageCheck, Send, Camera } from "lucide-react";
 import type { Product } from "@/sanity/types";
 import { Button } from "@/components/common/Button";
 import styles from "./ProductCard.module.css";
@@ -12,15 +12,30 @@ interface ProductCardProps {
 }
 
 export const ProductCard: React.FC<ProductCardProps> = ({ product, index }) => {
-  const cleanImage = stegaClean(product.coverImage?.url || "");
+  // Support both Sanity data structure and legacy static data
+  const imageUrl = product.coverImage?.url || (product as unknown as { image?: string }).image;
+  const cleanImage = stegaClean(imageUrl || null);
   const cleanName = stegaClean(product.name);
   const cleanSlug = stegaClean(product.slug);
 
   return (
-    <article className={styles.productCard} data-category={product.category}>
+    <article className={styles.productCard} data-category={product.category?.name || "Uncategorized"}>
       <div className={styles.productMedia}>
-        <img src={cleanImage} alt={stegaClean(product.coverImage?.alt || product.name)} loading="lazy" />
-        <span className={styles.productCategoryBadge}>{product.category}</span>
+        {cleanImage ? (
+          <Image 
+            src={cleanImage} 
+            alt={stegaClean(product.coverImage?.alt || product.name)} 
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            className={styles.productImage}
+          />
+        ) : (
+          <div className={styles.imagePlaceholder}>
+            <Camera size={48} strokeWidth={1} />
+            <span>Image coming soon</span>
+          </div>
+        )}
+        <span className={styles.productCategoryBadge}>{product.category?.name || "Uncategorized"}</span>
       </div>
       <div className={styles.productBody}>
         <div className={styles.productCardTopline}>

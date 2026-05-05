@@ -1,14 +1,11 @@
 import { Send, Factory, Globe2, Clock3 } from "lucide-react";
-import { siteConfig } from "@/data/site";
 import { Button } from "@/components/common/Button";
 import styles from "@/components/common/Hero.module.css";
+import { siteConfig } from "@/data/site";
 
 export const HeroSection = () => {
   return (
-    <section 
-      className={styles.hero} 
-      style={{ "--hero-image": `url('${siteConfig.homeHeroImage}')` } as React.CSSProperties}
-    >
+    <section className={`${styles.hero} ${styles.homeHeroCompact}`}>
       <div className={styles.heroOverlay}></div>
       <div className={`container ${styles.heroContent}`}>
         <div className={styles.heroCopy}>
@@ -17,7 +14,9 @@ export const HeroSection = () => {
           <p>Factory-direct induction cooking, automatic cooking machines, combi ovens, dishwashers and complete stainless steel kitchen solutions.</p>
           <div className={styles.heroActions}>
             <Button variant="primary" href="/products">View Products</Button>
-            <Button variant="outline-light" href="/contact">Contact Supplier <Send aria-hidden="true" /></Button>
+            <Button variant="outline-light" href="/contact">
+              Contact Supplier <Send aria-hidden="true" />
+            </Button>
           </div>
           <div className={styles.trustTags}>
             {siteConfig.trustTags.map((tag) => (

@@ -54,7 +54,9 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
     notFound();
   }
 
-  const relatedProducts = await getRelatedProducts(product.category, slug);
+  const categoryId = product.category?._id;
+  const categoryName = product.category?.name || "Uncategorized";
+  const relatedProducts = await getRelatedProducts(categoryId, slug);
   
   // Combine cover image and gallery for the slider
   const galleryImages = [
@@ -67,7 +69,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
       <Breadcrumb 
         items={[
           { name: "Products", href: "/products" },
-          { name: product.category, href: `/products?category=${encodeURIComponent(stegaClean(product.category))}` },
+          { name: categoryName, href: `/products?category=${encodeURIComponent(stegaClean(categoryName))}` },
           { name: product.name }
         ]} 
       />
@@ -77,7 +79,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
           <ProductGallery images={galleryImages} />
           
           <div className={styles.productSummary}>
-            <span className="eyebrow">{product.category}</span>
+            <span className="eyebrow">{categoryName}</span>
             <h1>{product.name}</h1>
             <p>{product.description}</p>
             
@@ -164,7 +166,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
           <Container className="section-heading split-heading">
             <div>
               <span className="eyebrow">Related Products</span>
-              <h2>More {product.category}</h2>
+              <h2>More {categoryName}</h2>
             </div>
             <Button href="/products" variant="secondary">All Products</Button>
           </Container>

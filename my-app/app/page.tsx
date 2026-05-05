@@ -7,22 +7,24 @@ import { ApplicationsPreview } from "@/components/home/ApplicationsPreview";
 import { CertificatesPreview } from "@/components/home/CertificatesPreview";
 import { NewsPreview } from "@/components/home/NewsPreview";
 import { CTASection } from "@/components/common/CTASection";
+import { getHomePageSettings } from "@/sanity/queries";
 
-export default function Home() {
+export default async function Home() {
+  const settings = await getHomePageSettings();
+
   return (
     <>
       <HeroSection />
       <TrustBar />
-      <ProductCategories />
-      <FeaturedProducts />
+      <ProductCategories categories={settings?.featuredCategories} />
+      <FeaturedProducts products={settings?.featuredProducts} />
       <FactoryPreview />
       <ApplicationsPreview />
       <CertificatesPreview />
-      <NewsPreview />
+      <NewsPreview data={settings?.newsSection} />
       <CTASection />
     </>
   );
 }
-
 
 

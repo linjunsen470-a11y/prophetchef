@@ -1,14 +1,21 @@
-import React from "react";
-import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/common/Button";
-import Link from "next/link";
-import { products } from "@/data/products";
+import { getProducts } from "@/sanity/queries";
 import { Container } from "../common/Container";
 import { ProductCard } from "../product/ProductCard";
+import { Product } from "@/sanity/types";
 
-export const FeaturedProducts = () => {
-  // Just show the first 6 products as featured
-  const featuredProducts = products.slice(0, 6);
+interface FeaturedProductsProps {
+  products?: Product[];
+}
+
+export const FeaturedProducts = async ({ products }: FeaturedProductsProps) => {
+  let displayProducts = products;
+
+  // Fallback to fetching all products if no manual selection is provided
+  if (!displayProducts || displayProducts.length === 0) {
+    const allProducts = await getProducts();
+    displayProducts = allProducts.slice(0, 6);
+  }
 
   return (
     <section className="section bg-light">
@@ -21,7 +28,7 @@ export const FeaturedProducts = () => {
       </Container>
       
       <Container className="product-grid">
-        {featuredProducts.map((product, index) => (
+        {displayProducts.map((product, index) => (
           <ProductCard key={product.id} product={product} index={index} />
         ))}
       </Container>

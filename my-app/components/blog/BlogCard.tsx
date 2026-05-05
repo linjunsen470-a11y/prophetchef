@@ -1,7 +1,7 @@
-import React from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { stegaClean } from "next-sanity";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Camera } from "lucide-react";
 
 import type { SanityImage } from "@/sanity/types";
 
@@ -16,17 +16,26 @@ interface BlogCardProps {
 
 export const BlogCard: React.FC<BlogCardProps> = ({ title, excerpt, date, category, coverImage, slug }) => {
   const displayDate = date.slice(0, 10);
-  const cleanImage = stegaClean(coverImage?.url || "");
+  const cleanImage = stegaClean(coverImage?.url || null);
   const cleanSlug = stegaClean(slug);
 
   return (
     <article className="news-card">
-      <div
-        className="news-image"
-        aria-label={stegaClean(coverImage?.alt || title)}
-        role="img"
-        style={{ "--card-image": `url('${cleanImage}')` } as React.CSSProperties}
-      />
+      <div className="news-image">
+        {cleanImage ? (
+          <Image 
+            src={cleanImage}
+            alt={stegaClean(coverImage?.alt || title)}
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            className="object-cover"
+          />
+        ) : (
+          <div className="flex flex-col items-center justify-center h-full bg-slate-100 text-slate-400">
+            <Camera size={32} strokeWidth={1} />
+          </div>
+        )}
+      </div>
       <div className="news-body">
         <div className="news-meta">
           <span>{displayDate}</span>

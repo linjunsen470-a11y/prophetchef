@@ -1,9 +1,7 @@
 .hero,
 .pageHero {
   position: relative;
-  background-image: var(--hero-image);
-  background-size: cover;
-  background-position: center right;
+  background: #08172b;
   min-height: 680px;
   display: flex;
   align-items: center;
@@ -15,18 +13,46 @@
   min-height: 420px;
 }
 
+.homeHeroCompact {
+  min-height: 500px;
+}
+
+.pageHeroCompact {
+  min-height: 280px;
+}
+
+.homeHeroCompact::before,
+.pageHeroCompact::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-position: center right;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.homeHeroCompact::before {
+  background-image: url("/images/home-hero-industrial.jpg");
+}
+
+.pageHeroCompact::before {
+  background-image: url("/images/news-hero-industrial.jpg");
+}
+
 .heroOverlay {
   position: absolute;
   inset: 0;
+  z-index: 1;
   background:
     radial-gradient(circle at 78% 34%, rgba(249, 115, 22, 0.12), transparent 26%),
-    linear-gradient(90deg, rgba(8, 23, 43, 0.96) 0%, rgba(16, 36, 61, 0.82) 42%, rgba(16, 36, 61, 0.42) 72%, rgba(16, 36, 61, 0.22) 100%);
+    linear-gradient(90deg, rgba(8, 23, 43, 0.98) 0%, rgba(16, 36, 61, 0.9) 42%, rgba(16, 36, 61, 0.7) 72%, rgba(16, 36, 61, 0.58) 100%);
 }
 
 .heroContent,
 .pageHeroContent {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   padding: 84px 0;
   max-width: none;
   margin: 0 auto;
@@ -38,6 +64,14 @@
   align-items: end;
   justify-content: space-between;
   gap: 56px;
+}
+
+.homeHeroCompact .heroContent {
+  padding: 54px 0;
+}
+
+.pageHeroCompact .pageHeroContent {
+  padding: 48px 0;
 }
 
 .heroCopy {
@@ -138,6 +172,12 @@
     min-height: 640px;
     background-position: center;
   }
+  .homeHeroCompact {
+    min-height: 520px;
+  }
+  .pageHeroCompact {
+    min-height: 320px;
+  }
   .heroContent,
   .pageHeroContent {
     padding: 66px 0;
@@ -170,6 +210,12 @@
   .hero,
   .pageHero {
     min-height: 700px;
+  }
+  .homeHeroCompact {
+    min-height: 560px;
+  }
+  .pageHeroCompact {
+    min-height: 340px;
   }
   .heroContent h1,
   .pageHeroContent h1 {
