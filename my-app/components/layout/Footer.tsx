@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { BadgeCheck, Factory, Mail, MapPin, PhoneCall } from "lucide-react";
 import { siteConfig } from "@/data/site";
+import styles from "./Footer.module.css";
 
 const productLinks = [
   ["Commercial Induction Cookers", "/products#Commercial-Induction-Cookers"],
@@ -21,22 +22,22 @@ const companyLinks = [
 
 export const Footer = () => {
   return (
-    <footer className="site-footer">
-      <div className="container footer-grid">
-        <div className="footer-intro">
-          <Link className="brand footer-brand" href="/">
-            <span className="brand-mark">PKT</span>
+    <footer className={styles.siteFooter}>
+      <div className={`container ${styles.footerGrid}`}>
+        <div className={styles.footerIntro}>
+          <Link className={styles.footerBrand} href="/">
+            <span className={styles.brandMark}>PKT</span>
             <span>{siteConfig.name}</span>
           </Link>
           <p>{siteConfig.description}</p>
-          <div className="footer-badges" aria-label="Company capabilities">
+          <div className={styles.footerBadges} aria-label="Company capabilities">
             <span><BadgeCheck aria-hidden="true" />OEM / ODM</span>
             <span><BadgeCheck aria-hidden="true" />CE / ISO</span>
             <span><Factory aria-hidden="true" />Factory Direct</span>
           </div>
         </div>
 
-        <div className="footer-links">
+        <div className={styles.footerLinks}>
           <h3>Products</h3>
           {productLinks.map(([label, href]) => (
             <Link href={href} key={href}>
@@ -45,7 +46,7 @@ export const Footer = () => {
           ))}
         </div>
 
-        <div className="footer-links">
+        <div className={styles.footerLinks}>
           <h3>Company</h3>
           {companyLinks.map(([label, href]) => (
             <Link href={href} key={href}>
@@ -54,7 +55,7 @@ export const Footer = () => {
           ))}
         </div>
 
-        <div className="footer-contact">
+        <div className={styles.footerContact}>
           <h3>Contact</h3>
           <address>
             <span><Mail aria-hidden="true" />Email</span>
@@ -69,8 +70,8 @@ export const Footer = () => {
         </div>
       </div>
 
-      <div className="footer-bottom">
-        <div className="container footer-bottom-inner">
+      <div className={styles.footerBottom}>
+        <div className={`container ${styles.footerBottomInner}`}>
           <span>&copy; 2026 {siteConfig.name}. All rights reserved.</span>
           <nav aria-label="Footer legal links">
             <Link href="/privacy">Privacy Policy</Link>

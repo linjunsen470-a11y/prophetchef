@@ -2,6 +2,7 @@
 
 import React from "react";
 import { ArrowRight, Boxes, Send } from "lucide-react";
+import { Button } from "@/components/common/Button";
 
 interface ProductSidebarProps {
   activeCategory: string;
@@ -41,7 +42,7 @@ export const ProductSidebar: React.FC<ProductSidebarProps> = ({
       <div className="sidebar-cta">
         <strong>Need OEM Kitchen Equipment?</strong>
         <p>Contact us for factory price and customization support.</p>
-        <a className="btn btn-primary btn-small" href="/contact">Contact Supplier <Send aria-hidden="true" /></a>
+        <Button href="/contact" variant="primary" size="small">Contact Supplier <Send aria-hidden="true" /></Button>
       </div>
     </aside>
   );

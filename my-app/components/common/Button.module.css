@@ -1,0 +1,66 @@
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 999px;
+  padding: 13px 22px;
+  font-weight: 800;
+  font-size: 14px;
+  line-height: 1;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: 0.2s ease;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.btn svg {
+  width: 1.1em;
+  height: 1.1em;
+  stroke-width: 2.4;
+}
+
+.primary {
+  background: var(--orange);
+  color: #fff;
+  box-shadow: 0 12px 28px rgba(249, 115, 22, 0.25);
+}
+
+.primary:hover {
+  background: var(--orange-dark);
+  transform: translateY(-1px);
+}
+
+.secondary {
+  border-color: var(--blue);
+  color: var(--blue);
+  background: #fff;
+}
+
+.secondary:hover {
+  background: var(--blue);
+  color: #fff;
+}
+
+.outlineLight {
+  border-color: rgba(255, 255, 255, 0.75);
+  color: #fff;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.outlineLight:hover {
+  background: #fff;
+  color: var(--blue);
+}
+
+.small {
+  padding: 10px 15px;
+  font-size: 13px;
+}
+
+@media (max-width: 430px) {
+  .btn.fullWidthMobile {
+    width: 100%;
+  }
+}

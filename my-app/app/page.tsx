@@ -18,6 +18,9 @@ import {
   Users,
   Zap,
 } from "lucide-react";
+import { Button } from "@/components/common/Button";
+import { ProductCard } from "@/components/product/ProductCard";
+import type { Product } from "@/sanity/types";
 
 const categories = [
   {
@@ -60,42 +63,54 @@ const categories = [
 
 const products = [
   {
+    id: "p1",
     name: "Heavy Duty Commercial Induction Wok Cooker",
+    slug: "heavy-duty-commercial-induction-wok-cooker",
     category: "Commercial Induction Cookers",
     description: "High-power wok station for hotel, canteen and central kitchen cooking lines.",
     image: "https://images.unsplash.com/photo-1556912167-f556f1f39fdf?auto=format&fit=crop&w=1200&q=80",
     tags: ["8-30kW", "SUS304", "CE"],
   },
   {
+    id: "p2",
     name: "360° Automatic Stir-fry Cooking Machine",
+    slug: "360-automatic-stir-fry-cooking-machine",
     category: "Automatic Cooking Machines",
     description: "Programmable rotating cooker for standardized recipes and chain restaurants.",
     image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=1200&q=80",
     tags: ["Auto Stir", "Touch Panel", "OEM"],
   },
   {
+    id: "p3",
     name: "Commercial Combi Steam Oven",
+    slug: "commercial-combi-steam-oven",
     category: "Combi Ovens",
     description: "Steam, convection and mixed cooking modes for efficient batch production.",
     image: "https://images.unsplash.com/photo-1581578017423-5f3e4f0d41f8?auto=format&fit=crop&w=1200&q=80",
     tags: ["6/10/20 Trays", "Steam", "Digital"],
   },
   {
+    id: "p4",
     name: "Hood Type Commercial Dishwasher",
+    slug: "hood-type-commercial-dishwasher",
     category: "Commercial Dishwashers",
     description: "High-temperature washing system for hotels, schools and catering kitchens.",
     image: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=1200&q=80",
     tags: ["Rack Type", "Low Water", "Fast Cycle"],
   },
   {
+    id: "p5",
     name: "Modular Induction Cooking Range",
+    slug: "modular-induction-cooking-range",
     category: "Modular Cooking Systems",
     description: "Integrated commercial cooking line for professional open kitchens.",
     image: "https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=1600&q=80",
     tags: ["Modular", "Custom", "Heavy Duty"],
   },
   {
+    id: "p6",
     name: "Automatic Pasta Cooker",
+    slug: "automatic-pasta-cooker",
     category: "Food Processing Equipment",
     description: "Stainless steel electric pasta boiler for fast food and restaurant chains.",
     image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=1200&q=80",
@@ -151,8 +166,8 @@ export default function Home() {
             <h1>Commercial Kitchen Equipment for Global Foodservice Projects</h1>
             <p>Factory-direct induction cooking, automatic cooking machines, combi ovens, dishwashers and complete stainless steel kitchen solutions.</p>
             <div className="hero-actions">
-              <Link className="btn btn-primary" href="/products">View Products <ArrowRight aria-hidden="true" /></Link>
-              <Link className="btn btn-outline-light" href="/contact">Contact Supplier <Send aria-hidden="true" /></Link>
+              <Button variant="primary" href="/products">View Products <ArrowRight aria-hidden="true" /></Button>
+              <Button variant="outline-light" href="/contact">Contact Supplier <Send aria-hidden="true" /></Button>
             </div>
           </div>
           <div className="hero-proof" aria-label="Factory capabilities">
@@ -212,27 +227,11 @@ export default function Home() {
             <span className="eyebrow">Featured Products</span>
             <h2>Factory Direct Commercial Foodservice Equipment</h2>
           </div>
-          <Link className="btn btn-secondary" href="/products">View All Products <ArrowRight aria-hidden="true" /></Link>
+          <Button variant="secondary" href="/products">View All Products <ArrowRight aria-hidden="true" /></Button>
         </div>
         <div className="container product-grid featured-grid">
           {products.map((product, index) => (
-            <article className="product-card" data-category={product.category} key={product.name}>
-              <div className="product-media">
-                <img src={product.image} alt={product.name} loading="lazy" />
-              </div>
-              <div className="product-body">
-                <div className="product-number">{String(index + 1).padStart(2, "0")}</div>
-                <h3>{product.name}</h3>
-                <p>{product.description}</p>
-                <div className="tag-row">
-                  {product.tags.map((tag) => <span key={tag}>{tag}</span>)}
-                </div>
-                <div className="card-actions">
-                  <Link className="btn btn-primary btn-small quick-inquiry" href={`/contact?product=${encodeURIComponent(product.name)}`}>Quick Inquiry <Send aria-hidden="true" /></Link>
-                  <Link className="btn btn-secondary btn-small" href="/products/heavy-duty-commercial-induction-wok-cooker">View Details <ArrowRight aria-hidden="true" /></Link>
-                </div>
-              </div>
-            </article>
+            <ProductCard key={product.name} product={product as Product} index={index} />
           ))}
         </div>
       </section>
@@ -252,7 +251,7 @@ export default function Home() {
               <li><CheckCircle2 aria-hidden="true" />Integrated metal processing and assembly workflow</li>
               <li><CheckCircle2 aria-hidden="true" />Export support for distributors and project contractors</li>
             </ul>
-            <Link className="btn btn-primary" href="/factory">Explore Our Factory <ArrowRight aria-hidden="true" /></Link>
+            <Button variant="primary" href="/factory">Explore Our Factory <ArrowRight aria-hidden="true" /></Button>
           </div>
         </div>
       </section>
@@ -263,7 +262,7 @@ export default function Home() {
             <span className="eyebrow">Applications</span>
             <h2>Solutions for Different Kitchen Projects</h2>
           </div>
-          <Link className="btn btn-secondary" href="/applications">View Applications <ArrowRight aria-hidden="true" /></Link>
+          <Button variant="secondary" href="/applications">View Applications <ArrowRight aria-hidden="true" /></Button>
         </div>
         <div className="container application-preview-grid">
           {applications.map(([number, title, description]) => (
@@ -282,7 +281,7 @@ export default function Home() {
             <span className="eyebrow">Certificates</span>
             <h2>Compliance Support for Global Buyers</h2>
           </div>
-          <Link className="btn btn-secondary" href="/certificates">View Certificates <ArrowRight aria-hidden="true" /></Link>
+          <Button variant="secondary" href="/certificates">View Certificates <ArrowRight aria-hidden="true" /></Button>
         </div>
         <div className="container certificate-strip">
           {certificateItems.map(({ label, Icon }) => (
@@ -300,7 +299,7 @@ export default function Home() {
             <span className="eyebrow">News</span>
             <h2>Industry Insights and Product Knowledge</h2>
           </div>
-          <Link className="btn btn-secondary" href="/news">View All News <ArrowRight aria-hidden="true" /></Link>
+          <Button variant="secondary" href="/news">View All News <ArrowRight aria-hidden="true" /></Button>
         </div>
         <div className="container news-grid">
           {news.map((item) => (
@@ -327,8 +326,8 @@ export default function Home() {
             <p>Tell us your kitchen project requirements. Our team will recommend suitable equipment and provide a fast quotation.</p>
           </div>
           <div className="cta-actions">
-            <Link className="btn btn-primary" href="/contact">Send Inquiry <Send aria-hidden="true" /></Link>
-            <a className="btn btn-outline-light" href={`https://wa.me/${siteConfig.whatsapp}?text=Hello%20ProKitchenTech%2C%20I%20would%20like%20to%20request%20a%20quote.`} target="_blank" rel="noopener"><MessageCircle aria-hidden="true" />Chat on WhatsApp</a>
+            <Button variant="primary" href="/contact">Send Inquiry <Send aria-hidden="true" /></Button>
+            <Button variant="outline-light" href={`https://wa.me/${siteConfig.whatsapp}?text=Hello%20ProKitchenTech%2C%20I%20would%20like%20to%20request%20a%20quote.`} target="_blank" rel="noopener"><MessageCircle aria-hidden="true" />Chat on WhatsApp</Button>
           </div>
         </div>
       </section>

@@ -1,5 +1,6 @@
 import React from "react";
 import { Container } from "../common/Container";
+import { Button } from "@/components/common/Button";
 
 export const FactoryPreview = () => {
   return (
@@ -22,7 +23,7 @@ export const FactoryPreview = () => {
             <li>Integrated metal processing and assembly workflow</li>
             <li>Export support for distributors and project contractors</li>
           </ul>
-          <a className="btn btn-primary" href="/factory">Explore Our Factory</a>
+          <Button variant="primary" href="/factory">Explore Our Factory</Button>
         </div>
       </Container>
     </section>

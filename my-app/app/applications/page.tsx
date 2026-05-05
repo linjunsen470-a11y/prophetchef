@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { Send } from "lucide-react";
+import { ArrowRight, Send } from "lucide-react";
+import { Button } from "@/components/common/Button";
 import { PageHero } from "@/components/common/PageHero";
 import { Container } from "@/components/common/Container";
 import { SectionHeader } from "@/components/common/SectionHeader";
@@ -86,13 +87,12 @@ export default function ApplicationsPage() {
                   <strong>Recommended:</strong> {item.recommended}
                 </p>
                 <div className="card-actions">
-                  <Link className="btn btn-secondary btn-small" href="#solution-detail">
+                  <Button variant="secondary" size="small" href="#solution-detail">
                     View Solution
-                  </Link>
-                  <Link className="btn btn-primary btn-small" href={`/contact?product=${encodeURIComponent(`${item.name} Solution`)}`}>
-                    Send Inquiry
-                    <Send aria-hidden="true" />
-                  </Link>
+                  </Button>
+                  <Button variant="primary" size="small" href={`/contact?product=${encodeURIComponent(`${item.name} Solution`)}`}>
+                    Get Quote <Send aria-hidden="true" />
+                  </Button>
                 </div>
               </div>
             </article>
@@ -111,10 +111,9 @@ export default function ApplicationsPage() {
             <p>Automatic cooking machines, induction kettles, combi ovens, modular cooking lines and rack dishwashers.</p>
             <h4>Benefits</h4>
             <p>Improved production consistency, reduced labor dependency, better energy use and easier quality control.</p>
-            <Link className="btn btn-primary" href="/contact?product=Central%20Kitchen%20Solution">
-              Send Inquiry
-              <Send aria-hidden="true" />
-            </Link>
+            <Button variant="primary" href="/contact?product=Central%20Kitchen%20Solution">
+              Request Project Consultation <ArrowRight aria-hidden="true" />
+            </Button>
           </article>
           <article className="solution-card">
             <h3>Chain Restaurant Solution</h3>
@@ -124,10 +123,9 @@ export default function ApplicationsPage() {
             <p>Automatic stir-fry machines, pasta cookers, countertop induction cookers, combi ovens and undercounter dishwashers.</p>
             <h4>Benefits</h4>
             <p>Repeatable recipes, faster service speed, controlled operating costs and scalable procurement.</p>
-            <Link className="btn btn-primary" href="/contact?product=Chain%20Restaurant%20Solution">
-              Send Inquiry
-              <Send aria-hidden="true" />
-            </Link>
+            <Button variant="primary" href="/contact?product=Chain%20Restaurant%20Solution">
+              Discuss Your Chain&apos;s Needs <ArrowRight aria-hidden="true" />
+            </Button>
           </article>
         </Container>
       </section>

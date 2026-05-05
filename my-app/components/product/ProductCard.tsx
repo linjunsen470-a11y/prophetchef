@@ -3,6 +3,8 @@ import Link from "next/link";
 import { stegaClean } from "next-sanity";
 import { ArrowRight, PackageCheck, Send } from "lucide-react";
 import type { Product } from "@/sanity/types";
+import { Button } from "@/components/common/Button";
+import styles from "./ProductCard.module.css";
 
 interface ProductCardProps {
   product: Product;
@@ -15,38 +17,38 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, index }) => {
   const cleanSlug = stegaClean(product.slug);
 
   return (
-    <article className="product-card" data-category={product.category}>
-      <div className="product-media">
+    <article className={styles.productCard} data-category={product.category}>
+      <div className={styles.productMedia}>
         <img src={cleanImage} alt={product.name} loading="lazy" />
-        <span className="product-category-badge">{product.category}</span>
+        <span className={styles.productCategoryBadge}>{product.category}</span>
       </div>
-      <div className="product-body">
-        <div className="product-card-topline">
-          <div className="product-number">{(index + 1).toString().padStart(2, "0")}</div>
+      <div className={styles.productBody}>
+        <div className={styles.productCardTopline}>
+          <div className={styles.productNumber}>{(index + 1).toString().padStart(2, "0")}</div>
           <span><PackageCheck aria-hidden="true" />Factory supply</span>
         </div>
         <h3>{product.name}</h3>
         <p>{product.description}</p>
-        <div className="tag-row">
+        <div className={styles.tagRow}>
           {product.tags.map((tag) => (
             <span key={tag}>{tag}</span>
           ))}
         </div>
-        <div className="card-actions">
-          <Link 
+        <div className={styles.cardActions}>
+          <Button 
             href={`/contact?product=${encodeURIComponent(cleanName)}`} 
-            className="btn btn-primary btn-small quick-inquiry"
+            variant="primary" size="small" className="quick-inquiry"
           >
             Quick Inquiry
             <Send aria-hidden="true" />
-          </Link>
-          <Link 
+          </Button>
+          <Button 
             href={`/products/${cleanSlug}`} 
-            className="btn btn-secondary btn-small"
+            variant="secondary" size="small"
           >
             View Details
             <ArrowRight aria-hidden="true" />
-          </Link>
+          </Button>
         </div>
       </div>
     </article>

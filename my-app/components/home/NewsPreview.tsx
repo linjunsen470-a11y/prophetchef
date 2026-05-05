@@ -1,5 +1,6 @@
 import React from "react";
-import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import { Button } from "@/components/common/Button";
 import { BlogCard } from "../blog/BlogCard";
 
 export const NewsPreview = () => {
@@ -37,7 +38,7 @@ export const NewsPreview = () => {
           <span className="eyebrow">News</span>
           <h2>Industry Insights and Product Knowledge</h2>
         </div>
-        <Link className="btn btn-secondary" href="/news">View All News</Link>
+        <Button variant="secondary" href="/news">View All News</Button>
       </div>
       <div className="container news-grid">
         {news.map((item) => (

@@ -10,6 +10,7 @@ import {
   ShieldCheck,
   type LucideIcon,
 } from "lucide-react";
+import { Button } from "@/components/common/Button";
 
 const certificateIcons: Record<string, LucideIcon> = {
   CE: BadgeCheck,
@@ -28,7 +29,7 @@ export const CertificatesPreview = () => {
           <span className="eyebrow">Certificates</span>
           <h2>Compliance Support for Global Buyers</h2>
         </div>
-        <a className="btn btn-secondary" href="/certificates">View Certificates</a>
+        <Button variant="secondary" href="/certificates">View Certificates</Button>
       </Container>
       <Container className="certificate-strip">
         {certificates.map((cert) => (

@@ -6,6 +6,8 @@ import { Send } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { siteConfig } from "@/data/site";
 import { navigation } from "@/data/navigation";
+import { Button } from "@/components/common/Button";
+import styles from "./Header.module.css";
 
 export const Header = () => {
   const pathname = usePathname();
@@ -20,23 +22,23 @@ export const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const headerClasses = `site-header ${isScrolled ? "scrolled" : ""} ${isMobileMenuOpen ? "menu-open" : ""}`;
+  const headerClasses = `${styles.siteHeader} ${isScrolled ? styles.scrolled : ""} ${isMobileMenuOpen ? styles.menuOpen : ""}`;
   const isActivePath = (href: string) => (href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(`${href}/`));
 
   return (
     <header className={headerClasses} id="siteHeader">
-      <div className="container header-inner">
-        <Link href="/" className="brand" aria-label={`${siteConfig.name} home`}>
-          <span className="brand-mark">PKT</span>
+      <div className={`container ${styles.headerInner}`}>
+        <Link href="/" className={styles.brand} aria-label={`${siteConfig.name} home`}>
+          <span className={styles.brandMark}>PKT</span>
           <span>{siteConfig.name}</span>
         </Link>
         
-        <nav className={`main-nav ${isMobileMenuOpen ? "open" : ""}`} id="mainNav" aria-label="Main navigation">
+        <nav className={`${styles.mainNav} ${isMobileMenuOpen ? styles.open : ""}`} id="mainNav" aria-label="Main navigation">
           {navigation.map((item) => (
             <Link 
               key={item.name} 
               href={item.href} 
-              className={isActivePath(item.href) ? "active" : ""}
+              className={isActivePath(item.href) ? styles.active : ""}
               onClick={() => setIsMobileMenuOpen(false)}
             >
               {item.name}
@@ -44,13 +46,13 @@ export const Header = () => {
           ))}
         </nav>
 
-        <div className="header-actions">
-          <Link className="btn btn-primary btn-small" href="/contact">
+        <div className={styles.headerActions}>
+          <Button variant="primary" size="small" href="/contact">
             Get Quote
             <Send aria-hidden="true" />
-          </Link>
+          </Button>
           <button 
-            className="mobile-toggle" 
+            className={styles.mobileToggle} 
             id="mobileToggle" 
             aria-label="Toggle mobile menu" 
             aria-expanded={isMobileMenuOpen}

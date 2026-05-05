@@ -1,9 +1,10 @@
 import React from "react";
-import Link from "next/link";
 import { PageHero } from "@/components/common/PageHero";
 import { Container } from "@/components/common/Container";
 import { SectionHeader } from "@/components/common/SectionHeader";
 import { CTASection } from "@/components/common/CTASection";
+import { ArrowRight } from "lucide-react";
+import { Button } from "@/components/common/Button";
 
 const certificates = [
   { icon: "CE", title: "CE" },
@@ -63,9 +64,10 @@ export default function CertificatesPage() {
             <h2>Need certificates for import clearance?</h2>
             <p>Contact us to get product documents for your selected models and destination market.</p>
           </div>
-          <Link className="btn btn-primary" href="/contact">
-            Contact Us
-          </Link>
+          <Button variant="primary" href="/contact">
+            Request Full Documentation
+            <ArrowRight aria-hidden="true" />
+          </Button>
         </Container>
       </section>
 

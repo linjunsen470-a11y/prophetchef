@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import styles from "./Button.module.css";
 
 interface ButtonProps {
   href?: string;
@@ -13,6 +14,7 @@ interface ButtonProps {
   type?: "button" | "submit";
   target?: string;
   rel?: string;
+  fullWidthMobile?: boolean;
 }
 
 export const Button: React.FC<ButtonProps> = ({
@@ -27,16 +29,23 @@ export const Button: React.FC<ButtonProps> = ({
   type = "button",
   target,
   rel,
+  fullWidthMobile = false,
 }) => {
-  const baseClasses = "btn";
-  const variantClasses = {
-    primary: "btn-primary",
-    secondary: "btn-secondary",
-    "outline-light": "btn-outline-light",
+  const variantClassMap: Record<string, string> = {
+    primary: styles.primary,
+    secondary: styles.secondary,
+    "outline-light": styles.outlineLight,
   };
-  const sizeClasses = size === "small" ? "btn-small" : "";
 
-  const combinedClasses = `${baseClasses} ${variantClasses[variant]} ${sizeClasses} ${className}`;
+  const combinedClasses = [
+    styles.btn,
+    variantClassMap[variant],
+    size === "small" ? styles.small : "",
+    fullWidthMobile ? styles.fullWidthMobile : "",
+    className,
+  ]
+    .filter(Boolean)
+    .join(" ");
 
   if (href) {
     return (

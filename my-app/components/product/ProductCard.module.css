@@ -1,0 +1,128 @@
+.productCard {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
+  overflow: hidden;
+  transition: 0.3s ease;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.productMedia {
+  position: relative;
+  overflow: hidden;
+}
+
+.productMedia img {
+  height: 210px;
+  width: 100%;
+  transition: 0.3s;
+  object-fit: cover;
+}
+
+.productCard:hover .productMedia img {
+  transform: scale(1.04);
+}
+
+.productCategoryBadge {
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 14px;
+  z-index: 1;
+  width: fit-content;
+  max-width: calc(100% - 28px);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 7px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--blue);
+  font-size: 12px;
+  font-weight: 850;
+}
+
+.productBody {
+  padding: 22px;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.productBody h3 {
+  margin: 0 0 10px;
+  font-size: 20px;
+  line-height: 1.25;
+  font-weight: 850;
+}
+
+.productBody p {
+  color: var(--muted);
+  margin: 0 0 16px;
+  flex: 1;
+}
+
+.productCardTopline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.productCardTopline > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.productCardTopline > span svg {
+  width: 14px;
+  height: 14px;
+  color: var(--orange);
+}
+
+.productNumber {
+  color: var(--orange);
+  font-weight: 900;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+}
+
+.tagRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin: 14px 0 18px;
+}
+
+.tagRow span {
+  background: #eff6ff;
+  color: var(--blue);
+  border: 1px solid #dbeafe;
+  padding: 6px 9px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 750;
+}
+
+.cardActions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+@media (max-width: 560px) {
+  .cardActions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+}
