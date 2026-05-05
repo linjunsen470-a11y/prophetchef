@@ -1,6 +1,24 @@
 import React from "react";
 import { certificates } from "@/data/applications";
 import { Container } from "../common/Container";
+import {
+  BadgeCheck,
+  ClipboardCheck,
+  FileCheck,
+  PlugZap,
+  Recycle,
+  ShieldCheck,
+  type LucideIcon,
+} from "lucide-react";
+
+const certificateIcons: Record<string, LucideIcon> = {
+  CE: BadgeCheck,
+  "ISO 9001": ShieldCheck,
+  RoHS: Recycle,
+  ETL: PlugZap,
+  "Inspection Report": ClipboardCheck,
+  "Patent Certificate": FileCheck,
+};
 
 export const CertificatesPreview = () => {
   return (
@@ -15,6 +33,7 @@ export const CertificatesPreview = () => {
       <Container className="certificate-strip">
         {certificates.map((cert) => (
           <div key={cert}>
+            {React.createElement(certificateIcons[cert] ?? FileCheck, { "aria-hidden": true })}
             {cert}
           </div>
         ))}

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { BadgeCheck, Factory, Mail, MapPin, PhoneCall } from "lucide-react";
 import { siteConfig } from "@/data/site";
 
 const productLinks = [
@@ -22,41 +23,62 @@ export const Footer = () => {
   return (
     <footer className="site-footer">
       <div className="container footer-grid">
-        <div>
+        <div className="footer-intro">
           <Link className="brand footer-brand" href="/">
             <span className="brand-mark">PKT</span>
             <span>{siteConfig.name}</span>
           </Link>
           <p>{siteConfig.description}</p>
+          <div className="footer-badges" aria-label="Company capabilities">
+            <span><BadgeCheck aria-hidden="true" />OEM / ODM</span>
+            <span><BadgeCheck aria-hidden="true" />CE / ISO</span>
+            <span><Factory aria-hidden="true" />Factory Direct</span>
+          </div>
         </div>
 
-        <div>
+        <div className="footer-links">
           <h3>Products</h3>
           {productLinks.map(([label, href]) => (
-            <Link href={href} key={href}>{label}</Link>
+            <Link href={href} key={href}>
+              {label}
+            </Link>
           ))}
         </div>
 
-        <div>
+        <div className="footer-links">
           <h3>Company</h3>
           {companyLinks.map(([label, href]) => (
-            <Link href={href} key={href}>{label}</Link>
+            <Link href={href} key={href}>
+              {label}
+            </Link>
           ))}
         </div>
 
-        <div>
+        <div className="footer-contact">
           <h3>Contact</h3>
-          <p>Email: <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a></p>
-          <p>WhatsApp: <a href={`https://wa.me/${siteConfig.whatsapp}`} target="_blank" rel="noopener">{siteConfig.phone}</a></p>
-          <p>Address: {siteConfig.address}</p>
-          <p>Language: EN / ES / FR / RU / AR</p>
+          <address>
+            <span><Mail aria-hidden="true" />Email</span>
+            <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
+            <span><PhoneCall aria-hidden="true" />WhatsApp</span>
+            <a href={`https://wa.me/${siteConfig.whatsapp}`} target="_blank" rel="noopener">
+              {siteConfig.phone}
+            </a>
+            <span><MapPin aria-hidden="true" />Address</span>
+            <p>{siteConfig.address}</p>
+          </address>
         </div>
       </div>
 
       <div className="footer-bottom">
         <div className="container footer-bottom-inner">
-          <span>© 2026 {siteConfig.name}. All rights reserved.</span>
-          <span><Link href="/privacy">Privacy Policy</Link> · <Link href="/sitemap">Sitemap</Link></span>
+          <span>&copy; 2026 {siteConfig.name}. All rights reserved.</span>
+          <nav aria-label="Footer legal links">
+            <Link href="/privacy">Privacy Policy</Link>
+            <span aria-hidden="true">/</span>
+            <Link href="/terms">Terms of Service</Link>
+            <span aria-hidden="true">/</span>
+            <Link href="/sitemap">Sitemap</Link>
+          </nav>
         </div>
       </div>
     </footer>

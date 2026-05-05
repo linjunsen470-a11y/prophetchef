@@ -2,10 +2,13 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { Send } from "lucide-react";
+import { usePathname } from "next/navigation";
 import { siteConfig } from "@/data/site";
 import { navigation } from "@/data/navigation";
 
 export const Header = () => {
+  const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -18,6 +21,7 @@ export const Header = () => {
   }, []);
 
   const headerClasses = `site-header ${isScrolled ? "scrolled" : ""} ${isMobileMenuOpen ? "menu-open" : ""}`;
+  const isActivePath = (href: string) => (href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(`${href}/`));
 
   return (
     <header className={headerClasses} id="siteHeader">
@@ -32,7 +36,7 @@ export const Header = () => {
             <Link 
               key={item.name} 
               href={item.href} 
-              className={item.href === "/" ? "active" : ""}
+              className={isActivePath(item.href) ? "active" : ""}
               onClick={() => setIsMobileMenuOpen(false)}
             >
               {item.name}
@@ -41,10 +45,10 @@ export const Header = () => {
         </nav>
 
         <div className="header-actions">
-          <div className="language-switch" aria-label="Language options">
-            <span>EN</span><span>ES</span><span>FR</span><span>RU</span><span>AR</span>
-          </div>
-          <Link className="btn btn-primary btn-small" href="/contact">Get Quote</Link>
+          <Link className="btn btn-primary btn-small" href="/contact">
+            Get Quote
+            <Send aria-hidden="true" />
+          </Link>
           <button 
             className="mobile-toggle" 
             id="mobileToggle" 

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { Send } from "lucide-react";
 import { Button } from "../common/Button";
 
 export const ContactForm = () => {
@@ -56,7 +57,7 @@ export const ContactForm = () => {
         <label>Message</label>
         <textarea name="message" rows={6} placeholder="How can we help you?"></textarea>
       </div>
-      <Button type="submit">Send Message</Button>
+      <Button type="submit" iconEnd={<Send aria-hidden="true" />}>Send Message</Button>
       {status && <p className="form-message">{status}</p>}
       <style jsx>{`
         .contact-form {

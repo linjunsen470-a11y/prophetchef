@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import { Send } from "lucide-react";
 import { siteConfig } from "@/data/site";
 
 export const HeroSection = () => {
@@ -15,7 +16,7 @@ export const HeroSection = () => {
         <p>20+ years of manufacturing experience in induction cooking, automatic cooking machines, combi ovens, dishwashers and complete kitchen solutions.</p>
         <div className="hero-actions">
           <Link className="btn btn-primary" href="/products">View Products</Link>
-          <Link className="btn btn-outline-light" href="/contact">Contact Supplier</Link>
+          <Link className="btn btn-outline-light" href="/contact">Contact Supplier <Send aria-hidden="true" /></Link>
         </div>
         <div className="trust-tags">
           {siteConfig.trustTags.map((tag) => (

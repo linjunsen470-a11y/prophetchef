@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { Send } from "lucide-react";
 import { Button } from "../common/Button";
 
 interface ProductInquiryFormProps {
@@ -51,7 +52,7 @@ export const ProductInquiryForm: React.FC<ProductInquiryFormProps> = ({ productN
         <label>Message</label>
         <textarea name="message" rows={5} placeholder={`I am interested in ${productName}. Please send details and price.`}></textarea>
       </div>
-      <Button type="submit">Send Inquiry</Button>
+      <Button type="submit" iconEnd={<Send aria-hidden="true" />}>Send Inquiry</Button>
       {status && <p className="form-message">{status}</p>}
     </form>
   );

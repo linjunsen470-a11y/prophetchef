@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { BadgeCheck, Factory, Globe2 } from "lucide-react";
 import { products } from "@/data/products";
 import { PageHero } from "@/components/common/PageHero";
 import { Container } from "@/components/common/Container";
@@ -24,9 +25,9 @@ export default function ProductsPage() {
         backgroundImage="https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=1600&q=80"
       >
         <div className="product-hero-metrics" aria-label="Product capabilities">
-          <span>Factory direct</span>
-          <span>OEM / ODM</span>
-          <span>Export-ready</span>
+          <span><Factory aria-hidden="true" />Factory direct</span>
+          <span><BadgeCheck aria-hidden="true" />OEM / ODM</span>
+          <span><Globe2 aria-hidden="true" />Export-ready</span>
         </div>
       </PageHero>
       

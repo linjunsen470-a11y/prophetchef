@@ -1,6 +1,7 @@
 import React from "react";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
+import { MessageCircle, Send } from "lucide-react";
 import { products } from "@/data/products";
 import { siteConfig } from "@/data/site";
 import { Breadcrumb } from "@/components/common/Breadcrumb";
@@ -71,12 +72,13 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
               <span>CE Certified</span>
             </div>
             <div className="hero-actions">
-              <Button href="#product-inquiry">Send Inquiry</Button>
+              <Button href="#product-inquiry" iconEnd={<Send aria-hidden="true" />}>Send Inquiry</Button>
               <Button 
                 href={`https://wa.me/${siteConfig.whatsapp}?text=Hello%20ProKitchenTech%2C%20I%20would%20like%20to%20request%20a%20quote.`}
                 variant="secondary"
                 target="_blank"
                 rel="noopener"
+                iconStart={<MessageCircle aria-hidden="true" />}
               >
                 Chat on WhatsApp
               </Button>

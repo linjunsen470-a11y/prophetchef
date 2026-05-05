@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { ArrowUp, MessageCircle } from "lucide-react";
 import { siteConfig } from "@/data/site";
 
 export const FloatingActions = () => {
@@ -23,6 +24,7 @@ export const FloatingActions = () => {
         rel="noopener"
         aria-label="Chat on WhatsApp"
       >
+        <MessageCircle aria-hidden="true" />
         WhatsApp
       </a>
       <button
@@ -31,7 +33,7 @@ export const FloatingActions = () => {
         aria-label="Back to top"
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
       >
-        ↑
+        <ArrowUp aria-hidden="true" />
       </button>
     </>
   );

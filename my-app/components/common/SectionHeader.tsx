@@ -6,6 +6,7 @@ interface SectionHeaderProps {
   title: string;
   description?: string;
   alignment?: "left" | "center" | "split";
+  className?: string;
   children?: React.ReactNode; // For buttons in split mode
 }
 
@@ -14,11 +15,12 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
   title,
   description,
   alignment = "left",
+  className = "",
   children,
 }) => {
   if (alignment === "split") {
     return (
-      <Container className="section-heading split-heading">
+      <Container className={`section-heading split-heading ${className}`}>
         <div>
           {eyebrow && <span className="eyebrow">{eyebrow}</span>}
           <h2>{title}</h2>
@@ -30,7 +32,7 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
   }
 
   return (
-    <Container className={`section-heading ${alignment === "center" ? "text-center mx-auto" : ""}`}>
+    <Container className={`section-heading ${alignment === "center" ? "text-center mx-auto" : ""} ${className}`}>
       {eyebrow && <span className="eyebrow">{eyebrow}</span>}
       <h2>{title}</h2>
       {description && <p>{description}</p>}

@@ -1,6 +1,23 @@
 import { siteConfig } from "@/data/site";
 import type { CSSProperties } from "react";
 import Link from "next/link";
+import {
+  ArrowRight,
+  BadgeCheck,
+  CheckCircle2,
+  Clock3,
+  ClipboardCheck,
+  Factory,
+  FileCheck,
+  Globe2,
+  MessageCircle,
+  PlugZap,
+  Recycle,
+  Send,
+  ShieldCheck,
+  Users,
+  Zap,
+} from "lucide-react";
 
 const categories = [
   {
@@ -114,33 +131,56 @@ const news = [
   },
 ];
 
+const certificateItems = [
+  { label: "CE", Icon: BadgeCheck },
+  { label: "ISO 9001", Icon: ShieldCheck },
+  { label: "RoHS", Icon: Recycle },
+  { label: "ETL", Icon: PlugZap },
+  { label: "Inspection Report", Icon: ClipboardCheck },
+  { label: "Patent Certificate", Icon: FileCheck },
+];
+
 export default function Home() {
   return (
     <>
-      <section className="hero hero-home" style={{ "--hero-image": `url('${siteConfig.ogImage}')` } as CSSProperties}>
+      <section className="hero hero-home" style={{ "--hero-image": `url('${siteConfig.homeHeroImage}')` } as CSSProperties}>
         <div className="hero-overlay" />
         <div className="container hero-content">
-          <span className="eyebrow light">Commercial Foodservice Equipment Factory</span>
-          <h1>Commercial Kitchen Equipment Manufacturer for Global Foodservice Projects</h1>
-          <p>20+ years of manufacturing experience in induction cooking, automatic cooking machines, combi ovens, dishwashers and complete kitchen solutions.</p>
-          <div className="hero-actions">
-            <Link className="btn btn-primary" href="/products">View Products</Link>
-            <Link className="btn btn-outline-light" href="/contact">Contact Supplier</Link>
+          <div className="hero-copy">
+            <span className="eyebrow light">Commercial Foodservice Equipment Factory</span>
+            <h1>Commercial Kitchen Equipment for Global Foodservice Projects</h1>
+            <p>Factory-direct induction cooking, automatic cooking machines, combi ovens, dishwashers and complete stainless steel kitchen solutions.</p>
+            <div className="hero-actions">
+              <Link className="btn btn-primary" href="/products">View Products <ArrowRight aria-hidden="true" /></Link>
+              <Link className="btn btn-outline-light" href="/contact">Contact Supplier <Send aria-hidden="true" /></Link>
+            </div>
           </div>
-          <div className="trust-tags">
-            <span>OEM / ODM Available</span>
-            <span>CE / ISO Certified</span>
-            <span>Fast Quotation Within 24 Hours</span>
+          <div className="hero-proof" aria-label="Factory capabilities">
+            <div>
+              <Factory aria-hidden="true" />
+              <strong>20+</strong>
+              <span>Years Manufacturing</span>
+            </div>
+            <div>
+              <Globe2 aria-hidden="true" />
+              <strong>50+</strong>
+              <span>Export Countries</span>
+            </div>
+            <div>
+              <Clock3 aria-hidden="true" />
+              <strong>24h</strong>
+              <span>Fast Quotation</span>
+            </div>
           </div>
         </div>
       </section>
 
       <section className="trust-bar">
         <div className="container trust-grid">
-          <div><strong>20+</strong><span>Years Experience</span></div>
-          <div><strong>15000m²</strong><span>Factory Area</span></div>
-          <div><strong>750+</strong><span>Skilled Employees</span></div>
-          <div><strong>50+</strong><span>Export Countries</span></div>
+          <div><Factory aria-hidden="true" /><strong>20+</strong><span>Years Experience</span></div>
+          <div><Zap aria-hidden="true" /><strong>15000㎡</strong><span>Factory Area</span></div>
+          <div><Users aria-hidden="true" /><strong>750+</strong><span>Skilled Employees</span></div>
+          <div><Globe2 aria-hidden="true" /><strong>50+</strong><span>Export Countries</span></div>
         </div>
       </section>
 
@@ -159,7 +199,7 @@ export default function Home() {
               <div className="category-content">
                 <h3>{category.title}</h3>
                 <p>{category.description}</p>
-                <Link href={category.href} className="text-link">View Category →</Link>
+                <Link href={category.href} className="text-link">View Category <ArrowRight aria-hidden="true" /></Link>
               </div>
             </article>
           ))}
@@ -172,7 +212,7 @@ export default function Home() {
             <span className="eyebrow">Featured Products</span>
             <h2>Factory Direct Commercial Foodservice Equipment</h2>
           </div>
-          <Link className="btn btn-secondary" href="/products">View All Products</Link>
+          <Link className="btn btn-secondary" href="/products">View All Products <ArrowRight aria-hidden="true" /></Link>
         </div>
         <div className="container product-grid featured-grid">
           {products.map((product, index) => (
@@ -188,8 +228,8 @@ export default function Home() {
                   {product.tags.map((tag) => <span key={tag}>{tag}</span>)}
                 </div>
                 <div className="card-actions">
-                  <Link className="btn btn-primary btn-small quick-inquiry" href={`/contact?product=${encodeURIComponent(product.name)}`}>Quick Inquiry</Link>
-                  <Link className="btn btn-secondary btn-small" href="/products/heavy-duty-commercial-induction-wok-cooker">View Details</Link>
+                  <Link className="btn btn-primary btn-small quick-inquiry" href={`/contact?product=${encodeURIComponent(product.name)}`}>Quick Inquiry <Send aria-hidden="true" /></Link>
+                  <Link className="btn btn-secondary btn-small" href="/products/heavy-duty-commercial-induction-wok-cooker">View Details <ArrowRight aria-hidden="true" /></Link>
                 </div>
               </div>
             </article>
@@ -207,12 +247,12 @@ export default function Home() {
             <h2>Built for Stable Supply and Global Project Delivery</h2>
             <p>Our production base integrates laser cutting, bending, welding, assembly and testing lines, supported by R&D, QC, sales and after-sales teams.</p>
             <ul className="check-list">
-              <li>20+ years manufacturing experience</li>
-              <li>15000m² production base</li>
-              <li>Integrated metal processing and assembly workflow</li>
-              <li>Export support for distributors and project contractors</li>
+              <li><CheckCircle2 aria-hidden="true" />20+ years manufacturing experience</li>
+              <li><CheckCircle2 aria-hidden="true" />15000㎡ production base</li>
+              <li><CheckCircle2 aria-hidden="true" />Integrated metal processing and assembly workflow</li>
+              <li><CheckCircle2 aria-hidden="true" />Export support for distributors and project contractors</li>
             </ul>
-            <Link className="btn btn-primary" href="/factory">Explore Our Factory</Link>
+            <Link className="btn btn-primary" href="/factory">Explore Our Factory <ArrowRight aria-hidden="true" /></Link>
           </div>
         </div>
       </section>
@@ -223,12 +263,12 @@ export default function Home() {
             <span className="eyebrow">Applications</span>
             <h2>Solutions for Different Kitchen Projects</h2>
           </div>
-          <Link className="btn btn-secondary" href="/applications">View Applications</Link>
+          <Link className="btn btn-secondary" href="/applications">View Applications <ArrowRight aria-hidden="true" /></Link>
         </div>
         <div className="container application-preview-grid">
           {applications.map(([number, title, description]) => (
             <article key={number}>
-              <span>{number}</span>
+              <span><BadgeCheck aria-hidden="true" />{number}</span>
               <h3>{title}</h3>
               <p>{description}</p>
             </article>
@@ -242,11 +282,14 @@ export default function Home() {
             <span className="eyebrow">Certificates</span>
             <h2>Compliance Support for Global Buyers</h2>
           </div>
-          <Link className="btn btn-secondary" href="/certificates">View Certificates</Link>
+          <Link className="btn btn-secondary" href="/certificates">View Certificates <ArrowRight aria-hidden="true" /></Link>
         </div>
         <div className="container certificate-strip">
-          {["CE", "ISO 9001", "RoHS", "ETL", "Inspection Report", "Patent Certificate"].map((cert) => (
-            <div key={cert}>{cert}</div>
+          {certificateItems.map(({ label, Icon }) => (
+            <div key={label}>
+              <Icon aria-hidden="true" />
+              {label}
+            </div>
           ))}
         </div>
       </section>
@@ -257,7 +300,7 @@ export default function Home() {
             <span className="eyebrow">News</span>
             <h2>Industry Insights and Product Knowledge</h2>
           </div>
-          <Link className="btn btn-secondary" href="/news">View All News</Link>
+          <Link className="btn btn-secondary" href="/news">View All News <ArrowRight aria-hidden="true" /></Link>
         </div>
         <div className="container news-grid">
           {news.map((item) => (
@@ -269,7 +312,7 @@ export default function Home() {
                 <div className="news-meta"><span>{item.date}</span><span>{item.category}</span></div>
                 <h3>{item.title}</h3>
                 <p>{item.excerpt}</p>
-                <Link className="text-link" href="/news/why-commercial-kitchens-switching-induction">Read More →</Link>
+                <Link className="text-link" href="/news/why-commercial-kitchens-switching-induction">Read More <ArrowRight aria-hidden="true" /></Link>
               </div>
             </article>
           ))}
@@ -284,8 +327,8 @@ export default function Home() {
             <p>Tell us your kitchen project requirements. Our team will recommend suitable equipment and provide a fast quotation.</p>
           </div>
           <div className="cta-actions">
-            <Link className="btn btn-primary" href="/contact">Send Inquiry</Link>
-            <a className="btn btn-outline-light" href={`https://wa.me/${siteConfig.whatsapp}?text=Hello%20ProKitchenTech%2C%20I%20would%20like%20to%20request%20a%20quote.`} target="_blank" rel="noopener">Chat on WhatsApp</a>
+            <Link className="btn btn-primary" href="/contact">Send Inquiry <Send aria-hidden="true" /></Link>
+            <a className="btn btn-outline-light" href={`https://wa.me/${siteConfig.whatsapp}?text=Hello%20ProKitchenTech%2C%20I%20would%20like%20to%20request%20a%20quote.`} target="_blank" rel="noopener"><MessageCircle aria-hidden="true" />Chat on WhatsApp</a>
           </div>
         </div>
       </section>

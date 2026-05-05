@@ -4,6 +4,8 @@ import Link from "next/link";
 interface ButtonProps {
   href?: string;
   children: React.ReactNode;
+  iconStart?: React.ReactNode;
+  iconEnd?: React.ReactNode;
   variant?: "primary" | "secondary" | "outline-light";
   size?: "small" | "default";
   className?: string;
@@ -16,6 +18,8 @@ interface ButtonProps {
 export const Button: React.FC<ButtonProps> = ({
   href,
   children,
+  iconStart,
+  iconEnd,
   variant = "primary",
   size = "default",
   className = "",
@@ -37,14 +41,18 @@ export const Button: React.FC<ButtonProps> = ({
   if (href) {
     return (
       <Link href={href} className={combinedClasses} target={target} rel={rel}>
+        {iconStart}
         {children}
+        {iconEnd}
       </Link>
     );
   }
 
   return (
     <button type={type} className={combinedClasses} onClick={onClick}>
+      {iconStart}
       {children}
+      {iconEnd}
     </button>
   );
 };

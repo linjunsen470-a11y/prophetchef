@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import { ArrowRight, PackageCheck, Send } from "lucide-react";
 import { Product } from "@/data/products";
 
 interface ProductCardProps {
@@ -17,7 +18,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, index }) => {
       <div className="product-body">
         <div className="product-card-topline">
           <div className="product-number">{(index + 1).toString().padStart(2, "0")}</div>
-          <span>Factory supply</span>
+          <span><PackageCheck aria-hidden="true" />Factory supply</span>
         </div>
         <h3>{product.name}</h3>
         <p>{product.description}</p>
@@ -32,12 +33,14 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, index }) => {
             className="btn btn-primary btn-small quick-inquiry"
           >
             Quick Inquiry
+            <Send aria-hidden="true" />
           </Link>
           <Link 
             href={`/products/${product.slug}`} 
             className="btn btn-secondary btn-small"
           >
             View Details
+            <ArrowRight aria-hidden="true" />
           </Link>
         </div>
       </div>
