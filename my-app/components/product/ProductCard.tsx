@@ -12,14 +12,14 @@ interface ProductCardProps {
 }
 
 export const ProductCard: React.FC<ProductCardProps> = ({ product, index }) => {
-  const cleanImage = stegaClean(product.image);
+  const cleanImage = stegaClean(product.coverImage?.url || "");
   const cleanName = stegaClean(product.name);
   const cleanSlug = stegaClean(product.slug);
 
   return (
     <article className={styles.productCard} data-category={product.category}>
       <div className={styles.productMedia}>
-        <img src={cleanImage} alt={product.name} loading="lazy" />
+        <img src={cleanImage} alt={stegaClean(product.coverImage?.alt || product.name)} loading="lazy" />
         <span className={styles.productCategoryBadge}>{product.category}</span>
       </div>
       <div className={styles.productBody}>

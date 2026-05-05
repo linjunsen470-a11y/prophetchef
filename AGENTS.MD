@@ -22,9 +22,9 @@ Use:
 
 ```bash
 cd my-app
-npm run dev
-npm run lint
-npm run build
+pnpm run dev
+pnpm run lint
+pnpm run build
 ```
 
 The app uses Next.js App Router, TypeScript, Tailwind CSS 4, and Sanity content helpers.
@@ -60,8 +60,8 @@ Do not treat it as production source. Use it for visual/content comparison when 
 
 For frontend changes:
 
-- `npm run lint`
-- `npm run build`
+- `pnpm run lint`
+- `pnpm run build`
 - browser check `/`, `/products`, `/news`, `/contact`
 
 For Studio changes:
@@ -80,3 +80,22 @@ For content/query changes:
 - Do not commit transient screenshots, browser traces, build output, or `node_modules` unless explicitly requested.
 - Keep commit messages factual and scoped.
 - If a request says "commit all", confirm whether generated artifacts should be included when they are present.
+
+## Styling Rules (global.css)
+
+Do not add page-specific or component-specific styles to `app/globals.css`.
+
+`globals.css` is reserved for:
+- Tailwind imports
+- Base styles, CSS variables, design tokens
+- html/body/:root styles
+- Required third-party overrides
+
+Preferred styling order:
+1. Tailwind utility classes in JSX
+2. Existing reusable React components
+3. New reusable React components
+4. CSS Modules for complex scoped styles
+5. `globals.css` only when the style is truly global
+
+When refactoring, do not delete uncertain global styles directly. Move them to `styles/legacy.css` and document them.

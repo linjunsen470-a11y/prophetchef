@@ -1,10 +1,12 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, Send } from "lucide-react";
 import { Button } from "@/components/common/Button";
 import { PageHero } from "@/components/common/PageHero";
 import { Container } from "@/components/common/Container";
 import { SectionHeader } from "@/components/common/SectionHeader";
 import { CTASection } from "@/components/common/CTASection";
+import styles from "./Applications.module.css";
 
 const applications = [
   {
@@ -72,26 +74,32 @@ export default function ApplicationsPage() {
           eyebrow="Application Grid"
           title="Find the Right Equipment for Your Kitchen Type"
           alignment="center"
-          className="application-grid-heading"
+          className={styles.applicationGridHeading}
         />
-        <Container className="application-grid">
+        <Container className={styles.applicationGrid}>
           {applications.map((item) => (
-            <article key={item.name} className="application-card">
-              <figure className="application-image">
-                <img src={item.image} alt={item.name} loading="lazy" />
+            <article key={item.name} className={styles.applicationCard}>
+              <figure className={styles.applicationImage}>
+                <Image 
+                  src={item.image} 
+                  alt={item.name} 
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  className="object-cover"
+                />
               </figure>
-              <div className="application-card-body">
+              <div className={styles.applicationCardBody}>
                 <h3>{item.name}</h3>
                 <p>{item.description}</p>
                 <p>
                   <strong>Recommended:</strong> {item.recommended}
                 </p>
-                <div className="card-actions">
+                <div className={styles.cardActions}>
                   <Button variant="secondary" size="small" href="#solution-detail">
                     View Solution
                   </Button>
                   <Button variant="primary" size="small" href={`/contact?product=${encodeURIComponent(`${item.name} Solution`)}`}>
-                    Get Quote <Send aria-hidden="true" />
+                    Get Quote <Send aria-hidden="true" size={16} />
                   </Button>
                 </div>
               </div>
@@ -102,8 +110,8 @@ export default function ApplicationsPage() {
 
       <section className="section bg-light" id="solution-detail">
         <SectionHeader eyebrow="Detailed Solutions" title="Project Planning Examples" />
-        <Container className="solution-grid">
-          <article className="solution-card">
+        <Container className={styles.solutionGrid}>
+          <article className={styles.solutionCard}>
             <h3>Central Kitchen Solution</h3>
             <h4>Pain Points</h4>
             <p>Central kitchens need high-capacity production, safe workflows, stable recipes and efficient cleaning zones.</p>
@@ -115,7 +123,7 @@ export default function ApplicationsPage() {
               Request Project Consultation <ArrowRight aria-hidden="true" />
             </Button>
           </article>
-          <article className="solution-card">
+          <article className={styles.solutionCard}>
             <h3>Chain Restaurant Solution</h3>
             <h4>Pain Points</h4>
             <p>Multi-store restaurant brands need standardized taste, fast staff training and equipment that is easy to maintain.</p>

@@ -1,6 +1,7 @@
 import React from "react";
 import { Container } from "../common/Container";
 import { Button } from "@/components/common/Button";
+import { CheckCircle2 } from "lucide-react";
 
 export const FactoryPreview = () => {
   return (
@@ -18,10 +19,10 @@ export const FactoryPreview = () => {
           <h2>Built for Stable Supply and Global Project Delivery</h2>
           <p>Our production base integrates laser cutting, bending, welding, assembly and testing lines, supported by R&D, QC, sales and after-sales teams.</p>
           <ul className="check-list">
-            <li>20+ years manufacturing experience</li>
-            <li>15000㎡ production base</li>
-            <li>Integrated metal processing and assembly workflow</li>
-            <li>Export support for distributors and project contractors</li>
+            <li><CheckCircle2 aria-hidden="true" />20+ years manufacturing experience</li>
+            <li><CheckCircle2 aria-hidden="true" />15000㎡ production base</li>
+            <li><CheckCircle2 aria-hidden="true" />Integrated metal processing and assembly workflow</li>
+            <li><CheckCircle2 aria-hidden="true" />Export support for distributors and project contractors</li>
           </ul>
           <Button variant="primary" href="/factory">Explore Our Factory</Button>
         </div>

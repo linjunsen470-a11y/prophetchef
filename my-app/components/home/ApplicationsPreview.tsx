@@ -2,6 +2,7 @@ import React from "react";
 import { Button } from "@/components/common/Button";
 import { applications } from "@/data/applications";
 import { Container } from "../common/Container";
+import { BadgeCheck } from "lucide-react";
 
 export const ApplicationsPreview = () => {
   return (
@@ -16,7 +17,7 @@ export const ApplicationsPreview = () => {
       <Container className="application-preview-grid">
         {applications.map((app) => (
           <article key={app.id}>
-            <span>{app.id}</span>
+            <span><BadgeCheck aria-hidden="true" />{app.id}</span>
             <h3>{app.name}</h3>
             <p>{app.description}</p>
           </article>

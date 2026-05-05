@@ -10,7 +10,10 @@ export const NewsPreview = () => {
       excerpt: "Induction cooking is becoming a practical upgrade for restaurants, canteens and central kitchens seeking cleaner heat and lower operating costs.",
       date: "2026-04-18",
       category: "Industry News",
-      image: "https://images.unsplash.com/photo-1556912173-3bb406ef7e8d?auto=format&fit=crop&w=1200&q=80",
+      coverImage: {
+        url: "https://images.unsplash.com/photo-1556912173-3bb406ef7e8d?auto=format&fit=crop&w=1200&q=80",
+        alt: "Induction Cooking"
+      },
       slug: "why-commercial-kitchens-switching-induction",
     },
     {
@@ -18,7 +21,10 @@ export const NewsPreview = () => {
       excerpt: "Key points for evaluating capacity, recipe standardization, cleaning convenience and after-sales support.",
       date: "2026-04-10",
       category: "Product Knowledge",
-      image: "https://images.unsplash.com/photo-1590577976322-3d231fe70aba?auto=format&fit=crop&w=1200&q=80",
+      coverImage: {
+        url: "https://images.unsplash.com/photo-1590577976322-3d231fe70aba?auto=format&fit=crop&w=1200&q=80",
+        alt: "Automatic Cooking Machine"
+      },
       slug: "how-to-choose-automatic-cooking-machine",
     },
     {
@@ -26,7 +32,10 @@ export const NewsPreview = () => {
       excerpt: "A practical planning checklist for new foodservice projects, covering cooking, dishwashing, preparation and storage.",
       date: "2026-03-28",
       category: "Product Knowledge",
-      image: "https://images.unsplash.com/photo-1581578017423-5f3e4f0d41f8?auto=format&fit=crop&w=1200&q=80",
+      coverImage: {
+        url: "https://images.unsplash.com/photo-1581578017423-5f3e4f0d41f8?auto=format&fit=crop&w=1200&q=80",
+        alt: "Kitchen Checklist"
+      },
       slug: "complete-commercial-kitchen-checklist",
     },
   ];

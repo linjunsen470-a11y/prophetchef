@@ -2,7 +2,7 @@ import React from "react";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import { stegaClean } from "next-sanity";
-import { MessageCircle, Send } from "lucide-react";
+import { MessageCircle, Send, CheckCircle2 } from "lucide-react";
 import { siteConfig } from "@/data/site";
 import { Breadcrumb } from "@/components/common/Breadcrumb";
 import { Container } from "@/components/common/Container";
@@ -27,9 +27,22 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
   const product = await getProduct(slug, { stega: false });
   if (!product) return {};
 
+  const seo = product.seo;
+  const title = seo?.metaTitle || `${product.name} | ${siteConfig.name}`;
+  const description = seo?.metaDescription || product.description;
+  const ogImage = seo?.openGraphImage?.url || product.coverImage?.url;
+
   return {
-    title: `${product.name} | ${siteConfig.name}`,
-    description: product.description,
+    title,
+    description,
+    alternates: {
+      canonical: seo?.canonicalUrl || `${siteConfig.url}/products/${slug}`,
+    },
+    openGraph: {
+      title,
+      description,
+      images: ogImage ? [{ url: ogImage, alt: seo?.openGraphImage?.alt || product.coverImage?.alt || product.name }] : [],
+    },
   };
 }
 
@@ -42,7 +55,12 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
   }
 
   const relatedProducts = await getRelatedProducts(product.category, slug);
-  const galleryImages = [product.image, ...relatedProducts.map((relatedProduct) => relatedProduct.image)];
+  
+  // Combine cover image and gallery for the slider
+  const galleryImages = [
+    product.coverImage,
+    ...(product.gallery || [])
+  ].filter(Boolean);
 
   return (
     <>
@@ -62,17 +80,18 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
             <span className="eyebrow">{product.category}</span>
             <h1>{product.name}</h1>
             <p>{product.description}</p>
+            
             <div className="tag-row large">
               {product.tags.map(tag => (
                 <span key={tag}>{tag}</span>
               ))}
-              <span>SUS304 Stainless Steel</span>
-              <span>CE Certified</span>
+              {product.modelCode && <span>Model: {product.modelCode}</span>}
             </div>
+
             <div className="hero-actions">
               <Button href="#product-inquiry" iconEnd={<Send aria-hidden="true" />}>Send Inquiry</Button>
               <Button 
-                href={`https://wa.me/${siteConfig.whatsapp}?text=Hello%20ProKitchenTech%2C%20I%20would%20like%20to%20request%20a%20quote.`}
+                href={`https://wa.me/${siteConfig.whatsapp}?text=Hello%20ProKitchenTech%2C%20I%20would%20like%20to%20request%20a%20quote%20for%20${encodeURIComponent(product.name)}.`}
                 variant="secondary"
                 target="_blank"
                 rel="noopener"
@@ -81,11 +100,13 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
                 Chat on WhatsApp
               </Button>
             </div>
+
             <div className={styles.miniTrust}>
               <span>Fast quotation</span>
               <span>Factory direct supply</span>
               <span>Export packaging</span>
             </div>
+
             <div className={styles.productSummaryStats} aria-label="Procurement advantages">
               <div><strong>12 mo</strong><span>Warranty</span></div>
               <div><strong>OEM</strong><span>Customization</span></div>
@@ -95,77 +116,48 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
         </Container>
       </section>
 
-      <section className="section bg-light">
-        <Container className="section-heading">
-          <span className="eyebrow">Key Features</span>
-          <h2>Engineered for High-Volume Commercial Kitchens</h2>
-        </Container>
-        <Container className="feature-grid six">
-          <article>
-            <span>01</span>
-            <h3>Fast Heating</h3>
-            <p>High-efficiency induction coil helps reduce preheating time in busy cooking operations.</p>
-          </article>
-          <article>
-            <span>02</span>
-            <h3>Energy Saving</h3>
-            <p>Direct heat transfer improves energy use and reduces unnecessary heat loss.</p>
-          </article>
-          <article>
-            <span>03</span>
-            <h3>Easy Cleaning</h3>
-            <p>Smooth stainless steel structure supports fast daily cleaning and maintenance.</p>
-          </article>
-          <article>
-            <span>04</span>
-            <h3>Safe Operation</h3>
-            <p>Flameless cooking improves kitchen working conditions and reduces open-fire risk.</p>
-          </article>
-          <article>
-            <span>05</span>
-            <h3>Durable Body</h3>
-            <p>SUS304 stainless steel construction supports heavy-duty commercial use.</p>
-          </article>
-          <article>
-            <span>06</span>
-            <h3>High-Volume Use</h3>
-            <p>Suitable for restaurants, hotels, canteens and central kitchen production lines.</p>
-          </article>
-        </Container>
-      </section>
+      {product.features && product.features.length > 0 && (
+        <section className="section bg-light">
+          <Container className="section-heading">
+            <span className="eyebrow">Key Features</span>
+            <h2>Engineered for High-Performance Environments</h2>
+          </Container>
+          <Container className="feature-grid">
+            {product.features.map((feature, idx) => (
+              <article key={idx}>
+                <span>{(idx + 1).toString().padStart(2, '0')}</span>
+                <h3>{feature.title}</h3>
+                {feature.description && <p>{feature.description}</p>}
+              </article>
+            ))}
+          </Container>
+        </section>
+      )}
 
-      <section className="section">
-        <Container className="section-heading">
-          <span className="eyebrow">Technical Parameters</span>
-          <h2>Product Specifications</h2>
-        </Container>
-        <Container className="table-wrap">
-          <table className={styles.specTable}>
-            <tbody>
-              <tr>
-                <th>Model</th>
-                <td>{product.modelCode || `PKT-${product.id.slice(-4).toUpperCase()}-Series`}</td>
-              </tr>
-              <tr>
-                <th>Material</th>
-                <td>SUS304 stainless steel body</td>
-              </tr>
-              <tr>
-                <th>Application</th>
-                <td>Restaurant, hotel kitchen, school canteen, central kitchen</td>
-              </tr>
-              <tr>
-                <th>Customization</th>
-                <td>Logo, voltage, panel, size and packaging available</td>
-              </tr>
-              <tr>
-                <th>Warranty</th>
-                <td>12 months standard warranty with spare parts support</td>
-              </tr>
-            </tbody>
-          </table>
-        </Container>
-      </section>
+      {product.specifications && product.specifications.length > 0 && (
+        <section className="section">
+          <Container className="section-heading">
+            <span className="eyebrow">Technical Parameters</span>
+            <h2>Product Specifications</h2>
+          </Container>
+          <Container className="table-wrap">
+            <table className={styles.specTable}>
+              <tbody>
+                {product.specifications.map((spec, idx) => (
+                  <tr key={idx}>
+                    <th>{spec.label}</th>
+                    <td>{spec.value}</td>
+                  </tr>
+                ))}
+                <tr>
+                  <th>Warranty</th>
+                  <td>12 months standard warranty with spare parts support</td>
+                </tr>
+              </tbody>
+            </table>
+          </Container>
+        </section>
+      )}
 
       {relatedProducts.length > 0 && (
         <section className="section related-products-section">
@@ -190,6 +182,12 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
             <span className="eyebrow">Product Inquiry</span>
             <h2>Request Product Price and Specification</h2>
             <p>Send your required model, voltage, quantity and destination country. Our sales team will reply with a quotation and product documents.</p>
+            
+            <ul className="check-list mt-8">
+              <li><CheckCircle2 /> Professional technical support</li>
+              <li><CheckCircle2 /> Global export experience</li>
+              <li><CheckCircle2 /> Competitive factory pricing</li>
+            </ul>
           </div>
           <ProductInquiryForm productName={product.name} />
         </Container>
