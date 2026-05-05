@@ -60,10 +60,10 @@
 
 .heroContent {
   display: grid;
-  grid-template-columns: minmax(0, 800px) 280px;
+  grid-template-columns: minmax(0, 800px) auto;
   align-items: end;
   justify-content: space-between;
-  gap: 56px;
+  gap: 40px;
 }
 
 .homeHeroCompact .heroContent {
@@ -127,32 +127,33 @@
 
 .heroProof {
   display: grid;
-  gap: 12px;
+  gap: 8px;
   align-self: end;
-  padding: 18px;
+  padding: 12px;
   border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 18px;
   background: rgba(8, 23, 43, 0.42);
   box-shadow: 0 22px 50px rgba(8, 23, 43, 0.24);
   backdrop-filter: blur(12px);
+  min-width: 200px;
 }
 
 .heroProof div {
-  padding: 14px 16px;
-  border-radius: 14px;
+  padding: 8px 12px;
+  border-radius: 12px;
   background: rgba(255, 255, 255, 0.08);
 }
 
 .heroProof svg {
-  width: 22px;
-  height: 22px;
-  margin-bottom: 12px;
+  width: 18px;
+  height: 18px;
+  margin-bottom: 6px;
   color: #ffb36b;
 }
 
 .heroProof strong {
   display: block;
-  font-size: 30px;
+  font-size: 22px;
   line-height: 1;
   font-weight: 900;
   color: #fff;
@@ -160,27 +161,27 @@
 
 .heroProof span {
   display: block;
-  margin-top: 6px;
+  margin-top: 2px;
   color: rgba(255, 255, 255, 0.74);
-  font-size: 13px;
+  font-size: 11px;
   font-weight: 800;
 }
 
 @media (max-width: 760px) {
   .hero,
   .pageHero {
-    min-height: 640px;
+    min-height: 480px;
     background-position: center;
   }
   .homeHeroCompact {
-    min-height: 520px;
+    min-height: 400px;
   }
   .pageHeroCompact {
-    min-height: 320px;
+    min-height: 260px;
   }
   .heroContent,
   .pageHeroContent {
-    padding: 66px 0;
+    padding: 48px 0;
     width: min(92vw, 1180px);
     display: block;
   }
@@ -194,35 +195,44 @@
     font-size: 17px;
   }
   .heroProof {
-    grid-template-columns: 1fr 1fr 1fr;
-    padding: 12px;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 10px;
     margin-top: 32px;
   }
   .heroProof div {
     padding: 12px;
   }
   .heroProof strong {
-    font-size: 24px;
+    font-size: 22px;
   }
 }
 
 @media (max-width: 560px) {
   .hero,
   .pageHero {
-    min-height: 700px;
+    min-height: 420px;
   }
   .homeHeroCompact {
-    min-height: 560px;
+    min-height: 360px;
   }
   .pageHeroCompact {
-    min-height: 340px;
+    min-height: 220px;
+  }
+  .heroContent,
+  .pageHeroContent {
+    padding: 40px 0;
   }
   .heroContent h1,
   .pageHeroContent h1 {
     font-size: 34px;
   }
   .heroProof {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+    padding: 8px;
+  }
+  .heroProof div {
+    padding: 8px 10px;
   }
   .heroActions {
     flex-direction: column;
