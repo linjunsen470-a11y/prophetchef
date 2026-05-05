@@ -1,0 +1,1130 @@
+[     491ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/09do_next_dist_0y9hd5u._.js:2431
+[     577ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/09do_next_dist_0y9hd5u._.js:2431
+[   41327ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/09do_next_dist_0y9hd5u._.js:2431
+[   41569ms] [ERROR] ./sanity/client.ts:1:1
+Module not found: Can't resolve 'next-sanity'
+> 1 | import { createClient } from "next-sanity";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { apiVersion, dataset, projectId, SANITY_REVALIDATE } from "./env";
+  3 |
+  4 | export const client = createClient({
+
+Import trace:
+  Server Component:
+    ./sanity/client.ts
+    ./sanity/queries.ts
+    ./app/products/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/09do_next_dist_0y9hd5u._.js:3272
+[   41722ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/09do_next_dist_0y9hd5u._.js:2431
+[   41928ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3000/?_rsc=wnywt:0
+[   41932ms] [ERROR] ./sanity/client.ts:1:1
+Module not found: Can't resolve 'next-sanity'
+> 1 | import { createClient } from "next-sanity";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { apiVersion, dataset, projectId, SANITY_REVALIDATE } from "./env";
+  3 |
+  4 | export const client = createClient({
+
+Import trace:
+  Server Component:
+    ./sanity/client.ts
+    ./sanity/queries.ts
+    ./app/products/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/09do_next_dist_0y9hd5u._.js:3272
+[   41982ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3000/?_rsc=wnywt:0
+[   42018ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3000/:0
+[   42209ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/0p2h_react-dom_0vsf22y._.js:15305
+[   42286ms] Error: ./sanity/client.ts:1:1
+Module not found: Can't resolve 'next-sanity'
+> 1 | import { createClient } from "next-sanity";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { apiVersion, dataset, projectId, SANITY_REVALIDATE } from "./env";
+  3 |
+  4 | export const client = createClient({
+
+
+
+Import trace:
+  Server Component:
+    ./sanity/client.ts
+    ./sanity/queries.ts
+    ./app/products/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+    at <unknown> (Error: ./sanity/client.ts:1:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at Object.getCompilationErrors (file://D:\work\prophetchef\my-app\node_modules\.pnpm\next@16.2.4_@babel+core@7.2_c8206e0b14d95065a91ef00b15159908\node_modules\next\dist\server\dev\hot-reloader-turbopack.js:1186:59)
+    at DevBundlerService.getCompilationError (file://D:\work\prophetchef\my-app\node_modules\.pnpm\next@16.2.4_@babel+core@7.2_c8206e0b14d95065a91ef00b15159908\node_modules\next\dist\server\lib\dev-bundler-service.js:44:55)
+    at DevServer.getCompilationError (file://D:\work\prophetchef\my-app\node_modules\.pnpm\next@16.2.4_@babel+core@7.2_c8206e0b14d95065a91ef00b15159908\node_modules\next\dist\server\dev\next-dev-server.js:719:42)
+    at DevServer.findPageComponents (file://D:\work\prophetchef\my-app\node_modules\.pnpm\next@16.2.4_@babel+core@7.2_c8206e0b14d95065a91ef00b15159908\node_modules\next\dist\server\dev\next-dev-server.js:689:43)
+    at async DevServer.renderErrorToResponseImpl (file://D:\work\prophetchef\my-app\node_modules\.pnpm\next@16.2.4_@babel+core@7.2_c8206e0b14d95065a91ef00b15159908\node_modules\next\dist\server\base-server.js:1745:26)
+[   42285ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1226
+[   42292ms] [ERROR] ./sanity/client.ts:1:1
+Module not found: Can't resolve 'next-sanity'
+> 1 | import { createClient } from "next-sanity";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { apiVersion, dataset, projectId, SANITY_REVALIDATE } from "./env";
+  3 |
+  4 | export const client = createClient({
+
+Import trace:
+  Server Component:
+    ./sanity/client.ts
+    ./sanity/queries.ts
+    ./app/products/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1945
+[   42292ms] [ERROR] ./sanity/client.ts:1:1
+Module not found: Can't resolve 'next-sanity'
+> 1 | import { createClient } from "next-sanity";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { apiVersion, dataset, projectId, SANITY_REVALIDATE } from "./env";
+  3 |
+  4 | export const client = createClient({
+
+Import trace:
+  Server Component:
+    ./sanity/client.ts
+    ./sanity/queries.ts
+    ./app/news/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1945
+[   42361ms] [ERROR] ./sanity/client.ts:1:1
+Module not found: Can't resolve 'next-sanity'
+> 1 | import { createClient } from "next-sanity";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { apiVersion, dataset, projectId, SANITY_REVALIDATE } from "./env";
+  3 |
+  4 | export const client = createClient({
+
+Import trace:
+  Server Component:
+    ./sanity/client.ts
+    ./sanity/queries.ts
+    ./app/products/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1945
+[   70098ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1226
+[   70305ms] [ERROR] ./sanity/client.ts:1:1
+Module not found: Can't resolve 'next-sanity'
+> 1 | import { createClient } from "next-sanity";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { apiVersion, dataset, projectId, SANITY_REVALIDATE } from "./env";
+  3 |
+  4 | export const client = createClient({
+
+Import trace:
+  Server Component:
+    ./sanity/client.ts
+    ./sanity/queries.ts
+    ./app/products/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1945
+[   70321ms] [ERROR] ./sanity/client.ts:1:1
+Module not found: Can't resolve 'next-sanity'
+> 1 | import { createClient } from "next-sanity";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { apiVersion, dataset, projectId, SANITY_REVALIDATE } from "./env";
+  3 |
+  4 | export const client = createClient({
+
+Import trace:
+  Server Component:
+    ./sanity/client.ts
+    ./sanity/queries.ts
+    ./app/products/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1945
+[   70367ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3000/:0
+[   70436ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/0p2h_react-dom_0vsf22y._.js:15305
+[   70463ms] Error: ./sanity/client.ts:1:1
+Module not found: Can't resolve 'next-sanity'
+> 1 | import { createClient } from "next-sanity";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { apiVersion, dataset, projectId, SANITY_REVALIDATE } from "./env";
+  3 |
+  4 | export const client = createClient({
+
+
+
+Import trace:
+  Server Component:
+    ./sanity/client.ts
+    ./sanity/queries.ts
+    ./app/products/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+    at <unknown> (Error: ./sanity/client.ts:1:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at Object.getCompilationErrors (file://D:\work\prophetchef\my-app\node_modules\.pnpm\next@16.2.4_@babel+core@7.2_c8206e0b14d95065a91ef00b15159908\node_modules\next\dist\server\dev\hot-reloader-turbopack.js:1186:59)
+    at DevBundlerService.getCompilationError (file://D:\work\prophetchef\my-app\node_modules\.pnpm\next@16.2.4_@babel+core@7.2_c8206e0b14d95065a91ef00b15159908\node_modules\next\dist\server\lib\dev-bundler-service.js:44:55)
+    at DevServer.getCompilationError (file://D:\work\prophetchef\my-app\node_modules\.pnpm\next@16.2.4_@babel+core@7.2_c8206e0b14d95065a91ef00b15159908\node_modules\next\dist\server\dev\next-dev-server.js:719:42)
+    at DevServer.findPageComponents (file://D:\work\prophetchef\my-app\node_modules\.pnpm\next@16.2.4_@babel+core@7.2_c8206e0b14d95065a91ef00b15159908\node_modules\next\dist\server\dev\next-dev-server.js:689:43)
+    at async DevServer.renderErrorToResponseImpl (file://D:\work\prophetchef\my-app\node_modules\.pnpm\next@16.2.4_@babel+core@7.2_c8206e0b14d95065a91ef00b15159908\node_modules\next\dist\server\base-server.js:1745:26)
+[   70465ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1226
+[   70470ms] [ERROR] ./sanity/client.ts:1:1
+Module not found: Can't resolve 'next-sanity'
+> 1 | import { createClient } from "next-sanity";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { apiVersion, dataset, projectId, SANITY_REVALIDATE } from "./env";
+  3 |
+  4 | export const client = createClient({
+
+Import trace:
+  Server Component:
+    ./sanity/client.ts
+    ./sanity/queries.ts
+    ./app/products/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1945
+[   70470ms] [ERROR] ./sanity/client.ts:1:1
+Module not found: Can't resolve 'next-sanity'
+> 1 | import { createClient } from "next-sanity";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { apiVersion, dataset, projectId, SANITY_REVALIDATE } from "./env";
+  3 |
+  4 | export const client = createClient({
+
+Import trace:
+  Server Component:
+    ./sanity/client.ts
+    ./sanity/queries.ts
+    ./app/news/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1945
+[   70526ms] [ERROR] ./sanity/client.ts:1:1
+Module not found: Can't resolve 'next-sanity'
+> 1 | import { createClient } from "next-sanity";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { apiVersion, dataset, projectId, SANITY_REVALIDATE } from "./env";
+  3 |
+  4 | export const client = createClient({
+
+Import trace:
+  Server Component:
+    ./sanity/client.ts
+    ./sanity/queries.ts
+    ./app/products/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1945
+[   70575ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1226
+[   70646ms] [ERROR] ./sanity/client.ts:1:1
+Module not found: Can't resolve 'next-sanity'
+> 1 | import { createClient } from "next-sanity";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { apiVersion, dataset, projectId, SANITY_REVALIDATE } from "./env";
+  3 |
+  4 | export const client = createClient({
+
+Import trace:
+  Server Component:
+    ./sanity/client.ts
+    ./sanity/queries.ts
+    ./app/products/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1945
+[   70714ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1226
+[   81326ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1226
+[   81369ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3000/:0
+[   81457ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/0p2h_react-dom_0vsf22y._.js:15305
+[   81476ms] Error: ./sanity/client.ts:1:1
+Module not found: Can't resolve 'next-sanity'
+> 1 | import { createClient } from "next-sanity";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { apiVersion, dataset, projectId, SANITY_REVALIDATE } from "./env";
+  3 |
+  4 | export const client = createClient({
+
+
+
+Import trace:
+  Server Component:
+    ./sanity/client.ts
+    ./sanity/queries.ts
+    ./app/products/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+    at <unknown> (Error: ./sanity/client.ts:1:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at Object.getCompilationErrors (file://D:\work\prophetchef\my-app\node_modules\.pnpm\next@16.2.4_@babel+core@7.2_c8206e0b14d95065a91ef00b15159908\node_modules\next\dist\server\dev\hot-reloader-turbopack.js:1186:59)
+    at DevBundlerService.getCompilationError (file://D:\work\prophetchef\my-app\node_modules\.pnpm\next@16.2.4_@babel+core@7.2_c8206e0b14d95065a91ef00b15159908\node_modules\next\dist\server\lib\dev-bundler-service.js:44:55)
+    at DevServer.getCompilationError (file://D:\work\prophetchef\my-app\node_modules\.pnpm\next@16.2.4_@babel+core@7.2_c8206e0b14d95065a91ef00b15159908\node_modules\next\dist\server\dev\next-dev-server.js:719:42)
+    at DevServer.findPageComponents (file://D:\work\prophetchef\my-app\node_modules\.pnpm\next@16.2.4_@babel+core@7.2_c8206e0b14d95065a91ef00b15159908\node_modules\next\dist\server\dev\next-dev-server.js:689:43)
+    at async DevServer.renderErrorToResponseImpl (file://D:\work\prophetchef\my-app\node_modules\.pnpm\next@16.2.4_@babel+core@7.2_c8206e0b14d95065a91ef00b15159908\node_modules\next\dist\server\base-server.js:1745:26)
+[   81478ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1226
+[   81496ms] [ERROR] ./sanity/client.ts:1:1
+Module not found: Can't resolve 'next-sanity'
+> 1 | import { createClient } from "next-sanity";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { apiVersion, dataset, projectId, SANITY_REVALIDATE } from "./env";
+  3 |
+  4 | export const client = createClient({
+
+Import trace:
+  Server Component:
+    ./sanity/client.ts
+    ./sanity/queries.ts
+    ./app/products/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1945
+[   81496ms] [ERROR] ./sanity/client.ts:1:1
+Module not found: Can't resolve 'next-sanity'
+> 1 | import { createClient } from "next-sanity";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { apiVersion, dataset, projectId, SANITY_REVALIDATE } from "./env";
+  3 |
+  4 | export const client = createClient({
+
+Import trace:
+  Server Component:
+    ./sanity/client.ts
+    ./sanity/queries.ts
+    ./app/news/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1945
+[   81529ms] [ERROR] ./sanity/client.ts:1:1
+Module not found: Can't resolve 'next-sanity'
+> 1 | import { createClient } from "next-sanity";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { apiVersion, dataset, projectId, SANITY_REVALIDATE } from "./env";
+  3 |
+  4 | export const client = createClient({
+
+Import trace:
+  Server Component:
+    ./sanity/client.ts
+    ./sanity/queries.ts
+    ./app/products/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1945
+[   81598ms] [ERROR] ./sanity/client.ts:1:1
+Module not found: Can't resolve 'next-sanity'
+> 1 | import { createClient } from "next-sanity";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { apiVersion, dataset, projectId, SANITY_REVALIDATE } from "./env";
+  3 |
+  4 | export const client = createClient({
+
+Import trace:
+  Server Component:
+    ./sanity/client.ts
+    ./sanity/queries.ts
+    ./app/products/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1945
+[   81640ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1226
+[   93698ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1226
+[   93805ms] [ERROR] ./sanity/client.ts:1:1
+Module not found: Can't resolve 'next-sanity'
+> 1 | import { createClient } from "next-sanity";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { apiVersion, dataset, projectId, SANITY_REVALIDATE } from "./env";
+  3 |
+  4 | export const client = createClient({
+
+Import trace:
+  Server Component:
+    ./sanity/client.ts
+    ./sanity/queries.ts
+    ./app/products/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1945
+[   93847ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3000/:0
+[   93918ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/0p2h_react-dom_0vsf22y._.js:15305
+[   93924ms] Error: ./sanity/client.ts:1:1
+Module not found: Can't resolve 'next-sanity'
+> 1 | import { createClient } from "next-sanity";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { apiVersion, dataset, projectId, SANITY_REVALIDATE } from "./env";
+  3 |
+  4 | export const client = createClient({
+
+
+
+Import trace:
+  Server Component:
+    ./sanity/client.ts
+    ./sanity/queries.ts
+    ./app/products/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+    at <unknown> (Error: ./sanity/client.ts:1:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at Object.getCompilationErrors (file://D:\work\prophetchef\my-app\node_modules\.pnpm\next@16.2.4_@babel+core@7.2_c8206e0b14d95065a91ef00b15159908\node_modules\next\dist\server\dev\hot-reloader-turbopack.js:1186:59)
+    at DevBundlerService.getCompilationError (file://D:\work\prophetchef\my-app\node_modules\.pnpm\next@16.2.4_@babel+core@7.2_c8206e0b14d95065a91ef00b15159908\node_modules\next\dist\server\lib\dev-bundler-service.js:44:55)
+    at DevServer.getCompilationError (file://D:\work\prophetchef\my-app\node_modules\.pnpm\next@16.2.4_@babel+core@7.2_c8206e0b14d95065a91ef00b15159908\node_modules\next\dist\server\dev\next-dev-server.js:719:42)
+    at DevServer.findPageComponents (file://D:\work\prophetchef\my-app\node_modules\.pnpm\next@16.2.4_@babel+core@7.2_c8206e0b14d95065a91ef00b15159908\node_modules\next\dist\server\dev\next-dev-server.js:689:43)
+    at async DevServer.renderErrorToResponseImpl (file://D:\work\prophetchef\my-app\node_modules\.pnpm\next@16.2.4_@babel+core@7.2_c8206e0b14d95065a91ef00b15159908\node_modules\next\dist\server\base-server.js:1745:26)
+[   93944ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1226
+[   93965ms] [ERROR] ./sanity/client.ts:1:1
+Module not found: Can't resolve 'next-sanity'
+> 1 | import { createClient } from "next-sanity";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { apiVersion, dataset, projectId, SANITY_REVALIDATE } from "./env";
+  3 |
+  4 | export const client = createClient({
+
+Import trace:
+  Server Component:
+    ./sanity/client.ts
+    ./sanity/queries.ts
+    ./app/products/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1945
+[   93965ms] [ERROR] ./sanity/client.ts:1:1
+Module not found: Can't resolve 'next-sanity'
+> 1 | import { createClient } from "next-sanity";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { apiVersion, dataset, projectId, SANITY_REVALIDATE } from "./env";
+  3 |
+  4 | export const client = createClient({
+
+Import trace:
+  Server Component:
+    ./sanity/client.ts
+    ./sanity/queries.ts
+    ./app/news/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1945
+[   93965ms] [ERROR] ./sanity/client.ts:1:1
+Module not found: Can't resolve 'next-sanity'
+> 1 | import { createClient } from "next-sanity";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { apiVersion, dataset, projectId, SANITY_REVALIDATE } from "./env";
+  3 |
+  4 | export const client = createClient({
+
+Import trace:
+  Server Component:
+    ./sanity/client.ts
+    ./sanity/queries.ts
+    ./lib/sitemap.ts
+    ./app/sitemap/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1945
+[   93991ms] [ERROR] ./sanity/client.ts:1:1
+Module not found: Can't resolve 'next-sanity'
+> 1 | import { createClient } from "next-sanity";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { apiVersion, dataset, projectId, SANITY_REVALIDATE } from "./env";
+  3 |
+  4 | export const client = createClient({
+
+Import trace:
+  Server Component:
+    ./sanity/client.ts
+    ./sanity/queries.ts
+    ./app/products/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1945
+[   94095ms] [ERROR] ./sanity/client.ts:1:1
+Module not found: Can't resolve 'next-sanity'
+> 1 | import { createClient } from "next-sanity";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { apiVersion, dataset, projectId, SANITY_REVALIDATE } from "./env";
+  3 |
+  4 | export const client = createClient({
+
+Import trace:
+  Server Component:
+    ./sanity/client.ts
+    ./sanity/queries.ts
+    ./app/products/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1945
+[   94169ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1226
+[  101742ms] [ERROR] ./sanity/client.ts:1:1
+Module not found: Can't resolve 'next-sanity'
+> 1 | import { createClient } from "next-sanity";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { apiVersion, dataset, projectId, SANITY_REVALIDATE } from "./env";
+  3 |
+  4 | export const client = createClient({
+
+Import trace:
+  Server Component:
+    ./sanity/client.ts
+    ./sanity/queries.ts
+    ./app/products/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1945
+[  101794ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1226
+[  101839ms] [ERROR] ./sanity/client.ts:1:1
+Module not found: Can't resolve 'next-sanity'
+> 1 | import { createClient } from "next-sanity";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { apiVersion, dataset, projectId, SANITY_REVALIDATE } from "./env";
+  3 |
+  4 | export const client = createClient({
+
+Import trace:
+  Server Component:
+    ./sanity/client.ts
+    ./sanity/queries.ts
+    ./app/products/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1945
+[  101910ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1226
+[  120505ms] [ERROR] ./sanity/client.ts:1:1
+Module not found: Can't resolve 'next-sanity'
+> 1 | import { createClient } from "next-sanity";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { apiVersion, dataset, projectId, SANITY_REVALIDATE } from "./env";
+  3 |
+  4 | export const client = createClient({
+
+Import trace:
+  Server Component:
+    ./sanity/client.ts
+    ./sanity/queries.ts
+    ./app/products/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1945
+[  120506ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1226
+[  199167ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1226
+[  199448ms] [ERROR] ./sanity/client.ts:1:1
+Module not found: Can't resolve 'next-sanity'
+> 1 | import { createClient } from "next-sanity";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { apiVersion, dataset, projectId, SANITY_REVALIDATE } from "./env";
+  3 |
+  4 | export const client = createClient({
+
+Import trace:
+  Server Component:
+    ./sanity/client.ts
+    ./sanity/queries.ts
+    ./app/products/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1945
+[  199452ms] [ERROR] ./sanity/client.ts:1:1
+Module not found: Can't resolve 'next-sanity'
+> 1 | import { createClient } from "next-sanity";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { apiVersion, dataset, projectId, SANITY_REVALIDATE } from "./env";
+  3 |
+  4 | export const client = createClient({
+
+Import trace:
+  Server Component:
+    ./sanity/client.ts
+    ./sanity/queries.ts
+    ./app/products/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1945
+[  199475ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1226
+[  200043ms] [ERROR] ./sanity/client.ts:1:1
+Module not found: Can't resolve 'next-sanity'
+> 1 | import { createClient } from "next-sanity";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { apiVersion, dataset, projectId, SANITY_REVALIDATE } from "./env";
+  3 |
+  4 | export const client = createClient({
+
+Import trace:
+  Server Component:
+    ./sanity/client.ts
+    ./sanity/queries.ts
+    ./app/products/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1945
+[  200053ms] [ERROR] ./sanity/client.ts:1:1
+Module not found: Can't resolve 'next-sanity'
+> 1 | import { createClient } from "next-sanity";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { apiVersion, dataset, projectId, SANITY_REVALIDATE } from "./env";
+  3 |
+  4 | export const client = createClient({
+
+Import trace:
+  Server Component:
+    ./sanity/client.ts
+    ./sanity/queries.ts
+    ./app/products/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1945
+[  200055ms] [ERROR] ./sanity/client.ts:1:1
+Module not found: Can't resolve 'next-sanity'
+> 1 | import { createClient } from "next-sanity";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { apiVersion, dataset, projectId, SANITY_REVALIDATE } from "./env";
+  3 |
+  4 | export const client = createClient({
+
+Import trace:
+  Server Component:
+    ./sanity/client.ts
+    ./sanity/queries.ts
+    ./app/products/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1945
+[  200057ms] [ERROR] ./sanity/client.ts:1:1
+Module not found: Can't resolve 'next-sanity'
+> 1 | import { createClient } from "next-sanity";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { apiVersion, dataset, projectId, SANITY_REVALIDATE } from "./env";
+  3 |
+  4 | export const client = createClient({
+
+Import trace:
+  Server Component:
+    ./sanity/client.ts
+    ./sanity/queries.ts
+    ./app/products/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1945
+[  200083ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1226
+[  200274ms] [ERROR] ./sanity/client.ts:1:1
+Module not found: Can't resolve 'next-sanity'
+> 1 | import { createClient } from "next-sanity";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { apiVersion, dataset, projectId, SANITY_REVALIDATE } from "./env";
+  3 |
+  4 | export const client = createClient({
+
+Import trace:
+  Server Component:
+    ./sanity/client.ts
+    ./sanity/queries.ts
+    ./app/products/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1945
+[  200276ms] [ERROR] ./sanity/client.ts:1:1
+Module not found: Can't resolve 'next-sanity'
+> 1 | import { createClient } from "next-sanity";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { apiVersion, dataset, projectId, SANITY_REVALIDATE } from "./env";
+  3 |
+  4 | export const client = createClient({
+
+Import trace:
+  Server Component:
+    ./sanity/client.ts
+    ./sanity/queries.ts
+    ./app/products/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1945
+[  200337ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1226
+[  200473ms] [ERROR] ./sanity/client.ts:1:1
+Module not found: Can't resolve 'next-sanity'
+> 1 | import { createClient } from "next-sanity";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { apiVersion, dataset, projectId, SANITY_REVALIDATE } from "./env";
+  3 |
+  4 | export const client = createClient({
+
+Import trace:
+  Server Component:
+    ./sanity/client.ts
+    ./sanity/queries.ts
+    ./app/products/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1945
+[  200474ms] [ERROR] ./sanity/client.ts:1:1
+Module not found: Can't resolve 'next-sanity'
+> 1 | import { createClient } from "next-sanity";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { apiVersion, dataset, projectId, SANITY_REVALIDATE } from "./env";
+  3 |
+  4 | export const client = createClient({
+
+Import trace:
+  Server Component:
+    ./sanity/client.ts
+    ./sanity/queries.ts
+    ./app/products/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1945
+[  200501ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1226
+[  200770ms] [ERROR] ./sanity/client.ts:1:1
+Module not found: Can't resolve 'next-sanity'
+> 1 | import { createClient } from "next-sanity";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { apiVersion, dataset, projectId, SANITY_REVALIDATE } from "./env";
+  3 |
+  4 | export const client = createClient({
+
+Import trace:
+  Server Component:
+    ./sanity/client.ts
+    ./sanity/queries.ts
+    ./app/news/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1945
+[  200773ms] [ERROR] ./sanity/client.ts:1:1
+Module not found: Can't resolve 'next-sanity'
+> 1 | import { createClient } from "next-sanity";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { apiVersion, dataset, projectId, SANITY_REVALIDATE } from "./env";
+  3 |
+  4 | export const client = createClient({
+
+Import trace:
+  Server Component:
+    ./sanity/client.ts
+    ./sanity/queries.ts
+    ./app/news/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1945
+[  200824ms] [ERROR] ./sanity/client.ts:1:1
+Module not found: Can't resolve 'next-sanity'
+> 1 | import { createClient } from "next-sanity";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { apiVersion, dataset, projectId, SANITY_REVALIDATE } from "./env";
+  3 |
+  4 | export const client = createClient({
+
+Import trace:
+  Server Component:
+    ./sanity/client.ts
+    ./sanity/queries.ts
+    ./app/news/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1945
+[  200857ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3000/:0
+[  200890ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/0p2h_react-dom_0vsf22y._.js:15305
+[  200905ms] Error: ./sanity/client.ts:1:1
+Module not found: Can't resolve 'next-sanity'
+> 1 | import { createClient } from "next-sanity";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { apiVersion, dataset, projectId, SANITY_REVALIDATE } from "./env";
+  3 |
+  4 | export const client = createClient({
+
+
+
+Import trace:
+  Server Component:
+    ./sanity/client.ts
+    ./sanity/queries.ts
+    ./app/news/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+    at <unknown> (Error: ./sanity/client.ts:1:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at Object.getCompilationErrors (file://D:\work\prophetchef\my-app\node_modules\.pnpm\next@16.2.4_@babel+core@7.2_c8206e0b14d95065a91ef00b15159908\node_modules\next\dist\server\dev\hot-reloader-turbopack.js:1186:59)
+    at DevBundlerService.getCompilationError (file://D:\work\prophetchef\my-app\node_modules\.pnpm\next@16.2.4_@babel+core@7.2_c8206e0b14d95065a91ef00b15159908\node_modules\next\dist\server\lib\dev-bundler-service.js:44:55)
+    at DevServer.getCompilationError (file://D:\work\prophetchef\my-app\node_modules\.pnpm\next@16.2.4_@babel+core@7.2_c8206e0b14d95065a91ef00b15159908\node_modules\next\dist\server\dev\next-dev-server.js:719:42)
+    at DevServer.findPageComponents (file://D:\work\prophetchef\my-app\node_modules\.pnpm\next@16.2.4_@babel+core@7.2_c8206e0b14d95065a91ef00b15159908\node_modules\next\dist\server\dev\next-dev-server.js:689:43)
+    at async DevServer.renderErrorToResponseImpl (file://D:\work\prophetchef\my-app\node_modules\.pnpm\next@16.2.4_@babel+core@7.2_c8206e0b14d95065a91ef00b15159908\node_modules\next\dist\server\base-server.js:1745:26)
+[  200906ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1226
+[  200909ms] [ERROR] ./sanity/client.ts:1:1
+Module not found: Can't resolve 'next-sanity'
+> 1 | import { createClient } from "next-sanity";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { apiVersion, dataset, projectId, SANITY_REVALIDATE } from "./env";
+  3 |
+  4 | export const client = createClient({
+
+Import trace:
+  Server Component:
+    ./sanity/client.ts
+    ./sanity/queries.ts
+    ./app/news/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1945
+[  200909ms] [ERROR] ./sanity/client.ts:1:1
+Module not found: Can't resolve 'next-sanity'
+> 1 | import { createClient } from "next-sanity";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { apiVersion, dataset, projectId, SANITY_REVALIDATE } from "./env";
+  3 |
+  4 | export const client = createClient({
+
+Import trace:
+  Server Component:
+    ./sanity/client.ts
+    ./sanity/queries.ts
+    ./lib/sitemap.ts
+    ./app/sitemap/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1945
+[  200949ms] [ERROR] ./sanity/client.ts:1:1
+Module not found: Can't resolve 'next-sanity'
+> 1 | import { createClient } from "next-sanity";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { apiVersion, dataset, projectId, SANITY_REVALIDATE } from "./env";
+  3 |
+  4 | export const client = createClient({
+
+Import trace:
+  Server Component:
+    ./sanity/client.ts
+    ./sanity/queries.ts
+    ./app/news/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1945
+[  201024ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1226
+[  201100ms] [ERROR] ./sanity/client.ts:1:1
+Module not found: Can't resolve 'next-sanity'
+> 1 | import { createClient } from "next-sanity";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { apiVersion, dataset, projectId, SANITY_REVALIDATE } from "./env";
+  3 |
+  4 | export const client = createClient({
+
+Import trace:
+  Server Component:
+    ./sanity/client.ts
+    ./sanity/queries.ts
+    ./app/news/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1945
+[  201148ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1226
+[  207761ms] [ERROR] ./sanity/client.ts:1:1
+Module not found: Can't resolve 'next-sanity'
+> 1 | import { createClient } from "next-sanity";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { apiVersion, dataset, projectId, SANITY_REVALIDATE } from "./env";
+  3 |
+  4 | export const client = createClient({
+
+Import trace:
+  Server Component:
+    ./sanity/client.ts
+    ./sanity/queries.ts
+    ./app/news/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1945
+[  207808ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1226
+[  217259ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1226
+[  217342ms] [ERROR] ./sanity/client.ts:1:1
+Module not found: Can't resolve 'next-sanity'
+> 1 | import { createClient } from "next-sanity";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { apiVersion, dataset, projectId, SANITY_REVALIDATE } from "./env";
+  3 |
+  4 | export const client = createClient({
+
+Import trace:
+  Server Component:
+    ./sanity/client.ts
+    ./sanity/queries.ts
+    ./app/news/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1945
+[  217426ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3000/:0
+[  217502ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/0p2h_react-dom_0vsf22y._.js:15305
+[  217523ms] Error: ./sanity/client.ts:1:1
+Module not found: Can't resolve 'next-sanity'
+> 1 | import { createClient } from "next-sanity";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { apiVersion, dataset, projectId, SANITY_REVALIDATE } from "./env";
+  3 |
+  4 | export const client = createClient({
+
+
+
+Import trace:
+  Server Component:
+    ./sanity/client.ts
+    ./sanity/queries.ts
+    ./app/news/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+    at <unknown> (Error: ./sanity/client.ts:1:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at Object.getCompilationErrors (file://D:\work\prophetchef\my-app\node_modules\.pnpm\next@16.2.4_@babel+core@7.2_c8206e0b14d95065a91ef00b15159908\node_modules\next\dist\server\dev\hot-reloader-turbopack.js:1186:59)
+    at DevBundlerService.getCompilationError (file://D:\work\prophetchef\my-app\node_modules\.pnpm\next@16.2.4_@babel+core@7.2_c8206e0b14d95065a91ef00b15159908\node_modules\next\dist\server\lib\dev-bundler-service.js:44:55)
+    at DevServer.getCompilationError (file://D:\work\prophetchef\my-app\node_modules\.pnpm\next@16.2.4_@babel+core@7.2_c8206e0b14d95065a91ef00b15159908\node_modules\next\dist\server\dev\next-dev-server.js:719:42)
+    at DevServer.findPageComponents (file://D:\work\prophetchef\my-app\node_modules\.pnpm\next@16.2.4_@babel+core@7.2_c8206e0b14d95065a91ef00b15159908\node_modules\next\dist\server\dev\next-dev-server.js:689:43)
+    at async DevServer.renderErrorToResponseImpl (file://D:\work\prophetchef\my-app\node_modules\.pnpm\next@16.2.4_@babel+core@7.2_c8206e0b14d95065a91ef00b15159908\node_modules\next\dist\server\base-server.js:1745:26)
+[  217537ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1226
+[  217568ms] [ERROR] ./sanity/client.ts:1:1
+Module not found: Can't resolve 'next-sanity'
+> 1 | import { createClient } from "next-sanity";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { apiVersion, dataset, projectId, SANITY_REVALIDATE } from "./env";
+  3 |
+  4 | export const client = createClient({
+
+Import trace:
+  Server Component:
+    ./sanity/client.ts
+    ./sanity/queries.ts
+    ./app/news/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1945
+[  217569ms] [ERROR] ./sanity/client.ts:1:1
+Module not found: Can't resolve 'next-sanity'
+> 1 | import { createClient } from "next-sanity";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { apiVersion, dataset, projectId, SANITY_REVALIDATE } from "./env";
+  3 |
+  4 | export const client = createClient({
+
+Import trace:
+  Server Component:
+    ./sanity/client.ts
+    ./sanity/queries.ts
+    ./lib/sitemap.ts
+    ./app/sitemap/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1945
+[  217619ms] [ERROR] ./sanity/client.ts:1:1
+Module not found: Can't resolve 'next-sanity'
+> 1 | import { createClient } from "next-sanity";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { apiVersion, dataset, projectId, SANITY_REVALIDATE } from "./env";
+  3 |
+  4 | export const client = createClient({
+
+Import trace:
+  Server Component:
+    ./sanity/client.ts
+    ./sanity/queries.ts
+    ./app/news/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1945
+[  217655ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1226
+[  217720ms] [ERROR] ./sanity/client.ts:1:1
+Module not found: Can't resolve 'next-sanity'
+> 1 | import { createClient } from "next-sanity";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { apiVersion, dataset, projectId, SANITY_REVALIDATE } from "./env";
+  3 |
+  4 | export const client = createClient({
+
+Import trace:
+  Server Component:
+    ./sanity/client.ts
+    ./sanity/queries.ts
+    ./app/news/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1945
+[  217779ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1226
+[  225618ms] [ERROR] ./sanity/client.ts:1:1
+Module not found: Can't resolve 'next-sanity'
+> 1 | import { createClient } from "next-sanity";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { apiVersion, dataset, projectId, SANITY_REVALIDATE } from "./env";
+  3 |
+  4 | export const client = createClient({
+
+Import trace:
+  Server Component:
+    ./sanity/client.ts
+    ./sanity/queries.ts
+    ./app/news/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1945
+[  225643ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1226
+[  225924ms] [ERROR] ./sanity/client.ts:1:1
+Module not found: Can't resolve 'next-sanity'
+> 1 | import { createClient } from "next-sanity";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { apiVersion, dataset, projectId, SANITY_REVALIDATE } from "./env";
+  3 |
+  4 | export const client = createClient({
+
+Import trace:
+  Server Component:
+    ./sanity/client.ts
+    ./sanity/queries.ts
+    ./app/news/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1945
+[  225987ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1226
+[  226685ms] [ERROR] ./sanity/client.ts:1:1
+Module not found: Can't resolve 'next-sanity'
+> 1 | import { createClient } from "next-sanity";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { apiVersion, dataset, projectId, SANITY_REVALIDATE } from "./env";
+  3 |
+  4 | export const client = createClient({
+
+Import trace:
+  Server Component:
+    ./sanity/client.ts
+    ./sanity/queries.ts
+    ./app/news/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1945
+[  226744ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1226
+[  229910ms] [ERROR] ./sanity/client.ts:1:1
+Module not found: Can't resolve 'next-sanity'
+> 1 | import { createClient } from "next-sanity";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { apiVersion, dataset, projectId, SANITY_REVALIDATE } from "./env";
+  3 |
+  4 | export const client = createClient({
+
+Import trace:
+  Server Component:
+    ./sanity/client.ts
+    ./sanity/queries.ts
+    ./app/news/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1945
+[  229961ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1226
+[  230456ms] [ERROR] ./sanity/client.ts:1:1
+Module not found: Can't resolve 'next-sanity'
+> 1 | import { createClient } from "next-sanity";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 | import { apiVersion, dataset, projectId, SANITY_REVALIDATE } from "./env";
+  3 |
+  4 | export const client = createClient({
+
+Import trace:
+  Server Component:
+    ./sanity/client.ts
+    ./sanity/queries.ts
+    ./app/news/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1945
+[  230508ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1226
+[  250259ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1226
+[  254227ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/webpack-hmr' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/09do_next_dist_client_0mglhn~._.js:2342
+[  257576ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/webpack-hmr' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/09do_next_dist_client_0mglhn~._.js:2342
+[  260945ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/webpack-hmr' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/09do_next_dist_client_0mglhn~._.js:2342
+[  264294ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/webpack-hmr' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/09do_next_dist_client_0mglhn~._.js:2342
+[  267645ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/webpack-hmr' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/09do_next_dist_client_0mglhn~._.js:2342
+[  274998ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/webpack-hmr' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/09do_next_dist_client_0mglhn~._.js:2342
+[  282358ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/webpack-hmr' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/09do_next_dist_client_0mglhn~._.js:2342
+[  289695ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/webpack-hmr' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/09do_next_dist_client_0mglhn~._.js:2342
+[  297076ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/webpack-hmr' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/09do_next_dist_client_0mglhn~._.js:2342
+[  302089ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/09do_next_dist_07brkm6._.js:1226
+[  306031ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  306150ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  309112ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  309609ms] [LOG] [Fast Refresh] done in 601ms @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  315388ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  315550ms] [LOG] [Fast Refresh] done in 268ms @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  315659ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  315931ms] [LOG] [Fast Refresh] done in 376ms @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  316042ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  316217ms] [LOG] [Fast Refresh] done in 278ms @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  316344ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  316474ms] [LOG] [Fast Refresh] done in 232ms @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  345504ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  346886ms] [LOG] [Fast Refresh] done in 1393ms @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  347009ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  347217ms] [LOG] [Fast Refresh] done in 319ms @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  347338ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  348169ms] [LOG] [Fast Refresh] done in 933ms @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  348489ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  348494ms] [LOG] [Fast Refresh] done in 106ms @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  348614ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  348733ms] [LOG] [Fast Refresh] done in 229ms @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  348870ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  349515ms] [LOG] [Fast Refresh] done in 747ms @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  349902ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  349990ms] [LOG] [Fast Refresh] done in 190ms @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  350108ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  350587ms] [LOG] [Fast Refresh] done in 579ms @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  351224ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  351718ms] [LOG] [Fast Refresh] done in 601ms @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  352202ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  352310ms] [LOG] [Fast Refresh] done in 210ms @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  352427ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  352775ms] [LOG] [Fast Refresh] done in 452ms @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  353512ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  353702ms] [LOG] [Fast Refresh] done in 292ms @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  354646ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  354849ms] [LOG] [Fast Refresh] done in 306ms @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  354956ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  355130ms] [LOG] [Fast Refresh] done in 274ms @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  355551ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  355554ms] [LOG] [Fast Refresh] done in 106ms @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  355708ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  355820ms] [LOG] [Fast Refresh] done in 215ms @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  356266ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  356268ms] [LOG] [Fast Refresh] done in 105ms @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  356437ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  356587ms] [LOG] [Fast Refresh] done in 252ms @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  357115ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  357249ms] [LOG] [Fast Refresh] done in 237ms @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  357692ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  357700ms] [LOG] [Fast Refresh] done in 110ms @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  357885ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  358001ms] [LOG] [Fast Refresh] done in 220ms @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  358126ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  358189ms] [LOG] [Fast Refresh] done in 167ms @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  358493ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  358537ms] [LOG] [Fast Refresh] done in 147ms @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  358711ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  358818ms] [LOG] [Fast Refresh] done in 219ms @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  359117ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  359117ms] [LOG] [Fast Refresh] done in 108ms @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  359530ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  359611ms] [LOG] [Fast Refresh] done in 182ms @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  359776ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  359845ms] [LOG] [Fast Refresh] done in 174ms @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  360074ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  360347ms] [LOG] [Fast Refresh] done in 380ms @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  360563ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  360628ms] [LOG] [Fast Refresh] done in 170ms @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  360747ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  360865ms] [LOG] [Fast Refresh] done in 219ms @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  361052ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  361057ms] [LOG] [Fast Refresh] done in 108ms @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  361390ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  361399ms] [LOG] [Fast Refresh] done in 112ms @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  361802ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  361816ms] [LOG] [Fast Refresh] done in 114ms @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  362189ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  362312ms] [LOG] [Fast Refresh] done in 228ms @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  362536ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  362546ms] [LOG] [Fast Refresh] done in 112ms @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  362801ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  362803ms] [LOG] [Fast Refresh] done in 103ms @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  362912ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  363028ms] [LOG] [Fast Refresh] done in 218ms @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  363136ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  363145ms] [LOG] [Fast Refresh] done in 110ms @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  363258ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  363267ms] [LOG] [Fast Refresh] done in 121ms @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  363592ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  363593ms] [LOG] [Fast Refresh] done in 106ms @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  363944ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  363951ms] [LOG] [Fast Refresh] done in 118ms @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  364324ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  364335ms] [LOG] [Fast Refresh] done in 118ms @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  364689ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  364751ms] [LOG] [Fast Refresh] done in 172ms @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  365001ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  365018ms] [LOG] [Fast Refresh] done in 118ms @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  365416ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  365472ms] [LOG] [Fast Refresh] done in 158ms @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  365822ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  365871ms] [LOG] [Fast Refresh] done in 162ms @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  366174ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  366187ms] [LOG] [Fast Refresh] done in 116ms @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  366544ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  366548ms] [LOG] [Fast Refresh] done in 114ms @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  366710ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  366732ms] [LOG] [Fast Refresh] done in 125ms @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  367008ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  367016ms] [LOG] [Fast Refresh] done in 109ms @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  367339ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  367342ms] [LOG] [Fast Refresh] done in 110ms @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  367743ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  367813ms] [LOG] [Fast Refresh] done in 170ms @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  368015ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  368026ms] [LOG] [Fast Refresh] done in 113ms @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  368210ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  368272ms] [LOG] [Fast Refresh] done in 167ms @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  368506ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  368514ms] [LOG] [Fast Refresh] done in 112ms @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  375179ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  375476ms] [LOG] [Fast Refresh] done in 71ms @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  396690ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  397267ms] [LOG] [Fast Refresh] done in 398ms @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  397390ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  397491ms] [LOG] [Fast Refresh] done in 212ms @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  550388ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431
+[  550469ms] [LOG] [Fast Refresh] done in 188ms @ http://localhost:3000/_next/static/chunks/0im5_next_dist_0~_dl5p._.js:2431

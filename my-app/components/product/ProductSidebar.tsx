@@ -2,15 +2,16 @@
 
 import React from "react";
 import { ArrowRight, Boxes, Send } from "lucide-react";
-import { categories } from "@/data/categories";
 
 interface ProductSidebarProps {
   activeCategory: string;
+  categories: string[];
   onCategoryChange: (category: string) => void;
 }
 
 export const ProductSidebar: React.FC<ProductSidebarProps> = ({ 
   activeCategory, 
+  categories,
   onCategoryChange 
 }) => {
   return (
@@ -25,16 +26,16 @@ export const ProductSidebar: React.FC<ProductSidebarProps> = ({
         <ArrowRight aria-hidden="true" />
         All Products
       </button>
-      {categories.map((cat) => (
+      {categories.map((category) => (
         <button 
-          key={cat.name}
+          key={category}
           className={`filter-btn ${
-            activeCategory === cat.name ? "active" : ""
+            activeCategory === category ? "active" : ""
           }`}
-          onClick={() => onCategoryChange(cat.name)}
+          onClick={() => onCategoryChange(category)}
         >
           <ArrowRight aria-hidden="true" />
-          {cat.name}
+          {category}
         </button>
       ))}
       <div className="sidebar-cta">

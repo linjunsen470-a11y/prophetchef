@@ -1,24 +1,15 @@
-"use client";
-
-import React, { useState } from "react";
 import { BadgeCheck, Factory, Globe2 } from "lucide-react";
-import { products } from "@/data/products";
 import { PageHero } from "@/components/common/PageHero";
-import { Container } from "@/components/common/Container";
-import { ProductSidebar } from "@/components/product/ProductSidebar";
-import { ProductCard } from "@/components/product/ProductCard";
 import { CTASection } from "@/components/common/CTASection";
+import { ProductListClient } from "@/components/product/ProductListClient";
+import { getProducts } from "@/sanity/queries";
 
-export default function ProductsPage() {
-  const [activeCategory, setActiveCategory] = useState("All Products");
-
-  const filteredProducts = activeCategory === "All Products" 
-    ? products 
-    : products.filter(p => p.category === activeCategory);
+export default async function ProductsPage() {
+  const products = await getProducts();
 
   return (
     <>
-      <PageHero 
+      <PageHero
         eyebrow="Products"
         title="Commercial Kitchen Equipment Products"
         description="Explore our complete product range for restaurants, hotels, canteens and central kitchens."
@@ -30,33 +21,9 @@ export default function ProductsPage() {
           <span><Globe2 aria-hidden="true" />Export-ready</span>
         </div>
       </PageHero>
-      
+
       <section className="products-showcase">
-        <Container className="products-layout">
-          <ProductSidebar 
-            activeCategory={activeCategory} 
-            onCategoryChange={setActiveCategory} 
-          />
-          <div className="products-main">
-            <div className="product-toolbar">
-              <div>
-                <span className="eyebrow">Catalog</span>
-                <p><strong>{filteredProducts.length}</strong> product models for commercial foodservice equipment procurement.</p>
-              </div>
-              <span className="product-count-pill">{activeCategory}</span>
-            </div>
-            <div className="product-grid products-page-grid">
-              {filteredProducts.map((product, index) => (
-                <ProductCard key={product.id} product={product} index={index} />
-              ))}
-              {filteredProducts.length === 0 && (
-                <div className="col-span-full py-[60px] text-center text-muted border border-dashed border-border rounded-[12px]">
-                  <p>No products found in this category.</p>
-                </div>
-              )}
-            </div>
-          </div>
-        </Container>
+        <ProductListClient products={products} />
       </section>
 
       <CTASection />

@@ -1,5 +1,4 @@
-import { newsItems } from "@/data/news";
-import { products } from "@/data/products";
+import { getNewsItems, getProducts } from "@/sanity/queries";
 
 export type SitemapGroup = "Core" | "Products" | "News";
 
@@ -32,7 +31,9 @@ export function absoluteUrl(path: string) {
   return `${getSiteUrl()}${path === "/" ? "" : path}`;
 }
 
-export function getSitemapEntries(): SitemapEntry[] {
+export async function getSitemapEntries(): Promise<SitemapEntry[]> {
+  const [products, newsItems] = await Promise.all([getProducts(), getNewsItems()]);
+
   const productEntries = products.map<SitemapEntry>((product) => ({
     path: `/products/${product.slug}`,
     title: product.name,
@@ -54,8 +55,10 @@ export function getSitemapEntries(): SitemapEntry[] {
   return [...staticEntries, ...productEntries, ...newsEntries];
 }
 
-export function groupSitemapEntries() {
-  return getSitemapEntries().reduce<Record<SitemapGroup, SitemapEntry[]>>(
+export async function groupSitemapEntries() {
+  const entries = await getSitemapEntries();
+
+  return entries.reduce<Record<SitemapGroup, SitemapEntry[]>>(
     (groups, entry) => {
       groups[entry.group].push(entry);
       return groups;

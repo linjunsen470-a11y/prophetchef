@@ -2,7 +2,6 @@ import React from "react";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import { MessageCircle, Send } from "lucide-react";
-import { products } from "@/data/products";
 import { siteConfig } from "@/data/site";
 import { Breadcrumb } from "@/components/common/Breadcrumb";
 import { Container } from "@/components/common/Container";
@@ -11,20 +10,19 @@ import { ProductGallery } from "@/components/product/ProductGallery";
 import { ProductInquiryForm } from "@/components/product/ProductInquiryForm";
 import { ProductCard } from "@/components/product/ProductCard";
 import { CTASection } from "@/components/common/CTASection";
+import { getProduct, getProductSlugs, getRelatedProducts } from "@/sanity/queries";
 
 interface ProductPageProps {
   params: Promise<{ slug: string }>;
 }
 
 export async function generateStaticParams() {
-  return products.map((product) => ({
-    slug: product.slug,
-  }));
+  return getProductSlugs();
 }
 
 export async function generateMetadata({ params }: ProductPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const product = products.find((p) => p.slug === slug);
+  const product = await getProduct(slug);
   if (!product) return {};
 
   return {
@@ -35,16 +33,14 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
 
 export default async function ProductDetailPage({ params }: ProductPageProps) {
   const { slug } = await params;
-  const product = products.find((p) => p.slug === slug);
+  const product = await getProduct(slug);
 
   if (!product) {
     notFound();
   }
 
-  // Related products (same category, excluding current)
-  const relatedProducts = products
-    .filter((p) => p.category === product.category && p.slug !== slug)
-    .slice(0, 4);
+  const relatedProducts = await getRelatedProducts(product.category, slug);
+  const galleryImages = [product.image, ...relatedProducts.map((relatedProduct) => relatedProduct.image)];
 
   return (
     <>
@@ -58,7 +54,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
 
       <section className="product-detail-hero">
         <Container className="product-detail-grid">
-          <ProductGallery images={[product.image, ...products.slice(0, 2).map(p => p.image)]} />
+          <ProductGallery images={galleryImages} />
           
           <div className="product-summary">
             <span className="eyebrow">{product.category}</span>
@@ -146,7 +142,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
             <tbody>
               <tr>
                 <th>Model</th>
-                <td>PKT-{product.id}-Series</td>
+                <td>{product.modelCode || `PKT-${product.id.slice(-4).toUpperCase()}-Series`}</td>
               </tr>
               <tr>
                 <th>Material</th>

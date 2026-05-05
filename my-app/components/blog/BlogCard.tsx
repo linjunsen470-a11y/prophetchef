@@ -11,6 +11,8 @@ interface BlogCardProps {
 }
 
 export const BlogCard: React.FC<BlogCardProps> = ({ title, excerpt, date, category, image, slug }) => {
+  const displayDate = date.slice(0, 10);
+
   return (
     <article className="news-card">
       <div
@@ -21,7 +23,7 @@ export const BlogCard: React.FC<BlogCardProps> = ({ title, excerpt, date, catego
       />
       <div className="news-body">
         <div className="news-meta">
-          <span>{date}</span>
+          <span>{displayDate}</span>
           <span>{category}</span>
         </div>
         <h3>{title}</h3>

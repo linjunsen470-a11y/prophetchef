@@ -1,0 +1,479 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "ProKitchenTech home" [ref=e4] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e5]: PKT
+        - generic [ref=e6]: ProKitchenTech
+      - navigation "Main navigation" [ref=e7]:
+        - link "Home" [ref=e8] [cursor=pointer]:
+          - /url: /
+        - link "Products" [ref=e9] [cursor=pointer]:
+          - /url: /products
+        - link "Factory" [ref=e10] [cursor=pointer]:
+          - /url: /factory
+        - link "Applications" [ref=e11] [cursor=pointer]:
+          - /url: /applications
+        - link "Certificates" [ref=e12] [cursor=pointer]:
+          - /url: /certificates
+        - link "News" [ref=e13] [cursor=pointer]:
+          - /url: /news
+        - link "Contact" [ref=e14] [cursor=pointer]:
+          - /url: /contact
+      - link "Get Quote" [ref=e16] [cursor=pointer]:
+        - /url: /contact
+        - text: Get Quote
+        - img [ref=e17]
+  - main [ref=e20]:
+    - generic [ref=e23]:
+      - generic [ref=e24]:
+        - generic [ref=e25]: Commercial Foodservice Equipment Factory
+        - heading "Commercial Kitchen Equipment for Global Foodservice Projects" [level=1] [ref=e26]
+        - paragraph [ref=e27]: Factory-direct induction cooking, automatic cooking machines, combi ovens, dishwashers and complete stainless steel kitchen solutions.
+        - generic [ref=e28]:
+          - link "View Products" [ref=e29] [cursor=pointer]:
+            - /url: /products
+            - text: View Products
+            - img [ref=e30]
+          - link "Contact Supplier" [ref=e32] [cursor=pointer]:
+            - /url: /contact
+            - text: Contact Supplier
+            - img [ref=e33]
+      - generic "Factory capabilities" [ref=e36]:
+        - generic [ref=e37]:
+          - img [ref=e38]
+          - strong [ref=e40]: 20+
+          - generic [ref=e41]: Years Manufacturing
+        - generic [ref=e42]:
+          - img [ref=e43]
+          - strong [ref=e48]: 50+
+          - generic [ref=e49]: Export Countries
+        - generic [ref=e50]:
+          - img [ref=e51]
+          - strong [ref=e54]: 24h
+          - generic [ref=e55]: Fast Quotation
+    - generic [ref=e57]:
+      - generic [ref=e58]:
+        - img [ref=e59]
+        - strong [ref=e61]: 20+
+        - text: Years Experience
+      - generic [ref=e62]:
+        - img [ref=e63]
+        - strong [ref=e65]: 15000㎡
+        - text: Factory Area
+      - generic [ref=e66]:
+        - img [ref=e67]
+        - strong [ref=e72]: 750+
+        - text: Skilled Employees
+      - generic [ref=e73]:
+        - img [ref=e74]
+        - strong [ref=e79]: 50+
+        - text: Export Countries
+    - generic [ref=e80]:
+      - generic [ref=e81]:
+        - generic [ref=e82]: Product Categories
+        - heading "Commercial Kitchen Equipment for B2B Buyers" [level=2] [ref=e83]
+        - paragraph [ref=e84]: Find core equipment categories for restaurants, hotels, school canteens and central kitchen projects.
+      - generic [ref=e85]:
+        - article [ref=e86]:
+          - img "Commercial Induction Cookers" [ref=e88]
+          - generic [ref=e89]:
+            - heading "Commercial Induction Cookers" [level=3] [ref=e90]
+            - paragraph [ref=e91]: High-power induction cooking for wok ranges, stock pots and modular cook lines.
+            - link "View Category" [ref=e92] [cursor=pointer]:
+              - /url: /products#Commercial-Induction-Cookers
+              - text: View Category
+              - img [ref=e93]
+        - article [ref=e95]:
+          - img "Automatic Cooking Machines" [ref=e97]
+          - generic [ref=e98]:
+            - heading "Automatic Cooking Machines" [level=3] [ref=e99]
+            - paragraph [ref=e100]: Recipe-controlled automatic cooking for chain restaurants and central kitchens.
+            - link "View Category" [ref=e101] [cursor=pointer]:
+              - /url: /products#Automatic-Cooking-Machines
+              - text: View Category
+              - img [ref=e102]
+        - article [ref=e104]:
+          - img "Combi Ovens" [ref=e106]
+          - generic [ref=e107]:
+            - heading "Combi Ovens" [level=3] [ref=e108]
+            - paragraph [ref=e109]: Steam and convection ovens for efficient baking, roasting and reheating.
+            - link "View Category" [ref=e110] [cursor=pointer]:
+              - /url: /products#Combi-Ovens
+              - text: View Category
+              - img [ref=e111]
+        - article [ref=e113]:
+          - img "Commercial Dishwashers" [ref=e115]
+          - generic [ref=e116]:
+            - heading "Commercial Dishwashers" [level=3] [ref=e117]
+            - paragraph [ref=e118]: Undercounter, hood type and project dishwashing equipment.
+            - link "View Category" [ref=e119] [cursor=pointer]:
+              - /url: /products#Commercial-Dishwashers
+              - text: View Category
+              - img [ref=e120]
+        - article [ref=e122]:
+          - img "Modular Cooking Systems" [ref=e124]
+          - generic [ref=e125]:
+            - heading "Modular Cooking Systems" [level=3] [ref=e126]
+            - paragraph [ref=e127]: Integrated stainless steel cooking suites for professional kitchens.
+            - link "View Category" [ref=e128] [cursor=pointer]:
+              - /url: /products#Modular-Cooking-Systems
+              - text: View Category
+              - img [ref=e129]
+        - article [ref=e131]:
+          - img "Custom Kitchen Solutions" [ref=e133]
+          - generic [ref=e134]:
+            - heading "Custom Kitchen Solutions" [level=3] [ref=e135]
+            - paragraph [ref=e136]: OEM / ODM equipment and one-stop planning for global foodservice projects.
+            - link "View Category" [ref=e137] [cursor=pointer]:
+              - /url: /products#Custom-Kitchen-Solutions
+              - text: View Category
+              - img [ref=e138]
+    - generic [ref=e140]:
+      - generic [ref=e141]:
+        - generic [ref=e142]:
+          - generic [ref=e143]: Featured Products
+          - heading "Factory Direct Commercial Foodservice Equipment" [level=2] [ref=e144]
+        - link "View All Products" [ref=e145] [cursor=pointer]:
+          - /url: /products
+          - text: View All Products
+          - img [ref=e146]
+      - generic [ref=e148]:
+        - article [ref=e149]:
+          - img "Heavy Duty Commercial Induction Wok Cooker" [ref=e151]
+          - generic [ref=e152]:
+            - generic [ref=e153]: "01"
+            - heading "Heavy Duty Commercial Induction Wok Cooker" [level=3] [ref=e154]
+            - paragraph [ref=e155]: High-power wok station for hotel, canteen and central kitchen cooking lines.
+            - generic [ref=e156]:
+              - generic [ref=e157]: 8-30kW
+              - generic [ref=e158]: SUS304
+              - generic [ref=e159]: CE
+            - generic [ref=e160]:
+              - link "Quick Inquiry" [ref=e161] [cursor=pointer]:
+                - /url: /contact?product=Heavy%20Duty%20Commercial%20Induction%20Wok%20Cooker
+                - text: Quick Inquiry
+                - img [ref=e162]
+              - link "View Details" [ref=e165] [cursor=pointer]:
+                - /url: /products/heavy-duty-commercial-induction-wok-cooker
+                - text: View Details
+                - img [ref=e166]
+        - article [ref=e168]:
+          - img "360° Automatic Stir-fry Cooking Machine" [ref=e170]
+          - generic [ref=e171]:
+            - generic [ref=e172]: "02"
+            - heading "360° Automatic Stir-fry Cooking Machine" [level=3] [ref=e173]
+            - paragraph [ref=e174]: Programmable rotating cooker for standardized recipes and chain restaurants.
+            - generic [ref=e175]:
+              - generic [ref=e176]: Auto Stir
+              - generic [ref=e177]: Touch Panel
+              - generic [ref=e178]: OEM
+            - generic [ref=e179]:
+              - link "Quick Inquiry" [ref=e180] [cursor=pointer]:
+                - /url: /contact?product=360%C2%B0%20Automatic%20Stir-fry%20Cooking%20Machine
+                - text: Quick Inquiry
+                - img [ref=e181]
+              - link "View Details" [ref=e184] [cursor=pointer]:
+                - /url: /products/heavy-duty-commercial-induction-wok-cooker
+                - text: View Details
+                - img [ref=e185]
+        - article [ref=e187]:
+          - img "Commercial Combi Steam Oven" [ref=e189]
+          - generic [ref=e190]:
+            - generic [ref=e191]: "03"
+            - heading "Commercial Combi Steam Oven" [level=3] [ref=e192]
+            - paragraph [ref=e193]: Steam, convection and mixed cooking modes for efficient batch production.
+            - generic [ref=e194]:
+              - generic [ref=e195]: 6/10/20 Trays
+              - generic [ref=e196]: Steam
+              - generic [ref=e197]: Digital
+            - generic [ref=e198]:
+              - link "Quick Inquiry" [ref=e199] [cursor=pointer]:
+                - /url: /contact?product=Commercial%20Combi%20Steam%20Oven
+                - text: Quick Inquiry
+                - img [ref=e200]
+              - link "View Details" [ref=e203] [cursor=pointer]:
+                - /url: /products/heavy-duty-commercial-induction-wok-cooker
+                - text: View Details
+                - img [ref=e204]
+        - article [ref=e206]:
+          - img "Hood Type Commercial Dishwasher" [ref=e208]
+          - generic [ref=e209]:
+            - generic [ref=e210]: "04"
+            - heading "Hood Type Commercial Dishwasher" [level=3] [ref=e211]
+            - paragraph [ref=e212]: High-temperature washing system for hotels, schools and catering kitchens.
+            - generic [ref=e213]:
+              - generic [ref=e214]: Rack Type
+              - generic [ref=e215]: Low Water
+              - generic [ref=e216]: Fast Cycle
+            - generic [ref=e217]:
+              - link "Quick Inquiry" [ref=e218] [cursor=pointer]:
+                - /url: /contact?product=Hood%20Type%20Commercial%20Dishwasher
+                - text: Quick Inquiry
+                - img [ref=e219]
+              - link "View Details" [ref=e222] [cursor=pointer]:
+                - /url: /products/heavy-duty-commercial-induction-wok-cooker
+                - text: View Details
+                - img [ref=e223]
+        - article [ref=e225]:
+          - img "Modular Induction Cooking Range" [ref=e227]
+          - generic [ref=e228]:
+            - generic [ref=e229]: "05"
+            - heading "Modular Induction Cooking Range" [level=3] [ref=e230]
+            - paragraph [ref=e231]: Integrated commercial cooking line for professional open kitchens.
+            - generic [ref=e232]:
+              - generic [ref=e233]: Modular
+              - generic [ref=e234]: Custom
+              - generic [ref=e235]: Heavy Duty
+            - generic [ref=e236]:
+              - link "Quick Inquiry" [ref=e237] [cursor=pointer]:
+                - /url: /contact?product=Modular%20Induction%20Cooking%20Range
+                - text: Quick Inquiry
+                - img [ref=e238]
+              - link "View Details" [ref=e241] [cursor=pointer]:
+                - /url: /products/heavy-duty-commercial-induction-wok-cooker
+                - text: View Details
+                - img [ref=e242]
+        - article [ref=e244]:
+          - img "Automatic Pasta Cooker" [ref=e246]
+          - generic [ref=e247]:
+            - generic [ref=e248]: "06"
+            - heading "Automatic Pasta Cooker" [level=3] [ref=e249]
+            - paragraph [ref=e250]: Stainless steel electric pasta boiler for fast food and restaurant chains.
+            - generic [ref=e251]:
+              - generic [ref=e252]: 6 Baskets
+              - generic [ref=e253]: Timer
+              - generic [ref=e254]: Easy Clean
+            - generic [ref=e255]:
+              - link "Quick Inquiry" [ref=e256] [cursor=pointer]:
+                - /url: /contact?product=Automatic%20Pasta%20Cooker
+                - text: Quick Inquiry
+                - img [ref=e257]
+              - link "View Details" [ref=e260] [cursor=pointer]:
+                - /url: /products/heavy-duty-commercial-induction-wok-cooker
+                - text: View Details
+                - img [ref=e261]
+    - generic [ref=e264]:
+      - img "Commercial kitchen equipment production base" [ref=e266]
+      - generic [ref=e267]:
+        - generic [ref=e268]: Factory Strength
+        - heading "Built for Stable Supply and Global Project Delivery" [level=2] [ref=e269]
+        - paragraph [ref=e270]: Our production base integrates laser cutting, bending, welding, assembly and testing lines, supported by R&D, QC, sales and after-sales teams.
+        - list [ref=e271]:
+          - listitem [ref=e272]:
+            - img [ref=e273]
+            - text: 20+ years manufacturing experience
+          - listitem [ref=e276]:
+            - img [ref=e277]
+            - text: 15000㎡ production base
+          - listitem [ref=e280]:
+            - img [ref=e281]
+            - text: Integrated metal processing and assembly workflow
+          - listitem [ref=e284]:
+            - img [ref=e285]
+            - text: Export support for distributors and project contractors
+        - link "Explore Our Factory" [ref=e288] [cursor=pointer]:
+          - /url: /factory
+          - text: Explore Our Factory
+          - img [ref=e289]
+    - generic [ref=e291]:
+      - generic [ref=e292]:
+        - generic [ref=e293]:
+          - generic [ref=e294]: Applications
+          - heading "Solutions for Different Kitchen Projects" [level=2] [ref=e295]
+        - link "View Applications" [ref=e296] [cursor=pointer]:
+          - /url: /applications
+          - text: View Applications
+          - img [ref=e297]
+      - generic [ref=e299]:
+        - article [ref=e300]:
+          - generic [ref=e301]:
+            - img [ref=e302]
+            - text: "01"
+          - heading "School Cafeteria" [level=3] [ref=e305]
+          - paragraph [ref=e306]: Large-batch cooking and dishwashing equipment for safe daily meal service.
+        - article [ref=e307]:
+          - generic [ref=e308]:
+            - img [ref=e309]
+            - text: "02"
+          - heading "Hotel Kitchen" [level=3] [ref=e312]
+          - paragraph [ref=e313]: Professional cooking, ovens and washing lines for all-day operations.
+        - article [ref=e314]:
+          - generic [ref=e315]:
+            - img [ref=e316]
+            - text: "03"
+          - heading "Chain Restaurant" [level=3] [ref=e319]
+          - paragraph [ref=e320]: Standardized equipment for repeatable recipes and faster staff training.
+        - article [ref=e321]:
+          - generic [ref=e322]:
+            - img [ref=e323]
+            - text: "04"
+          - heading "Central Kitchen" [level=3] [ref=e326]
+          - paragraph [ref=e327]: Custom stainless steel equipment for high-volume production and dispatch.
+    - generic [ref=e328]:
+      - generic [ref=e329]:
+        - generic [ref=e330]:
+          - generic [ref=e331]: Certificates
+          - heading "Compliance Support for Global Buyers" [level=2] [ref=e332]
+        - link "View Certificates" [ref=e333] [cursor=pointer]:
+          - /url: /certificates
+          - text: View Certificates
+          - img [ref=e334]
+      - generic [ref=e336]:
+        - generic [ref=e337]:
+          - img [ref=e338]
+          - text: CE
+        - generic [ref=e341]:
+          - img [ref=e342]
+          - text: ISO 9001
+        - generic [ref=e345]:
+          - img [ref=e346]
+          - text: RoHS
+        - generic [ref=e353]:
+          - img [ref=e354]
+          - text: ETL
+        - generic [ref=e360]:
+          - img [ref=e361]
+          - text: Inspection Report
+        - generic [ref=e365]:
+          - img [ref=e366]
+          - text: Patent Certificate
+    - generic [ref=e370]:
+      - generic [ref=e371]:
+        - generic [ref=e372]:
+          - generic [ref=e373]: News
+          - heading "Industry Insights and Product Knowledge" [level=2] [ref=e374]
+        - link "View All News" [ref=e375] [cursor=pointer]:
+          - /url: /news
+          - text: View All News
+          - img [ref=e376]
+      - generic [ref=e378]:
+        - article [ref=e379]:
+          - img "Why Commercial Kitchens Are Switching to Induction Cooking" [ref=e381]
+          - generic [ref=e382]:
+            - generic [ref=e383]:
+              - generic [ref=e384]: 2026-04-18
+              - generic [ref=e385]: Industry News
+            - heading "Why Commercial Kitchens Are Switching to Induction Cooking" [level=3] [ref=e386]
+            - paragraph [ref=e387]: Induction cooking is becoming a practical upgrade for restaurants, canteens and central kitchens seeking cleaner heat and lower operating costs.
+            - link "Read More" [ref=e388] [cursor=pointer]:
+              - /url: /news/why-commercial-kitchens-switching-induction
+              - text: Read More
+              - img [ref=e389]
+        - article [ref=e391]:
+          - img "How to Choose an Automatic Cooking Machine for Chain Restaurants" [ref=e393]
+          - generic [ref=e394]:
+            - generic [ref=e395]:
+              - generic [ref=e396]: 2026-04-10
+              - generic [ref=e397]: Product Knowledge
+            - heading "How to Choose an Automatic Cooking Machine for Chain Restaurants" [level=3] [ref=e398]
+            - paragraph [ref=e399]: Key points for evaluating capacity, recipe standardization, cleaning convenience and after-sales support.
+            - link "Read More" [ref=e400] [cursor=pointer]:
+              - /url: /news/why-commercial-kitchens-switching-induction
+              - text: Read More
+              - img [ref=e401]
+        - article [ref=e403]:
+          - img "Complete Commercial Kitchen Equipment Checklist for New Restaurants" [ref=e405]
+          - generic [ref=e406]:
+            - generic [ref=e407]:
+              - generic [ref=e408]: 2026-03-28
+              - generic [ref=e409]: Product Knowledge
+            - heading "Complete Commercial Kitchen Equipment Checklist for New Restaurants" [level=3] [ref=e410]
+            - paragraph [ref=e411]: A practical planning checklist for new foodservice projects, covering cooking, dishwashing, preparation and storage.
+            - link "Read More" [ref=e412] [cursor=pointer]:
+              - /url: /news/why-commercial-kitchens-switching-induction
+              - text: Read More
+              - img [ref=e413]
+    - generic [ref=e416]:
+      - generic [ref=e417]:
+        - generic [ref=e418]: Project Inquiry
+        - heading "Get a Free Quote Today" [level=2] [ref=e419]
+        - paragraph [ref=e420]: Tell us your kitchen project requirements. Our team will recommend suitable equipment and provide a fast quotation.
+      - generic [ref=e421]:
+        - link "Send Inquiry" [ref=e422] [cursor=pointer]:
+          - /url: /contact
+          - text: Send Inquiry
+          - img [ref=e423]
+        - link "Chat on WhatsApp" [ref=e426] [cursor=pointer]:
+          - /url: https://wa.me/8618000000000?text=Hello%20ProKitchenTech%2C%20I%20would%20like%20to%20request%20a%20quote.
+          - img [ref=e427]
+          - text: Chat on WhatsApp
+  - contentinfo [ref=e429]:
+    - generic [ref=e430]:
+      - generic [ref=e431]:
+        - link "PKT ProKitchenTech" [ref=e432] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e433]: PKT
+          - generic [ref=e434]: ProKitchenTech
+        - paragraph [ref=e435]: ProKitchenTech is a commercial kitchen equipment manufacturer offering induction cookers, automatic cooking machines, combi ovens, dishwashers and complete kitchen solutions.
+        - generic "Company capabilities" [ref=e436]:
+          - generic [ref=e437]:
+            - img [ref=e438]
+            - text: OEM / ODM
+          - generic [ref=e441]:
+            - img [ref=e442]
+            - text: CE / ISO
+          - generic [ref=e445]:
+            - img [ref=e446]
+            - text: Factory Direct
+      - generic [ref=e448]:
+        - heading "Products" [level=3] [ref=e449]
+        - link "Commercial Induction Cookers" [ref=e450] [cursor=pointer]:
+          - /url: /products#Commercial-Induction-Cookers
+        - link "Automatic Cooking Machines" [ref=e451] [cursor=pointer]:
+          - /url: /products#Automatic-Cooking-Machines
+        - link "Combi Ovens" [ref=e452] [cursor=pointer]:
+          - /url: /products#Combi-Ovens
+        - link "Commercial Dishwashers" [ref=e453] [cursor=pointer]:
+          - /url: /products#Commercial-Dishwashers
+        - link "Modular Cooking Systems" [ref=e454] [cursor=pointer]:
+          - /url: /products#Modular-Cooking-Systems
+        - link "Custom Kitchen Solutions" [ref=e455] [cursor=pointer]:
+          - /url: /products#Custom-Kitchen-Solutions
+      - generic [ref=e456]:
+        - heading "Company" [level=3] [ref=e457]
+        - link "Factory" [ref=e458] [cursor=pointer]:
+          - /url: /factory
+        - link "Applications" [ref=e459] [cursor=pointer]:
+          - /url: /applications
+        - link "Certificates" [ref=e460] [cursor=pointer]:
+          - /url: /certificates
+        - link "News" [ref=e461] [cursor=pointer]:
+          - /url: /news
+        - link "Contact" [ref=e462] [cursor=pointer]:
+          - /url: /contact
+      - generic [ref=e463]:
+        - heading "Contact" [level=3] [ref=e464]
+        - generic [ref=e465]:
+          - generic [ref=e466]:
+            - img [ref=e467]
+            - text: Email
+          - link "sales@example.com" [ref=e470] [cursor=pointer]:
+            - /url: mailto:sales@example.com
+          - generic [ref=e471]:
+            - img [ref=e472]
+            - text: WhatsApp
+          - link "+86 180 0000 0000" [ref=e476] [cursor=pointer]:
+            - /url: https://wa.me/8618000000000
+          - generic [ref=e477]:
+            - img [ref=e478]
+            - text: Address
+          - paragraph [ref=e481]: Dongguan, Guangdong, China
+    - generic [ref=e483]:
+      - generic [ref=e484]: © 2026 ProKitchenTech. All rights reserved.
+      - navigation "Footer legal links" [ref=e485]:
+        - link "Privacy Policy" [ref=e486] [cursor=pointer]:
+          - /url: /privacy
+        - generic [ref=e487]: /
+        - link "Terms of Service" [ref=e488] [cursor=pointer]:
+          - /url: /terms
+        - generic [ref=e489]: /
+        - link "Sitemap" [ref=e490] [cursor=pointer]:
+          - /url: /sitemap
+  - link "Chat on WhatsApp" [ref=e491] [cursor=pointer]:
+    - /url: https://wa.me/8618000000000?text=Hello%20ProKitchenTech%2C%20I%20would%20like%20to%20request%20a%20quote.
+    - img [ref=e492]
+    - text: WhatsApp
+  - button "Open Next.js Dev Tools" [ref=e499] [cursor=pointer]:
+    - img [ref=e500]
+  - alert [ref=e503]

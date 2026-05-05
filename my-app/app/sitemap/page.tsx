@@ -14,8 +14,8 @@ const groupTitles = {
   News: "News",
 };
 
-export default function SitemapPage() {
-  const groupedEntries = groupSitemapEntries();
+export default async function SitemapPage() {
+  const groupedEntries = await groupSitemapEntries();
 
   return (
     <section className="legal-page">

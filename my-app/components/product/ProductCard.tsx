@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { ArrowRight, PackageCheck, Send } from "lucide-react";
-import { Product } from "@/data/products";
+import type { Product } from "@/sanity/types";
 
 interface ProductCardProps {
   product: Product;

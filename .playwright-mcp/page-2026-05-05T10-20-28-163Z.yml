@@ -1,0 +1,157 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "ProKitchenTech home" [ref=e4] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e5]: PKT
+        - generic [ref=e6]: ProKitchenTech
+      - navigation "Main navigation" [ref=e7]:
+        - link "Home" [ref=e8] [cursor=pointer]:
+          - /url: /
+        - link "Products" [ref=e9] [cursor=pointer]:
+          - /url: /products
+        - link "Factory" [ref=e10] [cursor=pointer]:
+          - /url: /factory
+        - link "Applications" [ref=e11] [cursor=pointer]:
+          - /url: /applications
+        - link "Certificates" [ref=e12] [cursor=pointer]:
+          - /url: /certificates
+        - link "News" [ref=e13] [cursor=pointer]:
+          - /url: /news
+        - link "Contact" [ref=e14] [cursor=pointer]:
+          - /url: /contact
+      - link "Get Quote" [ref=e16] [cursor=pointer]:
+        - /url: /contact
+        - text: Get Quote
+        - img [ref=e17]
+  - main [ref=e20]:
+    - generic [ref=e23]:
+      - generic [ref=e24]: Products
+      - heading "Commercial Kitchen Equipment Products" [level=1] [ref=e25]
+      - paragraph [ref=e26]: Explore our complete product range for restaurants, hotels, canteens and central kitchens.
+      - generic "Product capabilities" [ref=e27]:
+        - generic [ref=e28]:
+          - img [ref=e29]
+          - text: Factory direct
+        - generic [ref=e31]:
+          - img [ref=e32]
+          - text: OEM / ODM
+        - generic [ref=e35]:
+          - img [ref=e36]
+          - text: Export-ready
+    - generic [ref=e42]:
+      - complementary "Product categories" [ref=e43]:
+        - heading "Categories" [level=2] [ref=e44]:
+          - img [ref=e45]
+          - text: Categories
+        - button "All Products" [ref=e55] [cursor=pointer]:
+          - img [ref=e56]
+          - text: All Products
+        - generic [ref=e58]:
+          - strong [ref=e59]: Need OEM Kitchen Equipment?
+          - paragraph [ref=e60]: Contact us for factory price and customization support.
+          - link "Contact Supplier" [ref=e61] [cursor=pointer]:
+            - /url: /contact
+            - text: Contact Supplier
+            - img [ref=e62]
+      - generic [ref=e65]:
+        - generic [ref=e66]:
+          - generic [ref=e67]:
+            - generic [ref=e68]: Catalog
+            - paragraph [ref=e69]:
+              - strong [ref=e70]: "0"
+              - text: product models for commercial foodservice equipment procurement.
+          - generic [ref=e71]: All Products
+        - paragraph [ref=e74]: No products found in this category.
+    - generic [ref=e76]:
+      - generic [ref=e77]:
+        - generic [ref=e78]: Project Inquiry
+        - heading "Get a Free Quote Today" [level=2] [ref=e79]
+        - paragraph [ref=e80]: Tell us your kitchen project requirements. Our team will recommend suitable equipment and provide a fast quotation.
+      - generic [ref=e81]:
+        - link "Send Inquiry" [ref=e82] [cursor=pointer]:
+          - /url: /contact
+          - text: Send Inquiry
+          - img [ref=e83]
+        - link "Chat on WhatsApp" [ref=e86] [cursor=pointer]:
+          - /url: https://wa.me/8618000000000?text=Hello%20ProKitchenTech%2C%20I%20would%20like%20to%20request%20a%20quote.
+          - img [ref=e87]
+          - text: Chat on WhatsApp
+  - contentinfo [ref=e89]:
+    - generic [ref=e90]:
+      - generic [ref=e91]:
+        - link "PKT ProKitchenTech" [ref=e92] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e93]: PKT
+          - text: ProKitchenTech
+        - paragraph [ref=e94]: ProKitchenTech is a commercial kitchen equipment manufacturer offering induction cookers, automatic cooking machines, combi ovens, dishwashers and complete kitchen solutions.
+        - generic "Company capabilities" [ref=e95]:
+          - generic [ref=e96]:
+            - img [ref=e97]
+            - text: OEM / ODM
+          - generic [ref=e100]:
+            - img [ref=e101]
+            - text: CE / ISO
+          - generic [ref=e104]:
+            - img [ref=e105]
+            - text: Factory Direct
+      - generic [ref=e107]:
+        - heading "Products" [level=3] [ref=e108]
+        - link "Commercial Induction Cookers" [ref=e109] [cursor=pointer]:
+          - /url: /products#Commercial-Induction-Cookers
+        - link "Automatic Cooking Machines" [ref=e110] [cursor=pointer]:
+          - /url: /products#Automatic-Cooking-Machines
+        - link "Combi Ovens" [ref=e111] [cursor=pointer]:
+          - /url: /products#Combi-Ovens
+        - link "Commercial Dishwashers" [ref=e112] [cursor=pointer]:
+          - /url: /products#Commercial-Dishwashers
+        - link "Modular Cooking Systems" [ref=e113] [cursor=pointer]:
+          - /url: /products#Modular-Cooking-Systems
+        - link "Custom Kitchen Solutions" [ref=e114] [cursor=pointer]:
+          - /url: /products#Custom-Kitchen-Solutions
+      - generic [ref=e115]:
+        - heading "Company" [level=3] [ref=e116]
+        - link "Factory" [ref=e117] [cursor=pointer]:
+          - /url: /factory
+        - link "Applications" [ref=e118] [cursor=pointer]:
+          - /url: /applications
+        - link "Certificates" [ref=e119] [cursor=pointer]:
+          - /url: /certificates
+        - link "News" [ref=e120] [cursor=pointer]:
+          - /url: /news
+        - link "Contact" [ref=e121] [cursor=pointer]:
+          - /url: /contact
+      - generic [ref=e122]:
+        - heading "Contact" [level=3] [ref=e123]
+        - generic [ref=e124]:
+          - generic [ref=e125]:
+            - img [ref=e126]
+            - text: Email
+          - link "sales@example.com" [ref=e129] [cursor=pointer]:
+            - /url: mailto:sales@example.com
+          - generic [ref=e130]:
+            - img [ref=e131]
+            - text: WhatsApp
+          - link "+86 180 0000 0000" [ref=e135] [cursor=pointer]:
+            - /url: https://wa.me/8618000000000
+          - generic [ref=e136]:
+            - img [ref=e137]
+            - text: Address
+          - paragraph [ref=e140]: Dongguan, Guangdong, China
+    - generic [ref=e142]:
+      - generic [ref=e143]: © 2026 ProKitchenTech. All rights reserved.
+      - navigation "Footer legal links" [ref=e144]:
+        - link "Privacy Policy" [ref=e145] [cursor=pointer]:
+          - /url: /privacy
+        - generic [ref=e146]: /
+        - link "Terms of Service" [ref=e147] [cursor=pointer]:
+          - /url: /terms
+        - generic [ref=e148]: /
+        - link "Sitemap" [ref=e149] [cursor=pointer]:
+          - /url: /sitemap
+  - link "Chat on WhatsApp" [ref=e150] [cursor=pointer]:
+    - /url: https://wa.me/8618000000000?text=Hello%20ProKitchenTech%2C%20I%20would%20like%20to%20request%20a%20quote.
+    - img [ref=e151]
+    - text: WhatsApp
+  - button "Open Next.js Dev Tools" [ref=e158] [cursor=pointer]:
+    - img [ref=e159]
