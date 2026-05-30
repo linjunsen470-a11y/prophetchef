@@ -23,11 +23,11 @@ export function NewsListClient({ newsItems }: NewsListClientProps) {
 
   return (
     <>
-      <Container className="news-tabs">
+      <Container className="flex flex-wrap gap-2.5 mb-7">
         {categories.map((category) => (
           <button
             key={category}
-            className={`news-tab ${activeCategory === category ? "active" : ""}`}
+            className={`px-[18px] py-[11px] border rounded-full text-[color:var(--text)] font-extrabold cursor-pointer transition-colors ${activeCategory === category ? "border-[color:var(--blue)] bg-[color:var(--blue)] text-white" : "border-[color:var(--border)] bg-white hover:border-[color:var(--blue)] hover:bg-[color:var(--blue)] hover:text-white"}`}
             onClick={() => setActiveCategory(category)}
           >
             {category}
@@ -35,7 +35,7 @@ export function NewsListClient({ newsItems }: NewsListClientProps) {
         ))}
       </Container>
 
-      <Container className="news-grid">
+      <Container className="grid grid-cols-3 max-[1080px]:grid-cols-2 max-[760px]:grid-cols-1 gap-6">
         {filteredNews.map((item) => (
           <BlogCard key={item.id} {...item} />
         ))}

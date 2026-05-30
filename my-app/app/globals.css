@@ -132,68 +132,7 @@ svg {
 /* Trust Bar styles moved to components/home/TrustBar.module.css */
 
 /* Grids & Cards */
-.category-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 22px;
-}
 
-.category-card,
-.news-card,
-.application-card,
-.solution-card,
-.cert-card,
-.contact-info-card,
-.application-preview-grid article {
-  background: #fff;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
-  overflow: hidden;
-  transition: 0.3s ease;
-}
-
-.category-image img {
-  height: 190px;
-  width: 100%;
-}
-
-.category-content,
-.news-body {
-  padding: 22px;
-}
-
-.category-content h3,
-.news-body h3 {
-  margin: 0 0 10px;
-  font-size: 20px;
-  line-height: 1.25;
-  font-weight: 850;
-}
-
-.category-content p,
-.news-body p {
-  color: var(--muted);
-  margin: 0 0 16px;
-}
-
-.text-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-weight: 850;
-  color: var(--orange);
-  transition: 0.2s;
-}
-
-.text-link svg {
-  width: 16px;
-  height: 16px;
-}
-
-.text-link:hover {
-  color: var(--orange-dark);
-}
 
 /* Product Cards */
 .product-grid {
@@ -255,40 +194,7 @@ svg {
   color: var(--orange);
 }
 
-/* Application Preview */
-.application-preview-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-}
 
-.application-preview-grid article {
-  padding: 24px;
-}
-
-.application-preview-grid span {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  color: var(--orange);
-  font-weight: 900;
-  margin-bottom: 12px;
-}
-
-.application-preview-grid span svg {
-  width: 17px;
-  height: 17px;
-}
-
-.application-preview-grid h3 {
-  margin: 0 0 8px;
-  font-weight: 850;
-}
-
-.application-preview-grid p {
-  color: var(--muted);
-  margin: 0;
-}
 
 /* Grids & Cards styles moved to respective modules */
 
@@ -334,130 +240,7 @@ svg {
   stroke-width: 2;
 }
 
-/* Certificates */
-.cert-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-}
 
-.cert-card {
-  padding: 28px;
-  text-align: center;
-}
-
-.cert-icon {
-  width: 76px;
-  height: 76px;
-  display: grid;
-  place-items: center;
-  margin: 0 auto 18px;
-  border-radius: 18px;
-  background: #eff6ff;
-  color: var(--blue);
-  font-weight: 950;
-}
-
-.cert-card h3 {
-  margin: 0 0 8px;
-  font-weight: 850;
-}
-
-.cert-card p {
-  margin: 0;
-  color: var(--muted);
-}
-
-.process-timeline {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 12px;
-}
-
-.process-timeline div {
-  min-height: 92px;
-  display: grid;
-  place-items: center;
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  background: #fff;
-  padding: 18px;
-  color: var(--blue);
-  text-align: center;
-  font-weight: 800;
-}
-
-.compact-cta {
-  padding: 64px 0;
-}
-
-.compact-cta .split-heading {
-  align-items: center;
-}
-
-/* News Grid */
-.news-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-}
-
-.news-image {
-  position: relative;
-  height: 210px;
-  width: 100%;
-  overflow: hidden;
-  background:
-    linear-gradient(135deg, rgba(30, 58, 95, 0.2), rgba(249, 115, 22, 0.1)),
-    var(--card-image) center / cover,
-    #e2e8f0;
-}
-
-.news-image img {
-  height: 210px;
-  width: 100%;
-  object-fit: cover;
-}
-
-.news-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  color: var(--muted);
-  font-size: 13px;
-  margin-bottom: 10px;
-}
-
-.news-meta span + span {
-  color: var(--orange);
-  font-weight: 800;
-}
-
-.news-tabs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 28px;
-}
-
-.news-tab {
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  background: #fff;
-  padding: 11px 18px;
-  color: var(--text);
-  cursor: pointer;
-  font: inherit;
-  font-weight: 850;
-  transition: 0.2s ease;
-}
-
-.news-tab.active,
-.news-tab:hover {
-  border-color: var(--blue);
-  background: var(--blue);
-  color: #fff;
-}
 
 /* CTA Section styles moved to components/common/CTASection.module.css */
 
@@ -484,14 +267,8 @@ svg {
     width: min(760px, 100%);
   }
   .product-grid,
-  .news-grid,
-  .category-grid,
-  .cert-grid,
-  .application-preview-grid {
+  .category-grid {
     grid-template-columns: repeat(2, 1fr);
-  }
-  .process-timeline {
-    grid-template-columns: repeat(3, 1fr);
   }
 
 
@@ -550,11 +327,7 @@ svg {
     row-gap: 12px;
   }
   .category-grid,
-  .product-grid,
-  .news-grid,
-  .cert-grid,
-  .process-timeline,
-  .application-preview-grid {
+  .product-grid {
     grid-template-columns: 1fr;
   }
 

@@ -29,7 +29,7 @@ export const NewsPreview = async ({ data }: NewsPreviewProps) => {
         </div>
         <Button variant="secondary" href="/news">View All News</Button>
       </div>
-      <div className="container news-grid">
+      <div className="container grid grid-cols-3 max-[1080px]:grid-cols-2 max-[760px]:grid-cols-1 gap-6">
         {displayNews.map((item) => (
           <BlogCard key={item.id} {...item} />
         ))}

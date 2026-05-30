@@ -42,15 +42,15 @@ export const ApplicationsPreview = async ({ applications, header }: Applications
           {header?.cta?.text || "View Applications"}
         </Button>
       </Container>
-      <Container className="application-preview-grid">
+      <Container className="grid grid-cols-4 max-[1080px]:grid-cols-2 max-[760px]:grid-cols-1 gap-5">
         {displayApplications.map((app) => (
-          <article key={app.id}>
-            <span>
-              <BadgeCheck aria-hidden="true" />
+          <article key={app.id} className="p-6 bg-white border border-[color:var(--border)] rounded-[var(--radius)] shadow-[0_10px_30px_rgba(15,23,42,0.04)] overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_36px_rgba(15,23,42,0.08)]">
+            <span className="inline-flex items-center gap-1.5 text-[color:var(--orange)] font-black mb-3">
+              <BadgeCheck aria-hidden="true" className="w-[17px] h-[17px]" />
               {app.id}
             </span>
-            <h3>{app.name}</h3>
-            <p>{app.description}</p>
+            <h3 className="m-0 mb-2 text-[20px] leading-[1.25] font-extrabold text-[color:var(--text)]">{app.name}</h3>
+            <p className="text-[color:var(--muted)] m-0">{app.description}</p>
           </article>
         ))}
       </Container>

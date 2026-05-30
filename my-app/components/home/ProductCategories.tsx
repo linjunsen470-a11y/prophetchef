@@ -28,7 +28,7 @@ export const ProductCategories = ({ categories, header }: ProductCategoriesProps
             "Find core equipment categories for restaurants, hotels, school canteens and central kitchen projects."}
         </p>
       </Container>
-      <Container className="category-grid">
+      <Container className="grid grid-cols-3 max-[1080px]:grid-cols-2 max-[760px]:grid-cols-1 gap-[22px]">
         {displayCategories.map((cat) => {
           const name = cat.name;
           const description = cat.description;
@@ -36,8 +36,8 @@ export const ProductCategories = ({ categories, header }: ProductCategoriesProps
           const href = "slug" in cat ? `/products?category=${cat.slug}` : cat.href;
 
           return (
-            <article key={name} className="category-card">
-              <div className="category-image relative h-[190px] w-full">
+            <article key={name} className="bg-white border border-[color:var(--border)] rounded-[var(--radius)] shadow-[0_10px_30px_rgba(15,23,42,0.04)] overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_36px_rgba(15,23,42,0.08)]">
+              <div className="relative h-[190px] w-full">
                 {image ? (
                   <Image 
                     src={image} 
@@ -52,11 +52,11 @@ export const ProductCategories = ({ categories, header }: ProductCategoriesProps
                   </div>
                 )}
               </div>
-              <div className="category-content">
-                <h3>{name}</h3>
-                <p>{description}</p>
-                <Link href={href} className="text-link">
-                  View Category <ArrowRight aria-hidden="true" />
+              <div className="p-[22px]">
+                <h3 className="m-0 mb-2.5 text-[20px] leading-[1.25] font-extrabold text-[color:var(--text)]">{name}</h3>
+                <p className="text-[color:var(--muted)] m-0 mb-4">{description}</p>
+                <Link href={href} className="inline-flex items-center gap-1.5 font-extrabold text-[color:var(--orange)] hover:text-[color:var(--orange-dark)] transition-colors">
+                  View Category <ArrowRight aria-hidden="true" className="w-4 h-4" />
                 </Link>
               </div>
             </article>
