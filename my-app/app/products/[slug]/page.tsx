@@ -117,14 +117,14 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
             <h1>{product.name}</h1>
             <p>{product.description}</p>
             
-            <div className="tag-row large">
+            <div className="flex flex-wrap gap-[7px] my-3.5">
               {product.tags.map(tag => (
-                <span key={tag}>{tag}</span>
+                <span key={tag} className="bg-[#eff6ff] text-[color:var(--blue)] border border-[#dbeafe] px-[11px] py-2 rounded-full text-[13px] font-bold">{tag}</span>
               ))}
-              {product.modelCode && <span>Model: {product.modelCode}</span>}
+              {product.modelCode && <span className="bg-[#eff6ff] text-[color:var(--blue)] border border-[#dbeafe] px-[11px] py-2 rounded-full text-[13px] font-bold">Model: {product.modelCode}</span>}
             </div>
 
-            <div className="hero-actions">
+            <div className="flex flex-wrap gap-3 mt-6 max-[560px]:flex-col max-[560px]:items-stretch">
               <Button href="#product-inquiry" iconEnd={<Send aria-hidden="true" />}>Send Inquiry</Button>
               <Button 
                 href={whatsappUrl(
@@ -161,12 +161,12 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
             <span className="eyebrow">Key Features</span>
             <h2>Engineered for High-Performance Environments</h2>
           </Container>
-          <Container className="feature-grid">
+          <Container className="grid grid-cols-3 max-[760px]:grid-cols-1 gap-5">
             {product.features.map((feature, idx) => (
-              <article key={idx}>
-                <span>{(idx + 1).toString().padStart(2, '0')}</span>
-                <h3>{feature.title}</h3>
-                {feature.description && <p>{feature.description}</p>}
+              <article key={idx} className="p-6 bg-white border border-[color:var(--border)] rounded-[var(--radius)] shadow-[0_10px_30px_rgba(15,23,42,0.04)]">
+                <span className="inline-flex mb-3.5 text-[color:var(--orange)] font-black">{(idx + 1).toString().padStart(2, '0')}</span>
+                <h3 className="m-0 mb-2.5 text-[20px] leading-[1.25] font-extrabold">{feature.title}</h3>
+                {feature.description && <p className="m-0 text-[color:var(--muted)]">{feature.description}</p>}
               </article>
             ))}
           </Container>
@@ -224,7 +224,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
             </div>
             <Button href="/products" variant="secondary">All Products</Button>
           </Container>
-          <Container className="product-grid related-product-grid">
+          <Container className="grid grid-cols-4 max-[1080px]:grid-cols-2 max-[760px]:grid-cols-1 gap-6">
             {relatedProducts.map((p, idx) => (
               <ProductCard key={p.id} product={p} index={idx} />
             ))}

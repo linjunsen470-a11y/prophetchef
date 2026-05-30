@@ -36,24 +36,24 @@ export const ProductInquiryForm: React.FC<ProductInquiryFormProps> = ({ productN
   };
 
   return (
-    <form className="inquiry-form" onSubmit={handleSubmit}>
+    <form className="p-7 bg-white border border-[color:var(--border)] rounded-[var(--radius)] shadow-[0_10px_30px_rgba(15,23,42,0.04)]" onSubmit={handleSubmit}>
       <input type="hidden" name="product" value={productName} />
-      <div className="form-grid">
+      <div className="grid grid-cols-2 max-[760px]:grid-cols-1 gap-3.5">
         <div>
-          <label>Name</label>
-          <input name="name" placeholder="Your Name" required />
+          <label className="block mb-2 text-[14px] font-extrabold text-[color:var(--text)]">Name</label>
+          <input name="name" placeholder="Your Name" required className="w-full mb-3.5 border border-[color:var(--border)] rounded-[12px] px-[15px] py-3.5 bg-[#f8fafc] text-[color:var(--text)] font-inherit focus:outline focus:outline-2 focus:outline-[rgba(249,115,22,0.25)] focus:border-[color:var(--orange)] focus:bg-white transition-colors" />
         </div>
         <div>
-          <label>Email</label>
-          <input type="email" name="email" placeholder="Your Email" required />
+          <label className="block mb-2 text-[14px] font-extrabold text-[color:var(--text)]">Email</label>
+          <input type="email" name="email" placeholder="Your Email" required className="w-full mb-3.5 border border-[color:var(--border)] rounded-[12px] px-[15px] py-3.5 bg-[#f8fafc] text-[color:var(--text)] font-inherit focus:outline focus:outline-2 focus:outline-[rgba(249,115,22,0.25)] focus:border-[color:var(--orange)] focus:bg-white transition-colors" />
         </div>
       </div>
       <div>
-        <label>Message</label>
-        <textarea name="message" rows={5} placeholder={`I am interested in ${productName}. Please send details and price.`}></textarea>
+        <label className="block mb-2 text-[14px] font-extrabold text-[color:var(--text)]">Message</label>
+        <textarea name="message" rows={5} placeholder={`I am interested in ${productName}. Please send details and price.`} className="w-full mb-3.5 border border-[color:var(--border)] rounded-[12px] px-[15px] py-3.5 bg-[#f8fafc] text-[color:var(--text)] font-inherit focus:outline focus:outline-2 focus:outline-[rgba(249,115,22,0.25)] focus:border-[color:var(--orange)] focus:bg-white transition-colors"></textarea>
       </div>
       <Button type="submit" iconEnd={<Send aria-hidden="true" />}>Send Inquiry</Button>
-      {status && <p className="form-message">{status}</p>}
+      {status && <p className="mt-3.5 text-[#15803d] font-extrabold">{status}</p>}
     </form>
   );
 };
