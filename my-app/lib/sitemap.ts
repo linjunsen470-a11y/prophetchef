@@ -1,4 +1,16 @@
-import { getNewsItems, getProducts, getSiteSettings } from "@/sanity/queries";
+import {
+  getApplicationsPageSettings,
+  getCertificatesPageSettings,
+  getContactPageSettings,
+  getFactoryPageSettings,
+  getHomePageSettings,
+  getNewsItems,
+  getNewsPageSettings,
+  getProducts,
+  getProductsPageSettings,
+  getSiteSettings,
+} from "@/sanity/queries";
+import { siteConfig } from "@/data/site";
 
 export type SitemapGroup = "Core" | "Products" | "News";
 
@@ -24,7 +36,7 @@ const staticEntries: SitemapEntry[] = [
 ];
 
 export function getSiteUrl() {
-  return (process.env.NEXT_PUBLIC_SITE_URL || "https://prokitchentech.com").replace(/\/$/, "");
+  return (process.env.NEXT_PUBLIC_SITE_URL || siteConfig.url).replace(/\/$/, "");
 }
 
 export function absoluteUrl(path: string) {
@@ -32,36 +44,71 @@ export function absoluteUrl(path: string) {
 }
 
 export async function getSitemapEntries(): Promise<SitemapEntry[]> {
-  const [products, newsItems, settings] = await Promise.all([
+  const [
+    products,
+    newsItems,
+    settings,
+    homePage,
+    productsPage,
+    factoryPage,
+    applicationsPage,
+    certificatesPage,
+    newsPage,
+    contactPage,
+  ] = await Promise.all([
     getProducts(),
     getNewsItems(),
-    getSiteSettings({ stega: false })
+    getSiteSettings({ stega: false }),
+    getHomePageSettings({ stega: false }),
+    getProductsPageSettings({ stega: false }),
+    getFactoryPageSettings({ stega: false }),
+    getApplicationsPageSettings({ stega: false }),
+    getCertificatesPageSettings({ stega: false }),
+    getNewsPageSettings({ stega: false }),
+    getContactPageSettings({ stega: false }),
   ]);
 
   const fallbackDate = settings?._updatedAt ? new Date(settings._updatedAt) : new Date("2026-05-30");
+  const noIndexPaths = new Set(
+    [
+      homePage?.seo?.noIndex ? "/" : null,
+      productsPage?.seo?.noIndex ? "/products" : null,
+      factoryPage?.seo?.noIndex ? "/factory" : null,
+      applicationsPage?.seo?.noIndex ? "/applications" : null,
+      certificatesPage?.seo?.noIndex ? "/certificates" : null,
+      newsPage?.seo?.noIndex ? "/news" : null,
+      contactPage?.seo?.noIndex ? "/contact" : null,
+    ].filter(Boolean) as string[],
+  );
 
-  const mappedStaticEntries = staticEntries.map(entry => ({
-    ...entry,
-    lastModified: fallbackDate
-  }));
+  const mappedStaticEntries = staticEntries
+    .filter((entry) => !noIndexPaths.has(entry.path))
+    .map(entry => ({
+      ...entry,
+      lastModified: fallbackDate
+    }));
 
-  const productEntries = products.map<SitemapEntry>((product) => ({
-    path: `/products/${product.slug}`,
-    title: product.name,
-    group: "Products",
-    lastModified: product.updatedAt ? new Date(product.updatedAt) : fallbackDate,
-    changeFrequency: "monthly",
-    priority: 0.85,
-  }));
+  const productEntries = products
+    .filter((product) => !product.seo?.noIndex)
+    .map<SitemapEntry>((product) => ({
+      path: `/products/${product.slug}`,
+      title: product.name,
+      group: "Products",
+      lastModified: product.updatedAt ? new Date(product.updatedAt) : fallbackDate,
+      changeFrequency: "monthly",
+      priority: 0.85,
+    }));
 
-  const newsEntries = newsItems.map<SitemapEntry>((item) => ({
-    path: `/news/${item.slug}`,
-    title: item.title,
-    group: "News",
-    lastModified: item.updatedAt ? new Date(item.updatedAt) : new Date(item.date),
-    changeFrequency: "monthly",
-    priority: 0.65,
-  }));
+  const newsEntries = newsItems
+    .filter((item) => !item.seo?.noIndex)
+    .map<SitemapEntry>((item) => ({
+      path: `/news/${item.slug}`,
+      title: item.title,
+      group: "News",
+      lastModified: item.updatedAt ? new Date(item.updatedAt) : new Date(item.date),
+      changeFrequency: "monthly",
+      priority: 0.65,
+    }));
 
   return [...mappedStaticEntries, ...productEntries, ...newsEntries];
 }

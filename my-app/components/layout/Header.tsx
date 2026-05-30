@@ -5,9 +5,9 @@ import Link from "next/link";
 import Image from "next/image";
 import { Send } from "lucide-react";
 import { usePathname } from "next/navigation";
-import { siteConfig } from "@/data/site";
 import { navigation } from "@/data/navigation";
 import { Button } from "@/components/common/Button";
+import { getSiteName } from "@/lib/site-settings";
 import styles from "./Header.module.css";
 
 import { SiteSettings } from "@/sanity/types";
@@ -17,7 +17,10 @@ interface HeaderProps {
 }
 
 export const Header = ({ settings }: HeaderProps) => {
-  const siteName = settings?.title || siteConfig.name;
+  const siteName = getSiteName(settings);
+  const mainNavigation = settings?.mainNavigation?.length
+    ? settings.mainNavigation.map((item) => ({ name: item.label, href: item.href }))
+    : navigation;
   const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -57,7 +60,7 @@ export const Header = ({ settings }: HeaderProps) => {
         </Link>
         
         <nav className={`${styles.mainNav} ${isMobileMenuOpen ? styles.open : ""}`} id="mainNav" aria-label="Main navigation">
-          {navigation.map((item) => (
+          {mainNavigation.map((item) => (
             <Link 
               key={item.name} 
               href={item.href} 

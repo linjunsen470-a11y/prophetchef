@@ -3,15 +3,18 @@ import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import { stegaClean } from "next-sanity";
 import { MessageCircle, Send, CheckCircle2 } from "lucide-react";
-import { siteConfig } from "@/data/site";
+import { getContactInfo, getSiteName, getSiteUrl, whatsappUrl } from "@/lib/site-settings";
+import { buildSeoMetadata } from "@/lib/seo";
+import { breadcrumbJsonLd, faqJsonLd } from "@/lib/structured-data";
 import { Breadcrumb } from "@/components/common/Breadcrumb";
 import { Container } from "@/components/common/Container";
 import { Button } from "@/components/common/Button";
+import { JsonLd } from "@/components/common/JsonLd";
 import { ProductGallery } from "@/components/product/ProductGallery";
 import { ProductInquiryForm } from "@/components/product/ProductInquiryForm";
 import { ProductCard } from "@/components/product/ProductCard";
 import { CTASection } from "@/components/common/CTASection";
-import { getProduct, getProductSlugs, getRelatedProducts } from "@/sanity/queries";
+import { getProduct, getProductSlugs, getRelatedProducts, getSiteSettings } from "@/sanity/queries";
 import styles from "@/components/product/ProductDetail.module.css";
 
 interface ProductPageProps {
@@ -24,36 +27,33 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: ProductPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const product = await getProduct(slug, { stega: false });
+  const [product, settings] = await Promise.all([
+    getProduct(slug, { stega: false }),
+    getSiteSettings({ stega: false }),
+  ]);
   if (!product) return {};
 
   const seo = product.seo;
-  const title = seo?.metaTitle || `${product.name} | ${siteConfig.name}`;
-  const description = seo?.metaDescription || product.description;
-  const ogImage = seo?.openGraphImage?.url || product.coverImage?.url;
-
-  return {
-    title,
-    description,
-    alternates: {
-      canonical: seo?.canonicalUrl || `${siteConfig.url}/products/${slug}`,
-    },
-    openGraph: {
-      title,
-      description,
-      images: ogImage ? [{ url: ogImage, alt: seo?.openGraphImage?.alt || product.coverImage?.alt || product.name }] : [],
-    },
-  };
+  return buildSeoMetadata({
+    seo,
+    title: product.name,
+    description: product.description,
+    canonical: `${getSiteUrl(settings)}/products/${slug}`,
+    image: seo?.openGraphImage || product.coverImage,
+    siteName: getSiteName(settings),
+  });
 }
 
 export default async function ProductDetailPage({ params }: ProductPageProps) {
   const { slug } = await params;
-  const product = await getProduct(slug);
+  const [product, settings] = await Promise.all([getProduct(slug), getSiteSettings()]);
 
   if (!product) {
     notFound();
   }
 
+  const contact = getContactInfo(settings);
+  const siteName = getSiteName(settings);
   const categoryId = product.category?._id;
   const categoryName = product.category?.name || "Uncategorized";
   const relatedProducts = await getRelatedProducts(categoryId, slug);
@@ -64,8 +64,9 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
     ...(product.gallery || [])
   ].filter(Boolean);
 
-  const siteUrl = siteConfig.url || "https://prokitchentech.com";
+  const siteUrl = getSiteUrl(settings);
   const productImageUrl = product.coverImage?.url ? stegaClean(product.coverImage.url) : "";
+  const productUrl = `${siteUrl}/products/${stegaClean(product.slug)}`;
   
   const jsonLd = {
     "@context": "https://schema.org/",
@@ -79,29 +80,26 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
     "keywords": product.tags?.join(", "),
     "brand": {
       "@type": "Brand",
-      "name": siteConfig.name
+      "name": siteName
     },
-    "offers": {
-      "@type": "Offer",
-      "url": `${siteUrl}/products/${stegaClean(product.slug)}`,
-      "priceCurrency": "USD",
-      "price": "0",
-      "priceValidUntil": "2027-12-31",
-      "itemCondition": "https://schema.org/NewCondition",
-      "availability": "https://schema.org/InStock",
-      "seller": {
-        "@type": "Organization",
-        "name": siteConfig.name
-      }
-    }
+    "url": productUrl,
+    "additionalProperty": product.specifications?.map((spec) => ({
+      "@type": "PropertyValue",
+      "name": spec.label,
+      "value": spec.value
+    })),
   };
+  const breadcrumbSchema = breadcrumbJsonLd([
+    { name: "Home", url: siteUrl },
+    { name: "Products", url: `${siteUrl}/products` },
+    { name: product.name, url: productUrl },
+  ]);
+  const faqSchema = faqJsonLd(product.faqs);
+  const schemas = faqSchema ? [jsonLd, breadcrumbSchema, faqSchema] : [jsonLd, breadcrumbSchema];
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <JsonLd data={schemas} />
       <Breadcrumb 
         items={[
           { name: "Products", href: "/products" },
@@ -129,7 +127,10 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
             <div className="hero-actions">
               <Button href="#product-inquiry" iconEnd={<Send aria-hidden="true" />}>Send Inquiry</Button>
               <Button 
-                href={`https://wa.me/${siteConfig.whatsapp}?text=Hello%20ProKitchenTech%2C%20I%20would%20like%20to%20request%20a%20quote%20for%20${encodeURIComponent(product.name)}.`}
+                href={whatsappUrl(
+                  contact.whatsapp,
+                  `Hello ${siteName}, I would like to request a quote for ${product.name}.`,
+                )}
                 variant="secondary"
                 target="_blank"
                 rel="noopener"
@@ -193,6 +194,23 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
                 </tr>
               </tbody>
             </table>
+          </Container>
+        </section>
+      )}
+
+      {product.faqs && product.faqs.length > 0 && (
+        <section className="section bg-light">
+          <Container className="section-heading">
+            <span className="eyebrow">FAQ</span>
+            <h2>Common Questions</h2>
+          </Container>
+          <Container className="factory-team-grid">
+            {product.faqs.map((faq) => (
+              <article key={faq._key || faq.question}>
+                <h3>{faq.question}</h3>
+                <p>{faq.answer}</p>
+              </article>
+            ))}
           </Container>
         </section>
       )}

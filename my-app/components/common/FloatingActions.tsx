@@ -2,12 +2,20 @@
 
 import { useEffect, useState } from "react";
 import { ArrowUp, MessageCircle } from "lucide-react";
-import { siteConfig } from "@/data/site";
+import { getContactInfo, whatsappUrl } from "@/lib/site-settings";
+import type { SiteSettings } from "@/sanity/types";
 
 import styles from "./FloatingActions.module.css";
 
-export const FloatingActions = () => {
+interface FloatingActionsProps {
+  settings?: SiteSettings | null;
+}
+
+export const FloatingActions = ({ settings }: FloatingActionsProps) => {
   const [showBackToTop, setShowBackToTop] = useState(false);
+  const contact = getContactInfo(settings);
+  const message =
+    settings?.globalCta?.whatsappMessage || "Hello ProKitchenTech, I would like to request a quote.";
 
   useEffect(() => {
     const handleScroll = () => setShowBackToTop(window.scrollY > 400);
@@ -21,7 +29,7 @@ export const FloatingActions = () => {
     <>
       <a
         className={styles.whatsappFloat}
-        href={`https://wa.me/${siteConfig.whatsapp}?text=Hello%20ProKitchenTech%2C%20I%20would%20like%20to%20request%20a%20quote.`}
+        href={whatsappUrl(contact.whatsapp, message)}
         target="_blank"
         rel="noopener"
         aria-label="Chat on WhatsApp"

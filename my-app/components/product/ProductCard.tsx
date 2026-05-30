@@ -12,8 +12,7 @@ interface ProductCardProps {
 }
 
 export const ProductCard: React.FC<ProductCardProps> = ({ product, index }) => {
-  // Support both Sanity data structure and legacy static data
-  const imageUrl = product.coverImage?.url || (product as unknown as { image?: string }).image;
+  const imageUrl = product.coverImage?.url;
   const cleanImage = stegaClean(imageUrl || null);
   const cleanName = stegaClean(product.name);
   const cleanSlug = stegaClean(product.slug);

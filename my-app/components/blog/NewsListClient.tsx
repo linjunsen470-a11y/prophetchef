@@ -13,13 +13,13 @@ export function NewsListClient({ newsItems }: NewsListClientProps) {
   const [activeCategory, setActiveCategory] = useState("All");
 
   const categories = useMemo(
-    () => ["All", ...Array.from(new Set(newsItems.map((item) => item.category))).sort()],
+    () => ["All", ...Array.from(new Set(newsItems.flatMap((item) => (item.category?.title ? [item.category.title] : [])))).sort()],
     [newsItems],
   );
 
   const filteredNews = activeCategory === "All"
     ? newsItems
-    : newsItems.filter((item) => item.category === activeCategory);
+    : newsItems.filter((item) => item.category?.title === activeCategory);
 
   return (
     <>

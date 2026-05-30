@@ -22,7 +22,7 @@ export const PageHero: React.FC<PageHeroProps> = ({
   return (
     <section
       className={`${styles.pageHero} ${compact ? styles.pageHeroCompact : ""}`}
-      style={compact ? undefined : ({ "--hero-image": `url('${backgroundImage}')` } as React.CSSProperties)}
+      style={{ "--hero-image": `url('${backgroundImage}')` } as React.CSSProperties}
     >
       <div className={styles.heroOverlay}></div>
       <Container className={styles.pageHeroContent}>

@@ -3,12 +3,15 @@ import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import Image from "next/image";
 import { stegaClean } from "next-sanity";
-import { siteConfig } from "@/data/site";
+import { getSiteName, getSiteUrl } from "@/lib/site-settings";
+import { buildSeoMetadata } from "@/lib/seo";
+import { breadcrumbJsonLd, faqJsonLd } from "@/lib/structured-data";
 import { Container } from "@/components/common/Container";
 import { Breadcrumb } from "@/components/common/Breadcrumb";
+import { JsonLd } from "@/components/common/JsonLd";
 import { CTASection } from "@/components/common/CTASection";
 import { NewsBody } from "@/components/blog/NewsBody";
-import { getNewsItem, getNewsSlugs } from "@/sanity/queries";
+import { getNewsItem, getNewsSlugs, getSiteSettings } from "@/sanity/queries";
 import { Calendar, Tag, ChevronLeft } from "lucide-react";
 import Link from "next/link";
 
@@ -22,32 +25,27 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: NewsPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const item = await getNewsItem(slug, { stega: false });
+  const [item, settings] = await Promise.all([
+    getNewsItem(slug, { stega: false }),
+    getSiteSettings({ stega: false }),
+  ]);
   if (!item) return {};
 
   const seo = item.seo;
-  const title = seo?.metaTitle || `${item.title} | ${siteConfig.name}`;
-  const description = seo?.metaDescription || item.excerpt;
-  const ogImage = seo?.openGraphImage?.url || item.coverImage?.url;
-
-  return {
-    title,
-    description,
-    alternates: {
-      canonical: seo?.canonicalUrl || `${siteConfig.url}/news/${slug}`,
-    },
-    openGraph: {
-      title,
-      description,
-      type: "article",
-      images: ogImage ? [{ url: ogImage, alt: seo?.openGraphImage?.alt || item.coverImage?.alt || item.title }] : [],
-    },
-  };
+  return buildSeoMetadata({
+    seo,
+    title: item.title,
+    description: item.excerpt,
+    canonical: `${getSiteUrl(settings)}/news/${slug}`,
+    image: seo?.openGraphImage || item.coverImage,
+    siteName: getSiteName(settings),
+    type: "article",
+  });
 }
 
 export default async function NewsDetailPage({ params }: NewsPageProps) {
   const { slug } = await params;
-  const item = await getNewsItem(slug);
+  const [item, settings] = await Promise.all([getNewsItem(slug), getSiteSettings()]);
 
   if (!item) {
     notFound();
@@ -59,7 +57,9 @@ export default async function NewsDetailPage({ params }: NewsPageProps) {
     day: "numeric",
   });
 
-  const siteUrl = siteConfig.url || "https://prokitchentech.com";
+  const siteUrl = getSiteUrl(settings);
+  const siteName = getSiteName(settings);
+  const newsUrl = `${siteUrl}/news/${stegaClean(item.slug)}`;
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "NewsArticle",
@@ -68,27 +68,32 @@ export default async function NewsDetailPage({ params }: NewsPageProps) {
     "image": item.coverImage?.url ? [stegaClean(item.coverImage.url)] : [],
     "datePublished": item.date,
     "dateModified": item.updatedAt || item.date,
+    "articleSection": item.category?.title,
     "author": {
       "@type": "Organization",
-      "name": siteConfig.name,
+      "name": siteName,
       "url": siteUrl
     },
     "publisher": {
       "@type": "Organization",
-      "name": siteConfig.name,
+      "name": siteName,
       "logo": {
         "@type": "ImageObject",
         "url": `${siteUrl}/favicon.ico`
       }
     }
   };
+  const breadcrumbSchema = breadcrumbJsonLd([
+    { name: "Home", url: siteUrl },
+    { name: "News", url: `${siteUrl}/news` },
+    { name: item.title, url: newsUrl },
+  ]);
+  const faqSchema = faqJsonLd(item.faqs);
+  const schemas = faqSchema ? [jsonLd, breadcrumbSchema, faqSchema] : [jsonLd, breadcrumbSchema];
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <JsonLd data={schemas} />
       <Breadcrumb 
         items={[
           { name: "News", href: "/news" },
@@ -113,7 +118,7 @@ export default async function NewsDetailPage({ params }: NewsPageProps) {
               </div>
               <div className="flex items-center gap-2">
                 <Tag size={16} className="text-orange" />
-                <span>{item.category}</span>
+                <span>{item.category?.title || "News"}</span>
               </div>
             </div>
 
@@ -160,6 +165,23 @@ export default async function NewsDetailPage({ params }: NewsPageProps) {
           )}
         </Container>
       </article>
+
+      {item.faqs && item.faqs.length > 0 && (
+        <section className="section bg-light">
+          <Container className="section-heading">
+            <span className="eyebrow">FAQ</span>
+            <h2>Common Questions</h2>
+          </Container>
+          <Container className="factory-team-grid">
+            {item.faqs.map((faq) => (
+              <article key={faq._key || faq.question}>
+                <h3>{faq.question}</h3>
+                <p>{faq.answer}</p>
+              </article>
+            ))}
+          </Container>
+        </section>
+      )}
 
       <CTASection />
     </>

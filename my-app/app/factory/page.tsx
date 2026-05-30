@@ -1,228 +1,212 @@
-import React from "react";
+import type { Metadata } from "next";
 import Image from "next/image";
-import {
-  Building2,
-  ClipboardCheck,
-  Compass,
-  Factory,
-  FlaskConical,
-  Headset,
-  Landmark,
-  MailCheck,
-  Map,
-  MapPinned,
-  Plane,
-  Scissors,
-  Send,
-  Settings,
-  ShieldCheck,
-  Ship,
-  Sparkles,
-  Users,
-  Waves,
-  Wrench,
-  Zap,
-} from "lucide-react";
+import { BadgeCheck, Send } from "lucide-react";
 import { PageHero } from "@/components/common/PageHero";
 import { Container } from "@/components/common/Container";
 import { CTASection } from "@/components/common/CTASection";
 import { Button } from "@/components/common/Button";
+import { getIcon } from "@/components/common/IconByName";
+import { getFactoryPageSettings, getSiteSettings } from "@/sanity/queries";
+import { getSiteName, getSiteUrl } from "@/lib/site-settings";
+import { buildSeoMetadata } from "@/lib/seo";
+import type { FactoryPageSettings, StatItem, TextCard } from "@/sanity/types";
 
-const factoryStats = [
-  { value: "15000sqm", label: "Factory", icon: Factory },
-  { value: "750+", label: "Employees", icon: Users },
-  { value: "18", label: "R&D Personnel", icon: Sparkles },
-  { value: "75", label: "QC Inspectors", icon: ShieldCheck },
-  { value: "114", label: "Sales Team", icon: MailCheck },
-  { value: "64", label: "After-sales Instructors", icon: Headset },
-];
+const fallbackFactory: FactoryPageSettings = {
+  hero: {
+    eyebrow: "Factory",
+    title: "Factory Strength You Can Trust",
+    description:
+      "Integrated manufacturing capability for commercial kitchen equipment, OEM projects and global distribution partners.",
+    backgroundImage: {
+      url: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=1600&q=80",
+      alt: "Commercial kitchen equipment factory",
+    } as never,
+  },
+  overview: {
+    eyebrow: "Factory Overview",
+    title: "One-Stop Manufacturing for Commercial Foodservice Equipment",
+    paragraphs: [
+      "With 20+ years of manufacturing experience, a 15000sqm production base and 750+ employees, ProKitchenTech supports distributors, kitchen contractors and foodservice project buyers in more than 50 export countries.",
+      "Our integrated production line covers induction cooking, gas cooking, dishwashing, ovens and custom kitchen equipment.",
+    ],
+    image: {
+      url: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=1600&q=80",
+      alt: "Commercial kitchen equipment factory overview",
+    } as never,
+    cta: { text: "Request Factory Price", href: "/contact" },
+  },
+  stats: [
+    { value: "15000sqm", label: "Factory", icon: "factory" },
+    { value: "750+", label: "Employees", icon: "users" },
+    { value: "18", label: "R&D Personnel", icon: "sparkles" },
+    { value: "75", label: "QC Inspectors", icon: "shieldCheck" },
+    { value: "114", label: "Sales Team", icon: "mailCheck" },
+    { value: "64", label: "After-sales Instructors", icon: "headset" },
+  ],
+  productionHeader: { eyebrow: "Production Capability", title: "From Sheet Metal to Final Testing" },
+  productionSteps: [
+    { title: "Laser Cutting", description: "Precise sheet metal processing for stainless steel components.", icon: "scissors" },
+    { title: "Sheet Metal Workshop", description: "Stable manufacturing workflow for commercial-grade equipment bodies.", icon: "building" },
+    { title: "Bending", description: "Accurate forming for durable panels and structural parts.", icon: "wrench" },
+    { title: "Welding", description: "Professional welding for heavy-duty stainless steel construction.", icon: "zap" },
+    { title: "Assembly Line", description: "Organized assembly for induction, gas, dishwashing and oven products.", icon: "settings" },
+    { title: "Aging Test", description: "Electrical and performance checks before packing.", icon: "clipboardCheck" },
+    { title: "Salt Spray Test", description: "Corrosion-resistance evaluation for key metal parts.", icon: "flask" },
+    { title: "Quality Inspection", description: "Final QC before shipment and export packaging.", icon: "shieldCheck" },
+  ],
+  teamHeader: { eyebrow: "Team Structure", title: "Specialized Teams for Global B2B Orders" },
+  teamItems: [
+    { title: "R&D Team", description: "Product improvement, electrical design and custom development." },
+    { title: "Engineering Team", description: "Project layout support and technical matching." },
+    { title: "Production Team", description: "Stable production scheduling and assembly execution." },
+    { title: "QC Team", description: "Incoming, in-process and pre-shipment inspection." },
+    { title: "Sales Team", description: "Quotation, export documents and distributor support." },
+    { title: "After-sales Team", description: "Installation guidance, spare parts and troubleshooting support." },
+  ],
+  marketsHeader: { eyebrow: "Global Export", title: "Export Markets We Support" },
+  exportMarkets: [
+    { value: "", label: "Southeast Asia", icon: "waves" },
+    { value: "", label: "Middle East", icon: "landmark" },
+    { value: "", label: "Europe", icon: "map" },
+    { value: "", label: "North America", icon: "plane" },
+    { value: "", label: "South America", icon: "ship" },
+    { value: "", label: "Africa", icon: "mapPin" },
+    { value: "", label: "Australia", icon: "compass" },
+  ],
+};
 
-const productionSteps = [
-  {
-    title: "Laser Cutting",
-    description: "Precise sheet metal processing for stainless steel components.",
-    icon: Scissors,
-  },
-  {
-    title: "Sheet Metal Workshop",
-    description: "Stable manufacturing workflow for commercial-grade equipment bodies.",
-    icon: Building2,
-  },
-  {
-    title: "Bending",
-    description: "Accurate forming for durable panels and structural parts.",
-    icon: Wrench,
-  },
-  {
-    title: "Welding",
-    description: "Professional welding for heavy-duty stainless steel construction.",
-    icon: Zap,
-  },
-  {
-    title: "Assembly Line",
-    description: "Organized assembly for induction, gas, dishwashing and oven products.",
-    icon: Settings,
-  },
-  {
-    title: "Aging Test",
-    description: "Electrical and performance checks before packing.",
-    icon: ClipboardCheck,
-  },
-  {
-    title: "Salt Spray Test",
-    description: "Corrosion-resistance evaluation for key metal parts.",
-    icon: FlaskConical,
-  },
-  {
-    title: "Quality Inspection",
-    description: "Final QC before shipment and export packaging.",
-    icon: ShieldCheck,
-  },
-];
+export async function generateMetadata(): Promise<Metadata> {
+  const [page, settings] = await Promise.all([
+    getFactoryPageSettings({ stega: false }),
+    getSiteSettings({ stega: false }),
+  ]);
+  const hero = page?.hero || fallbackFactory.hero;
+  const seo = page?.seo;
+  const title = hero?.title || "Factory";
+  const description = hero?.description || "";
+  return buildSeoMetadata({
+    seo,
+    title,
+    description,
+    canonical: `${getSiteUrl(settings)}/factory`,
+    image: seo?.openGraphImage || hero?.backgroundImage || settings?.globalSeo?.openGraphImage,
+    siteName: getSiteName(settings),
+  });
+}
 
-const teamStructure = [
-  {
-    title: "R&D Team",
-    description: "Product improvement, electrical design and custom development.",
-  },
-  {
-    title: "Engineering Team",
-    description: "Project layout support and technical matching.",
-  },
-  {
-    title: "Production Team",
-    description: "Stable production scheduling and assembly execution.",
-  },
-  {
-    title: "QC Team",
-    description: "Incoming, in-process and pre-shipment inspection.",
-  },
-  {
-    title: "Sales Team",
-    description: "Quotation, export documents and distributor support.",
-  },
-  {
-    title: "After-sales Team",
-    description: "Installation guidance, spare parts and troubleshooting support.",
-  },
-];
+function renderStats(items: StatItem[] | undefined) {
+  return (items || []).map((item) => {
+    const Icon = getIcon(item.icon, BadgeCheck);
+    return (
+      <div key={`${item.value}-${item.label}`}>
+        <Icon aria-hidden="true" />
+        <strong>{item.value}</strong>
+        <span>{item.label}</span>
+      </div>
+    );
+  });
+}
 
-const exportMarkets = [
-  { name: "Southeast Asia", icon: Waves },
-  { name: "Middle East", icon: Landmark },
-  { name: "Europe", icon: Map },
-  { name: "North America", icon: Plane },
-  { name: "South America", icon: Ship },
-  { name: "Africa", icon: MapPinned },
-  { name: "Australia", icon: Compass },
-];
+function renderCards(items: TextCard[] | undefined) {
+  return (items || []).map((item) => {
+    const Icon = getIcon(item.icon, BadgeCheck);
+    return (
+      <article key={item._key || item.title}>
+        {item.icon && (
+          <span className="factory-card-icon">
+            <Icon aria-hidden="true" />
+          </span>
+        )}
+        <h3>{item.title}</h3>
+        {item.description && <p>{item.description}</p>}
+      </article>
+    );
+  });
+}
 
-export default function FactoryPage() {
+export default async function FactoryPage() {
+  const page = (await getFactoryPageSettings()) || {};
+  const hero = page.hero || fallbackFactory.hero;
+  const overview = page.overview || fallbackFactory.overview;
+  const stats = page.stats?.length ? page.stats : fallbackFactory.stats;
+  const productionSteps = page.productionSteps?.length ? page.productionSteps : fallbackFactory.productionSteps;
+  const teamItems = page.teamItems?.length ? page.teamItems : fallbackFactory.teamItems;
+  const exportMarkets = page.exportMarkets?.length ? page.exportMarkets : fallbackFactory.exportMarkets;
+
   return (
     <>
       <PageHero
-        eyebrow="Factory"
-        title="Factory Strength You Can Trust"
-        description="Integrated manufacturing capability for commercial kitchen equipment, OEM projects and global distribution partners."
-        backgroundImage="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=1600&q=80"
+        eyebrow={hero?.eyebrow}
+        title={hero?.title || "Factory Strength You Can Trust"}
+        description={hero?.description}
+        backgroundImage={hero?.backgroundImage?.url}
       />
 
       <section className="section">
         <Container className="two-col align-center">
           <div className="relative min-h-[430px] w-full">
             <Image
-              src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=1600&q=80"
-              alt="Commercial kitchen equipment factory overview"
+              src={overview?.image?.url || fallbackFactory.overview?.image?.url || ""}
+              alt={overview?.image?.alt || "Commercial kitchen equipment factory overview"}
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
               className="rounded-[22px] object-cover shadow-[var(--shadow)]"
             />
           </div>
           <div>
-            <span className="eyebrow">Factory Overview</span>
-            <h2 className="factory-overview-title">
-              One-Stop Manufacturing for Commercial Foodservice Equipment
-            </h2>
+            <span className="eyebrow">{overview?.eyebrow || "Factory Overview"}</span>
+            <h2 className="factory-overview-title">{overview?.title}</h2>
             <div className="factory-copy">
-              <p>
-                With 20+ years of manufacturing experience, a 15000sqm production base and
-                750+ employees, ProKitchenTech supports distributors, kitchen contractors
-                and foodservice project buyers in more than 50 export countries.
-              </p>
-              <p>
-                Our integrated production line covers induction cooking, gas cooking,
-                dishwashing, ovens and custom kitchen equipment.
-              </p>
+              {(overview?.paragraphs || []).map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
             </div>
             <div className="mt-7">
-              <Button href="/contact" iconEnd={<Send aria-hidden="true" />}>Request Factory Price</Button>
+              <Button href={overview?.cta?.href || "/contact"} iconEnd={<Send aria-hidden="true" />}>
+                {overview?.cta?.text || "Request Factory Price"}
+              </Button>
             </div>
           </div>
         </Container>
       </section>
 
       <section className="section bg-[var(--light)]">
-        <Container className="factory-data-grid">
-          {factoryStats.map((stat) => {
-            const Icon = stat.icon;
-            return (
-            <div key={stat.label}>
-              <Icon aria-hidden="true" />
-              <strong>{stat.value}</strong>
-              <span>{stat.label}</span>
-            </div>
-            );
-          })}
-        </Container>
+        <Container className="factory-data-grid">{renderStats(stats)}</Container>
       </section>
 
       <section className="section">
         <Container className="section-heading">
-          <span className="eyebrow">Production Capability</span>
-          <h2>From Sheet Metal to Final Testing</h2>
+          <span className="eyebrow">{page.productionHeader?.eyebrow || fallbackFactory.productionHeader?.eyebrow}</span>
+          <h2>{page.productionHeader?.title || fallbackFactory.productionHeader?.title}</h2>
+          {page.productionHeader?.description && <p>{page.productionHeader.description}</p>}
         </Container>
-        <Container className="factory-process-grid">
-          {productionSteps.map((step) => {
-            const Icon = step.icon;
-            return (
-            <article key={step.title}>
-              <span className="factory-card-icon"><Icon aria-hidden="true" /></span>
-              <h3>{step.title}</h3>
-              <p>{step.description}</p>
-            </article>
-            );
-          })}
-        </Container>
+        <Container className="factory-process-grid">{renderCards(productionSteps)}</Container>
       </section>
 
       <section className="section bg-[var(--light)]">
         <Container className="section-heading">
-          <span className="eyebrow">Team Structure</span>
-          <h2>Specialized Teams for Global B2B Orders</h2>
+          <span className="eyebrow">{page.teamHeader?.eyebrow || fallbackFactory.teamHeader?.eyebrow}</span>
+          <h2>{page.teamHeader?.title || fallbackFactory.teamHeader?.title}</h2>
+          {page.teamHeader?.description && <p>{page.teamHeader.description}</p>}
         </Container>
-        <Container className="factory-team-grid">
-          {teamStructure.map((team) => (
-            <article key={team.title}>
-              <h3>{team.title}</h3>
-              <p>{team.description}</p>
-            </article>
-          ))}
-        </Container>
+        <Container className="factory-team-grid">{renderCards(teamItems)}</Container>
       </section>
 
       <section className="section">
         <Container className="section-heading">
-          <span className="eyebrow">Global Export</span>
-          <h2>Export Markets We Support</h2>
+          <span className="eyebrow">{page.marketsHeader?.eyebrow || fallbackFactory.marketsHeader?.eyebrow}</span>
+          <h2>{page.marketsHeader?.title || fallbackFactory.marketsHeader?.title}</h2>
+          {page.marketsHeader?.description && <p>{page.marketsHeader.description}</p>}
         </Container>
         <Container className="factory-market-grid">
-          {exportMarkets.map((market) => {
-            const Icon = market.icon;
+          {(exportMarkets || []).map((market) => {
+            const Icon = getIcon(market.icon, BadgeCheck);
             return (
-            <span key={market.name}>
-              <Icon aria-hidden="true" />
-              {market.name}
-            </span>
+              <span key={market.label}>
+                <Icon aria-hidden="true" />
+                {market.value ? `${market.value} ` : ""}
+                {market.label}
+              </span>
             );
           })}
         </Container>

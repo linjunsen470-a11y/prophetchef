@@ -1,17 +1,28 @@
-import { Send, Factory, Globe2, Clock3, Maximize } from "lucide-react";
+import { Factory, Send } from "lucide-react";
 import { Button } from "@/components/common/Button";
+import { getIcon } from "@/components/common/IconByName";
 import styles from "@/components/common/Hero.module.css";
 import { siteConfig } from "@/data/site";
+import type { StatItem } from "@/sanity/types";
 
 interface HeroSectionProps {
   data?: {
     eyebrow?: string;
     title?: string;
     description?: string;
-    cta?: {
-      text?: string;
-      link?: string;
+    backgroundImage?: {
+      url?: string;
     };
+    primaryCta?: {
+      text?: string;
+      href?: string;
+    };
+    secondaryCta?: {
+      text?: string;
+      href?: string;
+    };
+    trustTags?: string[];
+    proofItems?: StatItem[];
   };
 }
 
@@ -21,11 +32,29 @@ export const HeroSection = ({ data }: HeroSectionProps) => {
   const description =
     data?.description ||
     "Factory-direct induction cooking, automatic cooking machines, combi ovens, dishwashers and complete stainless steel kitchen solutions.";
-  const ctaText = data?.cta?.text || "View Products";
-  const ctaLink = data?.cta?.link || "/products";
+  const ctaText = data?.primaryCta?.text || "View Products";
+  const ctaLink = data?.primaryCta?.href || "/products";
+  const secondaryCtaText = data?.secondaryCta?.text || "Contact Supplier";
+  const secondaryCtaLink = data?.secondaryCta?.href || "/contact";
+  const trustTags = data?.trustTags?.length ? data.trustTags : siteConfig.trustTags;
+  const proofItems = data?.proofItems?.length
+    ? data.proofItems
+    : [
+        { value: "20+", label: "Years Mfg.", icon: "factory" },
+        { value: "15000+", label: "Area (sqm)", icon: "maximize" },
+        { value: "50+", label: "Countries", icon: "globe" },
+        { value: "24h", label: "Fast Quote", icon: "clock" },
+      ];
 
   return (
-    <section className={`${styles.hero} ${styles.homeHeroCompact}`}>
+    <section
+      className={`${styles.hero} ${styles.homeHeroCompact}`}
+      style={
+        data?.backgroundImage?.url
+          ? ({ "--hero-image": `url('${data.backgroundImage.url}')` } as React.CSSProperties)
+          : undefined
+      }
+    >
       <div className={styles.heroOverlay}></div>
       <div className={`container ${styles.heroContent}`}>
         <div className={styles.heroCopy}>
@@ -33,38 +62,30 @@ export const HeroSection = ({ data }: HeroSectionProps) => {
           <h1>{title}</h1>
           <p>{description}</p>
           <div className={styles.heroActions}>
-            <Button variant="primary" href={ctaLink}>{ctaText}</Button>
-            <Button variant="outline-light" href="/contact">
-              Contact Supplier <Send aria-hidden="true" />
+            <Button variant="primary" href={ctaLink}>
+              {ctaText}
+            </Button>
+            <Button variant="outline-light" href={secondaryCtaLink}>
+              {secondaryCtaText} <Send aria-hidden="true" />
             </Button>
           </div>
           <div className={styles.trustTags}>
-            {siteConfig.trustTags.map((tag) => (
+            {trustTags.map((tag) => (
               <span key={tag}>{tag}</span>
             ))}
           </div>
         </div>
         <div className={styles.heroProof} aria-label="Factory capabilities">
-          <div>
-            <Factory aria-hidden="true" />
-            <strong>20+</strong>
-            <span>Years Mfg.</span>
-          </div>
-          <div>
-            <Maximize aria-hidden="true" />
-            <strong>15000+</strong>
-            <span>Area (m²)</span>
-          </div>
-          <div>
-            <Globe2 aria-hidden="true" />
-            <strong>50+</strong>
-            <span>Countries</span>
-          </div>
-          <div>
-            <Clock3 aria-hidden="true" />
-            <strong>24h</strong>
-            <span>Fast Quote</span>
-          </div>
+          {proofItems.map((item) => {
+            const Icon = getIcon(item.icon, Factory);
+            return (
+              <div key={`${item.value}-${item.label}`}>
+                <Icon aria-hidden="true" />
+                <strong>{item.value}</strong>
+                <span>{item.label}</span>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

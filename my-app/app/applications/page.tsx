@@ -1,4 +1,4 @@
-import Link from "next/link";
+import type { Metadata } from "next";
 import Image from "next/image";
 import { ArrowRight, Send } from "lucide-react";
 import { Button } from "@/components/common/Button";
@@ -6,83 +6,162 @@ import { PageHero } from "@/components/common/PageHero";
 import { Container } from "@/components/common/Container";
 import { SectionHeader } from "@/components/common/SectionHeader";
 import { CTASection } from "@/components/common/CTASection";
+import { getApplications, getApplicationsPageSettings, getSiteSettings } from "@/sanity/queries";
+import { getSiteName, getSiteUrl } from "@/lib/site-settings";
+import { buildSeoMetadata } from "@/lib/seo";
+import type { Application, ApplicationsPageSettings } from "@/sanity/types";
 import styles from "./Applications.module.css";
 
-const applications = [
+const fallbackApplications: Application[] = [
   {
+    _id: "school-cafeteria",
+    _type: "application",
+    id: "school-cafeteria",
     name: "School Cafeteria",
+    slug: "school-cafeteria",
     description: "Large-batch cooking, food warming and dishwashing for daily meal service.",
     recommended: "Induction wok cooker, combi oven, hood type dishwasher",
-    image: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1200&q=80",
+    image: {
+      url: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1200&q=80",
+      alt: "School cafeteria",
+    } as never,
   },
   {
+    _id: "hotel-kitchen",
+    _type: "application",
+    id: "hotel-kitchen",
     name: "Hotel Kitchen",
+    slug: "hotel-kitchen",
     description: "All-day production equipment for breakfast, banquets and a la carte service.",
     recommended: "Combi oven, gas cooker, dishwasher, modular range",
-    image: "https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=1600&q=80",
+    image: {
+      url: "https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=1600&q=80",
+      alt: "Hotel kitchen",
+    } as never,
   },
   {
+    _id: "chain-restaurant",
+    _type: "application",
+    id: "chain-restaurant",
     name: "Chain Restaurant",
+    slug: "chain-restaurant",
     description: "Standardized cooking equipment for consistent recipes across locations.",
     recommended: "Automatic cooking machine, pasta cooker, induction cooker",
-    image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=1200&q=80",
+    image: {
+      url: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=1200&q=80",
+      alt: "Chain restaurant kitchen",
+    } as never,
   },
   {
+    _id: "central-kitchen",
+    _type: "application",
+    id: "central-kitchen",
     name: "Central Kitchen",
+    slug: "central-kitchen",
     description: "High-volume cooking and dispatch systems for prepared food production.",
     recommended: "Automatic cooking kettle, modular line, dishwashing system",
-    image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=1600&q=80",
-  },
-  {
-    name: "Fast Food Restaurant",
-    description: "Compact equipment for fast cooking, boiling and washing workflow.",
-    recommended: "Pasta cooker, induction hob, undercounter dishwasher",
-    image: "https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=1600&q=80",
-  },
-  {
-    name: "Asian Restaurant",
-    description: "High-output wok cooking and soup preparation equipment.",
-    recommended: "Induction wok cooker, stock pot stove, gas range",
-    image: "https://images.unsplash.com/photo-1556912167-f556f1f39fdf?auto=format&fit=crop&w=1200&q=80",
-  },
-  {
-    name: "Food Factory",
-    description: "Processing and batch cooking equipment for packaged food production.",
-    recommended: "Sauce kettle, automatic cooker, custom line",
-    image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=1200&q=80",
-  },
-  {
-    name: "Catering Service",
-    description: "Mobile-friendly and reliable equipment for event meal preparation.",
-    recommended: "Combi oven, dishwasher, modular equipment",
-    image: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1200&q=80",
+    image: {
+      url: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=1600&q=80",
+      alt: "Central kitchen",
+    } as never,
   },
 ];
 
-export default function ApplicationsPage() {
+const fallbackPage: ApplicationsPageSettings = {
+  hero: {
+    eyebrow: "Applications",
+    title: "Commercial Kitchen Solutions for Different Applications",
+    description:
+      "Recommended commercial kitchen equipment combinations for foodservice projects and professional buyers.",
+    backgroundImage: {
+      url: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1200&q=80",
+      alt: "Commercial kitchen application",
+    } as never,
+  },
+  gridHeader: {
+    eyebrow: "Application Grid",
+    title: "Find the Right Equipment for Your Kitchen Type",
+  },
+  solutionsHeader: {
+    eyebrow: "Detailed Solutions",
+    title: "Project Planning Examples",
+  },
+  solutionDetails: [
+    {
+      title: "Central Kitchen Solution",
+      painPoints:
+        "Central kitchens need high-capacity production, safe workflows, stable recipes and efficient cleaning zones.",
+      recommendedEquipment:
+        "Automatic cooking machines, induction kettles, combi ovens, modular cooking lines and rack dishwashers.",
+      benefits:
+        "Improved production consistency, reduced labor dependency, better energy use and easier quality control.",
+      cta: { text: "Request Project Consultation", href: "/contact?product=Central%20Kitchen%20Solution" },
+    },
+    {
+      title: "Chain Restaurant Solution",
+      painPoints:
+        "Multi-store restaurant brands need standardized taste, fast staff training and equipment that is easy to maintain.",
+      recommendedEquipment:
+        "Automatic stir-fry machines, pasta cookers, countertop induction cookers, combi ovens and undercounter dishwashers.",
+      benefits: "Repeatable recipes, faster service speed, controlled operating costs and scalable procurement.",
+      cta: { text: "Discuss Your Chain's Needs", href: "/contact?product=Chain%20Restaurant%20Solution" },
+    },
+  ],
+};
+
+export async function generateMetadata(): Promise<Metadata> {
+  const [page, settings] = await Promise.all([
+    getApplicationsPageSettings({ stega: false }),
+    getSiteSettings({ stega: false }),
+  ]);
+  const hero = page?.hero || fallbackPage.hero;
+  const seo = page?.seo;
+  const title = hero?.title || "Applications";
+  const description = hero?.description || "";
+  return buildSeoMetadata({
+    seo,
+    title,
+    description,
+    canonical: `${getSiteUrl(settings)}/applications`,
+    image: seo?.openGraphImage || hero?.backgroundImage || settings?.globalSeo?.openGraphImage,
+    siteName: getSiteName(settings),
+  });
+}
+
+export default async function ApplicationsPage() {
+  const [page, allApplications] = await Promise.all([getApplicationsPageSettings(), getApplications()]);
+  const hero = page?.hero || fallbackPage.hero;
+  const applications = page?.featuredApplications?.length
+    ? page.featuredApplications
+    : allApplications.length
+      ? allApplications
+      : fallbackApplications;
+  const solutionDetails = page?.solutionDetails?.length ? page.solutionDetails : fallbackPage.solutionDetails;
+
   return (
     <>
       <PageHero
-        eyebrow="Applications"
-        title="Commercial Kitchen Solutions for Different Applications"
-        description="Recommended commercial kitchen equipment combinations for foodservice projects and professional buyers."
-        backgroundImage="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1200&q=80"
+        eyebrow={hero?.eyebrow}
+        title={hero?.title || "Commercial Kitchen Solutions for Different Applications"}
+        description={hero?.description}
+        backgroundImage={hero?.backgroundImage?.url}
       />
 
       <section className="section">
         <SectionHeader
-          eyebrow="Application Grid"
-          title="Find the Right Equipment for Your Kitchen Type"
+          eyebrow={page?.gridHeader?.eyebrow || fallbackPage.gridHeader?.eyebrow}
+          title={page?.gridHeader?.title || fallbackPage.gridHeader?.title || ""}
+          description={page?.gridHeader?.description}
           alignment="center"
           className={styles.applicationGridHeading}
         />
         <Container className={styles.applicationGrid}>
           {applications.map((item) => (
-            <article key={item.name} className={styles.applicationCard}>
+            <article key={item.id || item.name} className={styles.applicationCard}>
               <figure className={styles.applicationImage}>
-                <Image 
-                  src={item.image} 
-                  alt={item.name} 
+                <Image
+                  src={item.image?.url || fallbackApplications[0].image?.url || ""}
+                  alt={item.image?.alt || item.name}
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   className="object-cover"
@@ -90,15 +169,21 @@ export default function ApplicationsPage() {
               </figure>
               <div className={styles.applicationCardBody}>
                 <h3>{item.name}</h3>
-                <p>{item.description}</p>
-                <p>
-                  <strong>Recommended:</strong> {item.recommended}
-                </p>
+                {item.description && <p>{item.description}</p>}
+                {item.recommended && (
+                  <p>
+                    <strong>Recommended:</strong> {item.recommended}
+                  </p>
+                )}
                 <div className={styles.cardActions}>
                   <Button variant="secondary" size="small" href="#solution-detail">
                     View Solution
                   </Button>
-                  <Button variant="primary" size="small" href={`/contact?product=${encodeURIComponent(`${item.name} Solution`)}`}>
+                  <Button
+                    variant="primary"
+                    size="small"
+                    href={`/contact?product=${encodeURIComponent(item.quoteProductName || `${item.name} Solution`)}`}
+                  >
                     Get Quote <Send aria-hidden="true" size={16} />
                   </Button>
                 </div>
@@ -109,32 +194,38 @@ export default function ApplicationsPage() {
       </section>
 
       <section className="section bg-light" id="solution-detail">
-        <SectionHeader eyebrow="Detailed Solutions" title="Project Planning Examples" />
+        <SectionHeader
+          eyebrow={page?.solutionsHeader?.eyebrow || fallbackPage.solutionsHeader?.eyebrow}
+          title={page?.solutionsHeader?.title || fallbackPage.solutionsHeader?.title || ""}
+          description={page?.solutionsHeader?.description}
+        />
         <Container className={styles.solutionGrid}>
-          <article className={styles.solutionCard}>
-            <h3>Central Kitchen Solution</h3>
-            <h4>Pain Points</h4>
-            <p>Central kitchens need high-capacity production, safe workflows, stable recipes and efficient cleaning zones.</p>
-            <h4>Recommended Equipment</h4>
-            <p>Automatic cooking machines, induction kettles, combi ovens, modular cooking lines and rack dishwashers.</p>
-            <h4>Benefits</h4>
-            <p>Improved production consistency, reduced labor dependency, better energy use and easier quality control.</p>
-            <Button variant="primary" href="/contact?product=Central%20Kitchen%20Solution">
-              Request Project Consultation <ArrowRight aria-hidden="true" />
-            </Button>
-          </article>
-          <article className={styles.solutionCard}>
-            <h3>Chain Restaurant Solution</h3>
-            <h4>Pain Points</h4>
-            <p>Multi-store restaurant brands need standardized taste, fast staff training and equipment that is easy to maintain.</p>
-            <h4>Recommended Equipment</h4>
-            <p>Automatic stir-fry machines, pasta cookers, countertop induction cookers, combi ovens and undercounter dishwashers.</p>
-            <h4>Benefits</h4>
-            <p>Repeatable recipes, faster service speed, controlled operating costs and scalable procurement.</p>
-            <Button variant="primary" href="/contact?product=Chain%20Restaurant%20Solution">
-              Discuss Your Chain&apos;s Needs <ArrowRight aria-hidden="true" />
-            </Button>
-          </article>
+          {(solutionDetails || []).map((solution) => (
+            <article className={styles.solutionCard} key={solution._key || solution.title}>
+              <h3>{solution.title}</h3>
+              {solution.painPoints && (
+                <>
+                  <h4>Pain Points</h4>
+                  <p>{solution.painPoints}</p>
+                </>
+              )}
+              {solution.recommendedEquipment && (
+                <>
+                  <h4>Recommended Equipment</h4>
+                  <p>{solution.recommendedEquipment}</p>
+                </>
+              )}
+              {solution.benefits && (
+                <>
+                  <h4>Benefits</h4>
+                  <p>{solution.benefits}</p>
+                </>
+              )}
+              <Button variant="primary" href={solution.cta?.href || "/contact"}>
+                {solution.cta?.text || "Request Project Consultation"} <ArrowRight aria-hidden="true" />
+              </Button>
+            </article>
+          ))}
         </Container>
       </section>
 

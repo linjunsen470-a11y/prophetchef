@@ -3,13 +3,13 @@ import Link from "next/link";
 import { stegaClean } from "next-sanity";
 import { ArrowRight, Camera } from "lucide-react";
 
-import type { SanityImage } from "@/sanity/types";
+import type { NewsCategory, SanityImage } from "@/sanity/types";
 
 interface BlogCardProps {
   title: string;
   excerpt: string;
   date: string;
-  category: string;
+  category?: NewsCategory;
   coverImage: SanityImage;
   slug: string;
 }
@@ -18,6 +18,7 @@ export const BlogCard: React.FC<BlogCardProps> = ({ title, excerpt, date, catego
   const displayDate = date.slice(0, 10);
   const cleanImage = stegaClean(coverImage?.url || null);
   const cleanSlug = stegaClean(slug);
+  const categoryLabel = category?.title || "News";
 
   return (
     <article className="news-card">
@@ -39,7 +40,7 @@ export const BlogCard: React.FC<BlogCardProps> = ({ title, excerpt, date, catego
       <div className="news-body">
         <div className="news-meta">
           <span>{displayDate}</span>
-          <span>{category}</span>
+          <span>{categoryLabel}</span>
         </div>
         <h3>{title}</h3>
         <p>{excerpt}</p>

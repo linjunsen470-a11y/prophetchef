@@ -6,38 +6,28 @@ import { ApplicationsPreview } from "@/components/home/ApplicationsPreview";
 import { CertificatesPreview } from "@/components/home/CertificatesPreview";
 import { NewsPreview } from "@/components/home/NewsPreview";
 import { CTASection } from "@/components/common/CTASection";
-import { getHomePageSettings } from "@/sanity/queries";
+import { getHomePageSettings, getSiteSettings } from "@/sanity/queries";
 import { siteConfig } from "@/data/site";
+import { buildSeoMetadata } from "@/lib/seo";
+import { getSiteName, getSiteUrl } from "@/lib/site-settings";
 import type { Metadata } from "next";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const settings = await getHomePageSettings({ stega: false });
+  const [settings, siteSettings] = await Promise.all([
+    getHomePageSettings({ stega: false }),
+    getSiteSettings({ stega: false }),
+  ]);
   const seo = settings?.seo;
-  const title = seo?.metaTitle || settings?.title || siteConfig.title;
+  const title = settings?.title || siteConfig.title;
   const description = seo?.metaDescription || siteConfig.description;
-  const ogImage = seo?.openGraphImage?.url || siteConfig.ogImage;
-
-  return {
+  return buildSeoMetadata({
+    seo,
     title,
     description,
-    alternates: {
-      canonical: seo?.canonicalUrl || siteConfig.url,
-    },
-    openGraph: {
-      title,
-      description,
-      url: seo?.canonicalUrl || siteConfig.url,
-      siteName: siteConfig.name,
-      images: ogImage ? [{ url: ogImage, alt: seo?.openGraphImage?.alt || title }] : [],
-      type: "website",
-    },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description,
-      images: ogImage ? [ogImage] : [],
-    },
-  };
+    canonical: getSiteUrl(siteSettings),
+    image: seo?.openGraphImage || { url: siteConfig.ogImage, alt: title },
+    siteName: getSiteName(siteSettings),
+  });
 }
 
 export default async function Home() {
@@ -46,14 +36,19 @@ export default async function Home() {
   return (
     <>
       <HeroSection data={settings?.hero} />
-      <ProductCategories categories={settings?.featuredCategories} />
-      <FeaturedProducts products={settings?.featuredProducts} />
-      <FactoryPreview />
-      <ApplicationsPreview />
-      <CertificatesPreview />
+      <ProductCategories categories={settings?.featuredCategories} header={settings?.categorySection} />
+      <FeaturedProducts products={settings?.featuredProducts} header={settings?.featuredProductsSection} />
+      <FactoryPreview data={settings?.factoryPreview} />
+      <ApplicationsPreview
+        applications={settings?.featuredApplications}
+        header={settings?.applicationsPreviewSection}
+      />
+      <CertificatesPreview
+        certificates={settings?.featuredCertificates}
+        header={settings?.certificatesPreviewSection}
+      />
       <NewsPreview data={settings?.newsSection} />
       <CTASection />
     </>
   );
 }
-

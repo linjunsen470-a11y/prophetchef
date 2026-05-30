@@ -7,8 +7,12 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { siteConfig } from "@/data/site";
 import { FloatingActions } from "@/components/common/FloatingActions";
+import { JsonLd } from "@/components/common/JsonLd";
 import { SanityLive } from "@/sanity/client";
 import { getSiteSettings } from "@/sanity/queries";
+import { getSiteName, getSiteUrl } from "@/lib/site-settings";
+import { buildSeoMetadata } from "@/lib/seo";
+import { organizationJsonLd } from "@/lib/structured-data";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,41 +29,22 @@ export async function generateMetadata(): Promise<Metadata> {
   const seo = settings?.globalSeo;
   const title = seo?.metaTitle || settings?.title || siteConfig.title;
   const description = seo?.metaDescription || settings?.description || siteConfig.description;
-  const ogImage = seo?.openGraphImage?.url || siteConfig.ogImage;
-  const canonical = seo?.canonicalUrl || siteConfig.url;
+  const canonical = seo?.canonicalUrl || getSiteUrl(settings);
+
+  const metadata = buildSeoMetadata({
+    seo,
+    title,
+    description,
+    canonical,
+    image: seo?.openGraphImage || { url: siteConfig.ogImage, alt: title },
+    siteName: getSiteName(settings),
+  });
 
   return {
+    ...metadata,
     title: {
       default: title,
-      template: `%s | ${settings?.title || siteConfig.name}`,
-    },
-    description,
-    alternates: {
-      canonical,
-    },
-    openGraph: {
-      title,
-      description,
-      url: canonical,
-      siteName: settings?.title || siteConfig.name,
-      images: ogImage
-        ? [
-            {
-              url: ogImage,
-              alt: seo?.openGraphImage?.alt || title,
-              width: 1200,
-              height: 630,
-            },
-          ]
-        : [],
-      locale: "en_US",
-      type: "website",
-    },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description,
-      images: ogImage ? [ogImage] : [],
+      template: `%s | ${getSiteName(settings)}`,
     },
     icons: {
       icon: "/favicon.ico",
@@ -81,7 +66,8 @@ export default async function RootLayout({
         <Header settings={settings} />
         <main className="flex-grow">{children}</main>
         <Footer settings={settings} />
-        <FloatingActions />
+        <FloatingActions settings={settings} />
+        <JsonLd data={organizationJsonLd(settings)} />
         <SanityLive />
         {isDraftModeEnabled && <VisualEditing />}
       </body>

@@ -4,6 +4,7 @@ import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { Container } from "../common/Container";
 import { Category } from "@/sanity/types";
+import type { SectionHeaderData } from "@/sanity/types";
 import { categories as staticCategories } from "@/data/categories";
 
 type StaticCategory = (typeof staticCategories)[number];
@@ -11,17 +12,21 @@ type DisplayCategory = Category | StaticCategory;
 
 interface ProductCategoriesProps {
   categories?: Category[];
+  header?: SectionHeaderData;
 }
 
-export const ProductCategories = ({ categories }: ProductCategoriesProps) => {
+export const ProductCategories = ({ categories, header }: ProductCategoriesProps) => {
   const displayCategories: DisplayCategory[] = categories?.length ? categories : staticCategories;
 
   return (
     <section className="section">
       <Container className="section-heading">
-        <span className="eyebrow">Product Categories</span>
-        <h2>Commercial Kitchen Equipment for B2B Buyers</h2>
-        <p>Find core equipment categories for restaurants, hotels, school canteens and central kitchen projects.</p>
+        <span className="eyebrow">{header?.eyebrow || "Product Categories"}</span>
+        <h2>{header?.title || "Commercial Kitchen Equipment for B2B Buyers"}</h2>
+        <p>
+          {header?.description ||
+            "Find core equipment categories for restaurants, hotels, school canteens and central kitchen projects."}
+        </p>
       </Container>
       <Container className="category-grid">
         {displayCategories.map((cat) => {

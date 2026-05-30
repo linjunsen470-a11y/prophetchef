@@ -1,7 +1,9 @@
 import Link from "next/link";
 import Image from "next/image";
-import { BadgeCheck, Factory, Mail, MapPin, PhoneCall } from "lucide-react";
+import { BadgeCheck, Mail, MapPin, PhoneCall } from "lucide-react";
 import { siteConfig } from "@/data/site";
+import { getIcon } from "@/components/common/IconByName";
+import { getContactInfo, getSiteName } from "@/lib/site-settings";
 import styles from "./Footer.module.css";
 
 const productLinks = [
@@ -28,15 +30,23 @@ interface FooterProps {
 }
 
 export const Footer = ({ settings }: FooterProps) => {
-  const siteName = settings?.title || siteConfig.name;
+  const siteName = getSiteName(settings);
   const description = settings?.description || siteConfig.description;
-  const contact = {
-    email: siteConfig.email,
-    phone: siteConfig.phone,
-    address: siteConfig.address,
-    ...settings?.contactInfo,
-  };
+  const contact = getContactInfo(settings);
   const socialLinks = settings?.socialLinks?.filter((link) => link.platform && link.url) || [];
+  const products = settings?.footerProductLinks?.length
+    ? settings.footerProductLinks.map((link) => [link.label, link.href] as const)
+    : productLinks;
+  const company = settings?.footerCompanyLinks?.length
+    ? settings.footerCompanyLinks.map((link) => [link.label, link.href] as const)
+    : companyLinks;
+  const badges = settings?.footerBadges?.length
+    ? settings.footerBadges
+    : [
+        { label: "OEM / ODM", value: "", icon: "badgeCheck" },
+        { label: "CE / ISO", value: "", icon: "badgeCheck" },
+        { label: "Factory Direct", value: "", icon: "factory" },
+      ];
 
   return (
     <footer className={styles.siteFooter}>
@@ -62,9 +72,15 @@ export const Footer = ({ settings }: FooterProps) => {
           </Link>
           <p>{description}</p>
           <div className={styles.footerBadges} aria-label="Company capabilities">
-            <span><BadgeCheck aria-hidden="true" />OEM / ODM</span>
-            <span><BadgeCheck aria-hidden="true" />CE / ISO</span>
-            <span><Factory aria-hidden="true" />Factory Direct</span>
+            {badges.map((badge) => {
+              const Icon = getIcon(badge.icon, BadgeCheck);
+              return (
+                <span key={badge.label}>
+                  <Icon aria-hidden="true" />
+                  {badge.label}
+                </span>
+              );
+            })}
           </div>
           {socialLinks.length > 0 && (
             <div className={styles.socialLinks} aria-label="Social links">
@@ -79,7 +95,7 @@ export const Footer = ({ settings }: FooterProps) => {
 
         <div className={styles.footerLinks}>
           <h3>Products</h3>
-          {productLinks.map(([label, href]) => (
+          {products.map(([label, href]) => (
             <Link href={href} key={href}>
               {label}
             </Link>
@@ -88,7 +104,7 @@ export const Footer = ({ settings }: FooterProps) => {
 
         <div className={styles.footerLinks}>
           <h3>Company</h3>
-          {companyLinks.map(([label, href]) => (
+          {company.map(([label, href]) => (
             <Link href={href} key={href}>
               {label}
             </Link>
@@ -101,7 +117,7 @@ export const Footer = ({ settings }: FooterProps) => {
             <span><Mail aria-hidden="true" />Email</span>
             <a href={`mailto:${contact.email}`}>{contact.email}</a>
             <span><PhoneCall aria-hidden="true" />WhatsApp</span>
-            <a href={`https://wa.me/${siteConfig.whatsapp}`} target="_blank" rel="noopener">
+            <a href={`https://wa.me/${contact.whatsapp}`} target="_blank" rel="noopener">
               {contact.phone}
             </a>
             <span><MapPin aria-hidden="true" />Address</span>
