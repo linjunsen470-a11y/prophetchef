@@ -38,6 +38,8 @@ export interface Product {
   _id: string;
   _type: "product";
   id: string; // Internal ID
+  _updatedAt?: string;
+  updatedAt?: string;
   name: string;
   slug: string;
   category?: Category;
@@ -71,6 +73,8 @@ export interface NewsItem {
   excerpt: string;
   coverImage: SanityImage;
   date: string;
+  _updatedAt?: string;
+  updatedAt?: string;
   category: string;
   slug: string;
   tags?: string[];
@@ -101,6 +105,7 @@ export interface HomePageSettings {
 }
 
 export interface SiteSettings {
+  _updatedAt?: string;
   title: string;
   description?: string;
   logo?: SanityImage;

@@ -3,17 +3,13 @@
 }
 
 .mainProductImage {
+  position: relative;
+  height: 560px;
   overflow: hidden;
   border: 1px solid var(--border);
   border-radius: 22px;
   background: #fff;
   box-shadow: var(--shadow);
-}
-
-.mainProductImage img {
-  width: 100%;
-  height: 560px;
-  transition: 0.3s ease;
 }
 
 .thumbnailRow {
@@ -23,6 +19,7 @@
 }
 
 .thumb {
+  position: relative;
   width: 112px;
   height: 82px;
   overflow: hidden;
@@ -32,12 +29,6 @@
   padding: 0;
   background: #fff;
   transition: 0.2s;
-}
-
-.thumb img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
 }
 
 .thumb:hover {
@@ -50,7 +41,7 @@
 }
 
 @media (max-width: 760px) {
-  .mainProductImage img {
+  .mainProductImage {
     height: 320px;
   }
   .thumb {

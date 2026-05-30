@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { BadgeCheck, Factory, Mail, MapPin, PhoneCall } from "lucide-react";
 import { siteConfig } from "@/data/site";
 import styles from "./Footer.module.css";
@@ -43,7 +44,15 @@ export const Footer = ({ settings }: FooterProps) => {
         <div className={styles.footerIntro}>
           <Link className={styles.footerBrand} href="/">
             {settings?.logo?.url ? (
-              <img src={settings.logo.url} alt={siteName} className={styles.footerLogo} />
+              <div className="relative h-10 w-40">
+                <Image 
+                  src={settings.logo.url} 
+                  alt={siteName} 
+                  fill 
+                  sizes="160px"
+                  className="object-contain object-left"
+                />
+              </div>
             ) : (
               <>
                 <span className={styles.brandMark}>PKT</span>

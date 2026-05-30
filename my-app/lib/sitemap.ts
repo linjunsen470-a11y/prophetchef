@@ -1,4 +1,4 @@
-import { getNewsItems, getProducts } from "@/sanity/queries";
+import { getNewsItems, getProducts, getSiteSettings } from "@/sanity/queries";
 
 export type SitemapGroup = "Core" | "Products" | "News";
 
@@ -32,13 +32,24 @@ export function absoluteUrl(path: string) {
 }
 
 export async function getSitemapEntries(): Promise<SitemapEntry[]> {
-  const [products, newsItems] = await Promise.all([getProducts(), getNewsItems()]);
+  const [products, newsItems, settings] = await Promise.all([
+    getProducts(),
+    getNewsItems(),
+    getSiteSettings({ stega: false })
+  ]);
+
+  const fallbackDate = settings?._updatedAt ? new Date(settings._updatedAt) : new Date("2026-05-30");
+
+  const mappedStaticEntries = staticEntries.map(entry => ({
+    ...entry,
+    lastModified: fallbackDate
+  }));
 
   const productEntries = products.map<SitemapEntry>((product) => ({
     path: `/products/${product.slug}`,
     title: product.name,
     group: "Products",
-    lastModified: new Date("2026-05-05"),
+    lastModified: product.updatedAt ? new Date(product.updatedAt) : fallbackDate,
     changeFrequency: "monthly",
     priority: 0.85,
   }));
@@ -47,12 +58,12 @@ export async function getSitemapEntries(): Promise<SitemapEntry[]> {
     path: `/news/${item.slug}`,
     title: item.title,
     group: "News",
-    lastModified: new Date(item.date),
+    lastModified: item.updatedAt ? new Date(item.updatedAt) : new Date(item.date),
     changeFrequency: "monthly",
     priority: 0.65,
   }));
 
-  return [...staticEntries, ...productEntries, ...newsEntries];
+  return [...mappedStaticEntries, ...productEntries, ...newsEntries];
 }
 
 export async function groupSitemapEntries() {

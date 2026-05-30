@@ -31,6 +31,8 @@ const categoryFields = `
 const productFields = `
   _id,
   "id": _id,
+  _updatedAt,
+  "updatedAt": _updatedAt,
   name,
   "slug": slug.current,
   "category": category-> { ${categoryFields} },
@@ -53,6 +55,8 @@ const productFields = `
 
 const newsFields = `
   "id": _id,
+  _updatedAt,
+  "updatedAt": _updatedAt,
   title,
   excerpt,
   "coverImage": coverImage {
@@ -155,6 +159,7 @@ export async function getHomePageSettings(options: QueryOptions = {}) {
 export async function getSiteSettings(options: QueryOptions = {}) {
   return sanityFetch<SiteSettings | null>({
     query: `*[_type == "siteSettings"][0] {
+      _updatedAt,
       title,
       description,
       "logo": logo { "url": asset->url },

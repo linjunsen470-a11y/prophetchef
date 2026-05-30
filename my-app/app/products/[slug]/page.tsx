@@ -64,8 +64,44 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
     ...(product.gallery || [])
   ].filter(Boolean);
 
+  const siteUrl = siteConfig.url || "https://prokitchentech.com";
+  const productImageUrl = product.coverImage?.url ? stegaClean(product.coverImage.url) : "";
+  
+  const jsonLd = {
+    "@context": "https://schema.org/",
+    "@type": "Product",
+    "name": product.name,
+    "image": productImageUrl ? [productImageUrl] : [],
+    "description": product.description,
+    "sku": product.modelCode || undefined,
+    "mpn": product.modelCode || undefined,
+    "category": categoryName,
+    "keywords": product.tags?.join(", "),
+    "brand": {
+      "@type": "Brand",
+      "name": siteConfig.name
+    },
+    "offers": {
+      "@type": "Offer",
+      "url": `${siteUrl}/products/${stegaClean(product.slug)}`,
+      "priceCurrency": "USD",
+      "price": "0",
+      "priceValidUntil": "2027-12-31",
+      "itemCondition": "https://schema.org/NewCondition",
+      "availability": "https://schema.org/InStock",
+      "seller": {
+        "@type": "Organization",
+        "name": siteConfig.name
+      }
+    }
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Breadcrumb 
         items={[
           { name: "Products", href: "/products" },

@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import { Container } from "../common/Container";
 import { Button } from "@/components/common/Button";
 import { CheckCircle2 } from "lucide-react";
@@ -7,11 +8,13 @@ export const FactoryPreview = () => {
   return (
     <section className="section factory-preview">
       <Container className="two-col align-center">
-        <div className="image-stack">
-          <img 
+        <div className="image-stack relative min-h-[430px] w-full">
+          <Image 
             src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=1600&q=80" 
             alt="Commercial kitchen equipment production base" 
-            loading="lazy" 
+            fill
+            sizes="(max-width: 768px) 100vw, 50vw"
+            className="rounded-[22px] object-cover shadow-[var(--shadow)]"
           />
         </div>
         <div>

@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Send } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { siteConfig } from "@/data/site";
@@ -37,7 +38,16 @@ export const Header = ({ settings }: HeaderProps) => {
       <div className={`container ${styles.headerInner}`}>
         <Link href="/" className={styles.brand} aria-label={`${siteName} home`}>
           {settings?.logo?.url ? (
-            <img src={settings.logo.url} alt={siteName} className={styles.brandLogo} />
+            <div className="relative h-10 w-40">
+              <Image 
+                src={settings.logo.url} 
+                alt={siteName} 
+                fill 
+                sizes="160px"
+                className="object-contain object-left"
+                priority
+              />
+            </div>
           ) : (
             <>
               <span className={styles.brandMark}>PKT</span>

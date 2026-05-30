@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import {
   Building2,
   ClipboardCheck,
@@ -128,12 +129,13 @@ export default function FactoryPage() {
 
       <section className="section">
         <Container className="two-col align-center">
-          <div>
-            <img
+          <div className="relative min-h-[430px] w-full">
+            <Image
               src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=1600&q=80"
               alt="Commercial kitchen equipment factory overview"
-              className="min-h-[430px] w-full rounded-[22px] object-cover shadow-[var(--shadow)]"
-              loading="lazy"
+              fill
+              sizes="(max-width: 768px) 100vw, 50vw"
+              className="rounded-[22px] object-cover shadow-[var(--shadow)]"
             />
           </div>
           <div>

@@ -1,6 +1,7 @@
 import React from "react";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
+import Image from "next/image";
 import { stegaClean } from "next-sanity";
 import { siteConfig } from "@/data/site";
 import { Container } from "@/components/common/Container";
@@ -58,8 +59,36 @@ export default async function NewsDetailPage({ params }: NewsPageProps) {
     day: "numeric",
   });
 
+  const siteUrl = siteConfig.url || "https://prokitchentech.com";
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "NewsArticle",
+    "headline": item.title,
+    "description": item.excerpt,
+    "image": item.coverImage?.url ? [stegaClean(item.coverImage.url)] : [],
+    "datePublished": item.date,
+    "dateModified": item.updatedAt || item.date,
+    "author": {
+      "@type": "Organization",
+      "name": siteConfig.name,
+      "url": siteUrl
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": siteConfig.name,
+      "logo": {
+        "@type": "ImageObject",
+        "url": `${siteUrl}/favicon.ico`
+      }
+    }
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Breadcrumb 
         items={[
           { name: "News", href: "/news" },
@@ -101,10 +130,13 @@ export default async function NewsDetailPage({ params }: NewsPageProps) {
         {/* Featured Image */}
         <Container className="max-w-[1000px] -mt-10 md:-mt-16 mb-16">
           <div className="relative aspect-[16/9] rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
-            <img 
+            <Image 
               src={stegaClean(item.coverImage?.url || "")} 
               alt={stegaClean(item.coverImage?.alt || item.title)} 
-              className="w-full h-full object-cover"
+              fill
+              priority
+              sizes="(max-width: 1000px) 100vw, 1000px"
+              className="object-cover"
             />
           </div>
         </Container>
