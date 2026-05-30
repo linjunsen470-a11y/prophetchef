@@ -6,6 +6,8 @@ import { ProductCard } from "@/components/product/ProductCard";
 import { ProductSidebar } from "@/components/product/ProductSidebar";
 import type { Product } from "@/sanity/types";
 
+import styles from "./ProductsShowcase.module.css";
+
 interface ProductListClientProps {
   products: Product[];
 }
@@ -23,21 +25,21 @@ export function ProductListClient({ products }: ProductListClientProps) {
     : products.filter((product) => (product.category?.name || "Uncategorized") === activeCategory);
 
   return (
-    <Container className="products-layout">
+    <Container className={styles.productsLayout}>
       <ProductSidebar
         activeCategory={activeCategory}
         categories={categories}
         onCategoryChange={setActiveCategory}
       />
-      <div className="products-main">
-        <div className="product-toolbar">
+      <div className={styles.productsMain}>
+        <div className={styles.productToolbar}>
           <div>
-            <span className="eyebrow">Catalog</span>
+            <span className="inline-flex items-center gap-2 uppercase tracking-[0.12em] text-[12px] font-black text-[color:var(--orange)]">Catalog</span>
             <p><strong>{filteredProducts.length}</strong> product models for commercial foodservice equipment procurement.</p>
           </div>
-          <span className="product-count-pill">{activeCategory}</span>
+          <span className={styles.productCountPill}>{activeCategory}</span>
         </div>
-        <div className="product-grid products-page-grid">
+        <div className="grid grid-cols-3 max-[1080px]:grid-cols-2 max-[760px]:grid-cols-1 gap-6">
           {filteredProducts.map((product, index) => (
             <ProductCard key={product.id} product={product} index={index} />
           ))}

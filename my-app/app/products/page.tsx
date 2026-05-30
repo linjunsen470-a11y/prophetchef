@@ -54,12 +54,12 @@ export default async function ProductsPage() {
           "https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=1600&q=80"
         }
       >
-        <div className="product-hero-metrics" aria-label="Product capabilities">
+        <div className="flex flex-wrap gap-2.5 mt-[30px]" aria-label="Product capabilities">
           {metrics.map((metric) => {
             const Icon = getIcon(metric.icon, BadgeCheck);
             return (
-              <span key={metric.label}>
-                <Icon aria-hidden="true" />
+              <span key={metric.label} className="inline-flex items-center gap-[7px] px-[13px] py-[9px] border border-white/24 rounded-full bg-white/10 text-white text-[13px] font-extrabold">
+                <Icon aria-hidden="true" className="w-[15px] h-[15px]" />
                 {metric.value ? `${metric.value} ` : ""}
                 {metric.label}
               </span>
@@ -68,7 +68,7 @@ export default async function ProductsPage() {
         </div>
       </PageHero>
 
-      <section className="products-showcase">
+      <section className="py-[92px] max-[760px]:py-16 bg-[linear-gradient(180deg,#f8fafc_0,#fff_260px)]">
         <ProductListClient products={products} />
       </section>
 
