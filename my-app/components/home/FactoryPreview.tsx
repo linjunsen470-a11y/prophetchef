@@ -26,8 +26,8 @@ export const FactoryPreview = ({ data }: FactoryPreviewProps) => {
 
   return (
     <section className="section factory-preview">
-      <Container className="two-col align-center">
-        <div className="image-stack relative min-h-[430px] w-full">
+      <Container className="grid grid-cols-2 max-[1080px]:grid-cols-1 gap-[56px] items-center">
+        <div className="relative min-h-[430px] w-full">
           <Image
             src={data?.image?.url || "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=1600&q=80"}
             alt={data?.image?.alt || "Commercial kitchen equipment production base"}
@@ -42,10 +42,10 @@ export const FactoryPreview = ({ data }: FactoryPreviewProps) => {
           {paragraphs.map((paragraph) => (
             <p key={paragraph}>{paragraph}</p>
           ))}
-          <ul className="check-list">
+          <ul className="list-none p-0 my-[22px]">
             {bullets.map((item) => (
-              <li key={item}>
-                <CheckCircle2 aria-hidden="true" />
+              <li key={item} className="flex items-start gap-[9px] relative pl-0 my-2.5 text-[color:var(--muted)] font-semibold">
+                <CheckCircle2 aria-hidden="true" className="w-[18px] h-[18px] mt-[3px] text-[color:var(--orange)] shrink-0" />
                 {item}
               </li>
             ))}

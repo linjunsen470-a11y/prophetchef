@@ -239,10 +239,10 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
             <h2>Request Product Price and Specification</h2>
             <p>Send your required model, voltage, quantity and destination country. Our sales team will reply with a quotation and product documents.</p>
             
-            <ul className="check-list mt-8">
-              <li><CheckCircle2 /> Professional technical support</li>
-              <li><CheckCircle2 /> Global export experience</li>
-              <li><CheckCircle2 /> Competitive factory pricing</li>
+            <ul className="list-none p-0 my-[22px] mt-8">
+              <li className="flex items-start gap-[9px] relative pl-0 my-2.5 text-[color:var(--muted)] font-semibold"><CheckCircle2 className="w-[18px] h-[18px] mt-[3px] text-[color:var(--orange)] shrink-0" /> Professional technical support</li>
+              <li className="flex items-start gap-[9px] relative pl-0 my-2.5 text-[color:var(--muted)] font-semibold"><CheckCircle2 className="w-[18px] h-[18px] mt-[3px] text-[color:var(--orange)] shrink-0" /> Global export experience</li>
+              <li className="flex items-start gap-[9px] relative pl-0 my-2.5 text-[color:var(--muted)] font-semibold"><CheckCircle2 className="w-[18px] h-[18px] mt-[3px] text-[color:var(--orange)] shrink-0" /> Competitive factory pricing</li>
             </ul>
           </div>
           <ProductInquiryForm productName={product.name} />

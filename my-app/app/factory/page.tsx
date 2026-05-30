@@ -143,7 +143,7 @@ export default async function FactoryPage() {
       />
 
       <section className="section">
-        <Container className="two-col align-center">
+        <Container className="grid grid-cols-2 max-[1080px]:grid-cols-1 gap-[56px] items-center">
           <div className="relative min-h-[430px] w-full">
             <Image
               src={overview?.image?.url || fallbackFactory.overview?.image?.url || ""}

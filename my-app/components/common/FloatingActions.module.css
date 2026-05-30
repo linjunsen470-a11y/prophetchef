@@ -61,6 +61,11 @@
     height: 46px;
     padding: 0;
     justify-content: center;
-    bottom: 84px;
+    bottom: 76px;
+    right: 14px;
+  }
+  .backToTop {
+    right: 14px;
+    bottom: 22px;
   }
 }

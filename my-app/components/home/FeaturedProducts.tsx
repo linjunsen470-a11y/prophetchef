@@ -31,7 +31,7 @@ export const FeaturedProducts = async ({ products, header }: FeaturedProductsPro
         </Button>
       </Container>
       
-      <Container className="product-grid">
+      <Container className="grid grid-cols-3 max-[1080px]:grid-cols-2 max-[760px]:grid-cols-1 gap-6">
         {displayProducts.map((product, index) => (
           <ProductCard key={product.id} product={product} index={index} />
         ))}

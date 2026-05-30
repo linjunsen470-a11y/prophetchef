@@ -38,12 +38,12 @@ export const CertificatesPreview = async ({ certificates, header }: Certificates
           {header?.cta?.text || "View Certificates"}
         </Button>
       </Container>
-      <Container className="certificate-strip">
+      <Container className="grid grid-cols-6 max-[760px]:grid-cols-2 gap-[14px]">
         {displayCertificates.map((cert) => {
           const Icon = getIcon(cert.icon, FileCheck);
           return (
-            <div key={cert.label}>
-              <Icon aria-hidden="true" />
+            <div key={cert.label} className="min-h-[110px] flex flex-col items-center justify-center gap-2.5 border border-[color:var(--border)] rounded-[16px] bg-[linear-gradient(180deg,#ffffff_0%,#f8fafc_100%)] font-black text-[color:var(--blue)] text-center px-[18px] py-3.5 shadow-[0_10px_26px_rgba(15,23,42,0.04)] transition-all duration-200 hover:-translate-y-0.5 hover:border-[#fed7aa] hover:shadow-[0_16px_34px_rgba(15,23,42,0.08)]">
+              <Icon aria-hidden="true" className="w-[42px] h-[42px] p-[9.33px] rounded-[14px] bg-[#fff7ed] text-[color:var(--orange)] stroke-[2px]" />
               {cert.label}
             </div>
           );
