@@ -8,6 +8,7 @@ import { Footer } from "@/components/layout/Footer";
 import { siteConfig } from "@/data/site";
 import { FloatingActions } from "@/components/common/FloatingActions";
 import { SanityLive } from "@/sanity/client";
+import { getSiteSettings } from "@/sanity/queries";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,39 +20,52 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: {
-    default: siteConfig.title,
-    template: `%s | ${siteConfig.name}`,
-  },
-  description: siteConfig.description,
-  openGraph: {
-    title: siteConfig.title,
-    description: siteConfig.description,
-    url: "https://prokitchentech.com",
-    siteName: siteConfig.name,
-    images: [
-      {
-        url: siteConfig.ogImage,
-        width: 1200,
-        height: 630,
-      },
-    ],
-    locale: "en_US",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: siteConfig.title,
-    description: siteConfig.description,
-    images: [siteConfig.ogImage],
-  },
-  icons: {
-    icon: "/favicon.ico",
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const settings = await getSiteSettings({ stega: false });
+  const seo = settings?.globalSeo;
+  const title = seo?.metaTitle || settings?.title || siteConfig.title;
+  const description = seo?.metaDescription || settings?.description || siteConfig.description;
+  const ogImage = seo?.openGraphImage?.url || siteConfig.ogImage;
+  const canonical = seo?.canonicalUrl || siteConfig.url;
 
-import { getSiteSettings } from "@/sanity/queries";
+  return {
+    title: {
+      default: title,
+      template: `%s | ${settings?.title || siteConfig.name}`,
+    },
+    description,
+    alternates: {
+      canonical,
+    },
+    openGraph: {
+      title,
+      description,
+      url: canonical,
+      siteName: settings?.title || siteConfig.name,
+      images: ogImage
+        ? [
+            {
+              url: ogImage,
+              alt: seo?.openGraphImage?.alt || title,
+              width: 1200,
+              height: 630,
+            },
+          ]
+        : [],
+      locale: "en_US",
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: ogImage ? [ogImage] : [],
+    },
+    icons: {
+      icon: "/favicon.ico",
+    },
+  };
+}
 
 export default async function RootLayout({
   children,

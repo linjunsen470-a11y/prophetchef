@@ -109,6 +109,20 @@
   font-weight: 800;
 }
 
+.socialLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.socialLinks a {
+  margin: 0;
+  color: #ffb36b;
+  font-size: 13px;
+  font-weight: 850;
+}
+
 .footerBadges svg,
 .footerContact address > span svg {
   width: 14px;

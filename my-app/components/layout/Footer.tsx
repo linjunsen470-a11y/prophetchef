@@ -29,11 +29,13 @@ interface FooterProps {
 export const Footer = ({ settings }: FooterProps) => {
   const siteName = settings?.title || siteConfig.name;
   const description = settings?.description || siteConfig.description;
-  const contact = settings?.contactInfo || {
+  const contact = {
     email: siteConfig.email,
     phone: siteConfig.phone,
     address: siteConfig.address,
+    ...settings?.contactInfo,
   };
+  const socialLinks = settings?.socialLinks?.filter((link) => link.platform && link.url) || [];
 
   return (
     <footer className={styles.siteFooter}>
@@ -55,6 +57,15 @@ export const Footer = ({ settings }: FooterProps) => {
             <span><BadgeCheck aria-hidden="true" />CE / ISO</span>
             <span><Factory aria-hidden="true" />Factory Direct</span>
           </div>
+          {socialLinks.length > 0 && (
+            <div className={styles.socialLinks} aria-label="Social links">
+              {socialLinks.map((link) => (
+                <a href={link.url} key={`${link.platform}-${link.url}`} target="_blank" rel="noopener">
+                  {link.platform}
+                </a>
+              ))}
+            </div>
+          )}
         </div>
 
         <div className={styles.footerLinks}>

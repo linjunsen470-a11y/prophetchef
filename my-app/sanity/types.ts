@@ -85,7 +85,6 @@ export interface HomePageSettings {
     eyebrow?: string;
     title?: string;
     description?: string;
-    backgroundImage?: SanityImage;
     cta?: {
       text?: string;
       link?: string;

@@ -60,7 +60,7 @@ export const Header = ({ settings }: HeaderProps) => {
         </nav>
 
         <div className={styles.headerActions}>
-          <Button variant="primary" size="small" href="/contact">
+          <Button variant="primary" size="small" href="/contact" className={styles.getQuoteBtn}>
             Get Quote
             <Send aria-hidden="true" />
           </Button>

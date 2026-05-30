@@ -17,6 +17,7 @@ const seoFields = `
 `;
 
 const categoryFields = `
+  _id,
   "id": _id,
   name,
   "slug": slug.current,
@@ -28,6 +29,7 @@ const categoryFields = `
 `;
 
 const productFields = `
+  _id,
   "id": _id,
   name,
   "slug": slug.current,
@@ -135,7 +137,6 @@ export async function getHomePageSettings(options: QueryOptions = {}) {
         eyebrow,
         title,
         description,
-        backgroundImage { "url": asset->url },
         cta
       },
       "featuredCategories": featuredCategories[]-> { ${categoryFields} },

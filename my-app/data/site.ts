@@ -8,12 +8,6 @@ export const siteConfig = {
   address: "Dongguan, Guangdong, China",
   ogImage: "https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=1800&q=80",
   homeHeroImage: "/images/home-hero-industrial.jpg",
-  stats: [
-    { label: "Years Experience", value: "20+" },
-    { label: "Factory Area", value: "15000 sqm" },
-    { label: "Skilled Employees", value: "750+" },
-    { label: "Export Countries", value: "50+" },
-  ],
   trustTags: ["OEM / ODM Available", "CE / ISO Certified", "Fast Quotation Within 24 Hours"],
   url: "https://prophetchef.com",
 };

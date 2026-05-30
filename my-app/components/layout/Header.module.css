@@ -141,15 +141,15 @@
     right: 0;
     top: 68px;
     background: rgba(16, 36, 61, 0.96);
-    backdrop-filter: blur(24px);
+    backdrop-filter: blur(32px);
     display: none;
     flex-direction: column;
     align-items: stretch;
     gap: 8px;
     padding: 20px 5vw 32px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.3);
-    color: rgba(255, 255, 255, 0.9);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.4);
+    color: #ffffff;
   }
   .mainNav.open {
     display: flex;
@@ -157,22 +157,24 @@
   .mainNav a {
     padding: 14px 18px;
     border-radius: 12px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     font-weight: 600;
     font-size: 15px;
     transition: all 0.2s ease;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
   }
   .mainNav a::after {
     display: none;
   }
   .mainNav a:hover,
   .mainNav a.active {
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.1);
     color: var(--orange);
     border-bottom-color: transparent;
-    padding-left: 22px;
+    padding-left: 24px;
+    box-shadow: inset 4px 0 0 var(--orange);
   }
-  .headerActions :global(.btn-small) {
+  .getQuoteBtn {
     display: none;
   }
 }

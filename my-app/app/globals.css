@@ -31,6 +31,7 @@ body {
   color: var(--text);
   background: var(--white);
   line-height: 1.6;
+  overflow-x: hidden;
 }
 
 a {
@@ -1319,8 +1320,7 @@ svg {
 }
 
 @media (max-width: 560px) {
-  .trust-grid,
-  .certificate-strip {
+  .trust-grid {
     grid-template-columns: 1fr;
   }
   .hero,
