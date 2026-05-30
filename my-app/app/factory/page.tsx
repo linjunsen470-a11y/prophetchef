@@ -98,10 +98,10 @@ function renderStats(items: StatItem[] | undefined) {
   return (items || []).map((item) => {
     const Icon = getIcon(item.icon, BadgeCheck);
     return (
-      <div key={`${item.value}-${item.label}`}>
-        <Icon aria-hidden="true" />
-        <strong>{item.value}</strong>
-        <span>{item.label}</span>
+      <div key={`${item.value}-${item.label}`} className="p-6 border border-[color:var(--border)] rounded-[18px] bg-white text-center">
+        <Icon aria-hidden="true" className="w-6 h-6 mx-auto mb-3 text-[color:var(--orange)]" />
+        <strong className="block text-[color:var(--blue)] text-[32px] font-black leading-none">{item.value}</strong>
+        <span className="block mt-2 text-[color:var(--muted)] text-[14px]">{item.label}</span>
       </div>
     );
   });
@@ -111,14 +111,14 @@ function renderCards(items: TextCard[] | undefined) {
   return (items || []).map((item) => {
     const Icon = getIcon(item.icon, BadgeCheck);
     return (
-      <article key={item._key || item.title}>
+      <article key={item._key || item.title} className="p-6 border border-[color:var(--border)] rounded-[var(--radius)] bg-white shadow-[0_10px_30px_rgba(15,23,42,0.04)]">
         {item.icon && (
-          <span className="factory-card-icon">
-            <Icon aria-hidden="true" />
+          <span className="inline-grid place-items-center w-[42px] h-[42px] mb-4 rounded-[12px] bg-[#eff6ff] text-[color:var(--blue)]">
+            <Icon aria-hidden="true" className="w-[21px] h-[21px]" />
           </span>
         )}
-        <h3>{item.title}</h3>
-        {item.description && <p>{item.description}</p>}
+        <h3 className="m-0 mb-2.5 text-[20px] font-extrabold leading-[1.25]">{item.title}</h3>
+        {item.description && <p className="m-0 text-[color:var(--muted)]">{item.description}</p>}
       </article>
     );
   });
@@ -155,10 +155,10 @@ export default async function FactoryPage() {
           </div>
           <div>
             <span className="eyebrow">{overview?.eyebrow || "Factory Overview"}</span>
-            <h2 className="factory-overview-title">{overview?.title}</h2>
-            <div className="factory-copy">
+            <h2 className="my-2.5 text-[clamp(30px,4vw,46px)] font-extrabold leading-[1.12] tracking-[-0.04em]">{overview?.title}</h2>
+            <div className="text-[color:var(--muted)] text-[17px] leading-[1.65]">
               {(overview?.paragraphs || []).map((paragraph) => (
-                <p key={paragraph}>{paragraph}</p>
+                <p key={paragraph} className="m-0 mb-4">{paragraph}</p>
               ))}
             </div>
             <div className="mt-7">
@@ -171,7 +171,7 @@ export default async function FactoryPage() {
       </section>
 
       <section className="section bg-[var(--light)]">
-        <Container className="factory-data-grid">{renderStats(stats)}</Container>
+        <Container className="grid grid-cols-6 max-[1080px]:grid-cols-3 max-[760px]:grid-cols-1 gap-4">{renderStats(stats)}</Container>
       </section>
 
       <section className="section">
@@ -180,7 +180,7 @@ export default async function FactoryPage() {
           <h2>{page.productionHeader?.title || fallbackFactory.productionHeader?.title}</h2>
           {page.productionHeader?.description && <p>{page.productionHeader.description}</p>}
         </Container>
-        <Container className="factory-process-grid">{renderCards(productionSteps)}</Container>
+        <Container className="grid grid-cols-4 max-[1080px]:grid-cols-2 max-[760px]:grid-cols-1 gap-5">{renderCards(productionSteps)}</Container>
       </section>
 
       <section className="section bg-[var(--light)]">
@@ -189,7 +189,7 @@ export default async function FactoryPage() {
           <h2>{page.teamHeader?.title || fallbackFactory.teamHeader?.title}</h2>
           {page.teamHeader?.description && <p>{page.teamHeader.description}</p>}
         </Container>
-        <Container className="factory-team-grid">{renderCards(teamItems)}</Container>
+        <Container className="grid grid-cols-3 max-[1080px]:grid-cols-2 max-[760px]:grid-cols-1 gap-5">{renderCards(teamItems)}</Container>
       </section>
 
       <section className="section">
@@ -198,12 +198,12 @@ export default async function FactoryPage() {
           <h2>{page.marketsHeader?.title || fallbackFactory.marketsHeader?.title}</h2>
           {page.marketsHeader?.description && <p>{page.marketsHeader.description}</p>}
         </Container>
-        <Container className="factory-market-grid">
+        <Container className="flex flex-wrap gap-3">
           {(exportMarkets || []).map((market) => {
             const Icon = getIcon(market.icon, BadgeCheck);
             return (
-              <span key={market.label}>
-                <Icon aria-hidden="true" />
+              <span key={market.label} className="inline-flex items-center gap-2 px-[18px] py-3.5 border border-[#dbeafe] rounded-full bg-[#eff6ff] text-[color:var(--blue)] font-extrabold">
+                <Icon aria-hidden="true" className="w-4 h-4 text-[color:var(--orange)]" />
                 {market.value ? `${market.value} ` : ""}
                 {market.label}
               </span>
