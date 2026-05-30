@@ -1,6 +1,6 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+
 
 :root {
   --blue: #1e3a5f;
@@ -1057,104 +1057,7 @@ svg {
   color: var(--orange);
 }
 
-/* Legal pages */
-.legal-page {
-  padding: 96px 0;
-  background:
-    linear-gradient(180deg, #f8fafc 0, #fff 260px),
-    #fff;
-}
 
-.legal-container {
-  max-width: 880px;
-}
-
-.legal-page h1 {
-  margin: 12px 0 16px;
-  color: var(--text);
-  font-size: clamp(38px, 5vw, 58px);
-  font-weight: 850;
-  line-height: 1.06;
-  letter-spacing: -0.045em;
-}
-
-.legal-lead {
-  margin: 0;
-  color: var(--muted);
-  font-size: 18px;
-  line-height: 1.7;
-}
-
-.legal-updated {
-  margin: 18px 0 0;
-  color: var(--blue);
-  font-size: 14px;
-  font-weight: 850;
-}
-
-.legal-content {
-  margin-top: 42px;
-  padding: 34px;
-  border: 1px solid var(--border);
-  border-radius: 18px;
-  background: #fff;
-  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.07);
-}
-
-.legal-content section + section {
-  margin-top: 30px;
-  padding-top: 30px;
-  border-top: 1px solid var(--border);
-}
-
-.legal-content h2 {
-  margin: 0 0 12px;
-  color: var(--text);
-  font-size: 24px;
-  font-weight: 850;
-  line-height: 1.25;
-}
-
-.legal-content p {
-  margin: 0;
-  color: #334155;
-  line-height: 1.75;
-}
-
-.legal-content p + p {
-  margin-top: 12px;
-}
-
-.legal-content a {
-  color: var(--orange);
-  font-weight: 800;
-}
-
-.sitemap-content section + section {
-  margin-top: 34px;
-}
-
-.sitemap-link-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
-}
-
-.sitemap-link-grid a {
-  display: block;
-  padding: 13px 15px;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  background: #f8fafc;
-  color: var(--blue);
-  line-height: 1.35;
-}
-
-.sitemap-link-grid a:hover {
-  border-color: #fed7aa;
-  background: #fff7ed;
-  color: var(--orange-dark);
-}
 
 /* Responsiveness */
 @media (max-width: 1080px) {
@@ -1269,15 +1172,8 @@ svg {
     grid-template-columns: 1fr;
   }
   .products-showcase,
-  .product-detail-hero,
-  .legal-page {
+  .product-detail-hero {
     padding: 64px 0;
-  }
-  .legal-content {
-    padding: 24px;
-  }
-  .sitemap-link-grid {
-    grid-template-columns: 1fr;
   }
   .product-toolbar {
     display: block;

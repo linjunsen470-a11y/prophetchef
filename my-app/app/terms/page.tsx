@@ -55,30 +55,30 @@ const termsSections = [
 
 export default function TermsOfServicePage() {
   return (
-    <article className="legal-page">
-      <Container className="legal-container">
-        <span className="eyebrow">Terms of Service</span>
-        <h1>Terms of Service</h1>
-        <p className="legal-lead">
+    <article className="py-24 max-md:py-16 bg-[linear-gradient(180deg,#f8fafc_0,#fff_260px)]">
+      <Container className="max-w-[880px]">
+        <span className="inline-flex items-center gap-2 uppercase tracking-[0.12em] text-[12px] font-black text-[color:var(--orange)]">Terms of Service</span>
+        <h1 className="mt-3 mb-4 text-[color:var(--text)] text-[clamp(38px,5vw,58px)] font-extrabold leading-[1.06] tracking-[-0.045em]">Terms of Service</h1>
+        <p className="m-0 text-[color:var(--muted)] text-[18px] leading-[1.7]">
           These Terms of Service govern your access to and use of the {siteConfig.name}
           website. By using this website or submitting an inquiry, you agree to these
           Terms.
         </p>
-        <p className="legal-updated">Last updated: May 5, 2026</p>
+        <p className="mt-[18px] text-[color:var(--blue)] text-[14px] font-extrabold">Last updated: May 5, 2026</p>
 
-        <div className="legal-content">
+        <div className="mt-[42px] p-[34px] max-md:p-6 border border-[color:var(--border)] rounded-[18px] bg-white shadow-[0_18px_45px_rgba(15,23,42,0.07)]">
           {termsSections.map((section) => (
-            <section key={section.title}>
-              <h2>{section.title}</h2>
+            <section key={section.title} className="mt-[30px] pt-[30px] border-t border-[color:var(--border)] first:mt-0 first:pt-0 first:border-t-0">
+              <h2 className="m-0 mb-3 text-[color:var(--text)] text-[24px] font-extrabold leading-[1.25]">{section.title}</h2>
               {section.body.map((paragraph) => (
-                <p key={paragraph}>{paragraph}</p>
+                <p key={paragraph} className="m-0 mt-3 first:mt-0 text-[#334155] leading-[1.75]">{paragraph}</p>
               ))}
             </section>
           ))}
 
-          <section>
-            <h2>Warranty, Installation and After-Sales Support</h2>
-            <p>
+          <section className="mt-[30px] pt-[30px] border-t border-[color:var(--border)] first:mt-0 first:pt-0 first:border-t-0">
+            <h2 className="m-0 mb-3 text-[color:var(--text)] text-[24px] font-extrabold leading-[1.25]">Warranty, Installation and After-Sales Support</h2>
+            <p className="m-0 text-[#334155] leading-[1.75]">
               Product warranty, spare parts, installation guidance, commissioning,
               maintenance and after-sales support terms depend on product type, order
               scope and confirmed commercial documents. Website descriptions do not
@@ -86,21 +86,21 @@ export default function TermsOfServicePage() {
             </p>
           </section>
 
-          <section>
-            <h2>Changes to These Terms</h2>
-            <p>
+          <section className="mt-[30px] pt-[30px] border-t border-[color:var(--border)] first:mt-0 first:pt-0 first:border-t-0">
+            <h2 className="m-0 mb-3 text-[color:var(--text)] text-[24px] font-extrabold leading-[1.25]">Changes to These Terms</h2>
+            <p className="m-0 text-[#334155] leading-[1.75]">
               We may update these Terms from time to time. The latest version will be
               posted on this page with the updated date. Continued use of the website
               after changes means you accept the revised Terms.
             </p>
           </section>
 
-          <section>
-            <h2>Contact</h2>
-            <p>
+          <section className="mt-[30px] pt-[30px] border-t border-[color:var(--border)] first:mt-0 first:pt-0 first:border-t-0">
+            <h2 className="m-0 mb-3 text-[color:var(--text)] text-[24px] font-extrabold leading-[1.25]">Contact</h2>
+            <p className="m-0 text-[#334155] leading-[1.75]">
               For questions about these Terms, contact us at{" "}
-              <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a> or visit the{" "}
-              <Link href="/contact">contact page</Link>.
+              <a href={`mailto:${siteConfig.email}`} className="text-[color:var(--orange)] font-extrabold hover:text-[color:var(--orange-dark)] transition-colors">{siteConfig.email}</a> or visit the{" "}
+              <Link href="/contact" className="text-[color:var(--orange)] font-extrabold hover:text-[color:var(--orange-dark)] transition-colors">contact page</Link>.
             </p>
           </section>
         </div>
