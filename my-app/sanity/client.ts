@@ -1,7 +1,7 @@
 import { createClient } from "next-sanity";
 import type { ClientPerspective } from "next-sanity";
 import { defineLive } from "next-sanity/live";
-import { apiVersion, dataset, projectId, SANITY_REVALIDATE, studioUrl } from "./env";
+import { apiVersion, dataset, projectId, studioUrl } from "./env";
 
 export const client = createClient({
   projectId,
@@ -20,9 +20,6 @@ export const { sanityFetch: liveSanityFetch, SanityLive } = defineLive({
   client,
   serverToken: token || false,
   browserToken: false,
-  fetchOptions: {
-    revalidate: SANITY_REVALIDATE,
-  },
 });
 
 export async function sanityFetch<QueryResponse>({

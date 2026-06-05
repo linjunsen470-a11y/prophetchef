@@ -1,3 +1,21 @@
-ignoredBuiltDependencies:
+packages:
+  - "."
+
+allowBuilds:
+  esbuild: true
+  sharp: true
+  unrs-resolver: true
+
+onlyBuiltDependencies:
+  - esbuild
   - sharp
   - unrs-resolver
+
+peerDependencyRules:
+  ignoreMissing:
+    - sanity
+    - styled-components
+
+overrides:
+  "next-sanity>sanity": "-"
+  "next-sanity>styled-components": "-"
