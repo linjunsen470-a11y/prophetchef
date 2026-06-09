@@ -2,11 +2,11 @@
   position: relative;
   overflow: hidden;
   background:
-    linear-gradient(180deg, rgba(249, 115, 22, 0.28), rgba(249, 115, 22, 0) 5px),
-    linear-gradient(135deg, #244a78 0%, var(--blue) 48%, #10243d 100%);
+    linear-gradient(180deg, rgba(230, 95, 26, 0.28), rgba(230, 95, 26, 0) 5px),
+    linear-gradient(135deg, #1f456f 0%, var(--blue) 48%, #091827 100%);
   color: #fff;
   padding: 70px 0;
-  border-top: 1px solid rgba(249, 115, 22, 0.36);
+  border-top: 1px solid rgba(230, 95, 26, 0.36);
 }
 
 .ctaInner {

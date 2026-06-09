@@ -24,7 +24,7 @@ export default async function SitemapPage() {
         <h1 className="mt-3 mb-4 text-[color:var(--text)] text-[clamp(38px,5vw,58px)] font-extrabold leading-[1.06] tracking-[-0.045em]">Sitemap</h1>
         <p className="m-0 text-[color:var(--muted)] text-[18px] leading-[1.7]">All public pages are generated from the same route registry used by the XML sitemap.</p>
 
-        <div className="mt-[42px] p-[34px] max-md:p-6 border border-[color:var(--border)] rounded-[18px] bg-white shadow-[0_18px_45px_rgba(15,23,42,0.07)]">
+        <div className="mt-[42px] p-[34px] max-md:p-6 border border-[color:var(--border)] rounded-[10px] bg-white shadow-[0_14px_34px_rgba(9,24,39,0.08)]">
           {Object.entries(groupedEntries).map(([group, entries]) => (
             <section key={group} className="mt-[34px] first:mt-0">
               <h2 className="m-0 mb-3 text-[color:var(--text)] text-[24px] font-extrabold leading-[1.25]">{groupTitles[group as keyof typeof groupTitles]}</h2>

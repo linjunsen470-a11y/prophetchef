@@ -3,8 +3,8 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-  border-radius: 999px;
-  padding: 13px 22px;
+  border-radius: 7px;
+  padding: 13px 20px;
   font-weight: 800;
   font-size: 14px;
   line-height: 1;
@@ -24,7 +24,7 @@
 .primary {
   background: var(--orange);
   color: #fff;
-  box-shadow: 0 12px 28px rgba(249, 115, 22, 0.25);
+  box-shadow: 0 10px 22px rgba(230, 95, 26, 0.22);
 }
 
 .primary:hover {
@@ -35,7 +35,7 @@
 .secondary {
   border-color: var(--blue);
   color: var(--blue);
-  background: #fff;
+  background: #f9fbfc;
 }
 
 .secondary:hover {
@@ -46,7 +46,7 @@
 .outlineLight {
   border-color: rgba(255, 255, 255, 0.75);
   color: #fff;
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.05);
 }
 
 .outlineLight:hover {

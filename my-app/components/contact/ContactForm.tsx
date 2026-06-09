@@ -26,85 +26,39 @@ export const ContactForm = () => {
       } else {
         setStatus("Error: " + result.message);
       }
-    } catch (err) {
+    } catch {
       setStatus("Error sending message. Please try again later.");
     }
   };
 
   return (
-    <form className="contact-form" onSubmit={handleSubmit}>
-      <div className="form-grid">
-        <div className="form-group">
-          <label>Name</label>
-          <input name="name" placeholder="Your Name" required />
+    <form className="rounded-[var(--radius-custom)] border border-[color:var(--border)] bg-white p-8 shadow-[0_10px_26px_rgba(9,24,39,0.05)]" onSubmit={handleSubmit}>
+      <div className="grid grid-cols-2 gap-5 max-[760px]:grid-cols-1 max-[760px]:gap-0">
+        <div className="mb-5">
+          <label className="mb-2 block text-[14px] font-extrabold text-[color:var(--text)]">Name</label>
+          <input className="w-full rounded-[7px] border border-[color:var(--border)] bg-[#f4f7f9] px-[15px] py-3.5 text-[color:var(--text)] transition-colors focus:border-[color:var(--orange)] focus:bg-white focus:outline focus:outline-2 focus:outline-[rgba(230,95,26,0.24)]" name="name" placeholder="Your Name" required />
         </div>
-        <div className="form-group">
-          <label>Email</label>
-          <input type="email" name="email" placeholder="Your Email" required />
-        </div>
-      </div>
-      <div className="form-grid">
-        <div className="form-group">
-          <label>Company</label>
-          <input name="company" placeholder="Company Name" />
-        </div>
-        <div className="form-group">
-          <label>Phone / WhatsApp</label>
-          <input name="phone" placeholder="Phone Number" />
+        <div className="mb-5">
+          <label className="mb-2 block text-[14px] font-extrabold text-[color:var(--text)]">Email</label>
+          <input className="w-full rounded-[7px] border border-[color:var(--border)] bg-[#f4f7f9] px-[15px] py-3.5 text-[color:var(--text)] transition-colors focus:border-[color:var(--orange)] focus:bg-white focus:outline focus:outline-2 focus:outline-[rgba(230,95,26,0.24)]" type="email" name="email" placeholder="Your Email" required />
         </div>
       </div>
-      <div className="form-group">
-        <label>Message</label>
-        <textarea name="message" rows={6} placeholder="How can we help you?"></textarea>
+      <div className="grid grid-cols-2 gap-5 max-[760px]:grid-cols-1 max-[760px]:gap-0">
+        <div className="mb-5">
+          <label className="mb-2 block text-[14px] font-extrabold text-[color:var(--text)]">Company</label>
+          <input className="w-full rounded-[7px] border border-[color:var(--border)] bg-[#f4f7f9] px-[15px] py-3.5 text-[color:var(--text)] transition-colors focus:border-[color:var(--orange)] focus:bg-white focus:outline focus:outline-2 focus:outline-[rgba(230,95,26,0.24)]" name="company" placeholder="Company Name" />
+        </div>
+        <div className="mb-5">
+          <label className="mb-2 block text-[14px] font-extrabold text-[color:var(--text)]">Phone / WhatsApp</label>
+          <input className="w-full rounded-[7px] border border-[color:var(--border)] bg-[#f4f7f9] px-[15px] py-3.5 text-[color:var(--text)] transition-colors focus:border-[color:var(--orange)] focus:bg-white focus:outline focus:outline-2 focus:outline-[rgba(230,95,26,0.24)]" name="phone" placeholder="Phone Number" />
+        </div>
+      </div>
+      <div className="mb-5">
+        <label className="mb-2 block text-[14px] font-extrabold text-[color:var(--text)]">Message</label>
+        <textarea className="w-full rounded-[7px] border border-[color:var(--border)] bg-[#f4f7f9] px-[15px] py-3.5 text-[color:var(--text)] transition-colors focus:border-[color:var(--orange)] focus:bg-white focus:outline focus:outline-2 focus:outline-[rgba(230,95,26,0.24)]" name="message" rows={6} placeholder="How can we help you?"></textarea>
       </div>
       <Button type="submit" iconEnd={<Send aria-hidden="true" />}>Send Message</Button>
-      {status && <p className="form-message">{status}</p>}
-      <style jsx>{`
-        .contact-form {
-          background: #fff;
-          border: 1px solid var(--border);
-          border-radius: var(--radius-custom);
-          padding: 32px;
-          box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
-        }
-        .form-grid {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 20px;
-          margin-bottom: 20px;
-        }
-        .form-group {
-          margin-bottom: 20px;
-        }
-        label {
-          display: block;
-          font-weight: 800;
-          margin-bottom: 8px;
-          font-size: 14px;
-        }
-        input, textarea {
-          width: 100%;
-          border: 1px solid var(--border);
-          border-radius: 12px;
-          padding: 14px 15px;
-          font: inherit;
-          color: var(--color-text);
-          background: #f8fafc;
-        }
-        input:focus, textarea:focus {
-          outline: 2px solid rgba(249, 115, 22, 0.25);
-          border-color: var(--orange);
-          background: #fff;
-        }
-        .form-message {
-          margin: 16px 0 0;
-          color: #15803d;
-          font-weight: 800;
-        }
-        @media (max-width: 760px) {
-          .form-grid { grid-template-columns: 1fr; gap: 0; }
-        }
-      `}</style>
+      {status && <p className="mt-4 font-extrabold text-[#15803d]">{status}</p>}
     </form>
   );
 };

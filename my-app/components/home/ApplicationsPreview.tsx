@@ -44,7 +44,7 @@ export const ApplicationsPreview = async ({ applications, header }: Applications
       </Container>
       <Container className="grid grid-cols-4 max-[1080px]:grid-cols-2 max-[760px]:grid-cols-1 gap-5">
         {displayApplications.map((app) => (
-          <article key={app.id} className="p-6 bg-white border border-[color:var(--border)] rounded-[var(--radius)] shadow-[0_10px_30px_rgba(15,23,42,0.04)] overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_36px_rgba(15,23,42,0.08)]">
+          <article key={app.id} className="p-6 bg-white border border-[color:var(--border)] rounded-[var(--radius)] shadow-[0_10px_26px_rgba(9,24,39,0.05)] overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_14px_30px_rgba(9,24,39,0.08)]">
             <span className="inline-flex items-center gap-1.5 text-[color:var(--orange)] font-black mb-3">
               <BadgeCheck aria-hidden="true" className="w-[17px] h-[17px]" />
               {app.id}

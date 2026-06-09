@@ -21,8 +21,8 @@ export const BlogCard: React.FC<BlogCardProps> = ({ title, excerpt, date, catego
   const categoryLabel = category?.title || "News";
 
   return (
-    <article className="bg-white border border-[color:var(--border)] rounded-[var(--radius)] shadow-[0_10px_30px_rgba(15,23,42,0.04)] overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_36px_rgba(15,23,42,0.08)]">
-      <div className="relative h-[210px] w-full overflow-hidden bg-[linear-gradient(135deg,rgba(30,58,95,0.2),rgba(249,115,22,0.1))] bg-slate-200">
+    <article className="bg-white border border-[color:var(--border)] rounded-[var(--radius)] shadow-[0_10px_26px_rgba(9,24,39,0.05)] overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_14px_30px_rgba(9,24,39,0.08)]">
+      <div className="relative h-[210px] w-full overflow-hidden bg-[linear-gradient(135deg,rgba(23,49,79,0.22),rgba(230,95,26,0.1))] bg-slate-200">
         {cleanImage ? (
           <Image 
             src={cleanImage}

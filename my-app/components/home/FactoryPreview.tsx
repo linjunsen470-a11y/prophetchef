@@ -33,7 +33,7 @@ export const FactoryPreview = ({ data }: FactoryPreviewProps) => {
             alt={data?.image?.alt || "Commercial kitchen equipment production base"}
             fill
             sizes="(max-width: 768px) 100vw, 50vw"
-            className="rounded-[22px] object-cover shadow-[var(--shadow)]"
+            className="rounded-[10px] object-cover shadow-[var(--shadow)]"
           />
         </div>
         <div>

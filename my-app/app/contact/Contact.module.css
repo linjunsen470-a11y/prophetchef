@@ -38,8 +38,8 @@
   place-items: center;
   width: 42px;
   height: 42px;
-  border-radius: 12px;
-  background: #eff6ff;
+  border-radius: 7px;
+  background: #edf3f8;
   color: var(--blue);
   flex-shrink: 0;
 }

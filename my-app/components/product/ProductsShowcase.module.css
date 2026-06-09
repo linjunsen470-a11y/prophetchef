@@ -25,7 +25,7 @@
   border-radius: var(--radius);
   padding: 18px;
   background: #fff;
-  box-shadow: 0 14px 40px rgba(15, 23, 42, 0.06);
+  box-shadow: 0 12px 32px rgba(9, 24, 39, 0.07);
 }
 
 @media (max-width: 1080px) {
@@ -57,7 +57,7 @@
   text-align: left;
   background: #fff;
   border: 1px solid transparent;
-  border-radius: 12px;
+  border-radius: 7px;
   padding: 12px 14px;
   margin: 4px 0;
   color: var(--text);
@@ -75,8 +75,8 @@
 
 .filterBtn:hover,
 .filterBtn.active {
-  background: #eff6ff;
-  border-color: #dbeafe;
+  background: #edf3f8;
+  border-color: #cfd8e3;
   color: var(--blue);
 }
 
@@ -87,9 +87,9 @@
 .sidebarCta {
   margin-top: 20px;
   padding: 18px;
-  border-radius: 14px;
-  background: linear-gradient(135deg, #f8fafc, #eff6ff);
-  border: 1px solid #dbeafe;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #f4f7f9, #edf3f8);
+  border: 1px solid #cfd8e3;
 }
 
 .sidebarCta strong {
@@ -115,7 +115,7 @@
   border: 1px solid var(--border);
   border-radius: var(--radius);
   background: #fff;
-  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
+  box-shadow: 0 10px 26px rgba(9, 24, 39, 0.05);
 }
 
 @media (max-width: 760px) {
@@ -141,10 +141,10 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  border-radius: 999px;
+  border-radius: 6px;
   padding: 9px 13px;
-  border: 1px solid #dbeafe;
-  background: #eff6ff;
+  border: 1px solid #cfd8e3;
+  background: #edf3f8;
   color: var(--blue);
   font-size: 13px;
   font-weight: 850;

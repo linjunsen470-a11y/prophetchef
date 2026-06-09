@@ -1,7 +1,7 @@
 .hero,
 .pageHero {
   position: relative;
-  background: #08172b;
+  background: #06121f;
   min-height: 680px;
   display: flex;
   align-items: center;
@@ -45,8 +45,8 @@
   inset: 0;
   z-index: 1;
   background:
-    radial-gradient(circle at 78% 34%, rgba(249, 115, 22, 0.12), transparent 26%),
-    linear-gradient(90deg, rgba(8, 23, 43, 0.98) 0%, rgba(16, 36, 61, 0.9) 42%, rgba(16, 36, 61, 0.7) 72%, rgba(16, 36, 61, 0.58) 100%);
+    linear-gradient(180deg, rgba(230, 95, 26, 0.13), rgba(230, 95, 26, 0) 78px),
+    linear-gradient(90deg, rgba(6, 18, 31, 0.98) 0%, rgba(9, 24, 39, 0.92) 42%, rgba(23, 49, 79, 0.72) 72%, rgba(23, 49, 79, 0.58) 100%);
 }
 
 .heroContent,
@@ -117,9 +117,9 @@
 .miniTrust span {
   display: inline-flex;
   padding: 8px 12px;
-  border-radius: 999px;
+  border-radius: 6px;
   border: 1px solid rgba(255, 255, 255, 0.22);
-  background: rgba(255, 255, 255, 0.09);
+  background: rgba(255, 255, 255, 0.07);
   font-size: 13px;
   color: #fff;
   font-weight: 700;
@@ -131,16 +131,16 @@
   align-self: end;
   padding: 12px;
   border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: 18px;
-  background: rgba(8, 23, 43, 0.42);
-  box-shadow: 0 22px 50px rgba(8, 23, 43, 0.24);
+  border-radius: 10px;
+  background: rgba(6, 18, 31, 0.48);
+  box-shadow: 0 18px 42px rgba(6, 18, 31, 0.28);
   backdrop-filter: blur(12px);
   min-width: 200px;
 }
 
 .heroProof div {
   padding: 8px 12px;
-  border-radius: 12px;
+  border-radius: 7px;
   background: rgba(255, 255, 255, 0.08);
 }
 
@@ -148,7 +148,7 @@
   width: 18px;
   height: 18px;
   margin-bottom: 6px;
-  color: #ffb36b;
+  color: #f59b50;
 }
 
 .heroProof strong {

@@ -134,7 +134,7 @@ export default async function NewsDetailPage({ params }: NewsPageProps) {
 
         {/* Featured Image */}
         <Container className="max-w-[1000px] -mt-10 md:-mt-16 mb-16">
-          <div className="relative aspect-[16/9] rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
+          <div className="relative aspect-[16/9] rounded-[10px] overflow-hidden shadow-[0_14px_34px_rgba(9,24,39,0.14)] border-4 border-white">
             <Image 
               src={stegaClean(item.coverImage?.url || "")} 
               alt={stegaClean(item.coverImage?.alt || item.title)} 
@@ -148,7 +148,7 @@ export default async function NewsDetailPage({ params }: NewsPageProps) {
 
         {/* Content Body */}
         <Container className="max-w-[800px]">
-          <div className="prose prose-lg md:prose-xl prose-slate max-w-none prose-headings:font-black prose-headings:tracking-tight prose-a:text-orange prose-img:rounded-2xl">
+          <div className="prose prose-lg md:prose-xl prose-slate max-w-none prose-headings:font-black prose-headings:tracking-tight prose-a:text-orange prose-img:rounded-[10px]">
             <NewsBody blocks={item.body} fallback={item.excerpt} />
           </div>
 
@@ -156,7 +156,7 @@ export default async function NewsDetailPage({ params }: NewsPageProps) {
             <div className="mt-16 pt-8 border-t border-slate-200">
               <div className="flex flex-wrap gap-2">
                 {item.tags.map(tag => (
-                  <span key={tag} className="bg-slate-100 text-slate-700 px-4 py-2 rounded-full text-sm font-bold border border-slate-200">
+                  <span key={tag} className="bg-slate-100 text-slate-700 px-4 py-2 rounded-[6px] text-sm font-bold border border-slate-200">
                     #{tag}
                   </span>
                 ))}

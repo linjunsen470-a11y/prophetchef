@@ -35,7 +35,7 @@
 .applicationCard:hover,
 .solutionCard:hover {
   transform: translateY(-3px);
-  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.1);
+  box-shadow: 0 14px 34px rgba(9, 24, 39, 0.11);
 }
 
 .applicationImage {
@@ -44,14 +44,14 @@
   margin: 0;
   aspect-ratio: 16 / 9;
   overflow: hidden;
-  background: #e2e8f0;
+  background: #d8e0e8;
 }
 
 .applicationImage::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(30, 58, 95, 0.18), rgba(249, 115, 22, 0.08));
+  background: linear-gradient(135deg, rgba(23, 49, 79, 0.2), rgba(230, 95, 26, 0.08));
   pointer-events: none;
 }
 

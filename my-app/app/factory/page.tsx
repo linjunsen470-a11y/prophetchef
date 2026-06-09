@@ -98,7 +98,7 @@ function renderStats(items: StatItem[] | undefined) {
   return (items || []).map((item) => {
     const Icon = getIcon(item.icon, BadgeCheck);
     return (
-      <div key={`${item.value}-${item.label}`} className="p-6 border border-[color:var(--border)] rounded-[18px] bg-white text-center">
+      <div key={`${item.value}-${item.label}`} className="p-6 border border-[color:var(--border)] rounded-[10px] bg-white text-center">
         <Icon aria-hidden="true" className="w-6 h-6 mx-auto mb-3 text-[color:var(--orange)]" />
         <strong className="block text-[color:var(--blue)] text-[32px] font-black leading-none">{item.value}</strong>
         <span className="block mt-2 text-[color:var(--muted)] text-[14px]">{item.label}</span>
@@ -111,9 +111,9 @@ function renderCards(items: TextCard[] | undefined) {
   return (items || []).map((item) => {
     const Icon = getIcon(item.icon, BadgeCheck);
     return (
-      <article key={item._key || item.title} className="p-6 border border-[color:var(--border)] rounded-[var(--radius)] bg-white shadow-[0_10px_30px_rgba(15,23,42,0.04)]">
+      <article key={item._key || item.title} className="p-6 border border-[color:var(--border)] rounded-[var(--radius)] bg-white shadow-[0_10px_26px_rgba(9,24,39,0.05)]">
         {item.icon && (
-          <span className="inline-grid place-items-center w-[42px] h-[42px] mb-4 rounded-[12px] bg-[#eff6ff] text-[color:var(--blue)]">
+          <span className="inline-grid place-items-center w-[42px] h-[42px] mb-4 rounded-[7px] bg-[#edf3f8] text-[color:var(--blue)]">
             <Icon aria-hidden="true" className="w-[21px] h-[21px]" />
           </span>
         )}
@@ -150,7 +150,7 @@ export default async function FactoryPage() {
               alt={overview?.image?.alt || "Commercial kitchen equipment factory overview"}
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
-              className="rounded-[22px] object-cover shadow-[var(--shadow)]"
+              className="rounded-[10px] object-cover shadow-[var(--shadow)]"
             />
           </div>
           <div>
@@ -202,7 +202,7 @@ export default async function FactoryPage() {
           {(exportMarkets || []).map((market) => {
             const Icon = getIcon(market.icon, BadgeCheck);
             return (
-              <span key={market.label} className="inline-flex items-center gap-2 px-[18px] py-3.5 border border-[#dbeafe] rounded-full bg-[#eff6ff] text-[color:var(--blue)] font-extrabold">
+              <span key={market.label} className="inline-flex items-center gap-2 px-[18px] py-3.5 border border-[#cfd8e3] rounded-[6px] bg-[#edf3f8] text-[color:var(--blue)] font-extrabold">
                 <Icon aria-hidden="true" className="w-4 h-4 text-[color:var(--orange)]" />
                 {market.value ? `${market.value} ` : ""}
                 {market.label}

@@ -36,7 +36,7 @@ export const ProductCategories = ({ categories, header }: ProductCategoriesProps
           const href = "slug" in cat ? `/products?category=${cat.slug}` : cat.href;
 
           return (
-            <article key={name} className="bg-white border border-[color:var(--border)] rounded-[var(--radius)] shadow-[0_10px_30px_rgba(15,23,42,0.04)] overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_36px_rgba(15,23,42,0.08)]">
+            <article key={name} className="bg-white border border-[color:var(--border)] rounded-[var(--radius)] shadow-[0_10px_26px_rgba(9,24,39,0.05)] overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_14px_30px_rgba(9,24,39,0.08)]">
               <div className="relative h-[190px] w-full">
                 {image ? (
                   <Image 

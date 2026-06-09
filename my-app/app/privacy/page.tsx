@@ -67,7 +67,7 @@ export default function PrivacyPolicyPage() {
         </p>
         <p className="mt-[18px] text-[color:var(--blue)] text-[14px] font-extrabold">Last updated: May 5, 2026</p>
 
-        <div className="mt-[42px] p-[34px] max-md:p-6 border border-[color:var(--border)] rounded-[18px] bg-white shadow-[0_18px_45px_rgba(15,23,42,0.07)]">
+        <div className="mt-[42px] p-[34px] max-md:p-6 border border-[color:var(--border)] rounded-[10px] bg-white shadow-[0_14px_34px_rgba(9,24,39,0.08)]">
           {policySections.map((section) => (
             <section key={section.title} className="mt-[30px] pt-[30px] border-t border-[color:var(--border)] first:mt-0 first:pt-0 first:border-t-0">
               <h2 className="m-0 mb-3 text-[color:var(--text)] text-[24px] font-extrabold leading-[1.25]">{section.title}</h2>

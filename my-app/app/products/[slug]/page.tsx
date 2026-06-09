@@ -119,9 +119,9 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
             
             <div className="flex flex-wrap gap-[7px] my-3.5">
               {product.tags.map(tag => (
-                <span key={tag} className="bg-[#eff6ff] text-[color:var(--blue)] border border-[#dbeafe] px-[11px] py-2 rounded-full text-[13px] font-bold">{tag}</span>
+                <span key={tag} className="bg-[#edf3f8] text-[color:var(--blue)] border border-[#cfd8e3] px-[11px] py-2 rounded-[6px] text-[13px] font-bold">{tag}</span>
               ))}
-              {product.modelCode && <span className="bg-[#eff6ff] text-[color:var(--blue)] border border-[#dbeafe] px-[11px] py-2 rounded-full text-[13px] font-bold">Model: {product.modelCode}</span>}
+              {product.modelCode && <span className="bg-[#edf3f8] text-[color:var(--blue)] border border-[#cfd8e3] px-[11px] py-2 rounded-[6px] text-[13px] font-bold">Model: {product.modelCode}</span>}
             </div>
 
             <div className="flex flex-wrap gap-3 mt-6 max-[560px]:flex-col max-[560px]:items-stretch">
@@ -163,7 +163,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
           </Container>
           <Container className="grid grid-cols-3 max-[760px]:grid-cols-1 gap-5">
             {product.features.map((feature, idx) => (
-              <article key={idx} className="p-6 bg-white border border-[color:var(--border)] rounded-[var(--radius)] shadow-[0_10px_30px_rgba(15,23,42,0.04)]">
+              <article key={idx} className="p-6 bg-white border border-[color:var(--border)] rounded-[var(--radius)] shadow-[0_10px_26px_rgba(9,24,39,0.05)]">
                 <span className="inline-flex mb-3.5 text-[color:var(--orange)] font-black">{(idx + 1).toString().padStart(2, '0')}</span>
                 <h3 className="m-0 mb-2.5 text-[20px] leading-[1.25] font-extrabold">{feature.title}</h3>
                 {feature.description && <p className="m-0 text-[color:var(--muted)]">{feature.description}</p>}

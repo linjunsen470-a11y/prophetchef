@@ -7,7 +7,7 @@
   height: 560px;
   overflow: hidden;
   border: 1px solid var(--border);
-  border-radius: 22px;
+  border-radius: 10px;
   background: #fff;
   box-shadow: var(--shadow);
 }
@@ -24,7 +24,7 @@
   height: 82px;
   overflow: hidden;
   border: 2px solid transparent;
-  border-radius: 14px;
+  border-radius: 7px;
   cursor: pointer;
   padding: 0;
   background: #fff;
@@ -37,7 +37,7 @@
 
 .thumb.active {
   border-color: var(--orange);
-  box-shadow: 0 8px 20px rgba(249, 115, 22, 0.2);
+  box-shadow: 0 8px 18px rgba(230, 95, 26, 0.2);
 }
 
 @media (max-width: 760px) {

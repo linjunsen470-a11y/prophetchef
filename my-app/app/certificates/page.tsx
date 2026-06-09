@@ -100,8 +100,8 @@ export default async function CertificatesPage() {
         />
         <Container className="grid grid-cols-4 max-[1080px]:grid-cols-2 max-[760px]:grid-cols-1 gap-5">
           {certificates.map((cert) => (
-            <article key={cert.id || cert.title} className="p-7 text-center bg-white border border-[color:var(--border)] rounded-[var(--radius)] shadow-[0_10px_30px_rgba(15,23,42,0.04)] overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_36px_rgba(15,23,42,0.08)]">
-              <div className="w-[76px] h-[76px] grid place-items-center mx-auto mb-[18px] rounded-[18px] bg-[#eff6ff] text-[color:var(--blue)] font-black">
+            <article key={cert.id || cert.title} className="p-7 text-center bg-white border border-[color:var(--border)] rounded-[var(--radius)] shadow-[0_10px_26px_rgba(9,24,39,0.05)] overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_14px_30px_rgba(9,24,39,0.08)]">
+              <div className="w-[76px] h-[76px] grid place-items-center mx-auto mb-[18px] rounded-[8px] bg-[#edf3f8] text-[color:var(--blue)] font-black">
                 {cert.shortLabel}
               </div>
               <h3 className="m-0 mb-2 font-extrabold text-[color:var(--text)] text-[20px] leading-[1.25]">{cert.title}</h3>
@@ -121,7 +121,7 @@ export default async function CertificatesPage() {
           {(processSteps || []).map((step) => {
             const Icon = getIcon("fileCheck", FileCheck);
             return (
-              <div key={step} className="min-h-[92px] grid place-items-center border border-[color:var(--border)] rounded-[16px] bg-white p-[18px] text-[color:var(--blue)] text-center font-extrabold">
+              <div key={step} className="min-h-[92px] grid place-items-center border border-[color:var(--border)] rounded-[8px] bg-white p-[18px] text-[color:var(--blue)] text-center font-extrabold">
                 <div>
                   <Icon aria-hidden="true" className="mr-2 inline-block" size={18} />
                   {step}

@@ -27,7 +27,7 @@ export function NewsListClient({ newsItems }: NewsListClientProps) {
         {categories.map((category) => (
           <button
             key={category}
-            className={`px-[18px] py-[11px] border rounded-full text-[color:var(--text)] font-extrabold cursor-pointer transition-colors ${activeCategory === category ? "border-[color:var(--blue)] bg-[color:var(--blue)] text-white" : "border-[color:var(--border)] bg-white hover:border-[color:var(--blue)] hover:bg-[color:var(--blue)] hover:text-white"}`}
+            className={`px-[18px] py-[11px] border rounded-[7px] text-[color:var(--text)] font-extrabold cursor-pointer transition-colors ${activeCategory === category ? "border-[color:var(--blue)] bg-[color:var(--blue)] text-white" : "border-[color:var(--border)] bg-white hover:border-[color:var(--blue)] hover:bg-[color:var(--blue)] hover:text-white"}`}
             onClick={() => setActiveCategory(category)}
           >
             {category}

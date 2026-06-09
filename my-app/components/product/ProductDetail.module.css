@@ -1,8 +1,8 @@
 .productDetailHero {
   padding: 82px 0 94px;
   background:
-    radial-gradient(circle at 84% 10%, rgba(249, 115, 22, 0.1), transparent 28%),
-    linear-gradient(180deg, #f8fafc 0, #fff 70%);
+    linear-gradient(180deg, rgba(230, 95, 26, 0.08), rgba(230, 95, 26, 0) 90px),
+    linear-gradient(180deg, #f4f7f9 0, #fff 70%);
 }
 
 .productDetailGrid {
@@ -53,7 +53,7 @@
   width: 6px;
   height: 6px;
   background: var(--orange);
-  border-radius: 999px;
+  border-radius: 1px;
 }
 
 .productSummaryStats {
@@ -92,7 +92,7 @@
   border-collapse: collapse;
   margin-top: 24px;
   background: #fff;
-  border-radius: 12px;
+  border-radius: 8px;
   overflow: hidden;
   border: 1px solid var(--border);
 }

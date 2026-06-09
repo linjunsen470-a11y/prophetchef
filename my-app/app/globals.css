@@ -3,18 +3,18 @@
 
 
 :root {
-  --blue: #1e3a5f;
-  --blue-dark: #10243d;
-  --orange: #f97316;
-  --orange-dark: #ea580c;
-  --text: #0f172a;
-  --muted: #64748b;
-  --light: #f8fafc;
+  --blue: #17314f;
+  --blue-dark: #091827;
+  --orange: #e65f1a;
+  --orange-dark: #c94b12;
+  --text: #111827;
+  --muted: #5b6675;
+  --light: #f4f7f9;
   --white: #ffffff;
-  --border: #e2e8f0;
-  --shadow: 0 18px 45px rgba(15, 23, 42, 0.1);
-  --radius: 18px;
-  --radius-custom: 18px; /* Added for compatibility */
+  --border: #cfd8e3;
+  --shadow: 0 14px 34px rgba(9, 24, 39, 0.11);
+  --radius: 10px;
+  --radius-custom: 10px; /* Added for compatibility */
 }
 
 * {
@@ -43,7 +43,7 @@ img {
   max-width: 100%;
   display: block;
   object-fit: cover;
-  background: #e2e8f0;
+  background: #d8e0e8;
 }
 
 svg {
@@ -115,7 +115,7 @@ svg {
 }
 
 .eyebrow.light {
-  color: #ffb36b;
+  color: #f59b50;
 }
 
 /* Responsiveness */
