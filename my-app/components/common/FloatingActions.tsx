@@ -35,7 +35,6 @@ export const FloatingActions = ({ settings }: FloatingActionsProps) => {
         aria-label="Chat on WhatsApp"
       >
         <MessageCircle aria-hidden="true" />
-        <span>WhatsApp</span>
       </a>
       <button
         className={`${styles.backToTop}${showBackToTop ? ` ${styles.show}` : ""}`}

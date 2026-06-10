@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { BadgeCheck } from "lucide-react";
 import { PageHero } from "@/components/common/PageHero";
-import { CTASection } from "@/components/common/CTASection";
 import { ProductListClient } from "@/components/product/ProductListClient";
 import { getProducts, getProductsPageSettings, getSiteSettings } from "@/sanity/queries";
 import { getIcon } from "@/components/common/IconByName";
@@ -75,8 +74,6 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
       <section className="py-[76px] max-[760px]:py-16 bg-[linear-gradient(180deg,#f8fafc_0,#fff_220px)]">
         <ProductListClient products={products} initialCategorySlug={initialCategorySlug} />
       </section>
-
-      <CTASection />
     </>
   );
 }

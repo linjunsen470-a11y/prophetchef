@@ -9,51 +9,56 @@ import styles from "./ProductCard.module.css";
 interface ProductCardProps {
   product: Product;
   index: number;
+  showCategory?: boolean;
 }
 
-export const ProductCard: React.FC<ProductCardProps> = ({ product, index }) => {
+export const ProductCard: React.FC<ProductCardProps> = ({ product, index, showCategory = true }) => {
   const imageUrl = product.coverImage?.url;
   const cleanSlug = stegaClean(product.slug);
   const productHref = `/products/${cleanSlug}`;
   const visibleTags = product.tags.slice(0, 3);
   const hiddenTagCount = Math.max(product.tags.length - visibleTags.length, 0);
+  const categoryName = product.category?.name || "Uncategorized";
+  const titleId = `product-card-title-${cleanSlug}`;
 
   return (
-    <article className={styles.productCard} data-category={product.category?.name || "Uncategorized"}>
-      <Link href={productHref} className={styles.productMedia} aria-label={`View details for ${product.name}`}>
-        {imageUrl ? (
-          <ProductImageFrame
-            src={imageUrl}
-            alt={product.coverImage?.alt || product.name}
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            imageClassName={styles.productMediaImage}
-          />
-        ) : (
-          <div className={styles.imagePlaceholder}>
-            <Camera size={48} strokeWidth={1} />
-            <span>Image coming soon</span>
+    <article className={styles.productCard} data-category={categoryName}>
+      <Link href={productHref} className={styles.productCardLink} aria-labelledby={titleId}>
+        <div className={styles.productMedia} aria-hidden="true">
+          {imageUrl ? (
+            <ProductImageFrame
+              src={imageUrl}
+              alt={product.coverImage?.alt || product.name}
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              imageClassName={styles.productMediaImage}
+            />
+          ) : (
+            <div className={styles.imagePlaceholder}>
+              <Camera size={48} strokeWidth={1} />
+              <span>Image coming soon</span>
+            </div>
+          )}
+        </div>
+        <div className={styles.productBody}>
+          <div className={styles.productCardTopline}>
+            <div className={styles.productMetaLeading}>
+              <span className={styles.productNumber}>{(index + 1).toString().padStart(2, "0")}</span>
+              {showCategory && <span className={styles.productCategoryBadge}>{categoryName}</span>}
+            </div>
+            {product.modelCode && <span className={styles.productModel}>{product.modelCode}</span>}
           </div>
-        )}
-        <span className={styles.productCategoryBadge}>{product.category?.name || "Uncategorized"}</span>
-      </Link>
-      <div className={styles.productBody}>
-        <div className={styles.productCardTopline}>
-          <div className={styles.productNumber}>{(index + 1).toString().padStart(2, "0")}</div>
-          {product.modelCode && <span>{product.modelCode}</span>}
-        </div>
-        <h3>
-          <Link href={productHref} className={styles.productTitleLink}>
+          <h3 id={titleId} className={styles.productTitle}>
             {product.name}
-          </Link>
-        </h3>
-        <p>{product.description}</p>
-        <div className={styles.tagRow}>
-          {visibleTags.map((tag) => (
-            <span key={tag}>{tag}</span>
-          ))}
-          {hiddenTagCount > 0 && <span>+{hiddenTagCount}</span>}
+          </h3>
+          <p>{product.description}</p>
+          <div className={styles.tagRow}>
+            {visibleTags.map((tag) => (
+              <span key={tag}>{tag}</span>
+            ))}
+            {hiddenTagCount > 0 && <span>+{hiddenTagCount}</span>}
+          </div>
         </div>
-      </div>
+      </Link>
     </article>
   );
 };

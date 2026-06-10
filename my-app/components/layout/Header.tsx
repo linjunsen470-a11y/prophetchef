@@ -34,6 +34,19 @@ export const Header = ({ settings }: HeaderProps) => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    if (!isMobileMenuOpen) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isMobileMenuOpen]);
+
   const headerClasses = `${styles.siteHeader} ${isScrolled ? styles.scrolled : ""} ${isMobileMenuOpen ? styles.menuOpen : ""}`;
   const isActivePath = (href: string) => (href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(`${href}/`));
 
@@ -72,6 +85,10 @@ export const Header = ({ settings }: HeaderProps) => {
               {item.name}
             </Link>
           ))}
+          <Link href="/contact" className={styles.mobileQuoteLink} onClick={() => setIsMobileMenuOpen(false)}>
+            Get Quote
+            <Send aria-hidden="true" />
+          </Link>
         </nav>
 
         <div className={styles.headerActions}>
@@ -82,11 +99,15 @@ export const Header = ({ settings }: HeaderProps) => {
           <button 
             className={styles.mobileToggle} 
             id="mobileToggle" 
-            aria-label="Toggle mobile menu" 
+            type="button"
+            aria-label={isMobileMenuOpen ? "Close mobile menu" : "Open mobile menu"}
+            aria-controls="mainNav"
             aria-expanded={isMobileMenuOpen}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
-            <span></span><span></span><span></span>
+            <span></span>
+            <span></span>
+            <span></span>
           </button>
         </div>
       </div>

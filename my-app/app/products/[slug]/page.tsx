@@ -2,8 +2,7 @@ import React from "react";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import { stegaClean } from "next-sanity";
-import { MessageCircle, Send } from "lucide-react";
-import { getContactInfo, getSiteName, getSiteUrl, whatsappUrl } from "@/lib/site-settings";
+import { getSiteName, getSiteUrl } from "@/lib/site-settings";
 import { buildSeoMetadata } from "@/lib/seo";
 import { breadcrumbJsonLd, faqJsonLd } from "@/lib/structured-data";
 import { Breadcrumb } from "@/components/common/Breadcrumb";
@@ -51,7 +50,6 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
     notFound();
   }
 
-  const contact = getContactInfo(settings);
   const siteName = getSiteName(settings);
   const categoryId = product.category?._id;
   const categoryName = product.category?.name || "Uncategorized";
@@ -121,22 +119,6 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
                 <span key={tag} className="bg-[#edf3f8] text-[color:var(--blue)] border border-[#cfd8e3] px-[11px] py-2 rounded-[6px] text-[13px] font-bold">{tag}</span>
               ))}
               {product.modelCode && <span className="bg-[#edf3f8] text-[color:var(--blue)] border border-[#cfd8e3] px-[11px] py-2 rounded-[6px] text-[13px] font-bold">Model: {product.modelCode}</span>}
-            </div>
-
-            <div className="flex flex-wrap gap-3 mt-6 max-[560px]:flex-col max-[560px]:items-stretch">
-              <Button href="/contact" iconEnd={<Send aria-hidden="true" />}>Send Inquiry</Button>
-              <Button 
-                href={whatsappUrl(
-                  contact.whatsapp,
-                  `Hello ${siteName}, I would like to request a quote for ${product.name}.`,
-                )}
-                variant="secondary"
-                target="_blank"
-                rel="noopener"
-                iconStart={<MessageCircle aria-hidden="true" />}
-              >
-                Chat on WhatsApp
-              </Button>
             </div>
 
             <div className={styles.miniTrust}>

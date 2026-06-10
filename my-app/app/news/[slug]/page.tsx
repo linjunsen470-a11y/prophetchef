@@ -13,8 +13,7 @@ import { JsonLd } from "@/components/common/JsonLd";
 import { CTASection } from "@/components/common/CTASection";
 import { NewsBody } from "@/components/blog/NewsBody";
 import { getNewsItem, getNewsSlugs, getSiteSettings } from "@/sanity/queries";
-import { Calendar, Tag, ChevronLeft } from "lucide-react";
-import Link from "next/link";
+import { Calendar, Tag } from "lucide-react";
 
 interface NewsPageProps {
   params: Promise<{ slug: string }>;
@@ -106,12 +105,6 @@ export default async function NewsDetailPage({ params }: NewsPageProps) {
         {/* Hero Header */}
         <div className="bg-slate-50 py-20 border-b border-slate-200">
           <Container className="max-w-[900px]">
-            <div className="mb-8">
-              <Link href="/news" className="inline-flex items-center text-sm font-bold text-orange hover:gap-2 transition-all gap-1">
-                <ChevronLeft size={16} /> Back to News
-              </Link>
-            </div>
-
             <div className="flex flex-wrap items-center gap-6 mb-6 text-sm font-bold text-slate-500 uppercase tracking-wider">
               <div className="flex items-center gap-2">
                 <Calendar size={16} className="text-orange" />

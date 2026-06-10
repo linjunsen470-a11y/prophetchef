@@ -1,8 +1,7 @@
 "use client";
 
 import React from "react";
-import { Boxes, Send } from "lucide-react";
-import { Button } from "@/components/common/Button";
+import { Boxes } from "lucide-react";
 import styles from "./ProductsShowcase.module.css";
 
 interface ProductSidebarProps {
@@ -34,11 +33,6 @@ export const ProductSidebar: React.FC<ProductSidebarProps> = ({
           {category}
         </button>
       ))}
-      <div className={styles.sidebarCta}>
-        <strong>Need project pricing?</strong>
-        <p>Share your kitchen type and target capacity for a factory quote.</p>
-        <Button href="/contact" variant="primary" size="small">Request Quote <Send aria-hidden="true" /></Button>
-      </div>
     </aside>
   );
 };

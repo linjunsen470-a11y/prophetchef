@@ -13,11 +13,13 @@
 .whatsappFloat {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  justify-content: center;
   bottom: 84px;
+  width: 46px;
+  height: 46px;
   background: #25d366;
   color: #fff;
-  padding: 12px 20px;
+  padding: 0;
   font-size: 14px;
 }
 
@@ -53,14 +55,7 @@
 }
 
 @media (max-width: 760px) {
-  .whatsappFloat span {
-    display: none;
-  }
   .whatsappFloat {
-    width: 46px;
-    height: 46px;
-    padding: 0;
-    justify-content: center;
     bottom: 76px;
     right: 14px;
   }

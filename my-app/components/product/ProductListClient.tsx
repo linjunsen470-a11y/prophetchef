@@ -48,7 +48,12 @@ export function ProductListClient({ products, initialCategorySlug }: ProductList
         </div>
         <div className="grid grid-cols-3 max-[1080px]:grid-cols-2 max-[760px]:grid-cols-1 gap-6">
           {filteredProducts.map((product, index) => (
-            <ProductCard key={product.id} product={product} index={index} />
+            <ProductCard
+              key={product.id}
+              product={product}
+              index={index}
+              showCategory={activeCategory === "All Products"}
+            />
           ))}
           {filteredProducts.length === 0 && (
             <div className="col-span-full py-[60px] text-center text-muted border border-dashed border-border rounded-[12px]">
