@@ -33,11 +33,11 @@
 }
 
 .homeHeroCompact::before {
-  background-image: var(--hero-image, url("/images/home-hero-industrial.jpg"));
+  background-image: var(--hero-image, url("/images/home-hero-industrial.webp"));
 }
 
 .pageHeroCompact::before {
-  background-image: var(--hero-image, url("/images/news-hero-industrial.jpg"));
+  background-image: var(--hero-image, url("/images/news-hero-industrial.webp"));
 }
 
 .heroOverlay {

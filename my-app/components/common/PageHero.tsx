@@ -15,7 +15,7 @@ export const PageHero: React.FC<PageHeroProps> = ({
   eyebrow,
   title,
   description,
-  backgroundImage = "/images/hero-dark.png",
+  backgroundImage = "/images/hero-dark.webp",
   compact = false,
   children,
 }) => {

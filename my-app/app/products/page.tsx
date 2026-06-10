@@ -54,7 +54,7 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
           hero?.description ||
           "Explore ProphetChef commercial induction cookers, wok ranges, built-in modules and specialty cooking equipment."
         }
-        backgroundImage={hero?.backgroundImage?.url || "/images/products/hero-wok-range.png"}
+        backgroundImage={hero?.backgroundImage?.url || "/images/products/hero-wok-range.webp"}
       >
         <div className="flex flex-wrap gap-2.5 mt-[30px]" aria-label="Product capabilities">
           {metrics.map((metric) => {

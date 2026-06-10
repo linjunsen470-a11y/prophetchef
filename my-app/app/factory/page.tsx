@@ -18,7 +18,7 @@ const fallbackFactory: FactoryPageSettings = {
     description:
       "Integrated manufacturing capability for commercial kitchen equipment, OEM projects and global distribution partners.",
     backgroundImage: {
-      url: "/images/factory/exterior-01.jpg",
+      url: "/images/factory/exterior-01.webp",
       alt: "ProphetChef factory exterior",
     } as never,
   },
@@ -30,7 +30,7 @@ const fallbackFactory: FactoryPageSettings = {
       "Our integrated production line covers commercial induction cooking, wok ranges, built-in modules and specialty foodservice equipment.",
     ],
     image: {
-      url: "/images/factory/exterior-03.jpg",
+      url: "/images/factory/exterior-03.webp",
       alt: "ProphetChef production facility",
     } as never,
     cta: { text: "Request Factory Price", href: "/contact" },

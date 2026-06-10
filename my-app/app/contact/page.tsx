@@ -46,7 +46,7 @@ export default async function ContactPage() {
         }
         backgroundImage={
           hero?.backgroundImage?.url ||
-          "/images/products/hero-wok-range.png"
+          "/images/products/hero-wok-range.webp"
         }
       />
 
