@@ -5,6 +5,7 @@ import { NewsListClient } from "@/components/blog/NewsListClient";
 import { getNewsItems, getNewsPageSettings, getSiteSettings } from "@/sanity/queries";
 import { getSiteName, getSiteUrl } from "@/lib/site-settings";
 import { buildSeoMetadata } from "@/lib/seo";
+import { heroImages } from "@/data/hero-images";
 
 export async function generateMetadata(): Promise<Metadata> {
   const [page, settings] = await Promise.all([
@@ -40,7 +41,7 @@ export default async function NewsPage() {
           hero?.description ||
           "Commercial kitchen equipment knowledge, product selection guides and company updates."
         }
-        backgroundImage={hero?.backgroundImage?.url}
+        backgroundImage={hero?.backgroundImage?.url || heroImages.news}
         compact
       />
 

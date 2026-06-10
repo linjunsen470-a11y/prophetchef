@@ -21,8 +21,8 @@
   min-height: 280px;
 }
 
-.homeHeroCompact::before,
-.pageHeroCompact::before {
+.hero::before,
+.pageHero::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -32,12 +32,12 @@
   background-repeat: no-repeat;
 }
 
-.homeHeroCompact::before {
+.hero::before {
   background-image: var(--hero-image, url("/images/home-hero-industrial.webp"));
 }
 
-.pageHeroCompact::before {
-  background-image: var(--hero-image, url("/images/news-hero-industrial.webp"));
+.pageHero::before {
+  background-image: var(--hero-image, url("/images/hero-dark.webp"));
 }
 
 .heroOverlay {
@@ -46,7 +46,7 @@
   z-index: 1;
   background:
     linear-gradient(180deg, rgba(230, 95, 26, 0.1), rgba(230, 95, 26, 0) 70px),
-    linear-gradient(90deg, rgba(6, 18, 31, 0.96) 0%, rgba(9, 24, 39, 0.9) 46%, rgba(23, 49, 79, 0.64) 78%, rgba(23, 49, 79, 0.48) 100%);
+    linear-gradient(90deg, rgba(6, 18, 31, 0.97) 0%, rgba(9, 24, 39, 0.91) 44%, rgba(23, 49, 79, 0.64) 78%, rgba(23, 49, 79, 0.5) 100%);
 }
 
 .heroContent,
@@ -176,7 +176,15 @@
   .hero,
   .pageHero {
     min-height: 380px;
+  }
+  .hero::before,
+  .pageHero::before {
     background-position: center;
+  }
+  .heroOverlay {
+    background:
+      linear-gradient(180deg, rgba(230, 95, 26, 0.1), rgba(230, 95, 26, 0) 70px),
+      linear-gradient(90deg, rgba(6, 18, 31, 0.97) 0%, rgba(9, 24, 39, 0.9) 100%);
   }
   .homeHeroCompact {
     min-height: 400px;

@@ -1,3 +1,5 @@
+import { heroImages } from "./hero-images";
+
 export const siteConfig = {
   name: "ProphetChef",
   title: "Commercial Induction Cooker Manufacturer | ProphetChef",
@@ -8,9 +10,9 @@ export const siteConfig = {
   whatsapp: "8618000000000",
   address: "Dongguan, Guangdong, China",
   ogImage: "/images/products/hero-wok-range.webp",
-  homeHeroImage: "/images/factory/exterior-01.webp",
+  homeHeroImage: heroImages.home,
   factoryPreviewImage: "/images/factory/exterior-03.webp",
-  productsHeroImage: "/images/products/hero-wok-range.webp",
+  productsHeroImage: heroImages.products,
   trustTags: ["OEM / ODM Available", "CE / ISO Certified", "Fast Quotation Within 24 Hours"],
   url: "https://prophetchef.com",
 };

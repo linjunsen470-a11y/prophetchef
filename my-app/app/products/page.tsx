@@ -7,6 +7,7 @@ import { getProducts, getProductsPageSettings, getSiteSettings } from "@/sanity/
 import { getIcon } from "@/components/common/IconByName";
 import { getSiteName, getSiteUrl } from "@/lib/site-settings";
 import { buildSeoMetadata } from "@/lib/seo";
+import { heroImages } from "@/data/hero-images";
 
 export async function generateMetadata(): Promise<Metadata> {
   const [page, settings] = await Promise.all([
@@ -54,7 +55,7 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
           hero?.description ||
           "Explore ProphetChef commercial induction cookers, wok ranges, built-in modules and specialty cooking equipment."
         }
-        backgroundImage={hero?.backgroundImage?.url || "/images/products/hero-wok-range.webp"}
+        backgroundImage={hero?.backgroundImage?.url || heroImages.products}
       >
         <div className="flex flex-wrap gap-2 mt-6" aria-label="Product capabilities">
           {metrics.map((metric) => {

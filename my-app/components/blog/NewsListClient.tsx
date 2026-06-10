@@ -22,24 +22,27 @@ export function NewsListClient({ newsItems }: NewsListClientProps) {
     : newsItems.filter((item) => item.category?.title === activeCategory);
 
   return (
-    <>
-      <Container className="flex flex-wrap gap-2.5 mb-7">
-        {categories.map((category) => (
-          <button
-            key={category}
-            className={`px-[18px] py-[11px] border rounded-[7px] text-[color:var(--text)] font-extrabold cursor-pointer transition-colors ${activeCategory === category ? "border-[color:var(--blue)] bg-[color:var(--blue)] text-white" : "border-[color:var(--border)] bg-white hover:border-[color:var(--blue)] hover:bg-[color:var(--blue)] hover:text-white"}`}
-            onClick={() => setActiveCategory(category)}
-          >
-            {category}
-          </button>
-        ))}
-      </Container>
+    <Container className="flex flex-col gap-10 max-[760px]:gap-8">
+      <div className="flex flex-wrap gap-2.5">
+        {categories.map((category) => {
+          const isActive = activeCategory === category;
+          return (
+            <button
+              key={category}
+              className={`min-h-[48px] px-[18px] py-[11px] border rounded-[7px] text-[color:var(--text)] font-extrabold cursor-pointer transition-colors ${isActive ? "border-[color:var(--blue)] bg-[color:var(--blue)] text-white" : "border-[color:var(--border)] bg-white hover:border-[color:var(--blue)] hover:bg-[color:var(--blue)] hover:text-white"}`}
+              onClick={() => setActiveCategory(category)}
+            >
+              {category}
+            </button>
+          );
+        })}
+      </div>
 
-      <Container className="grid grid-cols-3 max-[1080px]:grid-cols-2 max-[760px]:grid-cols-1 gap-6">
+      <div className="grid grid-cols-3 max-[1080px]:grid-cols-2 max-[760px]:grid-cols-1 gap-6">
         {filteredNews.map((item) => (
           <BlogCard key={item.id} {...item} />
         ))}
-      </Container>
-    </>
+      </div>
+    </Container>
   );
 }

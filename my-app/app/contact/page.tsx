@@ -7,6 +7,7 @@ import { ContactForm } from "@/components/contact/ContactForm";
 import { getContactPageSettings, getSiteSettings } from "@/sanity/queries";
 import { getContactInfo, getSiteName, getSiteUrl, whatsappUrl } from "@/lib/site-settings";
 import { buildSeoMetadata } from "@/lib/seo";
+import { heroImages } from "@/data/hero-images";
 import styles from "./Contact.module.css";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -46,7 +47,7 @@ export default async function ContactPage() {
         }
         backgroundImage={
           hero?.backgroundImage?.url ||
-          "/images/products/hero-wok-range.webp"
+          heroImages.contact
         }
       />
 

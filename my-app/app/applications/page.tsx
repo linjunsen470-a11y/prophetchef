@@ -10,6 +10,7 @@ import { getApplications, getApplicationsPageSettings, getSiteSettings } from "@
 import { getSiteName, getSiteUrl } from "@/lib/site-settings";
 import { buildSeoMetadata } from "@/lib/seo";
 import { isSanityImageUrl } from "@/lib/images";
+import { heroImages } from "@/data/hero-images";
 import type { Application, ApplicationsPageSettings } from "@/sanity/types";
 import styles from "./Applications.module.css";
 
@@ -23,7 +24,7 @@ const fallbackApplications: Application[] = [
     description: "Large-batch cooking, food warming and dishwashing for daily meal service.",
     recommended: "Induction wok cooker, combi oven, hood type dishwasher",
     image: {
-      url: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1200&q=80",
+      url: heroImages.applications,
       alt: "School cafeteria",
     } as never,
   },

@@ -1,6 +1,7 @@
 import React from "react";
 import { Container } from "./Container";
 import styles from "./Hero.module.css";
+import { heroImages } from "@/data/hero-images";
 
 interface PageHeroProps {
   eyebrow?: string;
@@ -15,7 +16,7 @@ export const PageHero: React.FC<PageHeroProps> = ({
   eyebrow,
   title,
   description,
-  backgroundImage = "/images/hero-dark.webp",
+  backgroundImage = heroImages.fallback,
   compact = false,
   children,
 }) => {

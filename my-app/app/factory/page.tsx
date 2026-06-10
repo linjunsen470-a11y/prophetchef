@@ -10,6 +10,7 @@ import { getFactoryPageSettings, getSiteSettings } from "@/sanity/queries";
 import { getSiteName, getSiteUrl } from "@/lib/site-settings";
 import { buildSeoMetadata } from "@/lib/seo";
 import { isSanityImageUrl } from "@/lib/images";
+import { heroImages } from "@/data/hero-images";
 import type { FactoryPageSettings, StatItem, TextCard } from "@/sanity/types";
 
 const fallbackFactory: FactoryPageSettings = {
@@ -19,7 +20,7 @@ const fallbackFactory: FactoryPageSettings = {
     description:
       "Integrated manufacturing capability for commercial kitchen equipment, OEM projects and global distribution partners.",
     backgroundImage: {
-      url: "/images/factory/exterior-01.webp",
+      url: heroImages.factory,
       alt: "ProphetChef factory exterior",
     } as never,
   },

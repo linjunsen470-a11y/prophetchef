@@ -9,6 +9,7 @@ import { getIcon } from "@/components/common/IconByName";
 import { getCertificates, getCertificatesPageSettings, getSiteSettings } from "@/sanity/queries";
 import { getSiteName, getSiteUrl } from "@/lib/site-settings";
 import { buildSeoMetadata } from "@/lib/seo";
+import { heroImages } from "@/data/hero-images";
 import type { Certificate, CertificatesPageSettings } from "@/sanity/types";
 
 const fallbackCertificates: Certificate[] = [
@@ -26,7 +27,7 @@ const fallbackPage: CertificatesPageSettings = {
     title: "Certified for Global Commercial Kitchen Markets",
     description: "Product compliance documents and quality control support for commercial kitchen equipment importers.",
     backgroundImage: {
-      url: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=1200&q=80",
+      url: heroImages.certificates,
       alt: "Commercial kitchen certificates",
     } as never,
   },
@@ -89,7 +90,7 @@ export default async function CertificatesPage() {
         eyebrow={hero?.eyebrow}
         title={hero?.title || "Certified for Global Commercial Kitchen Markets"}
         description={hero?.description}
-        backgroundImage={hero?.backgroundImage?.url}
+        backgroundImage={hero?.backgroundImage?.url || heroImages.certificates}
       />
 
       <section className="section">
