@@ -2,7 +2,7 @@ import React from "react";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import { stegaClean } from "next-sanity";
-import { MessageCircle, Send, CheckCircle2 } from "lucide-react";
+import { MessageCircle, Send } from "lucide-react";
 import { getContactInfo, getSiteName, getSiteUrl, whatsappUrl } from "@/lib/site-settings";
 import { buildSeoMetadata } from "@/lib/seo";
 import { breadcrumbJsonLd, faqJsonLd } from "@/lib/structured-data";
@@ -11,7 +11,6 @@ import { Container } from "@/components/common/Container";
 import { Button } from "@/components/common/Button";
 import { JsonLd } from "@/components/common/JsonLd";
 import { ProductGallery } from "@/components/product/ProductGallery";
-import { ProductInquiryForm } from "@/components/product/ProductInquiryForm";
 import { ProductCard } from "@/components/product/ProductCard";
 import { CTASection } from "@/components/common/CTASection";
 import { getProduct, getProductSlugs, getRelatedProducts, getSiteSettings } from "@/sanity/queries";
@@ -125,7 +124,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
             </div>
 
             <div className="flex flex-wrap gap-3 mt-6 max-[560px]:flex-col max-[560px]:items-stretch">
-              <Button href="#product-inquiry" iconEnd={<Send aria-hidden="true" />}>Send Inquiry</Button>
+              <Button href="/contact" iconEnd={<Send aria-hidden="true" />}>Send Inquiry</Button>
               <Button 
                 href={whatsappUrl(
                   contact.whatsapp,
@@ -231,23 +230,6 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
           </Container>
         </section>
       )}
-
-      <section className="section bg-light" id="product-inquiry">
-        <Container className={styles.inquiryLayout}>
-          <div>
-            <span className="eyebrow">Product Inquiry</span>
-            <h2>Request Product Price and Specification</h2>
-            <p>Send your required model, voltage, quantity and destination country. Our sales team will reply with a quotation and product documents.</p>
-            
-            <ul className="list-none p-0 my-[22px] mt-8">
-              <li className="flex items-start gap-[9px] relative pl-0 my-2.5 text-[color:var(--muted)] font-semibold"><CheckCircle2 className="w-[18px] h-[18px] mt-[3px] text-[color:var(--orange)] shrink-0" /> Professional technical support</li>
-              <li className="flex items-start gap-[9px] relative pl-0 my-2.5 text-[color:var(--muted)] font-semibold"><CheckCircle2 className="w-[18px] h-[18px] mt-[3px] text-[color:var(--orange)] shrink-0" /> Global export experience</li>
-              <li className="flex items-start gap-[9px] relative pl-0 my-2.5 text-[color:var(--muted)] font-semibold"><CheckCircle2 className="w-[18px] h-[18px] mt-[3px] text-[color:var(--orange)] shrink-0" /> Competitive factory pricing</li>
-            </ul>
-          </div>
-          <ProductInquiryForm productName={product.name} />
-        </Container>
-      </section>
 
       <CTASection />
     </>

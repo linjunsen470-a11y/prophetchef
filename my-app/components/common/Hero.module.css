@@ -21,29 +21,21 @@
   min-height: 280px;
 }
 
-.hero::before,
-.pageHero::before {
-  content: "";
+.heroBackgroundImage {
   position: absolute;
   inset: 0;
   z-index: 0;
-  background-position: center right;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
-.hero::before {
-  background-image: var(--hero-image, url("/images/home-hero-industrial.webp"));
-}
-
-.pageHero::before {
-  background-image: var(--hero-image, url("/images/hero-dark.webp"));
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center right;
 }
 
 .heroOverlay {
   position: absolute;
   inset: 0;
   z-index: 1;
+  pointer-events: none;
   background:
     linear-gradient(180deg, rgba(230, 95, 26, 0.1), rgba(230, 95, 26, 0) 70px),
     linear-gradient(90deg, rgba(6, 18, 31, 0.97) 0%, rgba(9, 24, 39, 0.91) 44%, rgba(23, 49, 79, 0.64) 78%, rgba(23, 49, 79, 0.5) 100%);
@@ -177,9 +169,8 @@
   .pageHero {
     min-height: 380px;
   }
-  .hero::before,
-  .pageHero::before {
-    background-position: center;
+  .heroBackgroundImage {
+    object-position: center;
   }
   .heroOverlay {
     background:

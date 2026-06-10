@@ -91,6 +91,7 @@ export default async function CertificatesPage() {
         title={hero?.title || "Certified for Global Commercial Kitchen Markets"}
         description={hero?.description}
         backgroundImage={hero?.backgroundImage?.url || heroImages.certificates}
+        backgroundImageAlt={hero?.backgroundImage?.alt || ""}
       />
 
       <section className="section">

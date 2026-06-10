@@ -119,30 +119,8 @@
   letter-spacing: 0.05em;
 }
 
-.inquiryLayout {
-  display: grid;
-  grid-template-columns: 0.9fr 1.1fr;
-  gap: 64px;
-  align-items: center;
-}
-
-.inquiryLayout h2 {
-  font-size: 38px;
-  font-weight: 850;
-  margin: 12px 0 16px;
-  letter-spacing: -0.03em;
-  color: var(--blue);
-}
-
-.inquiryLayout p {
-  font-size: 18px;
-  color: var(--muted);
-  margin: 0;
-}
-
 @media (max-width: 960px) {
-  .productDetailGrid,
-  .inquiryLayout {
+  .productDetailGrid {
     grid-template-columns: 1fr;
     gap: 48px;
   }

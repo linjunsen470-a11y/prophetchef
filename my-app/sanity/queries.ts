@@ -198,7 +198,7 @@ export async function getProduct(slug: string, options: QueryOptions = {}) {
   });
 }
 
-export async function getProductSlugs() {
+export async function getProductSlugs(): Promise<{ slug: string }[]> {
   return sanityFetch<{ slug: string }[]>({
     query: `*[_type == "product" && defined(slug.current) && !isArchived] {"slug": slug.current}`,
     perspective: "published",
@@ -250,7 +250,7 @@ export async function getNewsItem(slug: string, options: QueryOptions = {}) {
   });
 }
 
-export async function getNewsSlugs() {
+export async function getNewsSlugs(): Promise<{ slug: string }[]> {
   return sanityFetch<{ slug: string }[]>({
     query: `*[_type == "newsArticle" && defined(slug.current) && !isArchived] {"slug": slug.current}`,
     perspective: "published",

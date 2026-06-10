@@ -13,7 +13,6 @@ interface ProductCardProps {
 
 export const ProductCard: React.FC<ProductCardProps> = ({ product, index }) => {
   const imageUrl = product.coverImage?.url;
-  const cleanImage = stegaClean(imageUrl || null);
   const cleanSlug = stegaClean(product.slug);
   const productHref = `/products/${cleanSlug}`;
   const visibleTags = product.tags.slice(0, 3);
@@ -22,10 +21,10 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, index }) => {
   return (
     <article className={styles.productCard} data-category={product.category?.name || "Uncategorized"}>
       <Link href={productHref} className={styles.productMedia} aria-label={`View details for ${product.name}`}>
-        {cleanImage ? (
+        {imageUrl ? (
           <ProductImageFrame
-            src={cleanImage}
-            alt={stegaClean(product.coverImage?.alt || product.name)}
+            src={imageUrl}
+            alt={product.coverImage?.alt || product.name}
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             imageClassName={styles.productMediaImage}
           />

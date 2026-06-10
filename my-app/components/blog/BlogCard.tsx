@@ -17,20 +17,21 @@ interface BlogCardProps {
 
 export const BlogCard: React.FC<BlogCardProps> = ({ title, excerpt, date, category, coverImage, slug }) => {
   const displayDate = date.slice(0, 10);
-  const cleanImage = stegaClean(coverImage?.url || null);
+  const imageUrl = coverImage?.url || null;
+  const cleanImageUrl = imageUrl ? stegaClean(imageUrl) : null;
   const cleanSlug = stegaClean(slug);
   const categoryLabel = category?.title || "News";
 
   return (
     <article className="bg-white border border-[color:var(--border)] rounded-[var(--radius)] shadow-[0_10px_26px_rgba(9,24,39,0.05)] overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_14px_30px_rgba(9,24,39,0.08)]">
       <div className="relative h-[210px] w-full overflow-hidden bg-[linear-gradient(135deg,rgba(23,49,79,0.22),rgba(230,95,26,0.1))] bg-slate-200">
-        {cleanImage ? (
+        {imageUrl ? (
           <Image 
-            src={cleanImage}
-            alt={stegaClean(coverImage?.alt || title)}
+            src={imageUrl}
+            alt={coverImage?.alt || title}
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            unoptimized={isSanityImageUrl(cleanImage)}
+            unoptimized={isSanityImageUrl(cleanImageUrl)}
             className="object-cover h-[210px] w-full"
           />
         ) : (

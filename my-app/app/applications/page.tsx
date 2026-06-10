@@ -147,6 +147,7 @@ export default async function ApplicationsPage() {
         title={hero?.title || "Commercial Kitchen Solutions for Different Applications"}
         description={hero?.description}
         backgroundImage={hero?.backgroundImage?.url}
+        backgroundImageAlt={hero?.backgroundImage?.alt || ""}
         compact
       />
 

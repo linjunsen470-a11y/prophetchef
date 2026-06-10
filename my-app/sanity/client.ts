@@ -16,10 +16,10 @@ export const client = createClient({
 
 const token = process.env.SANITY_API_READ_TOKEN;
 
-export const { SanityLive } = defineLive({
+export const { sanityFetch: liveSanityFetch, SanityLive } = defineLive({
   client,
-  serverToken: token || false,
-  browserToken: false,
+  serverToken: token,
+  browserToken: token,
 });
 
 export async function sanityFetch<QueryResponse>({
@@ -32,12 +32,13 @@ export async function sanityFetch<QueryResponse>({
   params?: Record<string, string | number | boolean>;
   perspective?: Exclude<ClientPerspective, "raw">;
   stega?: boolean;
-}) {
-  return client
-    .withConfig({
-      perspective,
-      stega,
-      useCdn: false,
-    })
-    .fetch<QueryResponse>(query, params);
+}): Promise<QueryResponse> {
+  const { data } = await liveSanityFetch({
+    query,
+    params,
+    perspective,
+    stega,
+  });
+
+  return data as QueryResponse;
 }

@@ -42,6 +42,7 @@ export default async function NewsPage() {
           "Commercial kitchen equipment knowledge, product selection guides and company updates."
         }
         backgroundImage={hero?.backgroundImage?.url || heroImages.news}
+        backgroundImageAlt={hero?.backgroundImage?.alt || ""}
         compact
       />
 

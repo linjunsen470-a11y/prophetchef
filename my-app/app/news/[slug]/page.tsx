@@ -137,12 +137,12 @@ export default async function NewsDetailPage({ params }: NewsPageProps) {
         <Container className="max-w-[1000px] -mt-10 md:-mt-16 mb-16">
           <div className="relative aspect-[16/9] rounded-[10px] overflow-hidden shadow-[0_14px_34px_rgba(9,24,39,0.14)] border-4 border-white">
             <Image 
-              src={stegaClean(item.coverImage?.url || "")} 
-              alt={stegaClean(item.coverImage?.alt || item.title)} 
+              src={item.coverImage?.url || ""} 
+              alt={item.coverImage?.alt || item.title} 
               fill
               priority
               sizes="(max-width: 1000px) 100vw, 1000px"
-              unoptimized={isSanityImageUrl(item.coverImage?.url)}
+              unoptimized={isSanityImageUrl(stegaClean(item.coverImage?.url))}
               className="object-cover"
             />
           </div>

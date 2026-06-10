@@ -49,6 +49,7 @@ export default async function ContactPage() {
           hero?.backgroundImage?.url ||
           heroImages.contact
         }
+        backgroundImageAlt={hero?.backgroundImage?.alt || ""}
       />
 
       <section className={styles.contactSection}>

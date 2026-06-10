@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import { stegaClean } from "next-sanity";
 import type { SanityImage } from "@/sanity/types";
 import { ProductImageFrame } from "@/components/product/ProductImageFrame";
 import styles from "./ProductGallery.module.css";
@@ -12,15 +11,15 @@ interface ProductGalleryProps {
 
 export const ProductGallery: React.FC<ProductGalleryProps> = ({ images }) => {
   const [activeImage, setActiveImage] = useState(images[0]);
-  const cleanActiveImage = stegaClean(activeImage?.url || "");
+  const activeImageUrl = activeImage?.url || "";
 
   return (
     <div className={styles.productGallery}>
       <div className={styles.mainProductImage}>
-        {cleanActiveImage ? (
+        {activeImageUrl ? (
           <ProductImageFrame
-            src={cleanActiveImage}
-            alt={stegaClean(activeImage?.alt || "Product")}
+            src={activeImageUrl}
+            alt={activeImage?.alt || "Product"}
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 50vw"
             ratio="1x1"
             priority
@@ -34,7 +33,7 @@ export const ProductGallery: React.FC<ProductGalleryProps> = ({ images }) => {
       </div>
       <div className={styles.thumbnailRow}>
         {images.map((img, i) => {
-          const imgUrl = stegaClean(img?.url || "");
+          const imgUrl = img?.url || "";
           if (!imgUrl) return null;
           return (
             <button 
@@ -47,7 +46,7 @@ export const ProductGallery: React.FC<ProductGalleryProps> = ({ images }) => {
             >
               <ProductImageFrame
                 src={imgUrl}
-                alt={stegaClean(img?.alt || `Product view ${i + 1}`)}
+                alt={img?.alt || `Product view ${i + 1}`}
                 sizes="112px"
                 ratio="thumb"
                 padded={false}

@@ -142,6 +142,7 @@ export default async function FactoryPage() {
         title={hero?.title || "Factory Strength You Can Trust"}
         description={hero?.description}
         backgroundImage={hero?.backgroundImage?.url}
+        backgroundImageAlt={hero?.backgroundImage?.alt || ""}
       />
 
       <section className="section">

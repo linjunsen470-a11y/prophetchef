@@ -12,6 +12,7 @@ interface HeroSectionProps {
     description?: string;
     backgroundImage?: {
       url?: string;
+      alt?: string;
     };
     primaryCta?: {
       text?: string;
@@ -48,10 +49,13 @@ export const HeroSection = ({ data }: HeroSectionProps) => {
       ];
 
   return (
-    <section
-      className={`${styles.hero} ${styles.homeHeroCompact}`}
-      style={{ "--hero-image": `url('${heroImage}')` } as React.CSSProperties}
-    >
+    <section className={`${styles.hero} ${styles.homeHeroCompact}`}>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={heroImage}
+        alt={data?.backgroundImage?.alt || ""}
+        className={styles.heroBackgroundImage}
+      />
       <div className={styles.heroOverlay}></div>
       <div className={`container ${styles.heroContent}`}>
         <div className={styles.heroCopy}>
