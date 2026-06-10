@@ -39,6 +39,6 @@ Thumbs.db
 *.tsbuildinfo
 next-env.d.ts
 
-#assets
-factory
-gallery
+# Root-only raw asset folders
+/factory/
+/gallery/
