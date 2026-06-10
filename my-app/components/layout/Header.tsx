@@ -8,6 +8,7 @@ import { usePathname } from "next/navigation";
 import { navigation } from "@/data/navigation";
 import { Button } from "@/components/common/Button";
 import { getSiteName } from "@/lib/site-settings";
+import { isSanityImageUrl } from "@/lib/images";
 import styles from "./Header.module.css";
 
 import { SiteSettings } from "@/sanity/types";
@@ -47,6 +48,7 @@ export const Header = ({ settings }: HeaderProps) => {
                 alt={siteName} 
                 fill 
                 sizes="160px"
+                unoptimized={isSanityImageUrl(settings.logo.url)}
                 className="object-contain object-left"
                 priority
               />

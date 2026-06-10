@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { ArrowRight, Boxes, Send } from "lucide-react";
+import { Boxes, Send } from "lucide-react";
 import { Button } from "@/components/common/Button";
 import styles from "./ProductsShowcase.module.css";
 
@@ -23,7 +23,6 @@ export const ProductSidebar: React.FC<ProductSidebarProps> = ({
         className={activeCategory === "All Products" ? `${styles.filterBtn} ${styles.active}` : styles.filterBtn}
         onClick={() => onCategoryChange("All Products")}
       >
-        <ArrowRight aria-hidden="true" />
         All Products
       </button>
       {categories.map((category) => (
@@ -32,14 +31,13 @@ export const ProductSidebar: React.FC<ProductSidebarProps> = ({
           className={activeCategory === category ? `${styles.filterBtn} ${styles.active}` : styles.filterBtn}
           onClick={() => onCategoryChange(category)}
         >
-          <ArrowRight aria-hidden="true" />
           {category}
         </button>
       ))}
       <div className={styles.sidebarCta}>
-        <strong>Need OEM Kitchen Equipment?</strong>
-        <p>Contact us for factory price and customization support.</p>
-        <Button href="/contact" variant="primary" size="small">Contact Supplier <Send aria-hidden="true" /></Button>
+        <strong>Need project pricing?</strong>
+        <p>Share your kitchen type and target capacity for a factory quote.</p>
+        <Button href="/contact" variant="primary" size="small">Request Quote <Send aria-hidden="true" /></Button>
       </div>
     </aside>
   );

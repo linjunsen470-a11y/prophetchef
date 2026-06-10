@@ -1,8 +1,8 @@
 import React from "react";
+import Link from "next/link";
 import { stegaClean } from "next-sanity";
-import { ArrowRight, PackageCheck, Send, Camera } from "lucide-react";
+import { Camera } from "lucide-react";
 import type { Product } from "@/sanity/types";
-import { Button } from "@/components/common/Button";
 import { ProductImageFrame } from "@/components/product/ProductImageFrame";
 import styles from "./ProductCard.module.css";
 
@@ -14,12 +14,14 @@ interface ProductCardProps {
 export const ProductCard: React.FC<ProductCardProps> = ({ product, index }) => {
   const imageUrl = product.coverImage?.url;
   const cleanImage = stegaClean(imageUrl || null);
-  const cleanName = stegaClean(product.name);
   const cleanSlug = stegaClean(product.slug);
+  const productHref = `/products/${cleanSlug}`;
+  const visibleTags = product.tags.slice(0, 3);
+  const hiddenTagCount = Math.max(product.tags.length - visibleTags.length, 0);
 
   return (
     <article className={styles.productCard} data-category={product.category?.name || "Uncategorized"}>
-      <div className={styles.productMedia}>
+      <Link href={productHref} className={styles.productMedia} aria-label={`View details for ${product.name}`}>
         {cleanImage ? (
           <ProductImageFrame
             src={cleanImage}
@@ -34,34 +36,23 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, index }) => {
           </div>
         )}
         <span className={styles.productCategoryBadge}>{product.category?.name || "Uncategorized"}</span>
-      </div>
+      </Link>
       <div className={styles.productBody}>
         <div className={styles.productCardTopline}>
           <div className={styles.productNumber}>{(index + 1).toString().padStart(2, "0")}</div>
-          <span><PackageCheck aria-hidden="true" />Factory supply</span>
+          {product.modelCode && <span>{product.modelCode}</span>}
         </div>
-        <h3>{product.name}</h3>
+        <h3>
+          <Link href={productHref} className={styles.productTitleLink}>
+            {product.name}
+          </Link>
+        </h3>
         <p>{product.description}</p>
         <div className={styles.tagRow}>
-          {product.tags.map((tag) => (
+          {visibleTags.map((tag) => (
             <span key={tag}>{tag}</span>
           ))}
-        </div>
-        <div className={styles.cardActions}>
-          <Button 
-            href={`/contact?product=${encodeURIComponent(cleanName)}`} 
-            variant="primary" size="small" className="quick-inquiry"
-          >
-            Quick Inquiry
-            <Send aria-hidden="true" />
-          </Button>
-          <Button 
-            href={`/products/${cleanSlug}`} 
-            variant="secondary" size="small"
-          >
-            View Details
-            <ArrowRight aria-hidden="true" />
-          </Button>
+          {hiddenTagCount > 0 && <span>+{hiddenTagCount}</span>}
         </div>
       </div>
     </article>

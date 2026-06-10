@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { ArrowRight, Send } from "lucide-react";
+import { ArrowRight, CheckCircle2, Send } from "lucide-react";
 import { Button } from "@/components/common/Button";
 import { PageHero } from "@/components/common/PageHero";
 import { Container } from "@/components/common/Container";
@@ -9,6 +9,7 @@ import { CTASection } from "@/components/common/CTASection";
 import { getApplications, getApplicationsPageSettings, getSiteSettings } from "@/sanity/queries";
 import { getSiteName, getSiteUrl } from "@/lib/site-settings";
 import { buildSeoMetadata } from "@/lib/seo";
+import { isSanityImageUrl } from "@/lib/images";
 import type { Application, ApplicationsPageSettings } from "@/sanity/types";
 import styles from "./Applications.module.css";
 
@@ -145,6 +146,7 @@ export default async function ApplicationsPage() {
         title={hero?.title || "Commercial Kitchen Solutions for Different Applications"}
         description={hero?.description}
         backgroundImage={hero?.backgroundImage?.url}
+        compact
       />
 
       <section className="section">
@@ -152,9 +154,19 @@ export default async function ApplicationsPage() {
           eyebrow={page?.gridHeader?.eyebrow || fallbackPage.gridHeader?.eyebrow}
           title={page?.gridHeader?.title || fallbackPage.gridHeader?.title || ""}
           description={page?.gridHeader?.description}
-          alignment="center"
+          alignment="split"
           className={styles.applicationGridHeading}
-        />
+        >
+          <div className={styles.sectionActions}>
+            <Button variant="primary" href="/contact?product=Application%20Solution" iconEnd={<Send aria-hidden="true" />}>
+              Request Solution Quote
+            </Button>
+            <a href="#solution-detail" className={styles.textLink}>
+              Planning Notes
+              <ArrowRight aria-hidden="true" />
+            </a>
+          </div>
+        </SectionHeader>
         <Container className={styles.applicationGrid}>
           {applications.map((item) => (
             <article key={item.id || item.name} className={styles.applicationCard}>
@@ -164,6 +176,7 @@ export default async function ApplicationsPage() {
                   alt={item.image?.alt || item.name}
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  unoptimized={isSanityImageUrl(item.image?.url)}
                   className="object-cover"
                 />
               </figure>
@@ -171,22 +184,11 @@ export default async function ApplicationsPage() {
                 <h3>{item.name}</h3>
                 {item.description && <p>{item.description}</p>}
                 {item.recommended && (
-                  <p>
-                    <strong>Recommended:</strong> {item.recommended}
-                  </p>
+                  <div className={styles.recommendedLine}>
+                    <strong>Recommended</strong>
+                    <span>{item.recommended}</span>
+                  </div>
                 )}
-                <div className={styles.cardActions}>
-                  <Button variant="secondary" size="small" href="#solution-detail">
-                    View Solution
-                  </Button>
-                  <Button
-                    variant="primary"
-                    size="small"
-                    href={`/contact?product=${encodeURIComponent(item.quoteProductName || `${item.name} Solution`)}`}
-                  >
-                    Get Quote <Send aria-hidden="true" size={16} />
-                  </Button>
-                </div>
               </div>
             </article>
           ))}
@@ -203,26 +205,28 @@ export default async function ApplicationsPage() {
           {(solutionDetails || []).map((solution) => (
             <article className={styles.solutionCard} key={solution._key || solution.title}>
               <h3>{solution.title}</h3>
-              {solution.painPoints && (
-                <>
-                  <h4>Pain Points</h4>
-                  <p>{solution.painPoints}</p>
-                </>
-              )}
-              {solution.recommendedEquipment && (
-                <>
-                  <h4>Recommended Equipment</h4>
-                  <p>{solution.recommendedEquipment}</p>
-                </>
-              )}
-              {solution.benefits && (
-                <>
-                  <h4>Benefits</h4>
-                  <p>{solution.benefits}</p>
-                </>
-              )}
+              <div className={styles.solutionFacts}>
+                {solution.painPoints && (
+                  <div>
+                    <h4><CheckCircle2 aria-hidden="true" />Planning Focus</h4>
+                    <p>{solution.painPoints}</p>
+                  </div>
+                )}
+                {solution.recommendedEquipment && (
+                  <div>
+                    <h4><CheckCircle2 aria-hidden="true" />Equipment Mix</h4>
+                    <p>{solution.recommendedEquipment}</p>
+                  </div>
+                )}
+                {solution.benefits && (
+                  <div>
+                    <h4><CheckCircle2 aria-hidden="true" />Buyer Outcome</h4>
+                    <p>{solution.benefits}</p>
+                  </div>
+                )}
+              </div>
               <Button variant="primary" href={solution.cta?.href || "/contact"}>
-                {solution.cta?.text || "Request Project Consultation"} <ArrowRight aria-hidden="true" />
+                {solution.cta?.text || "Request Quote"} <ArrowRight aria-hidden="true" />
               </Button>
             </article>
           ))}

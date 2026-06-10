@@ -41,8 +41,8 @@ export function ProductListClient({ products, initialCategorySlug }: ProductList
       <div className={styles.productsMain}>
         <div className={styles.productToolbar}>
           <div>
-            <span className="inline-flex items-center gap-2 uppercase tracking-[0.12em] text-[12px] font-black text-[color:var(--orange)]">Catalog</span>
-            <p><strong>{filteredProducts.length}</strong> product models for commercial foodservice equipment procurement.</p>
+            <span className={styles.toolbarEyebrow}>Catalog</span>
+            <p><strong>{filteredProducts.length}</strong> commercial kitchen equipment models</p>
           </div>
           <span className={styles.productCountPill}>{activeCategory}</span>
         </div>

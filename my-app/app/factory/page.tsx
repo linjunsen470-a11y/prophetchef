@@ -9,6 +9,7 @@ import { getIcon } from "@/components/common/IconByName";
 import { getFactoryPageSettings, getSiteSettings } from "@/sanity/queries";
 import { getSiteName, getSiteUrl } from "@/lib/site-settings";
 import { buildSeoMetadata } from "@/lib/seo";
+import { isSanityImageUrl } from "@/lib/images";
 import type { FactoryPageSettings, StatItem, TextCard } from "@/sanity/types";
 
 const fallbackFactory: FactoryPageSettings = {
@@ -150,6 +151,7 @@ export default async function FactoryPage() {
               alt={overview?.image?.alt || "Commercial kitchen equipment factory overview"}
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
+              unoptimized={isSanityImageUrl(overview?.image?.url)}
               className="rounded-[10px] object-cover shadow-[var(--shadow)]"
             />
           </div>

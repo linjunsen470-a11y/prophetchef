@@ -12,9 +12,9 @@
   --light: #f4f7f9;
   --white: #ffffff;
   --border: #cfd8e3;
-  --shadow: 0 14px 34px rgba(9, 24, 39, 0.11);
-  --radius: 10px;
-  --radius-custom: 10px; /* Added for compatibility */
+  --shadow: 0 10px 24px rgba(9, 24, 39, 0.08);
+  --radius: 8px;
+  --radius-custom: 8px; /* Added for compatibility */
   --font-geist-sans: Inter, Arial, Helvetica, sans-serif;
   --font-geist-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
 }
@@ -57,7 +57,7 @@ svg {
 
 /* Sections */
 .section {
-  padding: 92px 0;
+  padding: 76px 0;
 }
 
 .bg-light {
@@ -70,15 +70,15 @@ svg {
 }
 
 .section-heading {
-  margin-bottom: 36px;
+  margin-bottom: 30px;
   max-width: 760px;
 }
 
 .section-heading h2,
 .split-heading h2 {
-  font-size: clamp(30px, 4vw, 46px);
+  font-size: clamp(29px, 3.4vw, 42px);
   line-height: 1.12;
-  letter-spacing: -0.04em;
+  letter-spacing: 0;
   margin: 10px 0 14px;
   font-weight: 850;
 }
@@ -87,7 +87,7 @@ svg {
 .split-heading p {
   color: var(--muted);
   margin: 0;
-  font-size: 18px;
+  font-size: 17px;
 }
 
 .bg-blue p {

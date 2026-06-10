@@ -16,7 +16,7 @@ export const client = createClient({
 
 const token = process.env.SANITY_API_READ_TOKEN;
 
-export const { sanityFetch: liveSanityFetch, SanityLive } = defineLive({
+export const { SanityLive } = defineLive({
   client,
   serverToken: token || false,
   browserToken: false,
@@ -33,12 +33,11 @@ export async function sanityFetch<QueryResponse>({
   perspective?: Exclude<ClientPerspective, "raw">;
   stega?: boolean;
 }) {
-  const { data } = await liveSanityFetch({
-    query,
-    params,
-    perspective,
-    stega,
-  });
-
-  return data as QueryResponse;
+  return client
+    .withConfig({
+      perspective,
+      stega,
+      useCdn: false,
+    })
+    .fetch<QueryResponse>(query, params);
 }

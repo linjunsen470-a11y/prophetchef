@@ -4,6 +4,7 @@ import { BadgeCheck, Mail, MapPin, PhoneCall } from "lucide-react";
 import { siteConfig } from "@/data/site";
 import { getIcon } from "@/components/common/IconByName";
 import { getContactInfo, getSiteName } from "@/lib/site-settings";
+import { isSanityImageUrl } from "@/lib/images";
 import styles from "./Footer.module.css";
 
 const productLinks = [
@@ -60,6 +61,7 @@ export const Footer = ({ settings }: FooterProps) => {
                   alt={siteName} 
                   fill 
                   sizes="160px"
+                  unoptimized={isSanityImageUrl(settings.logo.url)}
                   className="object-contain object-left"
                 />
               </div>

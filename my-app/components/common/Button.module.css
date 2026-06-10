@@ -4,7 +4,7 @@
   justify-content: center;
   gap: 8px;
   border-radius: 7px;
-  padding: 13px 20px;
+  padding: 12px 18px;
   font-weight: 800;
   font-size: 14px;
   line-height: 1;
@@ -24,18 +24,17 @@
 .primary {
   background: var(--orange);
   color: #fff;
-  box-shadow: 0 10px 22px rgba(230, 95, 26, 0.22);
+  box-shadow: none;
 }
 
 .primary:hover {
   background: var(--orange-dark);
-  transform: translateY(-1px);
 }
 
 .secondary {
-  border-color: var(--blue);
+  border-color: #c7d1dc;
   color: var(--blue);
-  background: #f9fbfc;
+  background: #fff;
 }
 
 .secondary:hover {
@@ -46,7 +45,7 @@
 .outlineLight {
   border-color: rgba(255, 255, 255, 0.75);
   color: #fff;
-  background: rgba(255, 255, 255, 0.05);
+  background: transparent;
 }
 
 .outlineLight:hover {

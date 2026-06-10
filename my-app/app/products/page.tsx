@@ -56,11 +56,11 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
         }
         backgroundImage={hero?.backgroundImage?.url || "/images/products/hero-wok-range.webp"}
       >
-        <div className="flex flex-wrap gap-2.5 mt-[30px]" aria-label="Product capabilities">
+        <div className="flex flex-wrap gap-2 mt-6" aria-label="Product capabilities">
           {metrics.map((metric) => {
             const Icon = getIcon(metric.icon, BadgeCheck);
             return (
-              <span key={metric.label} className="inline-flex items-center gap-[7px] px-[13px] py-[9px] border border-white/24 rounded-full bg-white/10 text-white text-[13px] font-extrabold">
+              <span key={metric.label} className="inline-flex items-center gap-2 px-3 py-2 border border-white/20 rounded-[6px] bg-white/8 text-white text-[13px] font-extrabold">
                 <Icon aria-hidden="true" className="w-[15px] h-[15px]" />
                 {metric.value ? `${metric.value} ` : ""}
                 {metric.label}
@@ -70,7 +70,7 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
         </div>
       </PageHero>
 
-      <section className="py-[92px] max-[760px]:py-16 bg-[linear-gradient(180deg,#f8fafc_0,#fff_260px)]">
+      <section className="py-[76px] max-[760px]:py-16 bg-[linear-gradient(180deg,#f8fafc_0,#fff_220px)]">
         <ProductListClient products={products} initialCategorySlug={initialCategorySlug} />
       </section>
 

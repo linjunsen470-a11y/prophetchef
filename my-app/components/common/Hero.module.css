@@ -10,7 +10,7 @@
 }
 
 .pageHero {
-  min-height: 420px;
+  min-height: 360px;
 }
 
 .homeHeroCompact {
@@ -45,15 +45,15 @@
   inset: 0;
   z-index: 1;
   background:
-    linear-gradient(180deg, rgba(230, 95, 26, 0.13), rgba(230, 95, 26, 0) 78px),
-    linear-gradient(90deg, rgba(6, 18, 31, 0.98) 0%, rgba(9, 24, 39, 0.92) 42%, rgba(23, 49, 79, 0.72) 72%, rgba(23, 49, 79, 0.58) 100%);
+    linear-gradient(180deg, rgba(230, 95, 26, 0.1), rgba(230, 95, 26, 0) 70px),
+    linear-gradient(90deg, rgba(6, 18, 31, 0.96) 0%, rgba(9, 24, 39, 0.9) 46%, rgba(23, 49, 79, 0.64) 78%, rgba(23, 49, 79, 0.48) 100%);
 }
 
 .heroContent,
 .pageHeroContent {
   position: relative;
   z-index: 2;
-  padding: 84px 0;
+  padding: 64px 0;
   max-width: none;
   margin: 0 auto;
 }
@@ -83,12 +83,13 @@
   font-size: clamp(42px, 4.6vw, 66px);
   line-height: 1.04;
   margin: 14px 0 22px;
-  letter-spacing: -0.045em;
+  letter-spacing: 0;
   font-weight: 800;
 }
 
 .pageHeroContent h1 {
-  font-size: clamp(34px, 4.4vw, 56px);
+  font-size: clamp(34px, 4vw, 52px);
+  max-width: 860px;
 }
 
 .heroContent p,
@@ -96,6 +97,10 @@
   font-size: clamp(17px, 1.3vw, 20px);
   max-width: 690px;
   color: rgba(255, 255, 255, 0.88);
+}
+
+.pageHeroContent p {
+  font-size: 18px;
 }
 
 .heroActions {
@@ -170,7 +175,7 @@
 @media (max-width: 760px) {
   .hero,
   .pageHero {
-    min-height: 480px;
+    min-height: 380px;
     background-position: center;
   }
   .homeHeroCompact {
@@ -181,7 +186,7 @@
   }
   .heroContent,
   .pageHeroContent {
-    padding: 48px 0;
+    padding: 44px 0;
     width: min(92vw, 1180px);
     display: block;
   }
@@ -210,7 +215,7 @@
 @media (max-width: 560px) {
   .hero,
   .pageHero {
-    min-height: 420px;
+    min-height: 340px;
   }
   .homeHeroCompact {
     min-height: 360px;

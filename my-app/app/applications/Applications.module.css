@@ -1,31 +1,60 @@
 .applicationGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  gap: 20px;
 }
 
 .applicationGridHeading {
-  max-width: 860px;
-  margin-right: auto;
-  margin-left: auto;
-  text-align: center;
+  max-width: none;
 }
 
 .applicationGridHeading :global(.eyebrow) {
-  justify-content: center;
   margin-bottom: 12px;
 }
 
 .applicationGridHeading h2 {
   max-width: 820px;
-  margin-right: auto;
-  margin-left: auto;
+}
+
+.sectionActions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.textLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--blue);
+  font-size: 14px;
+  font-weight: 850;
+}
+
+.textLink svg {
+  width: 16px;
+  height: 16px;
+  color: var(--orange);
+}
+
+.textLink:hover {
+  color: var(--orange-dark);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.textLink:focus-visible {
+  outline: 3px solid rgba(230, 95, 26, 0.35);
+  outline-offset: 3px;
+  border-radius: 4px;
 }
 
 .applicationCard {
   display: flex;
   flex-direction: column;
-  transition: 0.2s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
   background: #fff;
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -34,15 +63,15 @@
 
 .applicationCard:hover,
 .solutionCard:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 14px 34px rgba(9, 24, 39, 0.11);
+  border-color: #b9c7d5;
+  box-shadow: var(--shadow);
 }
 
 .applicationImage {
   position: relative;
   width: 100%;
   margin: 0;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 5 / 3;
   overflow: hidden;
   background: #d8e0e8;
 }
@@ -51,7 +80,7 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(23, 49, 79, 0.2), rgba(230, 95, 26, 0.08));
+  background: linear-gradient(135deg, rgba(23, 49, 79, 0.16), rgba(230, 95, 26, 0.06));
   pointer-events: none;
 }
 
@@ -65,22 +94,23 @@
   display: flex;
   flex: 1;
   flex-direction: column;
-  padding: 22px;
+  padding: 18px;
 }
 
 .applicationCard h3 {
   margin: 0 0 10px;
-  font-size: 20px;
+  font-size: 19px;
   line-height: 1.25;
   font-weight: 850;
 }
 
 .applicationCard p {
-  margin: 0 0 16px;
+  margin: 0 0 14px;
   color: var(--muted);
 }
 
-.applicationCard p:last-of-type {
+.applicationCard p:last-of-type,
+.recommendedLine {
   flex: 1;
 }
 
@@ -88,41 +118,77 @@
   color: var(--text);
 }
 
+.recommendedLine {
+  margin: 2px 0 16px;
+  padding-top: 14px;
+  border-top: 1px solid #e3e9ef;
+}
+
+.recommendedLine strong {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--blue);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.recommendedLine span {
+  display: block;
+  color: var(--muted);
+}
+
 .solutionGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 24px;
+  gap: 20px;
 }
 
 .solutionCard {
-  padding: 30px;
+  padding: 24px;
   border: 1px solid var(--border);
   border-radius: var(--radius);
   background: #fff;
-  transition: 0.2s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .solutionCard h3 {
   margin-top: 0;
-  font-size: 26px;
+  font-size: 24px;
   font-weight: 850;
 }
 
 .solutionCard h4 {
-  margin: 22px 0 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 6px;
   color: var(--blue);
   font-weight: 850;
+  font-size: 14px;
+}
+
+.solutionCard h4 svg {
+  width: 16px;
+  height: 16px;
+  color: var(--orange);
 }
 
 .solutionCard p {
-  margin: 0 0 16px;
+  margin: 0;
   color: var(--muted);
 }
 
-.cardActions {
-  display: flex;
-  gap: 10px;
-  margin-top: auto;
+.solutionFacts {
+  display: grid;
+  gap: 16px;
+  margin: 18px 0 22px;
+}
+
+.solutionFacts > div {
+  padding-top: 16px;
+  border-top: 1px solid #e3e9ef;
 }
 
 @media (max-width: 1080px) {
@@ -132,18 +198,14 @@
   .solutionGrid {
     grid-template-columns: 1fr;
   }
+  .sectionActions {
+    justify-content: flex-start;
+  }
 }
 
 @media (max-width: 760px) {
   .applicationGrid,
   .solutionGrid {
     grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 560px) {
-  .cardActions {
-    flex-direction: column;
-    align-items: stretch;
   }
 }

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { stegaClean } from "next-sanity";
 import { ArrowRight, Camera } from "lucide-react";
 
+import { isSanityImageUrl } from "@/lib/images";
 import type { NewsCategory, SanityImage } from "@/sanity/types";
 
 interface BlogCardProps {
@@ -29,6 +30,7 @@ export const BlogCard: React.FC<BlogCardProps> = ({ title, excerpt, date, catego
             alt={stegaClean(coverImage?.alt || title)}
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            unoptimized={isSanityImageUrl(cleanImage)}
             className="object-cover h-[210px] w-full"
           />
         ) : (

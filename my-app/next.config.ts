@@ -10,6 +10,8 @@ const nextConfig: NextConfig = {
   },
   experimental: {
     optimizePackageImports: ["lucide-react"],
+    staticGenerationMaxConcurrency: 2,
+    staticGenerationMinPagesPerWorker: 10,
   },
   images: {
     remotePatterns: [

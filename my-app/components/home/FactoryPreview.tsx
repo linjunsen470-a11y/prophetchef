@@ -5,6 +5,7 @@ import { Button } from "@/components/common/Button";
 import { CheckCircle2 } from "lucide-react";
 import type { MediaTextSection } from "@/sanity/types";
 import { siteConfig } from "@/data/site";
+import { isSanityImageUrl } from "@/lib/images";
 
 interface FactoryPreviewProps {
   data?: MediaTextSection;
@@ -34,6 +35,7 @@ export const FactoryPreview = ({ data }: FactoryPreviewProps) => {
             alt={data?.image?.alt || "ProphetChef production facility"}
             fill
             sizes="(max-width: 768px) 100vw, 50vw"
+            unoptimized={isSanityImageUrl(data?.image?.url)}
             className="rounded-[10px] object-cover shadow-[var(--shadow)]"
           />
         </div>

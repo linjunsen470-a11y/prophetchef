@@ -5,6 +5,7 @@ import Image from "next/image";
 import { stegaClean } from "next-sanity";
 import { getSiteName, getSiteUrl } from "@/lib/site-settings";
 import { buildSeoMetadata } from "@/lib/seo";
+import { isSanityImageUrl } from "@/lib/images";
 import { breadcrumbJsonLd, faqJsonLd } from "@/lib/structured-data";
 import { Container } from "@/components/common/Container";
 import { Breadcrumb } from "@/components/common/Breadcrumb";
@@ -141,6 +142,7 @@ export default async function NewsDetailPage({ params }: NewsPageProps) {
               fill
               priority
               sizes="(max-width: 1000px) 100vw, 1000px"
+              unoptimized={isSanityImageUrl(item.coverImage?.url)}
               className="object-cover"
             />
           </div>
