@@ -23,7 +23,7 @@ export const FeaturedProducts = async ({ products, header }: FeaturedProductsPro
       <Container className="section-heading split-heading">
         <div>
           <span className="eyebrow">{header?.eyebrow || "Featured Products"}</span>
-          <h2>{header?.title || "Factory Direct Commercial Foodservice Equipment"}</h2>
+          <h2>{header?.title || "Featured Commercial Induction Equipment"}</h2>
           {header?.description && <p>{header.description}</p>}
         </div>
         <Button variant="secondary" href={header?.cta?.href || "/products"}>

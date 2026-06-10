@@ -10,10 +10,17 @@ import styles from "./ProductsShowcase.module.css";
 
 interface ProductListClientProps {
   products: Product[];
+  initialCategorySlug?: string;
 }
 
-export function ProductListClient({ products }: ProductListClientProps) {
-  const [activeCategory, setActiveCategory] = useState("All Products");
+function resolveInitialCategory(products: Product[], initialCategorySlug?: string) {
+  if (!initialCategorySlug) return "All Products";
+  const match = products.find((product) => product.category?.slug === initialCategorySlug);
+  return match?.category?.name || "All Products";
+}
+
+export function ProductListClient({ products, initialCategorySlug }: ProductListClientProps) {
+  const [activeCategory, setActiveCategory] = useState(() => resolveInitialCategory(products, initialCategorySlug));
 
   const categories = useMemo(
     () => Array.from(new Set(products.map((product) => product.category?.name || "Uncategorized"))).sort(),

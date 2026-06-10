@@ -6,7 +6,7 @@ import { siteConfig } from "@/data/site";
 export const metadata: Metadata = {
   title: "Privacy Policy",
   description:
-    "Privacy Policy for ProKitchenTech, covering inquiry data, website analytics, cookies, data sharing and user rights.",
+    "Privacy Policy for ProphetChef, covering inquiry data, website analytics, cookies, data sharing and user rights.",
 };
 
 const policySections = [

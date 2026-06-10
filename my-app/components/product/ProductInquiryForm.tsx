@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Send } from "lucide-react";
 import { Button } from "../common/Button";
 
@@ -10,6 +10,11 @@ interface ProductInquiryFormProps {
 
 export const ProductInquiryForm: React.FC<ProductInquiryFormProps> = ({ productName }) => {
   const [status, setStatus] = useState("");
+  const submittedAtRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    submittedAtRef.current?.setAttribute("value", String(Date.now()));
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -38,6 +43,8 @@ export const ProductInquiryForm: React.FC<ProductInquiryFormProps> = ({ productN
   return (
     <form className="p-7 bg-white border border-[color:var(--border)] rounded-[var(--radius)] shadow-[0_10px_26px_rgba(9,24,39,0.05)]" onSubmit={handleSubmit}>
       <input type="hidden" name="product" value={productName} />
+      <input ref={submittedAtRef} type="hidden" name="submittedAt" />
+      <input type="text" name="website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
       <div className="grid grid-cols-2 max-[760px]:grid-cols-1 gap-3.5">
         <div>
           <label className="block mb-2 text-[14px] font-extrabold text-[color:var(--text)]">Name</label>

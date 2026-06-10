@@ -17,7 +17,7 @@ export const CTASection = async ({ settings }: CTASectionProps = {}) => {
   const globalCta = resolvedSettings?.globalCta;
   const contact = getContactInfo(resolvedSettings);
   const primaryCta = globalCta?.primaryCta;
-  const whatsappMessage = globalCta?.whatsappMessage || "Hello ProKitchenTech, I would like to request a quote.";
+  const whatsappMessage = globalCta?.whatsappMessage || "Hello ProphetChef, I would like to request a quote.";
 
   return (
     <section className={styles.siteCta}>

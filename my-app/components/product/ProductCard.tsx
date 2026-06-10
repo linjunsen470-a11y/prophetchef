@@ -1,9 +1,9 @@
 import React from "react";
-import Image from "next/image";
 import { stegaClean } from "next-sanity";
 import { ArrowRight, PackageCheck, Send, Camera } from "lucide-react";
 import type { Product } from "@/sanity/types";
 import { Button } from "@/components/common/Button";
+import { ProductImageFrame } from "@/components/product/ProductImageFrame";
 import styles from "./ProductCard.module.css";
 
 interface ProductCardProps {
@@ -21,12 +21,11 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, index }) => {
     <article className={styles.productCard} data-category={product.category?.name || "Uncategorized"}>
       <div className={styles.productMedia}>
         {cleanImage ? (
-          <Image 
-            src={cleanImage} 
-            alt={stegaClean(product.coverImage?.alt || product.name)} 
-            fill
+          <ProductImageFrame
+            src={cleanImage}
+            alt={stegaClean(product.coverImage?.alt || product.name)}
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            className={styles.productImage}
+            imageClassName={styles.productMediaImage}
           />
         ) : (
           <div className={styles.imagePlaceholder}>

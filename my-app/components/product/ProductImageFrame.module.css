@@ -1,0 +1,32 @@
+.frame {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: #f4f7f9;
+}
+
+.ratio4x3 {
+  aspect-ratio: 4 / 3;
+}
+
+.ratio1x1 {
+  aspect-ratio: 1 / 1;
+}
+
+.ratioThumb {
+  aspect-ratio: 4 / 3;
+}
+
+.image {
+  object-fit: contain;
+  object-position: center;
+}
+
+.frameFill {
+  position: absolute;
+  inset: 0;
+}
+
+.padded .frameFill {
+  inset: 12px;
+}

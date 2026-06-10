@@ -5,7 +5,7 @@ import { groupSitemapEntries } from "@/lib/sitemap";
 
 export const metadata: Metadata = {
   title: "Sitemap",
-  description: "Browse all public pages on ProKitchenTech.",
+  description: "Browse all public pages on ProphetChef.",
 };
 
 const groupTitles = {

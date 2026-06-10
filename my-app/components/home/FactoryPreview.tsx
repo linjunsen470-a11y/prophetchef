@@ -4,6 +4,7 @@ import { Container } from "../common/Container";
 import { Button } from "@/components/common/Button";
 import { CheckCircle2 } from "lucide-react";
 import type { MediaTextSection } from "@/sanity/types";
+import { siteConfig } from "@/data/site";
 
 interface FactoryPreviewProps {
   data?: MediaTextSection;
@@ -29,8 +30,8 @@ export const FactoryPreview = ({ data }: FactoryPreviewProps) => {
       <Container className="grid grid-cols-2 max-[1080px]:grid-cols-1 gap-[56px] items-center">
         <div className="relative min-h-[430px] w-full">
           <Image
-            src={data?.image?.url || "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=1600&q=80"}
-            alt={data?.image?.alt || "Commercial kitchen equipment production base"}
+            src={data?.image?.url || siteConfig.factoryPreviewImage}
+            alt={data?.image?.alt || "ProphetChef production facility"}
             fill
             sizes="(max-width: 768px) 100vw, 50vw"
             className="rounded-[10px] object-cover shadow-[var(--shadow)]"

@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useState } from "react";
-import Image from "next/image";
 import { stegaClean } from "next-sanity";
 import type { SanityImage } from "@/sanity/types";
+import { ProductImageFrame } from "@/components/product/ProductImageFrame";
 import styles from "./ProductGallery.module.css";
 
 interface ProductGalleryProps {
@@ -18,16 +18,16 @@ export const ProductGallery: React.FC<ProductGalleryProps> = ({ images }) => {
     <div className={styles.productGallery}>
       <div className={styles.mainProductImage}>
         {cleanActiveImage ? (
-          <Image 
-            src={cleanActiveImage} 
-            alt={stegaClean(activeImage?.alt || "Product")} 
-            fill
+          <ProductImageFrame
+            src={cleanActiveImage}
+            alt={stegaClean(activeImage?.alt || "Product")}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 50vw"
+            ratio="1x1"
             priority
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            className="object-cover transition-all duration-300"
+            className="rounded-[10px] border border-[color:var(--border)] bg-white shadow-[var(--shadow)]"
           />
         ) : (
-          <div className="w-full h-full bg-slate-100 flex items-center justify-center text-slate-400">
+          <div className="aspect-square w-full bg-[#f4f7f9] flex items-center justify-center text-slate-400 rounded-[10px] border border-[color:var(--border)]">
             No Image
           </div>
         )}
@@ -45,12 +45,12 @@ export const ProductGallery: React.FC<ProductGalleryProps> = ({ images }) => {
               onClick={() => setActiveImage(img)}
               aria-label={`Show product image ${i + 1}`}
             >
-              <Image 
-                src={imgUrl} 
-                alt={stegaClean(img?.alt || `Product view ${i + 1}`)} 
-                fill
-                sizes="(max-width: 768px) 86px, 112px"
-                className="object-cover"
+              <ProductImageFrame
+                src={imgUrl}
+                alt={stegaClean(img?.alt || `Product view ${i + 1}`)}
+                sizes="112px"
+                ratio="thumb"
+                padded={false}
               />
             </button>
           );

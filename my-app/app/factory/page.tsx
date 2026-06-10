@@ -18,20 +18,20 @@ const fallbackFactory: FactoryPageSettings = {
     description:
       "Integrated manufacturing capability for commercial kitchen equipment, OEM projects and global distribution partners.",
     backgroundImage: {
-      url: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=1600&q=80",
-      alt: "Commercial kitchen equipment factory",
+      url: "/images/factory/exterior-01.jpg",
+      alt: "ProphetChef factory exterior",
     } as never,
   },
   overview: {
     eyebrow: "Factory Overview",
     title: "One-Stop Manufacturing for Commercial Foodservice Equipment",
     paragraphs: [
-      "With 20+ years of manufacturing experience, a 15000sqm production base and 750+ employees, ProKitchenTech supports distributors, kitchen contractors and foodservice project buyers in more than 50 export countries.",
-      "Our integrated production line covers induction cooking, gas cooking, dishwashing, ovens and custom kitchen equipment.",
+      "With 20+ years of manufacturing experience, a 15000sqm production base and 750+ employees, ProphetChef supports distributors, kitchen contractors and foodservice project buyers in more than 50 export countries.",
+      "Our integrated production line covers commercial induction cooking, wok ranges, built-in modules and specialty foodservice equipment.",
     ],
     image: {
-      url: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=1600&q=80",
-      alt: "Commercial kitchen equipment factory overview",
+      url: "/images/factory/exterior-03.jpg",
+      alt: "ProphetChef production facility",
     } as never,
     cta: { text: "Request Factory Price", href: "/contact" },
   },

@@ -27,11 +27,12 @@ interface HeroSectionProps {
 }
 
 export const HeroSection = ({ data }: HeroSectionProps) => {
-  const eyebrow = data?.eyebrow || "Commercial Foodservice Equipment Factory";
-  const title = data?.title || "Commercial Kitchen Equipment for Global Foodservice Projects";
+  const eyebrow = data?.eyebrow || "Commercial Induction Equipment Manufacturer";
+  const title = data?.title || "Commercial Induction Cookers for Global Foodservice Projects";
   const description =
     data?.description ||
-    "Factory-direct induction cooking, automatic cooking machines, combi ovens, dishwashers and complete stainless steel kitchen solutions.";
+    "Factory-direct countertop induction cookers, commercial wok ranges, built-in modules, fryers and noodle cooking equipment for export buyers.";
+  const heroImage = data?.backgroundImage?.url || siteConfig.homeHeroImage;
   const ctaText = data?.primaryCta?.text || "View Products";
   const ctaLink = data?.primaryCta?.href || "/products";
   const secondaryCtaText = data?.secondaryCta?.text || "Contact Supplier";
@@ -49,11 +50,7 @@ export const HeroSection = ({ data }: HeroSectionProps) => {
   return (
     <section
       className={`${styles.hero} ${styles.homeHeroCompact}`}
-      style={
-        data?.backgroundImage?.url
-          ? ({ "--hero-image": `url('${data.backgroundImage.url}')` } as React.CSSProperties)
-          : undefined
-      }
+      style={{ "--hero-image": `url('${heroImage}')` } as React.CSSProperties}
     >
       <div className={styles.heroOverlay}></div>
       <div className={`container ${styles.heroContent}`}>

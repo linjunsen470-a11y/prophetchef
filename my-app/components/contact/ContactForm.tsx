@@ -1,11 +1,16 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Send } from "lucide-react";
 import { Button } from "../common/Button";
 
 export const ContactForm = () => {
   const [status, setStatus] = useState("");
+  const submittedAtRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    submittedAtRef.current?.setAttribute("value", String(Date.now()));
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -33,6 +38,8 @@ export const ContactForm = () => {
 
   return (
     <form className="rounded-[var(--radius-custom)] border border-[color:var(--border)] bg-white p-8 shadow-[0_10px_26px_rgba(9,24,39,0.05)]" onSubmit={handleSubmit}>
+      <input ref={submittedAtRef} type="hidden" name="submittedAt" />
+      <input type="text" name="website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
       <div className="grid grid-cols-2 gap-5 max-[760px]:grid-cols-1 max-[760px]:gap-0">
         <div className="mb-5">
           <label className="mb-2 block text-[14px] font-extrabold text-[color:var(--text)]">Name</label>

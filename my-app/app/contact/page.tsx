@@ -15,7 +15,7 @@ export async function generateMetadata(): Promise<Metadata> {
     getSiteSettings({ stega: false }),
   ]);
   const seo = page?.seo;
-  const title = page?.hero?.title || "Contact ProKitchenTech";
+  const title = page?.hero?.title || "Contact ProphetChef";
   const description =
     page?.hero?.description ||
     "Get in touch with our sales team for product catalogs, quotations and kitchen project planning.";
@@ -39,14 +39,14 @@ export default async function ContactPage() {
     <>
       <PageHero 
         eyebrow={hero?.eyebrow}
-        title={hero?.title || "Contact ProKitchenTech"}
+        title={hero?.title || "Contact ProphetChef"}
         description={
           hero?.description ||
           "Get in touch with our sales team for product catalogs, quotations and kitchen project planning."
         }
         backgroundImage={
           hero?.backgroundImage?.url ||
-          "https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=1600&q=80"
+          "/images/products/hero-wok-range.png"
         }
       />
 

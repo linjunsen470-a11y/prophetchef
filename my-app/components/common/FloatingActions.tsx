@@ -15,7 +15,7 @@ export const FloatingActions = ({ settings }: FloatingActionsProps) => {
   const [showBackToTop, setShowBackToTop] = useState(false);
   const contact = getContactInfo(settings);
   const message =
-    settings?.globalCta?.whatsappMessage || "Hello ProKitchenTech, I would like to request a quote.";
+    settings?.globalCta?.whatsappMessage || "Hello ProphetChef, I would like to request a quote.";
 
   useEffect(() => {
     const handleScroll = () => setShowBackToTop(window.scrollY > 400);

@@ -6,7 +6,7 @@ import { siteConfig } from "@/data/site";
 export const metadata: Metadata = {
   title: "Terms of Service",
   description:
-    "Terms of Service for using the ProKitchenTech website and submitting commercial kitchen equipment inquiries.",
+    "Terms of Service for using the ProphetChef website and submitting commercial kitchen equipment inquiries.",
 };
 
 const termsSections = [
@@ -34,7 +34,7 @@ const termsSections = [
   {
     title: "Intellectual Property",
     body: [
-      "Website content, including text, page layouts, product descriptions, graphics, logos and other materials, is owned by or licensed to ProKitchenTech unless otherwise stated.",
+      "Website content, including text, page layouts, product descriptions, graphics, logos and other materials, is owned by or licensed to ProphetChef unless otherwise stated.",
       "You may view and share website pages for normal business evaluation. You may not copy, reproduce, scrape, modify or republish website content for competing commercial use without written permission.",
     ],
   },
@@ -47,7 +47,7 @@ const termsSections = [
   {
     title: "Limitation of Liability",
     body: [
-      "To the fullest extent permitted by applicable law, ProKitchenTech is not liable for indirect, incidental, consequential or special damages arising from website use, inability to access the website, reliance on website information or third-party service availability.",
+      "To the fullest extent permitted by applicable law, ProphetChef is not liable for indirect, incidental, consequential or special damages arising from website use, inability to access the website, reliance on website information or third-party service availability.",
       "Nothing in these Terms limits obligations that cannot be excluded under applicable law or under a separate signed contract.",
     ],
   },

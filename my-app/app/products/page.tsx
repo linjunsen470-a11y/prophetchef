@@ -14,10 +14,10 @@ export async function generateMetadata(): Promise<Metadata> {
     getSiteSettings({ stega: false }),
   ]);
   const seo = page?.seo;
-  const title = page?.hero?.title || "Commercial Kitchen Equipment Products";
+  const title = page?.hero?.title || "Commercial Induction Cooker Products";
   const description =
     page?.hero?.description ||
-    "Explore our complete product range for restaurants, hotels, canteens and central kitchens.";
+    "Explore ProphetChef commercial induction cookers, wok ranges, built-in modules and specialty cooking equipment.";
 
   return buildSeoMetadata({
     seo,
@@ -29,7 +29,12 @@ export async function generateMetadata(): Promise<Metadata> {
   });
 }
 
-export default async function ProductsPage() {
+interface ProductsPageProps {
+  searchParams: Promise<{ category?: string }>;
+}
+
+export default async function ProductsPage({ searchParams }: ProductsPageProps) {
+  const { category: initialCategorySlug } = await searchParams;
   const [products, page] = await Promise.all([getProducts(), getProductsPageSettings()]);
   const hero = page?.hero;
   const metrics = page?.metrics?.length
@@ -44,15 +49,12 @@ export default async function ProductsPage() {
     <>
       <PageHero
         eyebrow={hero?.eyebrow || "Products"}
-        title={hero?.title || "Commercial Kitchen Equipment Products"}
+        title={hero?.title || "Commercial Induction Cooker Products"}
         description={
           hero?.description ||
-          "Explore our complete product range for restaurants, hotels, canteens and central kitchens."
+          "Explore ProphetChef commercial induction cookers, wok ranges, built-in modules and specialty cooking equipment."
         }
-        backgroundImage={
-          hero?.backgroundImage?.url ||
-          "https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=1600&q=80"
-        }
+        backgroundImage={hero?.backgroundImage?.url || "/images/products/hero-wok-range.png"}
       >
         <div className="flex flex-wrap gap-2.5 mt-[30px]" aria-label="Product capabilities">
           {metrics.map((metric) => {
@@ -69,7 +71,7 @@ export default async function ProductsPage() {
       </PageHero>
 
       <section className="py-[92px] max-[760px]:py-16 bg-[linear-gradient(180deg,#f8fafc_0,#fff_260px)]">
-        <ProductListClient products={products} />
+        <ProductListClient products={products} initialCategorySlug={initialCategorySlug} />
       </section>
 
       <CTASection />
