@@ -99,3 +99,27 @@ Preferred styling order:
 5. `globals.css` only when the style is truly global
 
 When refactoring, do not delete uncertain global styles directly. Move them to `styles/legacy.css` and document them.
+
+## Audit And Hardening Guidance
+
+When performing code audits or resilience work:
+
+- Prefer minimal, reviewable fixes over broad formatting-only rewrites.
+- Document each audited risk as either fixed, intentionally deferred, or not reproducible.
+- Keep security helpers small and shared; for example, link sanitization belongs in a reusable `lib/` helper rather than one-off component logic.
+- Treat CMS-provided URLs, labels, image fields, and dates as untrusted or optional unless schema validation is part of the same task.
+- Do not mask production configuration problems with silent fallbacks. User-facing forms may return safe messages, but server logs should retain enough non-sensitive context for debugging.
+- Avoid logging PII in production logs. Development-only logs must be clearly marked.
+
+## Package Manager
+
+Use `pnpm` for the active Next.js app unless a task explicitly asks for another package manager. Prefer:
+
+```bash
+cd my-app
+pnpm install
+pnpm run lint
+pnpm run build
+```
+
+The repository may contain older `npm` examples in legacy documentation; update touched docs to `pnpm` when making frontend changes.
