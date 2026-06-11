@@ -22,6 +22,8 @@ This directory is the active Next.js frontend. Follow the root `../AGENTS.MD` fi
   - `components/common/CTASection.tsx`
   - `components/product/ProductCard.tsx`
 - Avoid large rewrites when a scoped fix is enough.
+- Keep audit fixes focused; avoid formatting entire files unless formatting is part of the changed lines.
+- Use `lib/urls.ts` for CMS-managed or untrusted links instead of hand-rolling protocol checks.
 
 ## Styling Rules
 
@@ -32,6 +34,9 @@ This directory is the active Next.js frontend. Follow the root `../AGENTS.MD` fi
 
 ## Sanity Data
 
+- Treat Sanity-managed URLs, dates, image fields, arrays, and labels as optional/untrusted in frontend rendering.
+- Render placeholders for missing image URLs instead of passing empty strings to `next/image`.
+- Use `stegaClean` before putting stega-enabled strings into routes, canonical URLs, or structured data.
 - Frontend Sanity helpers live in `sanity/`.
 - Studio schemas live outside this app in `../studio-prophetchef`.
 - Do not edit Studio schemas from this directory unless the task explicitly covers CMS schema work.
@@ -41,8 +46,8 @@ This directory is the active Next.js frontend. Follow the root `../AGENTS.MD` fi
 Run:
 
 ```bash
-npm run lint
-npm run build
+pnpm run lint
+pnpm run build
 ```
 
 For browser checks, use:
@@ -54,4 +59,4 @@ For browser checks, use:
 /contact
 ```
 
-Also check representative detail routes when product or news data changes.
+Also check representative detail routes when product or news data changes. If `pnpm run build` fails while fetching Sanity during prerendering, capture the exact DNS/network error and note whether compilation and TypeScript completed first.

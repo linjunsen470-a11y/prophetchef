@@ -20,5 +20,6 @@ export function getContactInfo(settings?: SiteSettings | null) {
 
 export function whatsappUrl(whatsapp: string, message?: string) {
   const text = message || "Hello ProphetChef, I would like to request a quote.";
-  return `https://wa.me/${whatsapp}?text=${encodeURIComponent(text)}`;
+  const normalizedPhone = whatsapp.replace(/[^\d]/g, "");
+  return `https://wa.me/${normalizedPhone}?text=${encodeURIComponent(text)}`;
 }

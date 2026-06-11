@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import styles from "./Button.module.css";
+import { sanitizeHref } from "@/lib/urls";
 
 interface ButtonProps {
   href?: string;
@@ -48,8 +49,16 @@ export const Button: React.FC<ButtonProps> = ({
     .join(" ");
 
   if (href) {
+    const safeHref = sanitizeHref(href);
+    const safeRel = target === "_blank" ? rel || "noopener noreferrer" : rel;
+
     return (
-      <Link href={href} className={combinedClasses} target={target} rel={rel}>
+      <Link
+        href={safeHref}
+        className={combinedClasses}
+        target={target}
+        rel={safeRel}
+      >
         {iconStart}
         {children}
         {iconEnd}
