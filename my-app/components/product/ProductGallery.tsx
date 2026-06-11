@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import type { SanityImage } from "@/sanity/types";
 import { ProductImageFrame } from "@/components/product/ProductImageFrame";
 import styles from "./ProductGallery.module.css";
@@ -10,7 +10,14 @@ interface ProductGalleryProps {
 }
 
 export const ProductGallery: React.FC<ProductGalleryProps> = ({ images }) => {
-  const [activeImage, setActiveImage] = useState(images[0]);
+  const validImages = useMemo(
+    () => images.filter((image) => Boolean(image?.url)),
+    [images],
+  );
+  const [selectedImageUrl, setSelectedImageUrl] = useState<string>();
+  const activeImage =
+    validImages.find((image) => image.url === selectedImageUrl) ||
+    validImages[0];
   const activeImageUrl = activeImage?.url || "";
 
   return (
@@ -32,16 +39,15 @@ export const ProductGallery: React.FC<ProductGalleryProps> = ({ images }) => {
         )}
       </div>
       <div className={styles.thumbnailRow}>
-        {images.map((img, i) => {
-          const imgUrl = img?.url || "";
-          if (!imgUrl) return null;
+        {validImages.map((img, i) => {
+          const imgUrl = img.url || "";
           return (
-            <button 
-              key={i} 
+            <button
+              key={i}
               className={`${styles.thumb} ${
-                activeImage === img ? styles.active : ""
+                activeImageUrl === imgUrl ? styles.active : ""
               }`}
-              onClick={() => setActiveImage(img)}
+              onClick={() => setSelectedImageUrl(imgUrl)}
               aria-label={`Show product image ${i + 1}`}
             >
               <ProductImageFrame
