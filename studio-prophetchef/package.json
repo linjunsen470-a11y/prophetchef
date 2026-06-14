@@ -1,0 +1,49 @@
+{
+  "name": "prophetchef",
+  "private": true,
+  "version": "1.0.0",
+  "main": "package.json",
+  "license": "UNLICENSED",
+  "scripts": {
+    "build": "sanity build",
+    "cleanup:legacy-product-images": "node scripts/cleanupLegacyProductImages.mjs",
+    "cleanup:legacy-product-images:dry-run": "node scripts/cleanupLegacyProductImages.mjs --dry-run",
+    "deploy": "sanity deploy",
+    "deploy-graphql": "sanity graphql deploy",
+    "dev": "sanity dev",
+    "import:cms-core": "node scripts/importCmsCoreContent.mjs",
+    "import:catalog": "node scripts/importCatalogDatabase.mjs",
+    "import:catalog:dry-run": "node scripts/importCatalogDatabase.mjs --dry-run",
+    "import:gallery": "node scripts/importGalleryCatalog.mjs",
+    "import:hero-images": "node scripts/updateHeroImages.mjs",
+    "import:initial": "node scripts/importInitialContent.mjs",
+    "start": "sanity start",
+    "typegen": "sanity schema extract --enforce-required-fields && sanity typegen generate",
+    "verify:catalog-import": "node scripts/verifyCatalogImport.mjs"
+  },
+  "keywords": [
+    "sanity"
+  ],
+  "dependencies": {
+    "@sanity/client": "^7.22.0",
+    "@sanity/vision": "^5.30.0",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "sanity": "^5.30.0",
+    "sanity-plugin-media": "^4.3.1",
+    "styled-components": "^6.1.18"
+  },
+  "devDependencies": {
+    "@sanity/eslint-config-studio": "^6.0.0",
+    "@types/react": "^19.2.14",
+    "eslint": "^9.28",
+    "prettier": "^3.5",
+    "typescript": "^6.0.3"
+  },
+  "prettier": {
+    "bracketSpacing": false,
+    "printWidth": 100,
+    "semi": false,
+    "singleQuote": true
+  }
+}
