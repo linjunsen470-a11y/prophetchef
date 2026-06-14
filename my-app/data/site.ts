@@ -11,7 +11,7 @@ export const siteConfig = {
   address: "Dongguan, Guangdong, China",
   ogImage: "/images/products/prophetchef-product-og.webp",
   homeHeroImage: heroImages.home,
-  factoryPreviewImage: "/images/factory/exterior-03.webp",
+  factoryPreviewImage: "/images/factory/exterior-workshop-main-road.webp",
   productsHeroImage: heroImages.products,
   trustTags: ["OEM / ODM Available", "Commercial Induction Specialists", "Export Project Support"],
   url: "https://prophetchef.com",

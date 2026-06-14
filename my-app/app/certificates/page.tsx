@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { ArrowRight, FileCheck } from "lucide-react";
 import { PageHero } from "@/components/common/PageHero";
 import { Container } from "@/components/common/Container";
@@ -9,8 +10,15 @@ import { getIcon } from "@/components/common/IconByName";
 import { getCertificates, getCertificatesPageSettings, getSiteSettings } from "@/sanity/queries";
 import { getSiteName, getSiteUrl } from "@/lib/site-settings";
 import { buildSeoMetadata } from "@/lib/seo";
+import { factoryImageById } from "@/data/factory-gallery";
 import { heroImages } from "@/data/hero-images";
 import type { Certificate, CertificatesPageSettings } from "@/sanity/types";
+
+const qcProcessImages = [
+  factoryImageById["showroom-14"],
+  factoryImageById["workshop-22"],
+  factoryImageById["workshop-23"],
+];
 
 const fallbackCertificates: Certificate[] = [
   { _id: "ce", _type: "certificate", id: "ce", shortLabel: "CE", title: "CE", description: "Available for selected commercial kitchen equipment models and export projects.", icon: "badgeCheck" },
@@ -119,18 +127,36 @@ export default async function CertificatesPage() {
           title={page?.processHeader?.title || fallbackPage.processHeader?.title || ""}
           description={page?.processHeader?.description}
         />
-        <Container className="grid grid-cols-6 max-[1080px]:grid-cols-3 max-[760px]:grid-cols-1 gap-3">
-          {(processSteps || []).map((step) => {
-            const Icon = getIcon("fileCheck", FileCheck);
-            return (
-              <div key={step} className="min-h-[92px] grid place-items-center border border-[color:var(--border)] rounded-[8px] bg-white p-[18px] text-[color:var(--blue)] text-center font-extrabold">
-                <div>
-                  <Icon aria-hidden="true" className="mr-2 inline-block" size={18} />
-                  {step}
+        <Container className="grid grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] max-[1080px]:grid-cols-1 gap-8 items-start">
+          <div className="grid grid-cols-1 gap-3">
+            {(processSteps || []).map((step) => {
+              const Icon = getIcon("fileCheck", FileCheck);
+              return (
+                <div
+                  key={step}
+                  className="min-h-[72px] grid place-items-center border border-[color:var(--border)] rounded-[8px] bg-white p-[18px] text-[color:var(--blue)] text-center font-extrabold"
+                >
+                  <div>
+                    <Icon aria-hidden="true" className="mr-2 inline-block" size={18} />
+                    {step}
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
+          <div className="grid grid-cols-1 gap-4">
+            {qcProcessImages.map((image) => (
+              <figure
+                key={image.id}
+                className="m-0 overflow-hidden rounded-[10px] border border-[color:var(--border)] bg-white shadow-[0_10px_26px_rgba(9,24,39,0.05)]"
+              >
+                <div className="relative aspect-[16/10] w-full">
+                  <Image src={image.src} alt={image.alt} fill sizes="(max-width: 1080px) 100vw, 50vw" className="object-cover" />
+                </div>
+                <figcaption className="px-4 py-3 text-[14px] font-semibold text-[color:var(--muted)]">{image.caption}</figcaption>
+              </figure>
+            ))}
+          </div>
         </Container>
       </section>
 

@@ -25,6 +25,7 @@ export const FactoryPreview = ({ data }: FactoryPreviewProps) => {
         "15000sqm production base",
         "Integrated metal processing and assembly workflow",
         "Export support for distributors and project contractors",
+        "On-site showroom available for project review",
       ];
 
   const previewImageSrc =

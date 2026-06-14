@@ -10,6 +10,7 @@ import { getApplications, getApplicationsPageSettings, getSiteSettings } from "@
 import { getSiteName, getSiteUrl } from "@/lib/site-settings";
 import { buildSeoMetadata } from "@/lib/seo";
 import { resolveSanityImage, shouldSkipNextOptimization } from "@/lib/images";
+import { applicationFactoryImages } from "@/data/factory-gallery";
 import { heroImages } from "@/data/hero-images";
 import type { Application, ApplicationsPageSettings } from "@/sanity/types";
 import styles from "./Applications.module.css";
@@ -24,8 +25,8 @@ const fallbackApplications: Application[] = [
     description: "Large-batch cooking, food warming and dishwashing for daily meal service.",
     recommended: "Induction wok cooker, combi oven, hood type dishwasher",
     image: {
-      url: heroImages.applications,
-      alt: "School cafeteria",
+      url: applicationFactoryImages["school-cafeteria"],
+      alt: "School cafeteria fast food production line",
     } as never,
   },
   {
@@ -37,8 +38,8 @@ const fallbackApplications: Application[] = [
     description: "All-day production equipment for breakfast, banquets and a la carte service.",
     recommended: "Combi oven, gas cooker, dishwasher, modular range",
     image: {
-      url: "https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=1600&q=80",
-      alt: "Hotel kitchen",
+      url: applicationFactoryImages["hotel-kitchen"],
+      alt: "Hotel kitchen premium island range equipment",
     } as never,
   },
   {
@@ -50,8 +51,8 @@ const fallbackApplications: Application[] = [
     description: "Standardized cooking equipment for consistent recipes across locations.",
     recommended: "Automatic cooking machine, pasta cooker, induction cooker",
     image: {
-      url: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=1200&q=80",
-      alt: "Chain restaurant kitchen",
+      url: applicationFactoryImages["chain-restaurant"],
+      alt: "Chain restaurant automatic cooking equipment showroom",
     } as never,
   },
   {
@@ -63,8 +64,8 @@ const fallbackApplications: Application[] = [
     description: "High-volume cooking and dispatch systems for prepared food production.",
     recommended: "Automatic cooking kettle, modular line, dishwashing system",
     image: {
-      url: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=1600&q=80",
-      alt: "Central kitchen",
+      url: applicationFactoryImages["central-kitchen"],
+      alt: "Central kitchen prep station workbench",
     } as never,
   },
 ];
@@ -76,8 +77,8 @@ const fallbackPage: ApplicationsPageSettings = {
     description:
       "Recommended commercial kitchen equipment combinations for foodservice projects and professional buyers.",
     backgroundImage: {
-      url: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1200&q=80",
-      alt: "Commercial kitchen application",
+      url: heroImages.applications,
+      alt: "Commercial kitchen application showroom",
     } as never,
   },
   gridHeader: {
@@ -171,10 +172,13 @@ export default async function ApplicationsPage() {
         </SectionHeader>
         <Container className={styles.applicationGrid}>
           {applications.map((item) => {
-            const applicationImageSrc =
-              resolveSanityImage(item.image, { width: 720, quality: 85 }) ||
+            const fallbackImage =
+              (item.slug && applicationFactoryImages[item.slug]) ||
+              fallbackApplications.find((entry) => entry.slug === item.slug)?.image?.url ||
               fallbackApplications[0].image?.url ||
               "";
+            const applicationImageSrc =
+              resolveSanityImage(item.image, { width: 720, quality: 85 }) || fallbackImage;
 
             return (
             <article key={item.id || item.name} className={styles.applicationCard}>

@@ -11,6 +11,14 @@ import { getFactoryPageSettings, getSiteSettings } from "@/sanity/queries";
 import { getSiteName, getSiteUrl } from "@/lib/site-settings";
 import { buildSeoMetadata } from "@/lib/seo";
 import { resolveSanityImage, shouldSkipNextOptimization } from "@/lib/images";
+import { FactoryImageGrid } from "@/components/factory/FactoryImageGrid";
+import { FactoryTrustStrip } from "@/components/factory/FactoryTrustStrip";
+import {
+  factoryExteriorImages,
+  factoryInstallationImages,
+  factoryProductionStepImages,
+  factoryShowroomImages,
+} from "@/data/factory-gallery";
 import { heroImages } from "@/data/hero-images";
 import type { FactoryPageSettings, StatItem, TextCard } from "@/sanity/types";
 
@@ -20,7 +28,8 @@ function AreaSuperscript() {
   return <sup className="text-[0.58em] font-black align-super leading-none">2</sup>;
 }
 
-function formatAreaUnit(value: string): ReactNode {
+function formatAreaUnit(value: string | undefined): ReactNode {
+  if (!value) return null;
   const match = value.match(/^(\d+(?:\+)?)\s*sqm$/i);
   if (match) {
     return (
@@ -69,8 +78,8 @@ const fallbackFactory: FactoryPageSettings = {
       "Our integrated production line covers commercial induction cooking, wok ranges, built-in modules and specialty foodservice equipment.",
     ],
     image: {
-      url: "/images/factory/exterior-03.webp",
-      alt: "ProphetChef production facility",
+      url: "/images/factory/exterior-workshop-main-road.webp",
+      alt: "ProphetChef production facility main road and workshop buildings",
     } as never,
     cta: { text: "Request Factory Price", href: "/contact" },
   },
@@ -163,6 +172,35 @@ function renderCards(items: TextCard[] | undefined) {
   });
 }
 
+function renderProcessCards(items: TextCard[] | undefined) {
+  return (items || []).map((item) => {
+    const Icon = getIcon(item.icon, BadgeCheck);
+    const stepImage = item.title ? factoryProductionStepImages[item.title] : undefined;
+
+    return (
+      <article
+        key={item._key || item.title}
+        className="overflow-hidden border border-[color:var(--border)] rounded-[var(--radius)] bg-white shadow-[0_10px_26px_rgba(9,24,39,0.05)]"
+      >
+        {stepImage && (
+          <div className="relative aspect-[16/10] w-full">
+            <Image src={stepImage} alt={`${item.title} at ProphetChef factory`} fill sizes="320px" className="object-cover" />
+          </div>
+        )}
+        <div className="p-5">
+          {item.icon && (
+            <span className="inline-grid place-items-center w-[38px] h-[38px] mb-3 rounded-[7px] bg-[#edf3f8] text-[color:var(--blue)]">
+              <Icon aria-hidden="true" className="w-[19px] h-[19px]" />
+            </span>
+          )}
+          <h3 className="m-0 mb-2 text-[18px] font-extrabold leading-[1.25]">{item.title}</h3>
+          {item.description && <p className="m-0 text-[14px] leading-[1.6] text-[color:var(--muted)]">{item.description}</p>}
+        </div>
+      </article>
+    );
+  });
+}
+
 export default async function FactoryPage() {
   const page = (await getFactoryPageSettings()) || {};
   const hero = page.hero || fallbackFactory.hero;
@@ -216,6 +254,20 @@ export default async function FactoryPage() {
       </section>
 
       <section className="section bg-[var(--light)]">
+        <Container className="section-heading">
+          <span className="eyebrow">Factory Campus</span>
+          <h2>Real Manufacturing Infrastructure You Can Verify</h2>
+          <p>
+            Walk through our office-to-workshop corridors and main production routes before placing OEM orders or
+            project quotations.
+          </p>
+        </Container>
+        <Container>
+          <FactoryImageGrid images={factoryExteriorImages} columns={3} />
+        </Container>
+      </section>
+
+      <section className="section bg-[var(--light)]">
         <Container className="grid grid-cols-6 max-[1080px]:grid-cols-3 max-[760px]:grid-cols-1 gap-4">{renderStats(stats)}</Container>
       </section>
 
@@ -223,9 +275,44 @@ export default async function FactoryPage() {
         <Container className="section-heading">
           <span className="eyebrow">{page.productionHeader?.eyebrow || fallbackFactory.productionHeader?.eyebrow}</span>
           <h2>{page.productionHeader?.title || fallbackFactory.productionHeader?.title}</h2>
-          {page.productionHeader?.description && <p>{page.productionHeader.description}</p>}
+          <p>
+            {page.productionHeader?.description ||
+              "See how sheet metal, welding, assembly and quality checks come together under one integrated production base."}
+          </p>
         </Container>
-        <Container className="grid grid-cols-4 max-[1080px]:grid-cols-2 max-[760px]:grid-cols-1 gap-5">{renderCards(productionSteps)}</Container>
+        <Container className="grid grid-cols-4 max-[1080px]:grid-cols-2 max-[760px]:grid-cols-1 gap-5">
+          {renderProcessCards(productionSteps)}
+        </Container>
+      </section>
+
+      <section className="section bg-[var(--light)]">
+        <Container className="section-heading">
+          <span className="eyebrow">On-site Showroom</span>
+          <h2>Review Full Equipment Lines Before You Order</h2>
+          <p>
+            Our showroom covers induction cooking, automatic machines, dishwashing, specialty lines and project
+            kitchen layouts for distributors and contractors.
+          </p>
+        </Container>
+        <Container>
+          <FactoryImageGrid images={factoryShowroomImages} columns={3} />
+        </Container>
+      </section>
+
+      <FactoryTrustStrip />
+
+      <section className="section">
+        <Container className="section-heading">
+          <span className="eyebrow">Installation References</span>
+          <h2>Equipment in Real Commercial Kitchen Environments</h2>
+          <p>
+            Live installation references help buyers evaluate product fit, workflow integration and project delivery
+            confidence.
+          </p>
+        </Container>
+        <Container>
+          <FactoryImageGrid images={factoryInstallationImages} columns={2} />
+        </Container>
       </section>
 
       <section className="section bg-[var(--light)]">
