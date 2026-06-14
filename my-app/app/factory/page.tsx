@@ -183,8 +183,15 @@ function renderProcessCards(items: TextCard[] | undefined) {
         className="overflow-hidden border border-[color:var(--border)] rounded-[var(--radius)] bg-white shadow-[0_10px_26px_rgba(9,24,39,0.05)]"
       >
         {stepImage && (
-          <div className="relative aspect-[16/10] w-full">
-            <Image src={stepImage} alt={`${item.title} at ProphetChef factory`} fill sizes="320px" className="object-cover" />
+          <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#edf3f8]">
+            <Image
+              src={stepImage}
+              alt={`${item.title} at ProphetChef factory`}
+              fill
+              sizes="(max-width: 760px) 100vw, 320px"
+              unoptimized={shouldSkipNextOptimization(stepImage)}
+              className="object-cover"
+            />
           </div>
         )}
         <div className="p-5">

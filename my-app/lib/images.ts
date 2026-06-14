@@ -20,6 +20,8 @@ export function isOptimizedSanityImageUrl(src: string | null | undefined) {
 }
 
 export function shouldSkipNextOptimization(src: string | null | undefined) {
+  if (typeof src !== "string" || !src) return false;
+  if (src.startsWith("/images/")) return true;
   return isSanityImageUrl(src) && !isOptimizedSanityImageUrl(src);
 }
 

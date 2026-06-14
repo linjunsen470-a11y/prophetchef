@@ -47,14 +47,24 @@ def normalize_orientation(image: Image.Image) -> Image.Image:
         image = ImageOps.exif_transpose(image)
     except Exception:
         pass
-    if image.height > image.width:
-        image = image.rotate(90, expand=True)
     return image
+
+
+def crop_to_landscape(image: Image.Image, ratio: float = 16 / 9) -> Image.Image:
+    width, height = image.size
+    current_ratio = width / height
+    if current_ratio > ratio:
+        new_width = int(height * ratio)
+        left = (width - new_width) // 2
+        return image.crop((left, 0, left + new_width, height))
+    new_height = int(width / ratio)
+    top = (height - new_height) // 2
+    return image.crop((0, top, width, top + new_height))
 
 
 def convert_image(source: Path, target: Path) -> None:
     with Image.open(source) as image:
-        image = normalize_orientation(image.convert("RGB"))
+        image = crop_to_landscape(normalize_orientation(image.convert("RGB")))
         if image.width > MAX_WIDTH:
             ratio = MAX_WIDTH / image.width
             size = (MAX_WIDTH, round(image.height * ratio))
