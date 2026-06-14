@@ -10,15 +10,14 @@ import { getIcon } from "@/components/common/IconByName";
 import { getFactoryPageSettings, getSiteSettings } from "@/sanity/queries";
 import { getSiteName, getSiteUrl } from "@/lib/site-settings";
 import { buildSeoMetadata } from "@/lib/seo";
-import { resolveSanityImage, shouldSkipNextOptimization } from "@/lib/images";
-import { FactoryCampusSpotlight } from "@/components/factory/FactoryCampusSpotlight";
+import { shouldSkipNextOptimization } from "@/lib/images";
 import { FactoryImageGrid } from "@/components/factory/FactoryImageGrid";
 import { FactoryTrustStrip } from "@/components/factory/FactoryTrustStrip";
 import {
   factoryInstallationImage,
   factoryOverviewImage,
-  factoryProductionStepImages,
   factoryShowroomImages,
+  getFactoryProductionStepImage,
 } from "@/data/factory-gallery";
 import { heroImages } from "@/data/hero-images";
 import type { FactoryPageSettings, StatItem, TextCard } from "@/sanity/types";
@@ -176,7 +175,7 @@ function renderCards(items: TextCard[] | undefined) {
 function renderProcessCards(items: TextCard[] | undefined) {
   return (items || []).map((item) => {
     const Icon = getIcon(item.icon, BadgeCheck);
-    const stepImage = item.title ? factoryProductionStepImages[item.title] : undefined;
+    const stepImage = getFactoryProductionStepImage(item.title);
 
     return (
       <article
@@ -210,10 +209,7 @@ export default async function FactoryPage() {
   const productionSteps = page.productionSteps?.length ? page.productionSteps : fallbackFactory.productionSteps;
   const teamItems = page.teamItems?.length ? page.teamItems : fallbackFactory.teamItems;
   const exportMarkets = page.exportMarkets?.length ? page.exportMarkets : fallbackFactory.exportMarkets;
-  const overviewImageSrc =
-    resolveSanityImage(overview?.image, { width: 960, quality: 85 }) ||
-    fallbackFactory.overview?.image?.url ||
-    "";
+  const overviewImageSrc = factoryOverviewImage.src;
 
   return (
     <>
@@ -230,7 +226,7 @@ export default async function FactoryPage() {
           <div className="relative min-h-[430px] w-full">
             <Image
               src={overviewImageSrc}
-              alt={overview?.image?.alt || "Commercial kitchen equipment factory overview"}
+              alt={overview?.image?.alt || factoryOverviewImage.alt}
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
               unoptimized={shouldSkipNextOptimization(overviewImageSrc)}
@@ -254,9 +250,7 @@ export default async function FactoryPage() {
         </Container>
       </section>
 
-      <FactoryCampusSpotlight />
-
-      <section className="section">
+      <section className="section bg-[var(--light)]">
         <Container className="grid grid-cols-6 max-[1080px]:grid-cols-3 max-[760px]:grid-cols-1 gap-4">{renderStats(stats)}</Container>
       </section>
 

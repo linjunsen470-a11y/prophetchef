@@ -204,7 +204,6 @@ export const factoryImageById = Object.fromEntries(
 ) as Record<string, FactoryImage>;
 
 /** Each non-hero factory photo is assigned to exactly one page section. */
-export const factoryCampusImage = factoryImageById["exterior-01"];
 export const factoryOverviewImage = factoryImageById["exterior-03"];
 export const factoryPreviewImage = factoryImageById["showroom-04"];
 export const factoryTrustImage = factoryImageById["showroom-11"];
@@ -220,6 +219,7 @@ export const factoryShowroomImages: FactoryImage[] = [
 ];
 
 export const factoryProductionStepImages: Partial<Record<string, string>> = {
+  "Laser Cutting": factoryImageById["workshop-21"].src,
   "Sheet Metal Workshop": factoryImageById["workshop-17"].src,
   Bending: factoryImageById["workshop-18"].src,
   Welding: factoryImageById["workshop-16"].src,
@@ -228,6 +228,11 @@ export const factoryProductionStepImages: Partial<Record<string, string>> = {
   "Salt Spray Test": factoryImageById["workshop-22"].src,
   "Quality Inspection": factoryImageById["workshop-23"].src,
 };
+
+export function getFactoryProductionStepImage(title: string | undefined) {
+  if (!title) return undefined;
+  return factoryProductionStepImages[title.trim()];
+}
 
 export const applicationFactoryImages: Record<string, string> = {
   "school-cafeteria": factoryImageById["showroom-15"].src,

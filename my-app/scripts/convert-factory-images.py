@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from PIL import Image
+from PIL import Image, ImageOps
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 SOURCE_DIR = REPO_ROOT / "factory"
@@ -42,9 +42,19 @@ MAX_WIDTH = 1920
 QUALITY = 82
 
 
+def normalize_orientation(image: Image.Image) -> Image.Image:
+    try:
+        image = ImageOps.exif_transpose(image)
+    except Exception:
+        pass
+    if image.height > image.width:
+        image = image.rotate(90, expand=True)
+    return image
+
+
 def convert_image(source: Path, target: Path) -> None:
     with Image.open(source) as image:
-        image = image.convert("RGB")
+        image = normalize_orientation(image.convert("RGB"))
         if image.width > MAX_WIDTH:
             ratio = MAX_WIDTH / image.width
             size = (MAX_WIDTH, round(image.height * ratio))
