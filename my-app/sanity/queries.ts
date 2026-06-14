@@ -34,9 +34,12 @@ const seoFields = `
 `;
 
 const imageFields = `
+  "assetRef": asset._ref,
   "url": asset->url,
   alt
 `;
+
+const publishedNewsFilter = `coalesce(publishedAt, _createdAt) <= now()`;
 
 const ctaFields = `
   text,
@@ -96,6 +99,28 @@ const categoryFields = `
   "image": image {
     ${imageFields}
   }
+`;
+
+const productListFields = `
+  _id,
+  "id": _id,
+  _updatedAt,
+  "updatedAt": _updatedAt,
+  name,
+  nameZh,
+  "slug": slug.current,
+  "category": category-> { ${categoryFields} },
+  description,
+  "coverImage": coverImage {
+    ${imageFields}
+  },
+  "tags": coalesce(tags, []),
+  modelCode,
+  "variants": variants[] {
+    _key
+  },
+  isArchived,
+  "seo": seo { noIndex }
 `;
 
 const productFields = `
@@ -162,6 +187,23 @@ const newsCategoryFields = `
   description
 `;
 
+const newsListFields = `
+  "id": _id,
+  _updatedAt,
+  "updatedAt": _updatedAt,
+  title,
+  excerpt,
+  "coverImage": coverImage {
+    ${imageFields}
+  },
+  "date": coalesce(publishedAt, _createdAt),
+  "category": category-> { ${newsCategoryFields} },
+  "tags": coalesce(tags, []),
+  "slug": slug.current,
+  isArchived,
+  "seo": seo { noIndex }
+`;
+
 const newsFields = `
   "id": _id,
   _updatedAt,
@@ -209,7 +251,7 @@ const certificateFields = `
 
 export async function getProducts(options: QueryOptions = {}) {
   return sanityFetch<Product[]>({
-    query: `*[_type == "product" && defined(slug.current) && !isArchived] | order(coalesce(orderRank, 9999) asc, name asc) {${productFields}}`,
+    query: `*[_type == "product" && defined(slug.current) && !isArchived] | order(coalesce(orderRank, 9999) asc, name asc) {${productListFields}}`,
     ...options,
   });
 }
@@ -232,7 +274,7 @@ export async function getProductSlugs(): Promise<{ slug: string }[]> {
 
 export async function getRelatedProducts(categoryId: string | undefined, slug: string, options: QueryOptions = {}) {
   return sanityFetch<Product[]>({
-    query: `*[_type == "product" && category._ref == $categoryId && slug.current != $slug && !isArchived] | order(coalesce(orderRank, 9999) asc, name asc)[0...4] {${productFields}}`,
+    query: `*[_type == "product" && category._ref == $categoryId && slug.current != $slug && !isArchived] | order(coalesce(orderRank, 9999) asc, name asc)[0...4] {${productListFields}}`,
     params: { categoryId: categoryId || "", slug },
     ...options,
   });
@@ -261,14 +303,14 @@ export async function getCertificates(options: QueryOptions = {}) {
 
 export async function getNewsItems(options: QueryOptions = {}) {
   return sanityFetch<NewsItem[]>({
-    query: `*[_type == "newsArticle" && defined(slug.current) && !isArchived] | order(publishedAt desc, _createdAt desc) {${newsFields}}`,
+    query: `*[_type == "newsArticle" && defined(slug.current) && !isArchived && ${publishedNewsFilter}] | order(publishedAt desc, _createdAt desc) {${newsListFields}}`,
     ...options,
   });
 }
 
 export async function getNewsItem(slug: string, options: QueryOptions = {}) {
   return sanityFetch<NewsItem | null>({
-    query: `*[_type == "newsArticle" && slug.current == $slug && !isArchived][0] {${newsFields}}`,
+    query: `*[_type == "newsArticle" && slug.current == $slug && !isArchived && ${publishedNewsFilter}][0] {${newsFields}}`,
     params: { slug },
     ...options,
   });
@@ -276,9 +318,49 @@ export async function getNewsItem(slug: string, options: QueryOptions = {}) {
 
 export async function getNewsSlugs(): Promise<{ slug: string }[]> {
   return sanityFetch<{ slug: string }[]>({
-    query: `*[_type == "newsArticle" && defined(slug.current) && !isArchived] {"slug": slug.current}`,
+    query: `*[_type == "newsArticle" && defined(slug.current) && !isArchived && ${publishedNewsFilter}] {"slug": slug.current}`,
     perspective: "published",
     stega: false,
+  });
+}
+
+export async function getProductSitemapEntries(options: QueryOptions = {}) {
+  return sanityFetch<
+    Array<{
+      slug: string;
+      name: string;
+      updatedAt?: string;
+      seo?: { noIndex?: boolean };
+    }>
+  >({
+    query: `*[_type == "product" && defined(slug.current) && !isArchived] | order(coalesce(orderRank, 9999) asc, name asc) {
+      "slug": slug.current,
+      name,
+      "updatedAt": _updatedAt,
+      "seo": seo { noIndex }
+    }`,
+    ...options,
+  });
+}
+
+export async function getNewsSitemapEntries(options: QueryOptions = {}) {
+  return sanityFetch<
+    Array<{
+      slug: string;
+      title: string;
+      updatedAt?: string;
+      date: string;
+      seo?: { noIndex?: boolean };
+    }>
+  >({
+    query: `*[_type == "newsArticle" && defined(slug.current) && !isArchived && ${publishedNewsFilter}] | order(publishedAt desc, _createdAt desc) {
+      "slug": slug.current,
+      title,
+      "updatedAt": _updatedAt,
+      "date": coalesce(publishedAt, _createdAt),
+      "seo": seo { noIndex }
+    }`,
+    ...options,
   });
 }
 
@@ -301,7 +383,7 @@ export async function getHomePageSettings(options: QueryOptions = {}) {
       "categorySection": categorySection { ${sectionHeaderFields} },
       "featuredCategories": featuredCategories[]-> { ${categoryFields} },
       "featuredProductsSection": featuredProductsSection { ${sectionHeaderFields} },
-      "featuredProducts": featuredProducts[]-> { ${productFields} },
+      "featuredProducts": array::compact(featuredProducts[]->[defined(slug.current) && !isArchived]) { ${productListFields} },
       "factoryPreview": factoryPreview { ${mediaTextSectionFields} },
       "applicationsPreviewSection": applicationsPreviewSection { ${sectionHeaderFields} },
       "featuredApplications": featuredApplications[]-> { ${applicationFields} },
@@ -310,7 +392,7 @@ export async function getHomePageSettings(options: QueryOptions = {}) {
       "newsSection": {
         title,
         subtitle,
-        "articles": articles[]-> { ${newsFields} }
+        "articles": array::compact(articles[]->[defined(slug.current) && !isArchived && ${publishedNewsFilter}]) { ${newsListFields} }
       },
       "seo": seo { ${seoFields} }
     }`,

@@ -9,7 +9,7 @@ import { getIcon } from "@/components/common/IconByName";
 import { getFactoryPageSettings, getSiteSettings } from "@/sanity/queries";
 import { getSiteName, getSiteUrl } from "@/lib/site-settings";
 import { buildSeoMetadata } from "@/lib/seo";
-import { isSanityImageUrl } from "@/lib/images";
+import { resolveSanityImage, shouldSkipNextOptimization } from "@/lib/images";
 import { heroImages } from "@/data/hero-images";
 import type { FactoryPageSettings, StatItem, TextCard } from "@/sanity/types";
 
@@ -134,6 +134,10 @@ export default async function FactoryPage() {
   const productionSteps = page.productionSteps?.length ? page.productionSteps : fallbackFactory.productionSteps;
   const teamItems = page.teamItems?.length ? page.teamItems : fallbackFactory.teamItems;
   const exportMarkets = page.exportMarkets?.length ? page.exportMarkets : fallbackFactory.exportMarkets;
+  const overviewImageSrc =
+    resolveSanityImage(overview?.image, { width: 960, quality: 85 }) ||
+    fallbackFactory.overview?.image?.url ||
+    "";
 
   return (
     <>
@@ -149,11 +153,11 @@ export default async function FactoryPage() {
         <Container className="grid grid-cols-2 max-[1080px]:grid-cols-1 gap-[56px] items-center">
           <div className="relative min-h-[430px] w-full">
             <Image
-              src={overview?.image?.url || fallbackFactory.overview?.image?.url || ""}
+              src={overviewImageSrc}
               alt={overview?.image?.alt || "Commercial kitchen equipment factory overview"}
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
-              unoptimized={isSanityImageUrl(overview?.image?.url)}
+              unoptimized={shouldSkipNextOptimization(overviewImageSrc)}
               className="rounded-[10px] object-cover shadow-[var(--shadow)]"
             />
           </div>

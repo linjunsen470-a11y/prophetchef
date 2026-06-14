@@ -31,6 +31,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
   return {
     ...metadata,
+    metadataBase: new URL(getSiteUrl(settings)),
     title: {
       default: title,
       template: `%s | ${getSiteName(settings)}`,
@@ -57,8 +58,12 @@ export default async function RootLayout({
         <Footer settings={settings} />
         <FloatingActions settings={settings} />
         <JsonLd data={organizationJsonLd(settings)} />
-        <SanityLive />
-        {isDraftModeEnabled && <VisualEditing />}
+        {isDraftModeEnabled && (
+          <>
+            <SanityLive />
+            <VisualEditing />
+          </>
+        )}
       </body>
     </html>
   );

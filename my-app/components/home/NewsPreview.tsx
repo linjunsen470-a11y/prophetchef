@@ -13,7 +13,7 @@ interface NewsPreviewProps {
 }
 
 export const NewsPreview = async ({ data }: NewsPreviewProps) => {
-  let displayNews = data?.articles;
+  let displayNews = data?.articles?.filter((item): item is NewsItem => Boolean(item?.id));
 
   if (!displayNews || displayNews.length === 0) {
     const news = await getNewsItems();

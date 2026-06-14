@@ -11,7 +11,7 @@ interface FeaturedProductsProps {
 }
 
 export const FeaturedProducts = async ({ products, header }: FeaturedProductsProps) => {
-  let displayProducts = products;
+  let displayProducts = products?.filter((product): product is Product => Boolean(product?.id));
 
   // Fallback to fetching all products if no manual selection is provided
   if (!displayProducts || displayProducts.length === 0) {

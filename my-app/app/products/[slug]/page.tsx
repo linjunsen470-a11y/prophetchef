@@ -12,6 +12,7 @@ import { JsonLd } from "@/components/common/JsonLd";
 import { ProductGallery } from "@/components/product/ProductGallery";
 import { ProductCard } from "@/components/product/ProductCard";
 import { CTASection } from "@/components/common/CTASection";
+import { resolveSanityImage } from "@/lib/images";
 import { getProduct, getProductSlugs, getRelatedProducts, getSiteSettings } from "@/sanity/queries";
 import type { ProductVariant } from "@/sanity/types";
 import styles from "@/components/product/ProductDetail.module.css";
@@ -63,9 +64,7 @@ export async function generateStaticParams() {
   return getProductSlugs();
 }
 
-export async function generateMetadata({
-  params,
-}: ProductPageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: ProductPageProps): Promise<Metadata> {
   const { slug } = await params;
   const [product, settings] = await Promise.all([
     getProduct(slug, { stega: false }),
@@ -86,10 +85,7 @@ export async function generateMetadata({
 
 export default async function ProductDetailPage({ params }: ProductPageProps) {
   const { slug } = await params;
-  const [product, settings] = await Promise.all([
-    getProduct(slug),
-    getSiteSettings(),
-  ]);
+  const [product, settings] = await Promise.all([getProduct(slug), getSiteSettings()]);
 
   if (!product) {
     notFound();
@@ -100,17 +96,16 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
   const categoryName = product.category?.name || "Uncategorized";
   const categorySlug = product.category?.slug;
   const relatedProducts = await getRelatedProducts(categoryId, slug);
-
+  
   // Combine cover image and gallery for the slider
-  const galleryImages = [product.coverImage, ...(product.gallery || [])].filter(
-    (image, index, images) =>
-      Boolean(image) &&
-      images.findIndex((candidate) => candidate?.url === image?.url) === index,
-  );
+  const galleryImages = [
+    product.coverImage,
+    ...(product.gallery || []),
+  ].filter((image): image is NonNullable<typeof image> => Boolean(image));
 
   const siteUrl = getSiteUrl(settings);
-  const productImageUrl = product.coverImage?.url
-    ? stegaClean(product.coverImage.url)
+  const productImageUrl = product.coverImage
+    ? stegaClean(resolveSanityImage(product.coverImage, { width: 1200, quality: 85 }) || product.coverImage.url || "")
     : "";
   const productUrl = `${siteUrl}/products/${stegaClean(product.slug)}`;
   const variants = product.variants || [];
@@ -128,13 +123,13 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
     "keywords": product.tags?.join(", "),
     "brand": {
       "@type": "Brand",
-      name: siteName,
+      "name": siteName
     },
-    url: productUrl,
-    additionalProperty: product.specifications?.map((spec) => ({
+    "url": productUrl,
+    "additionalProperty": product.specifications?.map((spec) => ({
       "@type": "PropertyValue",
-      name: spec.label,
-      value: spec.value,
+      "name": spec.label,
+      "value": spec.value
     })),
     "isVariantOf": variants.length
       ? variants.map((variant) => ({
@@ -150,14 +145,12 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
     { name: product.name, url: productUrl },
   ]);
   const faqSchema = faqJsonLd(product.faqs);
-  const schemas = faqSchema
-    ? [jsonLd, breadcrumbSchema, faqSchema]
-    : [jsonLd, breadcrumbSchema];
+  const schemas = faqSchema ? [jsonLd, breadcrumbSchema, faqSchema] : [jsonLd, breadcrumbSchema];
 
   return (
     <>
       <JsonLd data={schemas} />
-      <Breadcrumb
+      <Breadcrumb 
         items={[
           { name: "Products", href: "/products" },
           { name: categoryName, href: categorySlug ? `/products?category=${encodeURIComponent(stegaClean(categorySlug))}` : "/products" },
@@ -168,12 +161,12 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
       <section className={styles.productDetailHero}>
         <Container className={styles.productDetailGrid}>
           <ProductGallery images={galleryImages} />
-
+          
           <div className={styles.productSummary}>
             <span className="eyebrow">{categoryName}</span>
             <h1>{product.name}</h1>
             <p>{product.description}</p>
-
+            
             <div className="flex flex-wrap gap-[7px] my-3.5">
               {displayTags.map(tag => (
                 <span key={tag} className="bg-[#edf3f8] text-[color:var(--blue)] border border-[#cfd8e3] px-[11px] py-2 rounded-[6px] text-[13px] font-bold">{tag}</span>
@@ -188,22 +181,10 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
               <span>Export packaging</span>
             </div>
 
-            <div
-              className={styles.productSummaryStats}
-              aria-label="Procurement advantages"
-            >
-              <div>
-                <strong>12 mo</strong>
-                <span>Warranty</span>
-              </div>
-              <div>
-                <strong>OEM</strong>
-                <span>Customization</span>
-              </div>
-              <div>
-                <strong>CE</strong>
-                <span>Certified</span>
-              </div>
+            <div className={styles.productSummaryStats} aria-label="Procurement advantages">
+              <div><strong>12 mo</strong><span>Warranty</span></div>
+              <div><strong>OEM</strong><span>Customization</span></div>
+              <div><strong>CE</strong><span>Certified</span></div>
             </div>
           </div>
         </Container>
@@ -217,21 +198,10 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
           </Container>
           <Container className="grid grid-cols-3 max-[760px]:grid-cols-1 gap-5">
             {product.features.map((feature, idx) => (
-              <article
-                key={idx}
-                className="p-6 bg-white border border-[color:var(--border)] rounded-[var(--radius)] shadow-[0_10px_26px_rgba(9,24,39,0.05)]"
-              >
-                <span className="inline-flex mb-3.5 text-[color:var(--orange)] font-black">
-                  {(idx + 1).toString().padStart(2, "0")}
-                </span>
-                <h3 className="m-0 mb-2.5 text-[20px] leading-[1.25] font-extrabold">
-                  {feature.title}
-                </h3>
-                {feature.description && (
-                  <p className="m-0 text-[color:var(--muted)]">
-                    {feature.description}
-                  </p>
-                )}
+              <article key={idx} className="p-6 bg-white border border-[color:var(--border)] rounded-[var(--radius)] shadow-[0_10px_26px_rgba(9,24,39,0.05)]">
+                <span className="inline-flex mb-3.5 text-[color:var(--orange)] font-black">{(idx + 1).toString().padStart(2, '0')}</span>
+                <h3 className="m-0 mb-2.5 text-[20px] leading-[1.25] font-extrabold">{feature.title}</h3>
+                {feature.description && <p className="m-0 text-[color:var(--muted)]">{feature.description}</p>}
               </article>
             ))}
           </Container>
@@ -334,9 +304,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
               <span className="eyebrow">Related Products</span>
               <h2>More {categoryName}</h2>
             </div>
-            <Button href="/products" variant="secondary">
-              All Products
-            </Button>
+            <Button href="/products" variant="secondary">All Products</Button>
           </Container>
           <Container className="grid grid-cols-4 max-[1080px]:grid-cols-2 max-[760px]:grid-cols-1 gap-6">
             {relatedProducts.map((p, idx) => (

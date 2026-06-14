@@ -9,7 +9,7 @@ import { CTASection } from "@/components/common/CTASection";
 import { getApplications, getApplicationsPageSettings, getSiteSettings } from "@/sanity/queries";
 import { getSiteName, getSiteUrl } from "@/lib/site-settings";
 import { buildSeoMetadata } from "@/lib/seo";
-import { isSanityImageUrl } from "@/lib/images";
+import { resolveSanityImage, shouldSkipNextOptimization } from "@/lib/images";
 import { heroImages } from "@/data/hero-images";
 import type { Application, ApplicationsPageSettings } from "@/sanity/types";
 import styles from "./Applications.module.css";
@@ -170,15 +170,21 @@ export default async function ApplicationsPage() {
           </div>
         </SectionHeader>
         <Container className={styles.applicationGrid}>
-          {applications.map((item) => (
+          {applications.map((item) => {
+            const applicationImageSrc =
+              resolveSanityImage(item.image, { width: 720, quality: 85 }) ||
+              fallbackApplications[0].image?.url ||
+              "";
+
+            return (
             <article key={item.id || item.name} className={styles.applicationCard}>
               <figure className={styles.applicationImage}>
                 <Image
-                  src={item.image?.url || fallbackApplications[0].image?.url || ""}
+                  src={applicationImageSrc}
                   alt={item.image?.alt || item.name}
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  unoptimized={isSanityImageUrl(item.image?.url)}
+                  unoptimized={shouldSkipNextOptimization(applicationImageSrc)}
                   className="object-cover"
                 />
               </figure>
@@ -193,7 +199,8 @@ export default async function ApplicationsPage() {
                 )}
               </div>
             </article>
-          ))}
+            );
+          })}
         </Container>
       </section>
 

@@ -1,6 +1,7 @@
 export interface SanityImage {
-  _type: "image";
-  asset: {
+  _type?: "image";
+  assetRef?: string;
+  asset?: {
     _ref: string;
     _type: "reference";
   };
@@ -47,7 +48,7 @@ export interface SectionHeaderData {
 
 export interface StatItem {
   _key?: string;
-  value: string;
+  value?: string;
   label: string;
   icon?: string;
 }
@@ -128,7 +129,7 @@ export interface Product {
   slug: string;
   category?: Category;
   description: string;
-  coverImage: SanityImage;
+  coverImage?: SanityImage;
   gallery?: SanityImage[];
   features?: ProductFeature[];
   specifications?: ProductSpecification[];
@@ -140,7 +141,7 @@ export interface Product {
   catalogPageCode?: string;
   sourceNote?: string;
   variants?: ProductVariant[];
-  isArchived: boolean;
+  isArchived?: boolean;
   seo?: SeoData;
 }
 
@@ -185,7 +186,7 @@ export interface NewsItem {
   id: string;
   title: string;
   excerpt: string;
-  coverImage: SanityImage;
+  coverImage?: SanityImage;
   date: string;
   _updatedAt?: string;
   updatedAt?: string;
@@ -194,7 +195,7 @@ export interface NewsItem {
   tags?: string[];
   body?: NewsBlock[];
   faqs?: FaqItem[];
-  isArchived: boolean;
+  isArchived?: boolean;
   seo?: SeoData;
 }
 

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { stegaClean } from "next-sanity";
 import { Camera } from "lucide-react";
 import type { Product } from "@/sanity/types";
+import { resolveSanityImage } from "@/lib/images";
 import { ProductImageFrame } from "@/components/product/ProductImageFrame";
 import styles from "./ProductCard.module.css";
 
@@ -13,7 +14,7 @@ interface ProductCardProps {
 }
 
 export const ProductCard: React.FC<ProductCardProps> = ({ product, index, showCategory = true }) => {
-  const imageUrl = product.coverImage?.url;
+  const imageUrl = resolveSanityImage(product.coverImage, { width: 640, quality: 80 });
   const cleanSlug = stegaClean(product.slug);
   const productHref = `/products/${cleanSlug}`;
   const categoryName = product.category?.name || "Uncategorized";

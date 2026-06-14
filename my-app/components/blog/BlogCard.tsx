@@ -3,7 +3,7 @@ import Link from "next/link";
 import { stegaClean } from "next-sanity";
 import { ArrowRight, Camera } from "lucide-react";
 
-import { isSanityImageUrl } from "@/lib/images";
+import { resolveSanityImage, shouldSkipNextOptimization } from "@/lib/images";
 import type { NewsCategory, SanityImage } from "@/sanity/types";
 import styles from "./BlogCard.module.css";
 
@@ -12,13 +12,13 @@ interface BlogCardProps {
   excerpt: string;
   date: string;
   category?: NewsCategory;
-  coverImage: SanityImage;
+  coverImage?: SanityImage;
   slug: string;
 }
 
 export const BlogCard: React.FC<BlogCardProps> = ({ title, excerpt, date, category, coverImage, slug }) => {
   const displayDate = date.slice(0, 10);
-  const imageUrl = coverImage?.url || null;
+  const imageUrl = resolveSanityImage(coverImage, { width: 560, quality: 80 }) || null;
   const cleanImageUrl = imageUrl ? stegaClean(imageUrl) : null;
   const cleanSlug = stegaClean(slug);
   const categoryLabel = category?.title || "News";
@@ -32,7 +32,7 @@ export const BlogCard: React.FC<BlogCardProps> = ({ title, excerpt, date, catego
             alt={coverImage?.alt || title}
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            unoptimized={isSanityImageUrl(cleanImageUrl)}
+            unoptimized={shouldSkipNextOptimization(cleanImageUrl)}
             className={styles.mediaImage}
           />
         ) : (

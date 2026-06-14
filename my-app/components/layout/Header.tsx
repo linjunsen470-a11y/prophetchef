@@ -8,7 +8,7 @@ import { usePathname } from "next/navigation";
 import { navigation } from "@/data/navigation";
 import { Button } from "@/components/common/Button";
 import { getSiteName } from "@/lib/site-settings";
-import { isSanityImageUrl } from "@/lib/images";
+import { resolveSanityImage, shouldSkipNextOptimization } from "@/lib/images";
 import styles from "./Header.module.css";
 
 import { SiteSettings } from "@/sanity/types";
@@ -20,6 +20,7 @@ interface HeaderProps {
 export const Header = ({ settings }: HeaderProps) => {
   const siteName = getSiteName(settings);
   const logo = settings?.logoLight || settings?.logo;
+  const logoSrc = logo ? resolveSanityImage(logo, { width: 320, quality: 85 }) : undefined;
   const mainNavigation = settings?.mainNavigation?.length
     ? settings.mainNavigation.map((item) => ({ name: item.label, href: item.href }))
     : navigation;
@@ -55,14 +56,14 @@ export const Header = ({ settings }: HeaderProps) => {
     <header className={headerClasses} id="siteHeader">
       <div className={`container ${styles.headerInner}`}>
         <Link href="/" className={styles.brand} aria-label={`${siteName} home`}>
-          {logo?.url ? (
+          {logoSrc ? (
             <div className="relative h-10 w-40">
               <Image 
-                src={logo.url} 
+                src={logoSrc} 
                 alt={siteName} 
                 fill 
                 sizes="160px"
-                unoptimized={isSanityImageUrl(logo.url)}
+                unoptimized={shouldSkipNextOptimization(logoSrc)}
                 className="object-contain object-left"
                 priority
               />

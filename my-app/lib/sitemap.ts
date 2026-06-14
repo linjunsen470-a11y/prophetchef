@@ -4,9 +4,9 @@ import {
   getContactPageSettings,
   getFactoryPageSettings,
   getHomePageSettings,
-  getNewsItems,
   getNewsPageSettings,
-  getProducts,
+  getNewsSitemapEntries,
+  getProductSitemapEntries,
   getProductsPageSettings,
   getSiteSettings,
 } from "@/sanity/queries";
@@ -56,8 +56,8 @@ export async function getSitemapEntries(): Promise<SitemapEntry[]> {
     newsPage,
     contactPage,
   ] = await Promise.all([
-    getProducts(),
-    getNewsItems(),
+    getProductSitemapEntries(),
+    getNewsSitemapEntries(),
     getSiteSettings({ stega: false }),
     getHomePageSettings({ stega: false }),
     getProductsPageSettings({ stega: false }),

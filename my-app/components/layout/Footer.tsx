@@ -4,7 +4,7 @@ import { BadgeCheck, Mail, MapPin, PhoneCall } from "lucide-react";
 import { siteConfig } from "@/data/site";
 import { getIcon } from "@/components/common/IconByName";
 import { getContactInfo, getSiteName } from "@/lib/site-settings";
-import { isSanityImageUrl } from "@/lib/images";
+import { resolveSanityImage, shouldSkipNextOptimization } from "@/lib/images";
 import styles from "./Footer.module.css";
 
 const productLinks = [
@@ -33,6 +33,7 @@ interface FooterProps {
 export const Footer = ({ settings }: FooterProps) => {
   const siteName = getSiteName(settings);
   const logo = settings?.logoLight || settings?.logo;
+  const logoSrc = logo ? resolveSanityImage(logo, { width: 320, quality: 85 }) : undefined;
   const description = settings?.description || siteConfig.description;
   const contact = getContactInfo(settings);
   const socialLinks = settings?.socialLinks?.filter((link) => link.platform && link.url) || [];
@@ -55,14 +56,14 @@ export const Footer = ({ settings }: FooterProps) => {
       <div className={`container ${styles.footerGrid}`}>
         <div className={styles.footerIntro}>
           <Link className={styles.footerBrand} href="/">
-            {logo?.url ? (
+            {logoSrc ? (
               <div className="relative h-10 w-40">
                 <Image 
-                  src={logo.url} 
+                  src={logoSrc} 
                   alt={siteName} 
                   fill 
                   sizes="160px"
-                  unoptimized={isSanityImageUrl(logo.url)}
+                  unoptimized={shouldSkipNextOptimization(logoSrc)}
                   className="object-contain object-left"
                 />
               </div>

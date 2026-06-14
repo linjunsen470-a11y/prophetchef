@@ -5,7 +5,7 @@ import { Button } from "@/components/common/Button";
 import { CheckCircle2 } from "lucide-react";
 import type { MediaTextSection } from "@/sanity/types";
 import { siteConfig } from "@/data/site";
-import { isSanityImageUrl } from "@/lib/images";
+import { resolveSanityImage, shouldSkipNextOptimization } from "@/lib/images";
 import styles from "./FactoryPreview.module.css";
 
 interface FactoryPreviewProps {
@@ -27,16 +27,19 @@ export const FactoryPreview = ({ data }: FactoryPreviewProps) => {
         "Export support for distributors and project contractors",
       ];
 
+  const previewImageSrc =
+    resolveSanityImage(data?.image, { width: 960, quality: 85 }) || siteConfig.factoryPreviewImage;
+
   return (
     <section className="section factory-preview">
       <Container className="grid grid-cols-2 max-[1080px]:grid-cols-1 gap-[56px] items-center">
         <div className="relative min-h-[430px] w-full">
           <Image
-            src={data?.image?.url || siteConfig.factoryPreviewImage}
+            src={previewImageSrc}
             alt={data?.image?.alt || "ProphetChef production facility"}
             fill
             sizes="(max-width: 768px) 100vw, 50vw"
-            unoptimized={isSanityImageUrl(data?.image?.url)}
+            unoptimized={shouldSkipNextOptimization(previewImageSrc)}
             className="rounded-[10px] object-cover shadow-[var(--shadow)]"
           />
         </div>

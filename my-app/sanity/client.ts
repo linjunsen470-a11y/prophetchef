@@ -14,12 +14,13 @@ export const client = createClient({
   useCdn: false,
 });
 
-const token = process.env.SANITY_API_READ_TOKEN;
+const serverToken = process.env.SANITY_API_READ_TOKEN;
+const browserToken = process.env.SANITY_API_VIEWER_TOKEN;
 
 export const { SanityLive } = defineLive({
   client,
-  serverToken: token,
-  browserToken: token,
+  serverToken,
+  browserToken,
 });
 
 export async function sanityFetch<QueryResponse>({
