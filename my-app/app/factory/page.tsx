@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import type { Metadata } from "next";
 import Image from "next/image";
 import { BadgeCheck, Send } from "lucide-react";
@@ -12,6 +13,42 @@ import { buildSeoMetadata } from "@/lib/seo";
 import { resolveSanityImage, shouldSkipNextOptimization } from "@/lib/images";
 import { heroImages } from "@/data/hero-images";
 import type { FactoryPageSettings, StatItem, TextCard } from "@/sanity/types";
+
+const areaUnitPattern = /(\d+(?:\+)?)\s*sqm/gi;
+
+function AreaSuperscript() {
+  return <sup className="text-[0.58em] font-black align-super leading-none">2</sup>;
+}
+
+function formatAreaUnit(value: string): ReactNode {
+  const match = value.match(/^(\d+(?:\+)?)\s*sqm$/i);
+  if (match) {
+    return (
+      <>
+        {match[1]}m<AreaSuperscript />
+      </>
+    );
+  }
+  return value;
+}
+
+function formatAreaInText(text: string): ReactNode {
+  const parts = text.split(areaUnitPattern);
+  if (parts.length === 1) {
+    return text;
+  }
+
+  return parts.map((part, index) => {
+    if (index % 2 === 1) {
+      return (
+        <span key={`area-${index}`}>
+          {part}m<AreaSuperscript />
+        </span>
+      );
+    }
+    return part;
+  });
+}
 
 const fallbackFactory: FactoryPageSettings = {
   hero: {
@@ -102,7 +139,7 @@ function renderStats(items: StatItem[] | undefined) {
     return (
       <div key={`${item.value}-${item.label}`} className="p-6 border border-[color:var(--border)] rounded-[10px] bg-white text-center">
         <Icon aria-hidden="true" className="w-6 h-6 mx-auto mb-3 text-[color:var(--orange)]" />
-        <strong className="block text-[color:var(--blue)] text-[32px] font-black leading-none">{item.value}</strong>
+        <strong className="block text-[color:var(--blue)] text-[32px] font-black leading-none">{formatAreaUnit(item.value)}</strong>
         <span className="block mt-2 text-[color:var(--muted)] text-[14px]">{item.label}</span>
       </div>
     );
@@ -166,7 +203,7 @@ export default async function FactoryPage() {
             <h2 className="my-2.5 text-[clamp(30px,4vw,46px)] font-extrabold leading-[1.12] tracking-[-0.04em]">{overview?.title}</h2>
             <div className="text-[color:var(--muted)] text-[17px] leading-[1.65]">
               {(overview?.paragraphs || []).map((paragraph) => (
-                <p key={paragraph} className="m-0 mb-4">{paragraph}</p>
+                <p key={paragraph} className="m-0 mb-4">{formatAreaInText(paragraph)}</p>
               ))}
             </div>
             <div className="mt-7">
