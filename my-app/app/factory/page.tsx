@@ -11,11 +11,12 @@ import { getFactoryPageSettings, getSiteSettings } from "@/sanity/queries";
 import { getSiteName, getSiteUrl } from "@/lib/site-settings";
 import { buildSeoMetadata } from "@/lib/seo";
 import { resolveSanityImage, shouldSkipNextOptimization } from "@/lib/images";
+import { FactoryCampusSpotlight } from "@/components/factory/FactoryCampusSpotlight";
 import { FactoryImageGrid } from "@/components/factory/FactoryImageGrid";
 import { FactoryTrustStrip } from "@/components/factory/FactoryTrustStrip";
 import {
-  factoryExteriorImages,
-  factoryInstallationImages,
+  factoryInstallationImage,
+  factoryOverviewImage,
   factoryProductionStepImages,
   factoryShowroomImages,
 } from "@/data/factory-gallery";
@@ -78,8 +79,8 @@ const fallbackFactory: FactoryPageSettings = {
       "Our integrated production line covers commercial induction cooking, wok ranges, built-in modules and specialty foodservice equipment.",
     ],
     image: {
-      url: "/images/factory/exterior-workshop-main-road.webp",
-      alt: "ProphetChef production facility main road and workshop buildings",
+      url: factoryOverviewImage.src,
+      alt: factoryOverviewImage.alt,
     } as never,
     cta: { text: "Request Factory Price", href: "/contact" },
   },
@@ -253,21 +254,9 @@ export default async function FactoryPage() {
         </Container>
       </section>
 
-      <section className="section bg-[var(--light)]">
-        <Container className="section-heading">
-          <span className="eyebrow">Factory Campus</span>
-          <h2>Real Manufacturing Infrastructure You Can Verify</h2>
-          <p>
-            Walk through our office-to-workshop corridors and main production routes before placing OEM orders or
-            project quotations.
-          </p>
-        </Container>
-        <Container>
-          <FactoryImageGrid images={factoryExteriorImages} columns={3} />
-        </Container>
-      </section>
+      <FactoryCampusSpotlight />
 
-      <section className="section bg-[var(--light)]">
+      <section className="section">
         <Container className="grid grid-cols-6 max-[1080px]:grid-cols-3 max-[760px]:grid-cols-1 gap-4">{renderStats(stats)}</Container>
       </section>
 
@@ -311,7 +300,23 @@ export default async function FactoryPage() {
           </p>
         </Container>
         <Container>
-          <FactoryImageGrid images={factoryInstallationImages} columns={2} />
+          <figure className="m-0 mx-auto max-w-[960px] overflow-hidden rounded-[12px] border border-[color:var(--border)] bg-white shadow-[var(--shadow)]">
+            <div className="relative aspect-[16/10] w-full">
+              <Image
+                src={factoryInstallationImage.src}
+                alt={factoryInstallationImage.alt}
+                fill
+                sizes="(max-width: 960px) 100vw, 960px"
+                className="object-cover"
+              />
+            </div>
+            <figcaption className="px-5 py-4">
+              <strong className="block text-[18px] font-extrabold text-[color:var(--text)]">{factoryInstallationImage.title}</strong>
+              {factoryInstallationImage.caption && (
+                <p className="m-0 mt-2 text-[15px] leading-[1.6] text-[color:var(--muted)]">{factoryInstallationImage.caption}</p>
+              )}
+            </figcaption>
+          </figure>
         </Container>
       </section>
 

@@ -2,7 +2,7 @@ import { HeroSection } from "@/components/home/HeroSection";
 import { ProductCategories } from "@/components/home/ProductCategories";
 import { FeaturedProducts } from "@/components/home/FeaturedProducts";
 import { FactoryPreview } from "@/components/home/FactoryPreview";
-import { FactoryTourStrip } from "@/components/factory/FactoryTourStrip";
+
 import { ApplicationsPreview } from "@/components/home/ApplicationsPreview";
 import { CertificatesPreview } from "@/components/home/CertificatesPreview";
 import { NewsPreview } from "@/components/home/NewsPreview";
@@ -40,7 +40,6 @@ export default async function Home() {
       <ProductCategories categories={settings?.featuredCategories} header={settings?.categorySection} />
       <FeaturedProducts products={settings?.featuredProducts} header={settings?.featuredProductsSection} />
       <FactoryPreview data={settings?.factoryPreview} />
-      <FactoryTourStrip />
       <ApplicationsPreview
         applications={settings?.featuredApplications}
         header={settings?.applicationsPreviewSection}

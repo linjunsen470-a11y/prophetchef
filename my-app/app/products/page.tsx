@@ -6,7 +6,6 @@ import { getProducts, getProductsPageSettings, getSiteSettings } from "@/sanity/
 import { getIcon } from "@/components/common/IconByName";
 import { getSiteName, getSiteUrl } from "@/lib/site-settings";
 import { buildSeoMetadata } from "@/lib/seo";
-import { FactoryManufacturingStrip } from "@/components/factory/FactoryManufacturingStrip";
 import { heroImages } from "@/data/hero-images";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -71,8 +70,6 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
           })}
         </div>
       </PageHero>
-
-      <FactoryManufacturingStrip />
 
       <section className="py-[76px] max-[760px]:py-16 bg-[linear-gradient(180deg,#f8fafc_0,#fff_220px)]">
         <ProductListClient products={products} initialCategorySlug={initialCategorySlug} />

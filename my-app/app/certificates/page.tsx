@@ -10,15 +10,9 @@ import { getIcon } from "@/components/common/IconByName";
 import { getCertificates, getCertificatesPageSettings, getSiteSettings } from "@/sanity/queries";
 import { getSiteName, getSiteUrl } from "@/lib/site-settings";
 import { buildSeoMetadata } from "@/lib/seo";
-import { factoryImageById } from "@/data/factory-gallery";
+import { certificatesQcImage } from "@/data/factory-gallery";
 import { heroImages } from "@/data/hero-images";
 import type { Certificate, CertificatesPageSettings } from "@/sanity/types";
-
-const qcProcessImages = [
-  factoryImageById["showroom-14"],
-  factoryImageById["workshop-22"],
-  factoryImageById["workshop-23"],
-];
 
 const fallbackCertificates: Certificate[] = [
   { _id: "ce", _type: "certificate", id: "ce", shortLabel: "CE", title: "CE", description: "Available for selected commercial kitchen equipment models and export projects.", icon: "badgeCheck" },
@@ -144,19 +138,20 @@ export default async function CertificatesPage() {
               );
             })}
           </div>
-          <div className="grid grid-cols-1 gap-4">
-            {qcProcessImages.map((image) => (
-              <figure
-                key={image.id}
-                className="m-0 overflow-hidden rounded-[10px] border border-[color:var(--border)] bg-white shadow-[0_10px_26px_rgba(9,24,39,0.05)]"
-              >
-                <div className="relative aspect-[16/10] w-full">
-                  <Image src={image.src} alt={image.alt} fill sizes="(max-width: 1080px) 100vw, 50vw" className="object-cover" />
-                </div>
-                <figcaption className="px-4 py-3 text-[14px] font-semibold text-[color:var(--muted)]">{image.caption}</figcaption>
-              </figure>
-            ))}
-          </div>
+          <figure className="m-0 overflow-hidden rounded-[10px] border border-[color:var(--border)] bg-white shadow-[0_10px_26px_rgba(9,24,39,0.05)]">
+            <div className="relative aspect-[16/10] w-full">
+              <Image
+                src={certificatesQcImage.src}
+                alt={certificatesQcImage.alt}
+                fill
+                sizes="(max-width: 1080px) 100vw, 50vw"
+                className="object-cover"
+              />
+            </div>
+            <figcaption className="px-4 py-3 text-[14px] font-semibold text-[color:var(--muted)]">
+              {certificatesQcImage.caption}
+            </figcaption>
+          </figure>
         </Container>
       </section>
 

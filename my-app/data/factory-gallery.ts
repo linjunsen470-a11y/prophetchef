@@ -11,6 +11,7 @@ export interface FactoryImage {
 
 const factoryImageBase = "/images/factory";
 
+/** Full catalog converted from source photos. Not every asset is published on the site. */
 export const factoryImages: FactoryImage[] = [
   {
     id: "exterior-01",
@@ -19,14 +20,6 @@ export const factoryImages: FactoryImage[] = [
     title: "Office and Production Corridor",
     alt: "ProphetChef factory office building and workshop corridor",
     caption: "Organized facility connecting administration and production zones.",
-  },
-  {
-    id: "exterior-02",
-    src: `${factoryImageBase}/exterior-office-workshop-corridor-02.webp`,
-    category: "exterior",
-    title: "Factory Campus Walkway",
-    alt: "ProphetChef factory campus walkway between office and workshops",
-    caption: "Clear logistics routes for stable export production scheduling.",
   },
   {
     id: "exterior-03",
@@ -204,40 +197,36 @@ export const factoryImages: FactoryImage[] = [
     alt: "Commercial smart kitchen with drum wok cooker and rice steamer installation",
     caption: "Real installation reference for distributors and project contractors.",
   },
-  {
-    id: "installation-25",
-    src: `${factoryImageBase}/installation-rice-roll-noodle-machines.webp`,
-    category: "installation",
-    title: "Rice Roll & Noodle Machine Installation",
-    alt: "Commercial smart kitchen with automatic rice roll steamer and noodle cooker",
-    caption: "Automated specialty cooking equipment deployed in live kitchen environments.",
-  },
 ];
 
 export const factoryImageById = Object.fromEntries(
   factoryImages.map((image) => [image.id, image]),
 ) as Record<string, FactoryImage>;
 
-export function getFactoryImagesByCategory(category: FactoryImageCategory) {
-  return factoryImages.filter((image) => image.category === category);
-}
-
-export const factoryExteriorImages = getFactoryImagesByCategory("exterior");
-export const factoryShowroomImages = getFactoryImagesByCategory("showroom");
-export const factoryWorkshopImages = getFactoryImagesByCategory("workshop");
-export const factoryInstallationImages = getFactoryImagesByCategory("installation");
-
+/** Each non-hero factory photo is assigned to exactly one page section. */
+export const factoryCampusImage = factoryImageById["exterior-01"];
+export const factoryOverviewImage = factoryImageById["exterior-03"];
+export const factoryPreviewImage = factoryImageById["showroom-04"];
 export const factoryTrustImage = factoryImageById["showroom-11"];
+export const factoryInstallationImage = factoryImageById["installation-24"];
+export const certificatesQcImage = factoryImageById["showroom-14"];
 
-export const factoryProductionStepImages: Record<string, string> = {
-  "Laser Cutting": factoryImageById["workshop-17"].src,
+export const factoryShowroomImages: FactoryImage[] = [
+  factoryImageById["showroom-05"],
+  factoryImageById["showroom-07"],
+  factoryImageById["showroom-08"],
+  factoryImageById["showroom-10"],
+  factoryImageById["showroom-12"],
+];
+
+export const factoryProductionStepImages: Partial<Record<string, string>> = {
   "Sheet Metal Workshop": factoryImageById["workshop-17"].src,
   Bending: factoryImageById["workshop-18"].src,
   Welding: factoryImageById["workshop-16"].src,
   "Assembly Line": factoryImageById["workshop-19"].src,
   "Aging Test": factoryImageById["workshop-20"].src,
   "Salt Spray Test": factoryImageById["workshop-22"].src,
-  "Quality Inspection": factoryImageById["showroom-14"].src,
+  "Quality Inspection": factoryImageById["workshop-23"].src,
 };
 
 export const applicationFactoryImages: Record<string, string> = {
@@ -245,21 +234,4 @@ export const applicationFactoryImages: Record<string, string> = {
   "hotel-kitchen": factoryImageById["showroom-09"].src,
   "chain-restaurant": factoryImageById["showroom-06"].src,
   "central-kitchen": factoryImageById["showroom-13"].src,
-  "open-kitchen": factoryImageById["showroom-12"].src,
-  teppanyaki: factoryImageById["showroom-10"].src,
 };
-
-export const homeApplicationPreviewImages = [
-  factoryImageById["showroom-15"],
-  factoryImageById["showroom-09"],
-  factoryImageById["showroom-06"],
-  factoryImageById["showroom-13"],
-];
-
-export const factoryTourHighlightImages = [
-  factoryImageById["exterior-01"],
-  factoryImageById["workshop-16"],
-  factoryImageById["showroom-04"],
-  factoryImageById["showroom-11"],
-  factoryImageById["installation-24"],
-];
