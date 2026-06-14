@@ -25,7 +25,7 @@ export function ProductImageFrame({
   src,
   alt,
   sizes,
-  ratio = "4x3",
+  ratio = "1x1",
   padded = true,
   priority = false,
   className = "",

@@ -35,7 +35,6 @@ terminals/
 .idea/
 .DS_Store
 Thumbs.db
-image.png
 
 # TypeScript
 *.tsbuildinfo

@@ -12,16 +12,51 @@ import { JsonLd } from "@/components/common/JsonLd";
 import { ProductGallery } from "@/components/product/ProductGallery";
 import { ProductCard } from "@/components/product/ProductCard";
 import { CTASection } from "@/components/common/CTASection";
-import {
-  getProduct,
-  getProductSlugs,
-  getRelatedProducts,
-  getSiteSettings,
-} from "@/sanity/queries";
+import { getProduct, getProductSlugs, getRelatedProducts, getSiteSettings } from "@/sanity/queries";
+import type { ProductVariant } from "@/sanity/types";
 import styles from "@/components/product/ProductDetail.module.css";
 
 interface ProductPageProps {
   params: Promise<{ slug: string }>;
+}
+
+const GENERIC_PRODUCT_TAGS = new Set([
+  "prophetchef",
+  "commercial kitchen",
+  "commercial kitchen equipment",
+  "commercial induction",
+  "commercial induction equipment",
+  "cooking equipment",
+  "induction",
+  "kitchen equipment",
+]);
+
+function normalizeTag(tag: string) {
+  return tag.trim().toLowerCase().replace(/\s+/g, " ");
+}
+
+function getDisplayTags(tags: string[], categoryName: string) {
+  const categoryKey = normalizeTag(categoryName);
+  const seen = new Set<string>();
+
+  return tags
+    .filter((tag) => {
+      const key = normalizeTag(tag);
+      if (!key || seen.has(key) || GENERIC_PRODUCT_TAGS.has(key) || key === categoryKey) {
+        return false;
+      }
+      seen.add(key);
+      return true;
+    })
+    .slice(0, 3);
+}
+
+function joinParts(parts: Array<string | undefined>, separator: string) {
+  return parts.filter(Boolean).join(separator);
+}
+
+function formatDimensions(variant: ProductVariant) {
+  return joinParts([variant.lengthMm, variant.widthMm, variant.heightMm], " x ");
 }
 
 export async function generateStaticParams() {
@@ -64,7 +99,6 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
   const categoryId = product.category?._id;
   const categoryName = product.category?.name || "Uncategorized";
   const categorySlug = product.category?.slug;
-  const productTags = product.tags || [];
   const relatedProducts = await getRelatedProducts(categoryId, slug);
 
   // Combine cover image and gallery for the slider
@@ -79,18 +113,20 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
     ? stegaClean(product.coverImage.url)
     : "";
   const productUrl = `${siteUrl}/products/${stegaClean(product.slug)}`;
-
+  const variants = product.variants || [];
+  const displayTags = getDisplayTags(product.tags, categoryName);
+  
   const jsonLd = {
     "@context": "https://schema.org/",
     "@type": "Product",
-    name: product.name,
-    image: productImageUrl ? [productImageUrl] : [],
-    description: product.description,
-    sku: product.modelCode || undefined,
-    mpn: product.modelCode || undefined,
-    category: categoryName,
-    keywords: productTags.join(", ") || undefined,
-    brand: {
+    "name": product.name,
+    "image": productImageUrl ? [productImageUrl] : [],
+    "description": product.description,
+    "sku": product.modelCode || variants[0]?.modelCode || undefined,
+    "mpn": product.modelCode || variants[0]?.modelCode || undefined,
+    "category": categoryName,
+    "keywords": product.tags?.join(", "),
+    "brand": {
       "@type": "Brand",
       name: siteName,
     },
@@ -100,6 +136,13 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
       name: spec.label,
       value: spec.value,
     })),
+    "isVariantOf": variants.length
+      ? variants.map((variant) => ({
+          "@type": "ProductModel",
+          "name": variant.productNameEn || product.name,
+          "model": variant.modelCode,
+        }))
+      : undefined,
   };
   const breadcrumbSchema = breadcrumbJsonLd([
     { name: "Home", url: siteUrl },
@@ -117,14 +160,9 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
       <Breadcrumb
         items={[
           { name: "Products", href: "/products" },
-          {
-            name: categoryName,
-            href: categorySlug
-              ? `/products?category=${encodeURIComponent(stegaClean(categorySlug))}`
-              : "/products",
-          },
-          { name: product.name },
-        ]}
+          { name: categoryName, href: categorySlug ? `/products?category=${encodeURIComponent(stegaClean(categorySlug))}` : "/products" },
+          { name: product.name }
+        ]} 
       />
 
       <section className={styles.productDetailHero}>
@@ -137,19 +175,11 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
             <p>{product.description}</p>
 
             <div className="flex flex-wrap gap-[7px] my-3.5">
-              {productTags.map((tag) => (
-                <span
-                  key={tag}
-                  className="bg-[#edf3f8] text-[color:var(--blue)] border border-[#cfd8e3] px-[11px] py-2 rounded-[6px] text-[13px] font-bold"
-                >
-                  {tag}
-                </span>
+              {displayTags.map(tag => (
+                <span key={tag} className="bg-[#edf3f8] text-[color:var(--blue)] border border-[#cfd8e3] px-[11px] py-2 rounded-[6px] text-[13px] font-bold">{tag}</span>
               ))}
-              {product.modelCode && (
-                <span className="bg-[#edf3f8] text-[color:var(--blue)] border border-[#cfd8e3] px-[11px] py-2 rounded-[6px] text-[13px] font-bold">
-                  Model: {product.modelCode}
-                </span>
-              )}
+              {variants.length > 0 && <span className="bg-[#edf3f8] text-[color:var(--blue)] border border-[#cfd8e3] px-[11px] py-2 rounded-[6px] text-[13px] font-bold">{variants.length} Models</span>}
+              {product.modelCode && <span className="bg-[#edf3f8] text-[color:var(--blue)] border border-[#cfd8e3] px-[11px] py-2 rounded-[6px] text-[13px] font-bold">Model: {product.modelCode}</span>}
             </div>
 
             <div className={styles.miniTrust}>
@@ -208,11 +238,55 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
         </section>
       )}
 
-      {product.specifications && product.specifications.length > 0 && (
+      {variants.length > 0 && (
         <section className="section">
           <Container className="section-heading">
             <span className="eyebrow">Technical Parameters</span>
-            <h2>Product Specifications</h2>
+            <h2>Available Models</h2>
+          </Container>
+          <Container>
+            <div className={styles.variantTableWrap}>
+              <table className={styles.variantTable}>
+                <thead>
+                  <tr>
+                    <th>Model</th>
+                    <th>Product</th>
+                    <th>Dimensions (mm)</th>
+                    <th>Power</th>
+                    <th>Voltage / Frequency</th>
+                    <th>Extra</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {variants.map((variant) => {
+                    const dimensions = formatDimensions(variant);
+                    const extra = joinParts([
+                      variant.extraLabelEn,
+                      joinParts([variant.extraValue, variant.extraUnit], " "),
+                    ], ": ");
+                    return (
+                      <tr key={variant._key || variant.modelCode}>
+                        <th>{variant.modelCode}</th>
+                        <td>{variant.productNameEn || product.name}</td>
+                        <td>{dimensions || "Contact for details"}</td>
+                        <td>{variant.powerKw ? `${variant.powerKw} kW` : "Contact for details"}</td>
+                        <td>{joinParts([variant.voltageV ? `${variant.voltageV} V` : undefined, variant.frequencyHz ? `${variant.frequencyHz} Hz` : undefined], " / ") || "Contact for details"}</td>
+                        <td>{extra || "-"}</td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </Container>
+        </section>
+      )}
+
+      {product.specifications && product.specifications.length > 0 && (
+        <section className={variants.length > 0 ? "section bg-light" : "section"}>
+          <Container className="section-heading">
+            <span className="eyebrow">Specifications</span>
+            <h2>Product Notes</h2>
           </Container>
           <Container className="table-wrap">
             <table className={styles.specTable}>
@@ -239,11 +313,14 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
             <span className="eyebrow">FAQ</span>
             <h2>Common Questions</h2>
           </Container>
-          <Container className="factory-team-grid">
+          <Container className={styles.productFaqGrid}>
             {product.faqs.map((faq) => (
-              <article key={faq._key || faq.question}>
-                <h3>{faq.question}</h3>
-                <p>{faq.answer}</p>
+              <article key={faq._key || faq.question} className={styles.productFaqCard}>
+                <span className={styles.faqMarker} aria-hidden="true">Q</span>
+                <div>
+                  <h3>{faq.question}</h3>
+                  <p>{faq.answer}</p>
+                </div>
               </article>
             ))}
           </Container>
@@ -263,7 +340,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
           </Container>
           <Container className="grid grid-cols-4 max-[1080px]:grid-cols-2 max-[760px]:grid-cols-1 gap-6">
             {relatedProducts.map((p, idx) => (
-              <ProductCard key={p.id} product={p} index={idx} />
+              <ProductCard key={p.id} product={p} index={idx} showCategory={false} />
             ))}
           </Container>
         </section>

@@ -44,7 +44,7 @@ export const ProductCategories = ({ categories, header }: ProductCategoriesProps
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
               ) : (
-                <div className="aspect-[4/3] w-full bg-[#f4f7f9] flex items-center justify-center text-slate-400">
+                <div className="aspect-square w-full bg-[#f4f7f9] flex items-center justify-center text-slate-400">
                   No Image
                 </div>
               )}

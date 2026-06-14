@@ -8,12 +8,12 @@ import { isSanityImageUrl } from "@/lib/images";
 import styles from "./Footer.module.css";
 
 const productLinks = [
-  ["Commercial Induction Cookers", "/products#Commercial-Induction-Cookers"],
-  ["Automatic Cooking Machines", "/products#Automatic-Cooking-Machines"],
-  ["Combi Ovens", "/products#Combi-Ovens"],
-  ["Commercial Dishwashers", "/products#Commercial-Dishwashers"],
-  ["Modular Cooking Systems", "/products#Modular-Cooking-Systems"],
-  ["Custom Kitchen Solutions", "/products#Custom-Kitchen-Solutions"],
+  ["Tabletop & Built-in Induction Equipment", "/products?category=tabletop-built-in-induction-equipment"],
+  ["Automatic Cooking Machines", "/products?category=automatic-cooking-machines"],
+  ["Steamers, Ovens & Soup Kettles", "/products?category=steamers-ovens-soup-kettles"],
+  ["Freestanding Wok & Soup Cookers", "/products?category=freestanding-wok-soup-cookers"],
+  ["Freestanding Induction Line", "/products?category=freestanding-induction-line"],
+  ["Specialty Cooking Equipment", "/products?category=specialty-cooking-equipment"],
 ];
 
 const companyLinks = [
@@ -32,6 +32,7 @@ interface FooterProps {
 
 export const Footer = ({ settings }: FooterProps) => {
   const siteName = getSiteName(settings);
+  const logo = settings?.logoLight || settings?.logo;
   const description = settings?.description || siteConfig.description;
   const contact = getContactInfo(settings);
   const socialLinks = settings?.socialLinks?.filter((link) => link.platform && link.url) || [];
@@ -54,14 +55,14 @@ export const Footer = ({ settings }: FooterProps) => {
       <div className={`container ${styles.footerGrid}`}>
         <div className={styles.footerIntro}>
           <Link className={styles.footerBrand} href="/">
-            {settings?.logo?.url ? (
+            {logo?.url ? (
               <div className="relative h-10 w-40">
                 <Image 
-                  src={settings.logo.url} 
+                  src={logo.url} 
                   alt={siteName} 
                   fill 
                   sizes="160px"
-                  unoptimized={isSanityImageUrl(settings.logo.url)}
+                  unoptimized={isSanityImageUrl(logo.url)}
                   className="object-contain object-left"
                 />
               </div>

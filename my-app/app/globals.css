@@ -79,8 +79,10 @@ svg {
   font-size: clamp(29px, 3.4vw, 42px);
   line-height: 1.12;
   letter-spacing: 0;
-  margin: 10px 0 14px;
+  margin: 0 0 14px;
   font-weight: 850;
+  color: var(--text);
+  text-wrap: balance;
 }
 
 .section-heading p,
@@ -116,6 +118,11 @@ svg {
 
 .eyebrow.light {
   color: #f59b50;
+}
+
+.section-heading .eyebrow,
+.split-heading .eyebrow {
+  margin-bottom: 10px;
 }
 
 /* Responsiveness */

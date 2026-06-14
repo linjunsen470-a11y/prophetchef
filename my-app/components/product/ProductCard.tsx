@@ -16,13 +16,15 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, index, showCa
   const imageUrl = product.coverImage?.url;
   const cleanSlug = stegaClean(product.slug);
   const productHref = `/products/${cleanSlug}`;
-  const visibleTags = product.tags.slice(0, 3);
-  const hiddenTagCount = Math.max(product.tags.length - visibleTags.length, 0);
   const categoryName = product.category?.name || "Uncategorized";
   const titleId = `product-card-title-${cleanSlug}`;
+  const variantCount = product.variants?.length || 0;
 
   return (
-    <article className={styles.productCard} data-category={categoryName}>
+    <article
+      className={`${styles.productCard}${showCategory ? "" : ` ${styles.productCardNoCategory}`}`}
+      data-category={categoryName}
+    >
       <Link href={productHref} className={styles.productCardLink} aria-labelledby={titleId}>
         <div className={styles.productMedia} aria-hidden="true">
           {imageUrl ? (
@@ -30,6 +32,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, index, showCa
               src={imageUrl}
               alt={product.coverImage?.alt || product.name}
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              ratio="1x1"
               imageClassName={styles.productMediaImage}
             />
           ) : (
@@ -45,18 +48,16 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, index, showCa
               <span className={styles.productNumber}>{(index + 1).toString().padStart(2, "0")}</span>
               {showCategory && <span className={styles.productCategoryBadge}>{categoryName}</span>}
             </div>
-            {product.modelCode && <span className={styles.productModel}>{product.modelCode}</span>}
+            {variantCount > 0 ? (
+              <span className={styles.productModel}>{variantCount} models</span>
+            ) : (
+              product.modelCode && <span className={styles.productModel}>{product.modelCode}</span>
+            )}
           </div>
           <h3 id={titleId} className={styles.productTitle}>
             {product.name}
           </h3>
-          <p>{product.description}</p>
-          <div className={styles.tagRow}>
-            {visibleTags.map((tag) => (
-              <span key={tag}>{tag}</span>
-            ))}
-            {hiddenTagCount > 0 && <span>+{hiddenTagCount}</span>}
-          </div>
+          {product.description && <p className={styles.productDescription}>{product.description}</p>}
         </div>
       </Link>
     </article>

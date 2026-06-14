@@ -2,6 +2,7 @@ import { Button } from "@/components/common/Button";
 import { getNewsItems } from "@/sanity/queries";
 import { BlogCard } from "../blog/BlogCard";
 import { NewsItem } from "@/sanity/types";
+import styles from "./NewsPreview.module.css";
 
 interface NewsPreviewProps {
   data?: {
@@ -29,7 +30,7 @@ export const NewsPreview = async ({ data }: NewsPreviewProps) => {
         </div>
         <Button variant="secondary" href="/news">View All News</Button>
       </div>
-      <div className="container grid grid-cols-3 max-[1080px]:grid-cols-2 max-[760px]:grid-cols-1 gap-6">
+      <div className={`container ${styles.newsGrid}`}>
         {displayNews.map((item) => (
           <BlogCard key={item.id} {...item} />
         ))}

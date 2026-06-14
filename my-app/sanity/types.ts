@@ -80,6 +80,26 @@ export interface ProductSpecification {
   value: string;
 }
 
+export interface ProductVariant {
+  _key?: string;
+  productNameEn?: string;
+  productNameZh?: string;
+  modelCode: string;
+  lengthMm?: string;
+  widthMm?: string;
+  heightMm?: string;
+  powerKw?: string;
+  voltageV?: string;
+  frequencyHz?: string;
+  extraLabelEn?: string;
+  extraValue?: string;
+  extraUnit?: string;
+  sourceImage?: string;
+  sourceNote?: string;
+  needsReview?: boolean;
+  orderRank?: number;
+}
+
 export interface Category {
   _id: string;
   _type: "category";
@@ -104,6 +124,7 @@ export interface Product {
   _updatedAt?: string;
   updatedAt?: string;
   name: string;
+  nameZh?: string;
   slug: string;
   category?: Category;
   description: string;
@@ -114,6 +135,11 @@ export interface Product {
   faqs?: FaqItem[];
   tags: string[];
   modelCode?: string;
+  catalogPageId?: number;
+  catalogPageNo?: number;
+  catalogPageCode?: string;
+  sourceNote?: string;
+  variants?: ProductVariant[];
   isArchived: boolean;
   seo?: SeoData;
 }
@@ -208,6 +234,8 @@ export interface SiteSettings {
   description?: string;
   siteUrl?: string;
   logo?: SanityImage;
+  logoLight?: SanityImage;
+  logoDark?: SanityImage;
   contactInfo?: {
     email?: string;
     phone?: string;

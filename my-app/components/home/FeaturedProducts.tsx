@@ -3,6 +3,7 @@ import { getProducts } from "@/sanity/queries";
 import { Container } from "../common/Container";
 import { ProductCard } from "../product/ProductCard";
 import { Product, SectionHeaderData } from "@/sanity/types";
+import styles from "./FeaturedProducts.module.css";
 
 interface FeaturedProductsProps {
   products?: Product[];
@@ -31,9 +32,9 @@ export const FeaturedProducts = async ({ products, header }: FeaturedProductsPro
         </Button>
       </Container>
       
-      <Container className="grid grid-cols-3 max-[1080px]:grid-cols-2 max-[760px]:grid-cols-1 gap-6">
+      <Container className={styles.featuredGrid}>
         {displayProducts.map((product, index) => (
-          <ProductCard key={product.id} product={product} index={index} />
+          <ProductCard key={product.id} product={product} index={index} showCategory={false} />
         ))}
       </Container>
     </section>

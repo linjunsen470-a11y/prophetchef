@@ -10,12 +10,12 @@ export const navigation = [
 
 export const footerNavigation = {
   products: [
-    { name: "Commercial Induction Cookers", href: "/products#Commercial-Induction-Cookers" },
-    { name: "Automatic Cooking Machines", href: "/products#Automatic-Cooking-Machines" },
-    { name: "Combi Ovens", href: "/products#Combi-Ovens" },
-    { name: "Commercial Dishwashers", href: "/products#Commercial-Dishwashers" },
-    { name: "Modular Cooking Systems", href: "/products#Modular-Cooking-Systems" },
-    { name: "Custom Kitchen Solutions", href: "/products#Custom-Kitchen-Solutions" },
+    { name: "Tabletop & Built-in Induction Equipment", href: "/products?category=tabletop-built-in-induction-equipment" },
+    { name: "Automatic Cooking Machines", href: "/products?category=automatic-cooking-machines" },
+    { name: "Steamers, Ovens & Soup Kettles", href: "/products?category=steamers-ovens-soup-kettles" },
+    { name: "Freestanding Wok & Soup Cookers", href: "/products?category=freestanding-wok-soup-cookers" },
+    { name: "Freestanding Induction Line", href: "/products?category=freestanding-induction-line" },
+    { name: "Specialty Cooking Equipment", href: "/products?category=specialty-cooking-equipment" },
   ],
   company: [
     { name: "Factory", href: "/factory" },

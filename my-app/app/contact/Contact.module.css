@@ -10,10 +10,16 @@
 }
 
 .contactInfo h2 {
-  font-size: 38px;
-  line-height: 1.15;
-  margin: 10px 0 16px;
-  font-weight: 800;
+  color: var(--text);
+  font-size: clamp(29px, 3.4vw, 42px);
+  font-weight: 850;
+  line-height: 1.12;
+  margin: 0 0 14px;
+  text-wrap: balance;
+}
+
+.contactInfo :global(.eyebrow) {
+  margin-bottom: 10px;
 }
 
 .contactInfo p.lead {
@@ -90,10 +96,6 @@
 }
 
 @media (max-width: 760px) {
-  .contactInfo h2 {
-    font-size: 32px;
-  }
-  
   .methodLink,
   .methodText {
     font-size: 18px;

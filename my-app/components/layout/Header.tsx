@@ -19,6 +19,7 @@ interface HeaderProps {
 
 export const Header = ({ settings }: HeaderProps) => {
   const siteName = getSiteName(settings);
+  const logo = settings?.logoLight || settings?.logo;
   const mainNavigation = settings?.mainNavigation?.length
     ? settings.mainNavigation.map((item) => ({ name: item.label, href: item.href }))
     : navigation;
@@ -54,14 +55,14 @@ export const Header = ({ settings }: HeaderProps) => {
     <header className={headerClasses} id="siteHeader">
       <div className={`container ${styles.headerInner}`}>
         <Link href="/" className={styles.brand} aria-label={`${siteName} home`}>
-          {settings?.logo?.url ? (
+          {logo?.url ? (
             <div className="relative h-10 w-40">
               <Image 
-                src={settings.logo.url} 
+                src={logo.url} 
                 alt={siteName} 
                 fill 
                 sizes="160px"
-                unoptimized={isSanityImageUrl(settings.logo.url)}
+                unoptimized={isSanityImageUrl(logo.url)}
                 className="object-contain object-left"
                 priority
               />

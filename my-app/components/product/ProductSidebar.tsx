@@ -6,7 +6,7 @@ import styles from "./ProductsShowcase.module.css";
 
 interface ProductSidebarProps {
   activeCategory: string;
-  categories: string[];
+  categories: Array<{ name: string; slug: string }>;
   onCategoryChange: (category: string) => void;
 }
 
@@ -26,11 +26,11 @@ export const ProductSidebar: React.FC<ProductSidebarProps> = ({
       </button>
       {categories.map((category) => (
         <button 
-          key={category}
-          className={activeCategory === category ? `${styles.filterBtn} ${styles.active}` : styles.filterBtn}
-          onClick={() => onCategoryChange(category)}
+          key={category.slug}
+          className={activeCategory === category.slug ? `${styles.filterBtn} ${styles.active}` : styles.filterBtn}
+          onClick={() => onCategoryChange(category.slug)}
         >
-          {category}
+          {category.name}
         </button>
       ))}
     </aside>

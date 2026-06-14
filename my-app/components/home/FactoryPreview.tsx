@@ -6,6 +6,7 @@ import { CheckCircle2 } from "lucide-react";
 import type { MediaTextSection } from "@/sanity/types";
 import { siteConfig } from "@/data/site";
 import { isSanityImageUrl } from "@/lib/images";
+import styles from "./FactoryPreview.module.css";
 
 interface FactoryPreviewProps {
   data?: MediaTextSection;
@@ -39,7 +40,7 @@ export const FactoryPreview = ({ data }: FactoryPreviewProps) => {
             className="rounded-[10px] object-cover shadow-[var(--shadow)]"
           />
         </div>
-        <div>
+        <div className={styles.factoryCopy}>
           <span className="eyebrow">{data?.eyebrow || "Factory Strength"}</span>
           <h2>{data?.title || "Built for Stable Supply and Global Project Delivery"}</h2>
           {paragraphs.map((paragraph) => (

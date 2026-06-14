@@ -8,10 +8,6 @@
   max-width: none;
 }
 
-.applicationGridHeading :global(.eyebrow) {
-  margin-bottom: 12px;
-}
-
 .applicationGridHeading h2 {
   max-width: 820px;
 }

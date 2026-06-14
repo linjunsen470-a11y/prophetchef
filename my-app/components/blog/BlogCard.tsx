@@ -5,6 +5,7 @@ import { ArrowRight, Camera } from "lucide-react";
 
 import { isSanityImageUrl } from "@/lib/images";
 import type { NewsCategory, SanityImage } from "@/sanity/types";
+import styles from "./BlogCard.module.css";
 
 interface BlogCardProps {
   title: string;
@@ -23,32 +24,33 @@ export const BlogCard: React.FC<BlogCardProps> = ({ title, excerpt, date, catego
   const categoryLabel = category?.title || "News";
 
   return (
-    <article className="bg-white border border-[color:var(--border)] rounded-[var(--radius)] shadow-[0_10px_26px_rgba(9,24,39,0.05)] overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_14px_30px_rgba(9,24,39,0.08)]">
-      <div className="relative h-[210px] w-full overflow-hidden bg-[linear-gradient(135deg,rgba(23,49,79,0.22),rgba(230,95,26,0.1))] bg-slate-200">
+    <article className={styles.card}>
+      <div className={styles.media}>
         {imageUrl ? (
-          <Image 
+          <Image
             src={imageUrl}
             alt={coverImage?.alt || title}
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             unoptimized={isSanityImageUrl(cleanImageUrl)}
-            className="object-cover h-[210px] w-full"
+            className={styles.mediaImage}
           />
         ) : (
-          <div className="flex flex-col items-center justify-center h-full bg-slate-100 text-slate-400">
+          <div className={styles.mediaPlaceholder}>
             <Camera size={32} strokeWidth={1} />
           </div>
         )}
       </div>
-      <div className="p-[22px]">
-        <div className="flex flex-wrap gap-3 text-[color:var(--muted)] text-[13px] mb-2.5">
+      <div className={styles.body}>
+        <div className={styles.meta}>
           <span>{displayDate}</span>
-          <span className="text-[color:var(--orange)] font-extrabold">{categoryLabel}</span>
+          <span className={styles.category}>{categoryLabel}</span>
         </div>
-        <h3 className="m-0 mb-2.5 text-[20px] leading-[1.25] font-extrabold text-[color:var(--text)]">{title}</h3>
-        <p className="text-[color:var(--muted)] m-0 mb-4">{excerpt}</p>
-        <Link href={`/news/${cleanSlug}`} className="inline-flex items-center gap-1.5 font-extrabold text-[color:var(--orange)] hover:text-[color:var(--orange-dark)] transition-colors">
-          Read More <ArrowRight aria-hidden="true" className="w-4 h-4" />
+        <h3 className={styles.title}>{title}</h3>
+        {excerpt && <p className={styles.excerpt}>{excerpt}</p>}
+        <Link href={`/news/${cleanSlug}`} className={styles.readMore}>
+          Read More
+          <ArrowRight aria-hidden="true" className={styles.readMoreIcon} />
         </Link>
       </div>
     </article>
