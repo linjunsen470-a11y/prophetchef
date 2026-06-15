@@ -31,7 +31,7 @@ export const FloatingActions = ({ settings }: FloatingActionsProps) => {
         className={styles.whatsappFloat}
         href={whatsappUrl(contact.whatsapp, message)}
         target="_blank"
-        rel="noopener"
+        rel="noopener noreferrer"
         aria-label="Chat on WhatsApp"
       >
         <MessageCircle aria-hidden="true" />

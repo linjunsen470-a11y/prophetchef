@@ -65,7 +65,11 @@ export const ContactForm = () => {
         <textarea className="w-full rounded-[7px] border border-[color:var(--border)] bg-[#f4f7f9] px-[15px] py-3.5 text-[color:var(--text)] transition-colors focus:border-[color:var(--orange)] focus:bg-white focus:outline focus:outline-2 focus:outline-[rgba(230,95,26,0.24)]" name="message" rows={6} placeholder="How can we help you?"></textarea>
       </div>
       <Button type="submit" iconEnd={<Send aria-hidden="true" />}>Send Message</Button>
-      {status && <p className="mt-4 font-extrabold text-[#15803d]">{status}</p>}
+      {status && (
+        <p className={`mt-4 font-extrabold ${status.startsWith("Error") ? "text-[color:var(--orange)]" : "text-[#15803d]"}`}>
+          {status}
+        </p>
+      )}
     </form>
   );
 };

@@ -1,12 +1,10 @@
 import type { NewsBlock } from "@/sanity/types";
+import { PortableText } from "@portabletext/react";
+import type { PortableTextComponents } from "@portabletext/react";
 
 interface NewsBodyProps {
   blocks?: NewsBlock[];
   fallback: string;
-}
-
-function blockText(block: NewsBlock) {
-  return block.children?.map((child) => child.text || "").join("") || "";
 }
 
 export function NewsBody({ blocks, fallback }: NewsBodyProps) {
@@ -14,31 +12,48 @@ export function NewsBody({ blocks, fallback }: NewsBodyProps) {
     return <p>{fallback}</p>;
   }
 
-  return (
-    <>
-      {blocks.map((block) => {
-        const text = blockText(block);
+  const components: PortableTextComponents = {
+    block: {
+      h2: ({ children, value }) => (
+        <h2 className="text-[32px] my-[42px] mx-0 mb-4 text-[color:var(--blue)] font-extrabold" key={value?._key}>
+          {children}
+        </h2>
+      ),
+      h3: ({ children, value }) => (
+        <h3 className="text-[24px] my-8 mx-0 mb-3 text-[color:var(--blue)] font-extrabold" key={value?._key}>
+          {children}
+        </h3>
+      ),
+      normal: ({ children }) => <p>{children}</p>,
+    },
+    list: {
+      bullet: ({ children }) => <ul className="my-6 mx-0 pl-5 list-disc">{children}</ul>,
+      number: ({ children }) => <ol className="my-6 mx-0 pl-5 list-decimal">{children}</ol>,
+    },
+    listItem: {
+      bullet: ({ children }) => <li className="mb-3">{children}</li>,
+      number: ({ children }) => <li className="mb-3">{children}</li>,
+    },
+    marks: {
+      link: ({ children, value }) => {
+        const href = value?.href || "";
+        const isExternal = !href.startsWith("/") && !href.startsWith("#");
+        return (
+          <a
+            href={href}
+            target={isExternal ? "_blank" : undefined}
+            rel={isExternal ? "noopener noreferrer" : undefined}
+            className="text-[color:var(--orange)] hover:text-[color:var(--orange-dark)] hover:underline font-extrabold transition-colors"
+          >
+            {children}
+          </a>
+        );
+      },
+    },
+  };
 
-        if (!text) return null;
+  // Cast blocks to resolve type compatibility without using "any"
+  const portableTextValue = blocks as unknown as Parameters<typeof PortableText>[0]["value"];
 
-        if (block.style === "h2") {
-          return <h2 className="text-[32px] my-[42px] mx-0 mb-4 text-blue font-800" key={block._key}>{text}</h2>;
-        }
-
-        if (block.style === "h3") {
-          return <h3 className="text-[24px] my-8 mx-0 mb-3 text-blue font-800" key={block._key}>{text}</h3>;
-        }
-
-        if (block.listItem) {
-          return (
-            <ul className="my-6 mx-0 pl-5 list-disc" key={block._key}>
-              <li className="mb-3">{text}</li>
-            </ul>
-          );
-        }
-
-        return <p key={block._key}>{text}</p>;
-      })}
-    </>
-  );
+  return <PortableText value={portableTextValue} components={components} />;
 }

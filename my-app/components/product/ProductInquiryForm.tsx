@@ -60,7 +60,11 @@ export const ProductInquiryForm: React.FC<ProductInquiryFormProps> = ({ productN
         <textarea name="message" rows={5} placeholder={`I am interested in ${productName}. Please send details and price.`} className="w-full mb-3.5 border border-[color:var(--border)] rounded-[7px] px-[15px] py-3.5 bg-[#f4f7f9] text-[color:var(--text)] font-inherit focus:outline focus:outline-2 focus:outline-[rgba(230,95,26,0.24)] focus:border-[color:var(--orange)] focus:bg-white transition-colors"></textarea>
       </div>
       <Button type="submit" iconEnd={<Send aria-hidden="true" />}>Send Inquiry</Button>
-      {status && <p className="mt-3.5 text-[#15803d] font-extrabold">{status}</p>}
+      {status && (
+        <p className={`mt-3.5 font-extrabold ${status.startsWith("Error") ? "text-[color:var(--orange)]" : "text-[#15803d]"}`}>
+          {status}
+        </p>
+      )}
     </form>
   );
 };

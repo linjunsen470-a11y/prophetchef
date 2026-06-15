@@ -3,8 +3,9 @@ import Image from "next/image";
 import { BadgeCheck, Mail, MapPin, PhoneCall } from "lucide-react";
 import { siteConfig } from "@/data/site";
 import { getIcon } from "@/components/common/IconByName";
-import { getContactInfo, getSiteName } from "@/lib/site-settings";
+import { getContactInfo, getSiteName, whatsappUrl } from "@/lib/site-settings";
 import { resolveSanityImage, shouldSkipNextOptimization } from "@/lib/images";
+import { sanitizeHref } from "@/lib/urls";
 import styles from "./Footer.module.css";
 
 const productLinks = [
@@ -89,7 +90,7 @@ export const Footer = ({ settings }: FooterProps) => {
           {socialLinks.length > 0 && (
             <div className={styles.socialLinks} aria-label="Social links">
               {socialLinks.map((link) => (
-                <a href={link.url} key={`${link.platform}-${link.url}`} target="_blank" rel="noopener">
+                <a href={sanitizeHref(link.url)} key={`${link.platform}-${link.url}`} target="_blank" rel="noopener noreferrer">
                   {link.platform}
                 </a>
               ))}
@@ -121,7 +122,7 @@ export const Footer = ({ settings }: FooterProps) => {
             <span><Mail aria-hidden="true" />Email</span>
             <a href={`mailto:${contact.email}`}>{contact.email}</a>
             <span><PhoneCall aria-hidden="true" />WhatsApp</span>
-            <a href={`https://wa.me/${contact.whatsapp}`} target="_blank" rel="noopener">
+            <a href={whatsappUrl(contact.whatsapp, settings?.globalCta?.whatsappMessage)} target="_blank" rel="noopener noreferrer">
               {contact.phone}
             </a>
             <span><MapPin aria-hidden="true" />Address</span>

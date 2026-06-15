@@ -39,8 +39,9 @@ export function getSiteUrl() {
   return (process.env.NEXT_PUBLIC_SITE_URL || siteConfig.url).replace(/\/$/, "");
 }
 
-export function absoluteUrl(path: string) {
-  return `${getSiteUrl()}${path === "/" ? "" : path}`;
+export function absoluteUrl(path: string, siteUrl?: string) {
+  const base = siteUrl || getSiteUrl();
+  return `${base}${path === "/" ? "" : path}`;
 }
 
 export async function getSitemapEntries(): Promise<SitemapEntry[]> {

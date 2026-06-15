@@ -8,6 +8,7 @@ import { CTASection } from "@/components/common/CTASection";
 import { getApplications, getApplicationsPageSettings, getSiteSettings } from "@/sanity/queries";
 import { getSiteName, getSiteUrl } from "@/lib/site-settings";
 import { buildSeoMetadata } from "@/lib/seo";
+import { sanitizeHref } from "@/lib/urls";
 import { resolveSanityImage, shouldSkipNextOptimization } from "@/lib/images";
 import {
   applicationCardImages,
@@ -265,7 +266,7 @@ export default async function ApplicationsPage() {
                 )}
               </ul>
               <div className={styles.solutionCardFooter}>
-                <a className={styles.solutionLink} href={solution.cta?.href || "/contact"}>
+                <a className={styles.solutionLink} href={sanitizeHref(solution.cta?.href, "/contact")}>
                   {solution.cta?.text || "Request quote"}
                   <ArrowRight aria-hidden="true" />
                 </a>

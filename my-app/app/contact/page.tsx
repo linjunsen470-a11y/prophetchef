@@ -77,7 +77,7 @@ export default async function ContactPage() {
                   <a 
                     href={whatsappUrl(contact.whatsapp, settings?.globalCta?.whatsappMessage)} 
                     target="_blank" 
-                    rel="noopener" 
+                    rel="noopener noreferrer" 
                     className={styles.methodLink}
                   >
                     {contact.phone}
