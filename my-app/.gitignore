@@ -40,3 +40,12 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Dev temp/unreferenced asset folders
+/public/images/temp_candidates/
+/scratch/
+
+# Python caches from asset scripts
+__pycache__/
+*.py[cod]
+*.pyc
