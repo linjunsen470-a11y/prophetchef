@@ -1,11 +1,13 @@
 import type { NextConfig } from "next";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { productSlugRedirects } from "./data/product-slug-redirects";
 
 const projectRoot = path.dirname(fileURLToPath(import.meta.url));
+const studioOrigin = process.env.NEXT_PUBLIC_SANITY_STUDIO_URL || "http://localhost:3333";
 
-const securityHeaders = [
-  { key: "X-Frame-Options", value: "DENY" },
+function createSecurityHeaders() {
+  return [
   { key: "X-Content-Type-Options", value: "nosniff" },
   { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
   { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=()" },
@@ -18,12 +20,13 @@ const securityHeaders = [
       "img-src 'self' data: blob: https://cdn.sanity.io https://images.unsplash.com",
       "font-src 'self' data:",
       "connect-src 'self' https://cdn.sanity.io https://*.api.sanity.io wss://*.api.sanity.io",
-      "frame-ancestors 'none'",
+      `frame-ancestors 'self' ${studioOrigin}`,
       "base-uri 'self'",
       "form-action 'self'",
     ].join("; "),
   },
-];
+  ];
+}
 
 const nextConfig: NextConfig = {
   turbopack: {
@@ -50,9 +53,16 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/(.*)",
-        headers: securityHeaders,
+        headers: createSecurityHeaders(),
       },
     ];
+  },
+  async redirects() {
+    return productSlugRedirects.map(({ from, to }) => ({
+      source: `/products/${from}`,
+      destination: `/products/${to}`,
+      permanent: true,
+    }));
   },
 };
 

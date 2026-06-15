@@ -1,3 +1,5 @@
+import { applicationImages } from "@/data/application-images";
+
 export type FactoryImageCategory = "exterior" | "showroom" | "workshop" | "installation";
 
 export interface FactoryImage {
@@ -235,8 +237,5 @@ export function getFactoryProductionStepImage(title: string | undefined) {
 }
 
 export const applicationFactoryImages: Record<string, string> = {
-  "school-cafeteria": factoryImageById["showroom-15"].src,
-  "hotel-kitchen": factoryImageById["showroom-09"].src,
-  "chain-restaurant": factoryImageById["showroom-06"].src,
-  "central-kitchen": factoryImageById["showroom-13"].src,
+  ...applicationImages,
 };

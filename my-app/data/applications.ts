@@ -2,22 +2,22 @@ export const applications = [
   {
     id: "01",
     name: "School Cafeteria",
-    description: "Large-batch cooking and dishwashing equipment for safe daily meal service.",
+    description: "Large-batch cooking, food warming and dishwashing for daily meal service.",
   },
   {
     id: "02",
-    name: "Hotel Kitchen",
-    description: "Professional cooking, ovens and washing lines for all-day operations.",
+    name: "Central Kitchen",
+    description: "High-volume cooking and dispatch systems for prepared food production.",
   },
   {
     id: "03",
-    name: "Chain Restaurant",
-    description: "Standardized equipment for repeatable recipes and faster staff training.",
+    name: "Fast Food Restaurant",
+    description: "Compact equipment for fast cooking, boiling and washing workflow.",
   },
   {
     id: "04",
-    name: "Central Kitchen",
-    description: "Custom stainless steel equipment for high-volume production and dispatch.",
+    name: "Catering Service",
+    description: "Mobile-friendly and reliable equipment for event meal preparation.",
   },
 ];
 

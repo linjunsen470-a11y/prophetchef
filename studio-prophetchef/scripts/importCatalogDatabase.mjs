@@ -5,6 +5,7 @@ import os from 'node:os'
 import path from 'node:path'
 import {promisify} from 'node:util'
 import {fileURLToPath} from 'node:url'
+import {getCatalogProductName, getCatalogProductSlug} from './catalogProductIdentity.mjs'
 
 const execFileAsync = promisify(execFile)
 const scriptDir = path.dirname(fileURLToPath(import.meta.url))
@@ -244,7 +245,7 @@ function findDuplicateSlugs(pages) {
 }
 
 function productSlug(page) {
-  return `${toSlug(page.main_title_en)}-p${page.page_no}`
+  return getCatalogProductSlug(page)
 }
 
 async function compressToWebp(inputPath) {
@@ -458,12 +459,12 @@ async function buildDocuments(catalog) {
     productDocs.push({
       _id: `product-catalog-page-${page.page_id}`,
       _type: 'product',
-      name: page.main_title_en,
+      name: getCatalogProductName(page),
       nameZh: page.main_title_zh,
       slug: {_type: 'slug', current: productSlug(page)},
       category: {_type: 'reference', _ref: category.id},
       description: buildDescription(page, variants.length),
-      coverImage: await uploadImage(hero.filePath, page.main_title_en, imageCache),
+      coverImage: await uploadImage(hero.filePath, getCatalogProductName(page), imageCache),
       gallery,
       features: defaultFeatures.map((title, index) => ({
         _key: key(`feature-${page.page_id}`, index),
@@ -487,7 +488,7 @@ async function buildDocuments(catalog) {
       isArchived: false,
       seo: {
         _type: 'seo',
-        metaTitle: `${page.main_title_en} | ProphetChef`,
+        metaTitle: `${getCatalogProductName(page)} | ProphetChef`,
         metaDescription: buildDescription(page, variants.length).slice(0, 155),
       },
     })

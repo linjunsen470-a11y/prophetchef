@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { ArrowRight, CheckCircle2, Send } from "lucide-react";
-import { Button } from "@/components/common/Button";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { PageHero } from "@/components/common/PageHero";
 import { Container } from "@/components/common/Container";
 import { SectionHeader } from "@/components/common/SectionHeader";
@@ -10,65 +9,84 @@ import { getApplications, getApplicationsPageSettings, getSiteSettings } from "@
 import { getSiteName, getSiteUrl } from "@/lib/site-settings";
 import { buildSeoMetadata } from "@/lib/seo";
 import { resolveSanityImage, shouldSkipNextOptimization } from "@/lib/images";
-import { applicationFactoryImages } from "@/data/factory-gallery";
-import { heroImages } from "@/data/hero-images";
+import {
+  applicationCardImages,
+  applicationHeroImage,
+  type ApplicationSlug,
+} from "@/data/application-images";
 import type { Application, ApplicationsPageSettings } from "@/sanity/types";
 import styles from "./Applications.module.css";
 
-const fallbackApplications: Application[] = [
-  {
-    _id: "school-cafeteria",
+function splitEquipmentTags(value: string | undefined) {
+  if (!value) return [];
+  return value
+    .split(/[,;]/)
+    .map((tag) => tag.trim())
+    .filter(Boolean);
+}
+
+function resolveApplicationImage(item: Application) {
+  const local =
+    item.slug && applicationCardImages[item.slug as ApplicationSlug]
+      ? applicationCardImages[item.slug as ApplicationSlug]
+      : undefined;
+
+  if (local) {
+    return { src: local.src, alt: local.alt };
+  }
+
+  const remoteSrc = resolveSanityImage(item.image, { width: 960, quality: 85 });
+  return {
+    src: remoteSrc || "",
+    alt: item.image?.alt || item.name,
+  };
+}
+
+const fallbackApplications: Application[] = (
+  Object.keys(applicationCardImages) as ApplicationSlug[]
+).map((slug) => {
+  const card = applicationCardImages[slug];
+  const defaults: Record<ApplicationSlug, { description: string; recommended: string }> = {
+    "school-cafeteria": {
+      description: "Large-batch cooking, food warming and dishwashing for daily institutional meal service.",
+      recommended: "Induction wok cooker, combi oven, hood type dishwasher, modular ranges",
+    },
+    "hotel-kitchen": {
+      description: "All-day production equipment for breakfast, banquets and à la carte service.",
+      recommended: "Combi oven, gas cooker, dishwasher, modular range",
+    },
+    "chain-restaurant": {
+      description: "Standardized cooking equipment for consistent recipes and repeatable workflows across locations.",
+      recommended: "Automatic cooking machine, pasta cooker, induction cooker",
+    },
+    "central-kitchen": {
+      description: "High-volume cooking and dispatch systems for prepared food production.",
+      recommended: "Automatic cooking kettle, modular line, dishwashing system, large kettles",
+    },
+    "fast-food-restaurant": {
+      description: "Compact equipment for fast cooking, boiling and washing workflow in high-turnover QSR settings.",
+      recommended: "Pasta cooker, induction hob, undercounter dishwasher, automatic cooking machines",
+    },
+    "catering-service": {
+      description: "Mobile-friendly and reliable equipment for event meal preparation and large-scale dispatch.",
+      recommended: "Combi oven, dishwasher, modular equipment, portable lines",
+    },
+  };
+
+  return {
+    _id: slug,
     _type: "application",
-    id: "school-cafeteria",
-    name: "School Cafeteria",
-    slug: "school-cafeteria",
-    description: "Large-batch cooking, food warming and dishwashing for daily meal service.",
-    recommended: "Induction wok cooker, combi oven, hood type dishwasher",
+    id: slug,
+    name: card.title,
+    slug,
+    description: defaults[slug].description,
+    recommended: defaults[slug].recommended,
     image: {
-      url: applicationFactoryImages["school-cafeteria"],
-      alt: "School cafeteria fast food production line",
+      url: card.src,
+      alt: card.alt,
     } as never,
-  },
-  {
-    _id: "hotel-kitchen",
-    _type: "application",
-    id: "hotel-kitchen",
-    name: "Hotel Kitchen",
-    slug: "hotel-kitchen",
-    description: "All-day production equipment for breakfast, banquets and a la carte service.",
-    recommended: "Combi oven, gas cooker, dishwasher, modular range",
-    image: {
-      url: applicationFactoryImages["hotel-kitchen"],
-      alt: "Hotel kitchen premium island range equipment",
-    } as never,
-  },
-  {
-    _id: "chain-restaurant",
-    _type: "application",
-    id: "chain-restaurant",
-    name: "Chain Restaurant",
-    slug: "chain-restaurant",
-    description: "Standardized cooking equipment for consistent recipes across locations.",
-    recommended: "Automatic cooking machine, pasta cooker, induction cooker",
-    image: {
-      url: applicationFactoryImages["chain-restaurant"],
-      alt: "Chain restaurant automatic cooking equipment showroom",
-    } as never,
-  },
-  {
-    _id: "central-kitchen",
-    _type: "application",
-    id: "central-kitchen",
-    name: "Central Kitchen",
-    slug: "central-kitchen",
-    description: "High-volume cooking and dispatch systems for prepared food production.",
-    recommended: "Automatic cooking kettle, modular line, dishwashing system",
-    image: {
-      url: applicationFactoryImages["central-kitchen"],
-      alt: "Central kitchen prep station workbench",
-    } as never,
-  },
-];
+  };
+});
 
 const fallbackPage: ApplicationsPageSettings = {
   hero: {
@@ -77,17 +95,21 @@ const fallbackPage: ApplicationsPageSettings = {
     description:
       "Recommended commercial kitchen equipment combinations for foodservice projects and professional buyers.",
     backgroundImage: {
-      url: heroImages.applications,
-      alt: "Commercial kitchen application showroom",
+      url: applicationHeroImage.src,
+      alt: applicationHeroImage.alt,
     } as never,
   },
   gridHeader: {
-    eyebrow: "Application Grid",
-    title: "Find the Right Equipment for Your Kitchen Type",
+    eyebrow: "Kitchen Types",
+    title: "Equipment Packages by Application",
+    description:
+      "Match your project type with proven equipment combinations used in school cafeterias, central kitchens, fast food restaurants and catering services.",
   },
   solutionsHeader: {
-    eyebrow: "Detailed Solutions",
-    title: "Project Planning Examples",
+    eyebrow: "Project Planning",
+    title: "Solution Examples for Complex Kitchen Projects",
+    description:
+      "Reference layouts for buyers planning central kitchen or multi-store restaurant rollouts.",
   },
   solutionDetails: [
     {
@@ -98,7 +120,7 @@ const fallbackPage: ApplicationsPageSettings = {
         "Automatic cooking machines, induction kettles, combi ovens, modular cooking lines and rack dishwashers.",
       benefits:
         "Improved production consistency, reduced labor dependency, better energy use and easier quality control.",
-      cta: { text: "Request Project Consultation", href: "/contact?product=Central%20Kitchen%20Solution" },
+      cta: { text: "Request project consultation", href: "/contact?product=Central%20Kitchen%20Solution" },
     },
     {
       title: "Chain Restaurant Solution",
@@ -107,7 +129,7 @@ const fallbackPage: ApplicationsPageSettings = {
       recommendedEquipment:
         "Automatic stir-fry machines, pasta cookers, countertop induction cookers, combi ovens and undercounter dishwashers.",
       benefits: "Repeatable recipes, faster service speed, controlled operating costs and scalable procurement.",
-      cta: { text: "Discuss Your Chain's Needs", href: "/contact?product=Chain%20Restaurant%20Solution" },
+      cta: { text: "Discuss your chain rollout", href: "/contact?product=Chain%20Restaurant%20Solution" },
     },
   ],
 };
@@ -126,7 +148,11 @@ export async function generateMetadata(): Promise<Metadata> {
     title,
     description,
     canonical: `${getSiteUrl(settings)}/applications`,
-    image: seo?.openGraphImage || hero?.backgroundImage || settings?.globalSeo?.openGraphImage,
+    image:
+      seo?.openGraphImage ||
+      hero?.backgroundImage ||
+      { url: applicationHeroImage.src, alt: applicationHeroImage.alt } ||
+      settings?.globalSeo?.openGraphImage,
     siteName: getSiteName(settings),
   });
 }
@@ -134,11 +160,14 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function ApplicationsPage() {
   const [page, allApplications] = await Promise.all([getApplicationsPageSettings(), getApplications()]);
   const hero = page?.hero || fallbackPage.hero;
-  const applications = page?.featuredApplications?.length
+  const rawApplications = page?.featuredApplications?.length
     ? page.featuredApplications
     : allApplications.length
       ? allApplications
       : fallbackApplications;
+  const applications = rawApplications.filter(
+    (item) => item.slug !== "asian-restaurant" && item.slug !== "food-factory"
+  );
   const solutionDetails = page?.solutionDetails?.length ? page.solutionDetails : fallbackPage.solutionDetails;
 
   return (
@@ -147,8 +176,8 @@ export default async function ApplicationsPage() {
         eyebrow={hero?.eyebrow}
         title={hero?.title || "Commercial Kitchen Solutions for Different Applications"}
         description={hero?.description}
-        backgroundImage={hero?.backgroundImage?.url}
-        backgroundImageAlt={hero?.backgroundImage?.alt || ""}
+        backgroundImage={applicationHeroImage.src}
+        backgroundImageAlt={applicationHeroImage.alt}
         compact
       />
 
@@ -156,53 +185,39 @@ export default async function ApplicationsPage() {
         <SectionHeader
           eyebrow={page?.gridHeader?.eyebrow || fallbackPage.gridHeader?.eyebrow}
           title={page?.gridHeader?.title || fallbackPage.gridHeader?.title || ""}
-          description={page?.gridHeader?.description}
-          alignment="split"
-          className={styles.applicationGridHeading}
-        >
-          <div className={styles.sectionActions}>
-            <Button variant="primary" href="/contact?product=Application%20Solution" iconEnd={<Send aria-hidden="true" />}>
-              Request Solution Quote
-            </Button>
-            <a href="#solution-detail" className={styles.textLink}>
-              Planning Notes
-              <ArrowRight aria-hidden="true" />
-            </a>
-          </div>
-        </SectionHeader>
+          description={page?.gridHeader?.description || fallbackPage.gridHeader?.description}
+        />
         <Container className={styles.applicationGrid}>
           {applications.map((item) => {
-            const fallbackImage =
-              (item.slug && applicationFactoryImages[item.slug]) ||
-              fallbackApplications.find((entry) => entry.slug === item.slug)?.image?.url ||
-              fallbackApplications[0].image?.url ||
-              "";
-            const applicationImageSrc =
-              resolveSanityImage(item.image, { width: 720, quality: 85 }) || fallbackImage;
+            const { src: applicationImageSrc, alt: applicationImageAlt } = resolveApplicationImage(item);
+            const equipmentTags = splitEquipmentTags(item.recommended);
 
             return (
-            <article key={item.id || item.name} className={styles.applicationCard}>
-              <figure className={styles.applicationImage}>
-                <Image
-                  src={applicationImageSrc}
-                  alt={item.image?.alt || item.name}
-                  fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  unoptimized={shouldSkipNextOptimization(applicationImageSrc)}
-                  className="object-cover"
-                />
-              </figure>
-              <div className={styles.applicationCardBody}>
-                <h3>{item.name}</h3>
-                {item.description && <p>{item.description}</p>}
-                {item.recommended && (
-                  <div className={styles.recommendedLine}>
-                    <strong>Recommended</strong>
-                    <span>{item.recommended}</span>
-                  </div>
-                )}
-              </div>
-            </article>
+              <article key={item.id || item.name} className={styles.applicationCard}>
+                <figure className={styles.applicationImage}>
+                  <Image
+                    src={applicationImageSrc}
+                    alt={applicationImageAlt}
+                    fill
+                    sizes="(max-width: 1080px) 100vw, 50vw"
+                    unoptimized={shouldSkipNextOptimization(applicationImageSrc)}
+                    className="object-cover"
+                  />
+                </figure>
+                <div className={styles.applicationCardBody}>
+                  <h3>{item.name}</h3>
+                  {item.description && <p>{item.description}</p>}
+                  {equipmentTags.length > 0 && (
+                    <div className={styles.equipmentTags}>
+                      {equipmentTags.map((tag) => (
+                        <span key={tag} className={styles.equipmentTag}>
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </article>
             );
           })}
         </Container>
@@ -212,35 +227,49 @@ export default async function ApplicationsPage() {
         <SectionHeader
           eyebrow={page?.solutionsHeader?.eyebrow || fallbackPage.solutionsHeader?.eyebrow}
           title={page?.solutionsHeader?.title || fallbackPage.solutionsHeader?.title || ""}
-          description={page?.solutionsHeader?.description}
+          description={page?.solutionsHeader?.description || fallbackPage.solutionsHeader?.description}
         />
         <Container className={styles.solutionGrid}>
           {(solutionDetails || []).map((solution) => (
             <article className={styles.solutionCard} key={solution._key || solution.title}>
-              <h3>{solution.title}</h3>
-              <div className={styles.solutionFacts}>
+              <div className={styles.solutionCardHeader}>
+                <h3>{solution.title}</h3>
+              </div>
+              <ul className={styles.solutionList}>
                 {solution.painPoints && (
-                  <div>
-                    <h4><CheckCircle2 aria-hidden="true" />Planning Focus</h4>
-                    <p>{solution.painPoints}</p>
-                  </div>
+                  <li>
+                    <strong>
+                      <CheckCircle2 aria-hidden="true" />
+                      Planning focus
+                    </strong>
+                    {solution.painPoints}
+                  </li>
                 )}
                 {solution.recommendedEquipment && (
-                  <div>
-                    <h4><CheckCircle2 aria-hidden="true" />Equipment Mix</h4>
-                    <p>{solution.recommendedEquipment}</p>
-                  </div>
+                  <li>
+                    <strong>
+                      <CheckCircle2 aria-hidden="true" />
+                      Equipment mix
+                    </strong>
+                    {solution.recommendedEquipment}
+                  </li>
                 )}
                 {solution.benefits && (
-                  <div>
-                    <h4><CheckCircle2 aria-hidden="true" />Buyer Outcome</h4>
-                    <p>{solution.benefits}</p>
-                  </div>
+                  <li>
+                    <strong>
+                      <CheckCircle2 aria-hidden="true" />
+                      Buyer outcome
+                    </strong>
+                    {solution.benefits}
+                  </li>
                 )}
+              </ul>
+              <div className={styles.solutionCardFooter}>
+                <a className={styles.solutionLink} href={solution.cta?.href || "/contact"}>
+                  {solution.cta?.text || "Request quote"}
+                  <ArrowRight aria-hidden="true" />
+                </a>
               </div>
-              <Button variant="primary" href={solution.cta?.href || "/contact"}>
-                {solution.cta?.text || "Request Quote"} <ArrowRight aria-hidden="true" />
-              </Button>
             </article>
           ))}
         </Container>

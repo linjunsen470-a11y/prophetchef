@@ -76,23 +76,51 @@ function slug(value) {
 
 const heroHomeImage = 'factory:01'
 const productsHeroImage = 'factory:04'
-const factoryImage = 'factory:03'
+const factoryImage = 'factory:01'
 const applicationImage = 'factory:24'
 const certificatesHeroImage = 'factory:17'
 const newsHeroImage = 'factory:08'
-const contactHeroImage = 'factory:02'
+const contactHeroImage = 'factory:01'
 const kitchenImage = productsHeroImage
 const cookingImage = certificatesHeroImage
 
 const applications = [
-  ['School Cafeteria', 'Large-batch cooking, food warming and dishwashing for daily meal service.', 'Induction wok cooker, combi oven, hood type dishwasher', applicationImage],
-  ['Hotel Kitchen', 'All-day production equipment for breakfast, banquets and a la carte service.', 'Combi oven, gas cooker, dishwasher, modular range', kitchenImage],
-  ['Chain Restaurant', 'Standardized cooking equipment for consistent recipes across locations.', 'Automatic cooking machine, pasta cooker, induction cooker', cookingImage],
-  ['Central Kitchen', 'High-volume cooking and dispatch systems for prepared food production.', 'Automatic cooking kettle, modular line, dishwashing system', factoryImage],
-  ['Fast Food Restaurant', 'Compact equipment for fast cooking, boiling and washing workflow.', 'Pasta cooker, induction hob, undercounter dishwasher', kitchenImage],
-  ['Asian Restaurant', 'High-output wok cooking and soup preparation equipment.', 'Induction wok cooker, stock pot stove, gas range', 'https://images.unsplash.com/photo-1556912167-f556f1f39fdf?auto=format&fit=crop&w=1200&q=80'],
-  ['Food Factory', 'Processing and batch cooking equipment for packaged food production.', 'Sauce kettle, automatic cooker, custom line', cookingImage],
-  ['Catering Service', 'Mobile-friendly and reliable equipment for event meal preparation.', 'Combi oven, dishwasher, modular equipment', applicationImage],
+  [
+    'School Cafeteria',
+    'Large-batch cooking, food warming and dishwashing for daily institutional meal service.',
+    'Induction wok cooker, combi oven, hood type dishwasher, modular ranges',
+    'my-app/public/images/applications/school-cafeteria.webp'
+  ],
+  [
+    'Hotel Kitchen',
+    'All-day production equipment for breakfast, banquets and à la carte service.',
+    'Combi oven, gas cooker, dishwasher, modular range',
+    'my-app/public/images/applications/hotel-kitchen.webp'
+  ],
+  [
+    'Chain Restaurant',
+    'Standardized cooking equipment for consistent recipes and repeatable workflows across locations.',
+    'Automatic cooking machine, pasta cooker, induction cooker',
+    'my-app/public/images/applications/chain-restaurant.webp'
+  ],
+  [
+    'Central Kitchen',
+    'High-volume cooking and dispatch systems for prepared food production.',
+    'Automatic cooking kettle, modular line, dishwashing system, large kettles',
+    'my-app/public/images/applications/central-kitchen.webp'
+  ],
+  [
+    'Fast Food Restaurant',
+    'Compact equipment for fast cooking, boiling and washing workflow in high-turnover QSR settings.',
+    'Pasta cooker, induction hob, undercounter dishwasher, automatic cooking machines',
+    'my-app/public/images/applications/fast-food-restaurant.webp'
+  ],
+  [
+    'Catering Service',
+    'Mobile-friendly and reliable equipment for event meal preparation and large-scale dispatch.',
+    'Combi oven, dishwasher, modular equipment, portable lines',
+    'my-app/public/images/applications/catering-service.webp'
+  ],
 ]
 
 const certificates = [
@@ -430,6 +458,12 @@ const docs = [
     lead: 'Our experts are ready to assist you with equipment selection, technical specifications and factory-direct supply chains.',
   },
 ]
+
+console.log('Cleaning up deleted application documents from Sanity...')
+await Promise.all([
+  client.delete('application-asian-restaurant'),
+  client.delete('application-food-factory'),
+])
 
 const transaction = client.transaction()
 

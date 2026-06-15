@@ -13,6 +13,7 @@ import { buildSeoMetadata } from "@/lib/seo";
 import { certificatesQcImage } from "@/data/factory-gallery";
 import { heroImages } from "@/data/hero-images";
 import type { Certificate, CertificatesPageSettings } from "@/sanity/types";
+import styles from "./Certificates.module.css";
 
 const fallbackCertificates: Certificate[] = [
   { _id: "ce", _type: "certificate", id: "ce", shortLabel: "CE", title: "CE", description: "Available for selected commercial kitchen equipment models and export projects.", icon: "badgeCheck" },
@@ -94,6 +95,7 @@ export default async function CertificatesPage() {
         description={hero?.description}
         backgroundImage={hero?.backgroundImage?.url || heroImages.certificates}
         backgroundImageAlt={hero?.backgroundImage?.alt || ""}
+        compact
       />
 
       <section className="section">
@@ -102,14 +104,12 @@ export default async function CertificatesPage() {
           title={page?.certificatesHeader?.title || fallbackPage.certificatesHeader?.title || ""}
           description={page?.certificatesHeader?.description}
         />
-        <Container className="grid grid-cols-4 max-[1080px]:grid-cols-2 max-[760px]:grid-cols-1 gap-5">
+        <Container className={styles.certificateGrid}>
           {certificates.map((cert) => (
-            <article key={cert.id || cert.title} className="p-7 text-center bg-white border border-[color:var(--border)] rounded-[var(--radius)] shadow-[0_10px_26px_rgba(9,24,39,0.05)] overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_14px_30px_rgba(9,24,39,0.08)]">
-              <div className="w-[76px] h-[76px] grid place-items-center mx-auto mb-[18px] rounded-[8px] bg-[#edf3f8] text-[color:var(--blue)] font-black">
-                {cert.shortLabel}
-              </div>
-              <h3 className="m-0 mb-2 font-extrabold text-[color:var(--text)] text-[20px] leading-[1.25]">{cert.title}</h3>
-              <p className="m-0 text-[color:var(--muted)]">{cert.description}</p>
+            <article key={cert.id || cert.title} className={styles.certificateCard}>
+              <div className={styles.certificateBadge}>{cert.shortLabel}</div>
+              <h3>{cert.title}</h3>
+              {cert.description && <p>{cert.description}</p>}
             </article>
           ))}
         </Container>
@@ -121,25 +121,22 @@ export default async function CertificatesPage() {
           title={page?.processHeader?.title || fallbackPage.processHeader?.title || ""}
           description={page?.processHeader?.description}
         />
-        <Container className="grid grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] max-[1080px]:grid-cols-1 gap-8 items-start">
-          <div className="grid grid-cols-1 gap-3">
+        <Container className={styles.processLayout}>
+          <div className={styles.processSteps}>
             {(processSteps || []).map((step) => {
               const Icon = getIcon("fileCheck", FileCheck);
               return (
-                <div
-                  key={step}
-                  className="min-h-[72px] grid place-items-center border border-[color:var(--border)] rounded-[8px] bg-white p-[18px] text-[color:var(--blue)] text-center font-extrabold"
-                >
-                  <div>
-                    <Icon aria-hidden="true" className="mr-2 inline-block" size={18} />
+                <div key={step} className={styles.processStep}>
+                  <span className={styles.processStepInner}>
+                    <Icon aria-hidden="true" size={18} />
                     {step}
-                  </div>
+                  </span>
                 </div>
               );
             })}
           </div>
-          <figure className="m-0 overflow-hidden rounded-[10px] border border-[color:var(--border)] bg-white shadow-[0_10px_26px_rgba(9,24,39,0.05)]">
-            <div className="relative aspect-[16/10] w-full">
+          <figure className={styles.qcFigure}>
+            <div className={styles.qcImageWrap}>
               <Image
                 src={certificatesQcImage.src}
                 alt={certificatesQcImage.alt}
@@ -148,24 +145,29 @@ export default async function CertificatesPage() {
                 className="object-cover"
               />
             </div>
-            <figcaption className="px-4 py-3 text-[14px] font-semibold text-[color:var(--muted)]">
-              {certificatesQcImage.caption}
-            </figcaption>
+            <figcaption className={styles.qcCaption}>{certificatesQcImage.caption}</figcaption>
           </figure>
         </Container>
       </section>
 
       <section className="section py-16">
-        <Container className="split-heading">
-          <div>
-            <h2>{documentationCta?.title}</h2>
-            <p>{documentationCta?.description}</p>
+        <SectionHeader
+          title={documentationCta?.title || "Need certificates for import clearance?"}
+          description={documentationCta?.description}
+          alignment="split"
+          className={styles.documentationCta}
+        >
+          <div className={styles.documentationActions}>
+            <Button
+              variant="primary"
+              href={documentationCta?.button?.href || "/contact"}
+              iconEnd={<ArrowRight aria-hidden="true" />}
+              fullWidthMobile
+            >
+              {documentationCta?.button?.text || "Request Full Documentation"}
+            </Button>
           </div>
-          <Button variant="primary" href={documentationCta?.button?.href || "/contact"}>
-            {documentationCta?.button?.text || "Request Full Documentation"}
-            <ArrowRight aria-hidden="true" />
-          </Button>
-        </Container>
+        </SectionHeader>
       </section>
 
       <CTASection />

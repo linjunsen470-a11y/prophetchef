@@ -48,6 +48,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const { isEnabled: isDraftModeEnabled } = await draftMode();
+  const shouldRenderSanityLive = isDraftModeEnabled && process.env.NODE_ENV !== "development";
   const settings = await getSiteSettings();
 
   return (
@@ -60,7 +61,7 @@ export default async function RootLayout({
         <JsonLd data={organizationJsonLd(settings)} />
         {isDraftModeEnabled && (
           <>
-            <SanityLive />
+            {shouldRenderSanityLive && <SanityLive />}
             <VisualEditing />
           </>
         )}

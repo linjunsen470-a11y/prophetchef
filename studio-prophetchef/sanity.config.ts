@@ -31,11 +31,12 @@ export default defineConfig({
     structureTool({structure}),
     media(),
     presentationTool({
+      allowOrigins: [previewUrl],
       previewUrl: {
         initial: previewUrl,
         previewMode: {
-          enable: `${previewUrl}/api/draft-mode/enable`,
-          disable: `${previewUrl}/api/draft-mode/disable`,
+          enable: '/api/draft-mode/enable',
+          disable: '/api/draft-mode/disable',
           shareAccess: true,
         },
       },
@@ -43,9 +44,17 @@ export default defineConfig({
         mainDocuments: [
           {route: '/', type: 'homePage'},
           {route: '/products', type: 'productsPage'},
-          {route: '/products/:slug', type: 'product'},
+          {
+            route: '/products/:slug',
+            filter: `_type == "product" && slug.current == $slug`,
+            params: ({params}) => ({slug: params.slug}),
+          },
           {route: '/news', type: 'newsPage'},
-          {route: '/news/:slug', type: 'newsArticle'},
+          {
+            route: '/news/:slug',
+            filter: `_type == "newsArticle" && slug.current == $slug`,
+            params: ({params}) => ({slug: params.slug}),
+          },
           {route: '/factory', type: 'factoryPage'},
           {route: '/applications', type: 'applicationsPage'},
           {route: '/certificates', type: 'certificatesPage'},
