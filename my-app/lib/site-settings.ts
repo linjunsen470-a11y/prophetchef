@@ -1,4 +1,5 @@
 import { siteConfig } from "@/data/site";
+import { normalizeSiteUrl } from "@/lib/site-url";
 import type { SiteSettings } from "@/sanity/types";
 
 export function getSiteName(settings?: SiteSettings | null) {
@@ -6,7 +7,7 @@ export function getSiteName(settings?: SiteSettings | null) {
 }
 
 export function getSiteUrl(settings?: SiteSettings | null) {
-  return (settings?.siteUrl || siteConfig.url).replace(/\/$/, "");
+  return normalizeSiteUrl(process.env.NEXT_PUBLIC_SITE_URL || settings?.siteUrl || siteConfig.url);
 }
 
 export function getContactInfo(settings?: SiteSettings | null) {

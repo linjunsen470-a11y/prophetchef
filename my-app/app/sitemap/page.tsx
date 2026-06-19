@@ -2,10 +2,14 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { Container } from "@/components/common/Container";
 import { groupSitemapEntries } from "@/lib/sitemap";
+import { siteConfig } from "@/data/site";
 
 export const metadata: Metadata = {
   title: "Sitemap",
   description: "Browse all public pages on ProphetChef.",
+  alternates: {
+    canonical: `${siteConfig.url}/sitemap`,
+  },
 };
 
 const groupTitles = {

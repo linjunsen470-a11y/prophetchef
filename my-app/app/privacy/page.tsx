@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   title: "Privacy Policy",
   description:
     "Privacy Policy for ProphetChef, covering inquiry data, website analytics, cookies, data sharing and user rights.",
+  alternates: {
+    canonical: `${siteConfig.url}/privacy`,
+  },
 };
 
 const policySections = [

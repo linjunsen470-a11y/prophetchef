@@ -15,5 +15,5 @@ export const siteConfig = {
   factoryPreviewImage: factoryPreviewImage.src,
   productsHeroImage: heroImages.products,
   trustTags: ["OEM / ODM Available", "Commercial Induction Specialists", "Export Project Support"],
-  url: "https://prophetchef.com",
+  url: "https://www.prophetchef.com",
 };

@@ -11,6 +11,7 @@ import {
   getSiteSettings,
 } from "@/sanity/queries";
 import { siteConfig } from "@/data/site";
+import { normalizeSiteUrl } from "@/lib/site-url";
 
 export type SitemapGroup = "Core" | "Products" | "News";
 
@@ -31,12 +32,13 @@ const staticEntries: SitemapEntry[] = [
   { path: "/certificates", title: "Certificates", group: "Core", lastModified: new Date("2026-05-05"), changeFrequency: "monthly", priority: 0.8 },
   { path: "/news", title: "News", group: "Core", lastModified: new Date("2026-05-05"), changeFrequency: "weekly", priority: 0.8 },
   { path: "/contact", title: "Contact", group: "Core", lastModified: new Date("2026-05-05"), changeFrequency: "monthly", priority: 0.7 },
+  { path: "/sitemap", title: "Sitemap", group: "Core", lastModified: new Date("2026-05-05"), changeFrequency: "monthly", priority: 0.4 },
   { path: "/privacy", title: "Privacy Policy", group: "Core", lastModified: new Date("2026-05-05"), changeFrequency: "yearly", priority: 0.3 },
   { path: "/terms", title: "Terms of Service", group: "Core", lastModified: new Date("2026-05-05"), changeFrequency: "yearly", priority: 0.3 },
 ];
 
 export function getSiteUrl() {
-  return (process.env.NEXT_PUBLIC_SITE_URL || siteConfig.url).replace(/\/$/, "");
+  return normalizeSiteUrl(process.env.NEXT_PUBLIC_SITE_URL || siteConfig.url);
 }
 
 export function absoluteUrl(path: string, siteUrl?: string) {

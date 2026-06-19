@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   title: "Terms of Service",
   description:
     "Terms of Service for using the ProphetChef website and submitting commercial kitchen equipment inquiries.",
+  alternates: {
+    canonical: `${siteConfig.url}/terms`,
+  },
 };
 
 const termsSections = [
