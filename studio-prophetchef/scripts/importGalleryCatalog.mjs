@@ -640,15 +640,15 @@ const pagePatches = [
     patch: {
       set: {
         title: 'ProphetChef',
-        legalName: 'ProphetChef',
+        legalName: '东莞市惠和机电有限公司',
         description:
           'ProphetChef manufactures commercial induction cookers, wok ranges, built-in induction modules, fryers and noodle cooking equipment for global foodservice projects.',
         siteUrl: 'https://prophetchef.com',
         contactInfo: {
-          email: 'info@prophetchef.com',
-          phone: '+86 180 0000 0000',
-          whatsapp: '8618000000000',
-          address: 'Dongguan, Guangdong, China',
+          email: 'service@prophetchef.com',
+          phone: '+86 18351834957',
+          whatsapp: '8618351834957',
+          address: 'Room 112, Building 1, No. 13 Jiangcheng East Road, Gaobu Town, Dongguan, Guangdong, China (东莞市惠和机电有限公司)',
         },
         footerProductLinks: categories.map((category, index) => ({
           _key: key('footer-product', index),

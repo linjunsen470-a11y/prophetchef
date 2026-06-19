@@ -164,16 +164,16 @@ const docs = [
   {
     _id: 'siteSettings',
     _type: 'siteSettings',
-    title: 'ProKitchenTech',
-    legalName: 'ProKitchenTech',
+    title: 'ProphetChef',
+    legalName: '东莞市惠和机电有限公司',
     description:
-      'ProKitchenTech is a commercial kitchen equipment manufacturer offering induction cookers, automatic cooking machines, combi ovens, dishwashers and complete kitchen solutions.',
+      'ProphetChef is a commercial kitchen equipment manufacturer offering induction cookers, automatic cooking machines, combi ovens, dishwashers and complete kitchen solutions.',
     siteUrl: 'https://prophetchef.com',
     contactInfo: {
-      email: 'sales@example.com',
-      phone: '+86 180 0000 0000',
-      whatsapp: '8618000000000',
-      address: 'Dongguan, Guangdong, China',
+      email: 'service@prophetchef.com',
+      phone: '+86 18351834957',
+      whatsapp: '8618351834957',
+      address: 'Room 112, Building 1, No. 13 Jiangcheng East Road, Gaobu Town, Dongguan, Guangdong, China (东莞市惠和机电有限公司)',
     },
     mainNavigation: [
       ['Home', '/'],
@@ -212,7 +212,7 @@ const docs = [
         'Tell us your kitchen project requirements. Our team will recommend suitable equipment and provide a fast quotation.',
       primaryCta: {_type: 'ctaButton', text: 'Send Inquiry', href: '/contact'},
       whatsappText: 'Chat on WhatsApp',
-      whatsappMessage: 'Hello ProKitchenTech, I would like to request a quote.',
+      whatsappMessage: 'Hello ProphetChef, I would like to request a quote.',
     },
   },
   {
@@ -329,7 +329,7 @@ const docs = [
       eyebrow: 'Factory Overview',
       title: 'One-Stop Manufacturing for Commercial Foodservice Equipment',
       paragraphs: [
-        'With 20+ years of manufacturing experience, a 15000sqm production base and 750+ employees, ProKitchenTech supports distributors, kitchen contractors and foodservice project buyers in more than 50 export countries.',
+        'With 20+ years of manufacturing experience, a 15000sqm production base and 750+ employees, ProphetChef supports distributors, kitchen contractors and foodservice project buyers in more than 50 export countries.',
         'Our integrated production line covers induction cooking, gas cooking, dishwashing, ovens and custom kitchen equipment.',
       ],
       image: await image(factoryImage, 'Commercial kitchen equipment factory overview'),
@@ -449,7 +449,7 @@ const docs = [
     title: 'Contact',
     hero: {
       _type: 'pageHero',
-      title: 'Contact ProKitchenTech',
+      title: 'Contact ProphetChef',
       description: 'Get in touch with our sales team for product catalogs, quotations and kitchen project planning.',
       backgroundImage: await image(contactHeroImage, 'ProphetChef factory exterior and office building'),
     },

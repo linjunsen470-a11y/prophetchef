@@ -58,3 +58,9 @@ __pycache__/
 
 # Subproject build outputs (covered broadly by dist/ but explicit for subdirs)
 /studio-prophetchef/dist/
+
+# Local temporary download and search scripts
+/my-app/scripts/download_temp_candidates.py
+/my-app/scripts/download_unsplash_test.py
+/my-app/scripts/fetch-application-stock-images.py
+/my-app/scripts/find_unsplash_images.py
