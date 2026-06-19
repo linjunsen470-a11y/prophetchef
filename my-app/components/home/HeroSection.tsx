@@ -42,10 +42,10 @@ export const HeroSection = ({ data }: HeroSectionProps) => {
   const proofItems = data?.proofItems?.length
     ? data.proofItems
     : [
-        { value: "20+", label: "Years Mfg.", icon: "factory" },
-        { value: "15000+", label: "Area (sqm)", icon: "maximize" },
-        { value: "50+", label: "Countries", icon: "globe" },
-        { value: "24h", label: "Fast Quote", icon: "clock" },
+        { value: "10+", label: "Years Mfg.", icon: "factory" },
+        { value: "7000+", label: "Area (sqm)", icon: "maximize" },
+        { value: "30+", label: "Countries", icon: "globe" },
+        { value: "24h", label: "Service Support", icon: "clock" },
       ];
 
   return (

@@ -21,8 +21,8 @@ export const FactoryPreview = ({ data }: FactoryPreviewProps) => {
   const bullets = data?.bullets?.length
     ? data.bullets
     : [
-        "20+ years manufacturing experience",
-        "15000sqm production base",
+        "10+ years manufacturing experience",
+        "7000sqm production base",
         "Integrated metal processing and assembly workflow",
         "Export support for distributors and project contractors",
         "On-site showroom available for project review",

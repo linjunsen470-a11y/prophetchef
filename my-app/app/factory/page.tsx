@@ -74,7 +74,7 @@ const fallbackFactory: FactoryPageSettings = {
     eyebrow: "Factory Overview",
     title: "One-Stop Manufacturing for Commercial Foodservice Equipment",
     paragraphs: [
-      "With 20+ years of manufacturing experience, a 15000sqm production base and 750+ employees, ProphetChef supports distributors, kitchen contractors and foodservice project buyers in more than 50 export countries.",
+      "With 10+ years of manufacturing experience, a 7000sqm production base and 90+ employees, ProphetChef supports distributors, kitchen contractors and foodservice project buyers in more than 30+ export countries.",
       "Our integrated production line covers commercial induction cooking, wok ranges, built-in modules and specialty foodservice equipment.",
     ],
     image: {
@@ -84,12 +84,12 @@ const fallbackFactory: FactoryPageSettings = {
     cta: { text: "Request Factory Price", href: "/contact" },
   },
   stats: [
-    { value: "15000sqm", label: "Factory", icon: "factory" },
-    { value: "750+", label: "Employees", icon: "users" },
-    { value: "18", label: "R&D Personnel", icon: "sparkles" },
-    { value: "75", label: "QC Inspectors", icon: "shieldCheck" },
-    { value: "114", label: "Sales Team", icon: "mailCheck" },
-    { value: "64", label: "After-sales Instructors", icon: "headset" },
+    { value: "7000sqm", label: "Factory", icon: "factory" },
+    { value: "90+", label: "Employees", icon: "users" },
+    { value: "6", label: "R&D Personnel", icon: "sparkles" },
+    { value: "8", label: "QC Inspectors", icon: "shieldCheck" },
+    { value: "15", label: "Sales Team", icon: "mailCheck" },
+    { value: "8", label: "After-sales Instructors", icon: "headset" },
   ],
   productionHeader: { eyebrow: "Production Capability", title: "From Sheet Metal to Final Testing" },
   productionSteps: [

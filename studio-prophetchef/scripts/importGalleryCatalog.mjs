@@ -694,8 +694,8 @@ const pagePatches = [
           ],
           image: factoryOverviewImage,
           bullets: [
-            '20+ years manufacturing experience',
-            '15000sqm production base',
+            '10+ years manufacturing experience',
+            '7000sqm production base',
             'Integrated metal processing and assembly workflow',
             'Export support for distributors and project contractors',
           ],
@@ -722,7 +722,7 @@ const pagePatches = [
         'hero.backgroundImage': factoryHeroImage,
         'overview.image': factoryOverviewImage,
         'overview.paragraphs': [
-          'With 20+ years of manufacturing experience, a 15000sqm production base and 750+ employees, ProphetChef supports distributors, kitchen contractors and foodservice project buyers in more than 50 export countries.',
+          'With 10+ years of manufacturing experience, a 7000sqm production base and 90+ employees, ProphetChef supports distributors, kitchen contractors and foodservice project buyers in more than 30+ export countries.',
           'Our integrated production line covers commercial induction cooking, wok ranges, built-in modules and specialty foodservice equipment.',
         ],
       },
