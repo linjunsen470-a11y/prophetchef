@@ -22,6 +22,12 @@ export function organizationJsonLd(settings?: SiteSettings | null) {
       areaServed: "Worldwide",
       availableLanguage: ["English"],
     },
+    address: contact.address
+      ? {
+          "@type": "PostalAddress",
+          streetAddress: contact.address,
+        }
+      : undefined,
   };
 }
 

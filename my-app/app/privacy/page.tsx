@@ -2,15 +2,22 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Container } from "@/components/common/Container";
 import { siteConfig } from "@/data/site";
+import { getSiteSettings } from "@/sanity/queries";
+import { getSiteUrl } from "@/lib/site-settings";
 
-export const metadata: Metadata = {
-  title: "Privacy Policy",
-  description:
-    "Privacy Policy for ProphetChef, covering inquiry data, website analytics, cookies, data sharing and user rights.",
-  alternates: {
-    canonical: `${siteConfig.url}/privacy`,
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const settings = await getSiteSettings({ stega: false });
+  const siteUrl = getSiteUrl(settings);
+
+  return {
+    title: "Privacy Policy",
+    description:
+      "Privacy Policy for ProphetChef, covering inquiry data, website analytics, cookies, data sharing and user rights.",
+    alternates: {
+      canonical: `${siteUrl}/privacy`,
+    },
+  };
+}
 
 const policySections = [
   {

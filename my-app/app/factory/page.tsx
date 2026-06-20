@@ -225,7 +225,7 @@ export default async function FactoryPage() {
         title={hero?.title || "Factory Strength You Can Trust"}
         description={hero?.description}
         backgroundImage={hero?.backgroundImage?.url}
-        backgroundImageAlt={hero?.backgroundImage?.alt || ""}
+        backgroundImageAlt={hero?.backgroundImage?.alt || "ProphetChef Commercial Kitchen Equipment Manufacturing Factory"}
       />
 
       <section className="section">

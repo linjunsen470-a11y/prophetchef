@@ -78,10 +78,15 @@ export default async function NewsDetailPage({ params }: NewsPageProps) {
     "publisher": {
       "@type": "Organization",
       "name": siteName,
-      "logo": {
-        "@type": "ImageObject",
-        "url": `${siteUrl}/favicon.ico`
-      }
+      "logo": settings?.logo?.url
+        ? {
+            "@type": "ImageObject",
+            "url": settings.logo.url
+          }
+        : {
+            "@type": "ImageObject",
+            "url": `${siteUrl}/images/logo/logo-horizontal-light.svg`
+          }
     }
   };
   const breadcrumbSchema = breadcrumbJsonLd([

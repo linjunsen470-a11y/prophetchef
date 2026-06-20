@@ -42,7 +42,7 @@ export default async function NewsPage() {
           "Commercial kitchen equipment knowledge, product selection guides and company updates."
         }
         backgroundImage={hero?.backgroundImage?.url || heroImages.news}
-        backgroundImageAlt={hero?.backgroundImage?.alt || ""}
+        backgroundImageAlt={hero?.backgroundImage?.alt || "ProphetChef Commercial Cooking Equipment News and Industry Insights"}
         compact
       />
 

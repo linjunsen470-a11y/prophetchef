@@ -49,7 +49,7 @@ export default async function ContactPage() {
           hero?.backgroundImage?.url ||
           heroImages.contact
         }
-        backgroundImageAlt={hero?.backgroundImage?.alt || ""}
+        backgroundImageAlt={hero?.backgroundImage?.alt || "Contact ProphetChef Commercial Kitchen Experts"}
       />
 
       <section className={styles.contactSection}>

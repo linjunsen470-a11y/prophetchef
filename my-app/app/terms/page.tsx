@@ -2,15 +2,22 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Container } from "@/components/common/Container";
 import { siteConfig } from "@/data/site";
+import { getSiteSettings } from "@/sanity/queries";
+import { getSiteUrl } from "@/lib/site-settings";
 
-export const metadata: Metadata = {
-  title: "Terms of Service",
-  description:
-    "Terms of Service for using the ProphetChef website and submitting commercial kitchen equipment inquiries.",
-  alternates: {
-    canonical: `${siteConfig.url}/terms`,
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const settings = await getSiteSettings({ stega: false });
+  const siteUrl = getSiteUrl(settings);
+
+  return {
+    title: "Terms of Service",
+    description:
+      "Terms of Service for using the ProphetChef website and submitting commercial kitchen equipment inquiries.",
+    alternates: {
+      canonical: `${siteUrl}/terms`,
+    },
+  };
+}
 
 const termsSections = [
   {

@@ -1,0 +1,20 @@
+# ProphetChef
+
+> ProphetChef manufactures commercial induction cooking equipment, automatic cooking machines, steamers, fryers, griddles and specialty kitchen equipment for global foodservice projects.
+
+## Site Structure
+
+- [Home](https://www.prophetchef.com/) - Home page with product highlights, factory strength, core advantages, and trust tags.
+- [Products](https://www.prophetchef.com/products) - Catalog of commercial induction cookers and cooking equipment.
+- [Factory](https://www.prophetchef.com/factory) - Overview of our manufacturing capability, quality control, OEM/ODM processes, and production lines.
+- [Applications](https://www.prophetchef.com/applications) - Kitchen solutions for restaurants, school canteens, marine kitchens, factories, and central kitchens.
+- [Certificates](https://www.prophetchef.com/certificates) - Industrial and safety certifications (CE, CCC, etc.) ensuring global export compliance.
+- [News](https://www.prophetchef.com/news) - Industry insights, product guides, and company announcements.
+- [Contact](https://www.prophetchef.com/contact) - Contact form, email, phone, WhatsApp, and factory address details.
+
+## Contact Information
+
+- **Email**: service@prophetchef.com
+- **Phone**: +86 18351834957
+- **WhatsApp**: +86 18351834957
+- **Address**: Room 112, Building 1, No. 13 Jiangcheng East Road, Gaobu Town, Dongguan, Guangdong, China
