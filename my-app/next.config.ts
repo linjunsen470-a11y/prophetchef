@@ -67,7 +67,7 @@ const nextConfig: NextConfig = {
     return [
       ...productRedirects,
       {
-        source: "/category/inspiration/",
+        source: "/category/inspiration",
         destination: "/news",
         permanent: true,
       },
@@ -77,7 +77,7 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
-        source: "/product-category/cooking/",
+        source: "/product-category/cooking",
         destination: "/products?category=cooking",
         permanent: true,
       },
