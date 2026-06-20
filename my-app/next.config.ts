@@ -58,11 +58,35 @@ const nextConfig: NextConfig = {
     ];
   },
   async redirects() {
-    return productSlugRedirects.map(({ from, to }) => ({
+    const productRedirects = productSlugRedirects.map(({ from, to }) => ({
       source: `/products/${from}`,
       destination: `/products/${to}`,
       permanent: true,
     }));
+
+    return [
+      ...productRedirects,
+      {
+        source: "/category/inspiration/",
+        destination: "/news",
+        permanent: true,
+      },
+      {
+        source: "/portfolio/:path*",
+        destination: "/applications",
+        permanent: true,
+      },
+      {
+        source: "/product-category/cooking/",
+        destination: "/products?category=cooking",
+        permanent: true,
+      },
+      {
+        source: "/shop/:path*",
+        destination: "/products",
+        permanent: true,
+      },
+    ];
   },
 };
 
