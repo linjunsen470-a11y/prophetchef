@@ -3,6 +3,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Send } from "lucide-react";
 import { Button } from "../common/Button";
+import * as analytics from "@/lib/analytics";
 
 interface ProductInquiryFormProps {
   productName: string;
@@ -32,6 +33,14 @@ export const ProductInquiryForm: React.FC<ProductInquiryFormProps> = ({ productN
       const result = await response.json();
       if (result.success) {
         setStatus(result.message);
+        analytics.event("generate_lead", {
+          event_category: "Product Inquiry",
+          event_label: productName,
+        });
+        analytics.fbqEvent("Lead", {
+          content_name: productName,
+          content_category: "Product Inquiry",
+        });
       } else {
         setStatus("Error: " + result.message);
       }

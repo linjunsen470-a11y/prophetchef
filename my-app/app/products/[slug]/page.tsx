@@ -16,6 +16,7 @@ import { resolveSanityImage } from "@/lib/images";
 import { getProduct, getProductSlugs, getRelatedProducts, getSiteSettings } from "@/sanity/queries";
 import type { ProductVariant } from "@/sanity/types";
 import styles from "@/components/product/ProductDetail.module.css";
+import { ProductViewTracker } from "@/components/product/ProductViewTracker";
 
 interface ProductPageProps {
   params: Promise<{ slug: string }>;
@@ -149,6 +150,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
 
   return (
     <>
+      <ProductViewTracker productName={product.name} categoryName={categoryName} />
       <JsonLd data={schemas} />
       <Breadcrumb 
         items={[

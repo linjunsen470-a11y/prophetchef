@@ -3,6 +3,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Send } from "lucide-react";
 import { Button } from "../common/Button";
+import * as analytics from "@/lib/analytics";
 
 export const ContactForm = () => {
   const [status, setStatus] = useState("");
@@ -28,6 +29,13 @@ export const ContactForm = () => {
       const result = await response.json();
       if (result.success) {
         setStatus(result.message);
+        analytics.event("generate_lead", {
+          event_category: "Contact",
+          event_label: "Inquiry Form",
+        });
+        analytics.fbqEvent("Lead", {
+          content_name: "Inquiry Form",
+        });
       } else {
         setStatus("Error: " + result.message);
       }
