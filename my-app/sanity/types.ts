@@ -1,4 +1,4 @@
-export interface SanityImage {
+﻿export interface SanityImage {
   _type?: "image";
   assetRef?: string;
   asset?: {
@@ -104,10 +104,13 @@ export interface ProductVariant {
 export interface Category {
   _id: string;
   _type: "category";
+  _updatedAt?: string;
+  updatedAt?: string;
   name: string;
   slug: string;
   description?: string;
   image?: SanityImage;
+  seo?: SeoData;
 }
 
 export interface NewsCategory {
@@ -149,6 +152,8 @@ export interface Application {
   _id: string;
   _type: "application";
   id: string;
+  _updatedAt?: string;
+  updatedAt?: string;
   name: string;
   slug: string;
   description?: string;
@@ -156,6 +161,7 @@ export interface Application {
   image?: SanityImage;
   quoteProductName?: string;
   orderRank?: number;
+  seo?: SeoData;
 }
 
 export interface Certificate {
@@ -347,3 +353,6 @@ export interface ContactPageSettings {
   lead?: string;
   seo?: SeoData;
 }
+
+
+

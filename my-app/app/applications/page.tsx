@@ -1,5 +1,6 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { PageHero } from "@/components/common/PageHero";
 import { Container } from "@/components/common/Container";
@@ -53,7 +54,7 @@ const fallbackApplications: Application[] = (
       recommended: "Induction wok cooker, combi oven, hood type dishwasher, modular ranges",
     },
     "hotel-kitchen": {
-      description: "All-day production equipment for breakfast, banquets and à la carte service.",
+      description: "All-day production equipment for breakfast, banquets and 脿 la carte service.",
       recommended: "Combi oven, gas cooker, dishwasher, modular range",
     },
     "chain-restaurant": {
@@ -217,6 +218,10 @@ export default async function ApplicationsPage() {
                       ))}
                     </div>
                   )}
+                  <Link className={styles.solutionLink} href={`/applications/${item.slug}`}>
+                    View solution
+                    <ArrowRight aria-hidden="true" />
+                  </Link>
                 </div>
               </article>
             );
@@ -280,3 +285,5 @@ export default async function ApplicationsPage() {
     </>
   );
 }
+
+

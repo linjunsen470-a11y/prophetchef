@@ -1,4 +1,4 @@
-import React from "react";
+﻿import React from "react";
 import type { Metadata } from "next";
 import { Mail, MapPin, PhoneCall } from "lucide-react";
 import { PageHero } from "@/components/common/PageHero";
@@ -16,7 +16,7 @@ export async function generateMetadata(): Promise<Metadata> {
     getSiteSettings({ stega: false }),
   ]);
   const seo = page?.seo;
-  const title = page?.hero?.title || "Contact ProphetChef";
+  const title = page?.hero?.title === "Contact ProphetChef" ? "Contact" : page?.hero?.title || "Contact";
   const description =
     page?.hero?.description ||
     "Get in touch with our sales team for product catalogs, quotations and kitchen project planning.";
@@ -100,3 +100,4 @@ export default async function ContactPage() {
     </>
   );
 }
+

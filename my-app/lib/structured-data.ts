@@ -1,18 +1,35 @@
-import type { FaqItem, SiteSettings } from "@/sanity/types";
+﻿import type { FaqItem, SiteSettings } from "@/sanity/types";
 import { getContactInfo, getSiteName, getSiteUrl } from "@/lib/site-settings";
+
+function postalAddress(address?: string) {
+  if (!address) return undefined;
+
+  return {
+    "@type": "PostalAddress",
+    streetAddress: address,
+    addressLocality: "Dongguan",
+    addressRegion: "Guangdong",
+    addressCountry: "CN",
+  };
+}
 
 export function organizationJsonLd(settings?: SiteSettings | null) {
   const siteUrl = getSiteUrl(settings);
   const contact = getContactInfo(settings);
   const sameAs = settings?.socialLinks?.map((link) => link.url).filter(Boolean) || [];
+  const name = settings?.legalName || getSiteName(settings);
 
   return {
     "@context": "https://schema.org",
-    "@type": "Organization",
-    name: settings?.legalName || getSiteName(settings),
+    "@type": ["Organization", "LocalBusiness", "Manufacturer"],
+    name,
     alternateName: settings?.title,
+    description: settings?.description,
     url: siteUrl,
     logo: settings?.logo?.url,
+    image: settings?.logo?.url,
+    email: contact.email,
+    telephone: contact.phone,
     sameAs,
     contactPoint: {
       "@type": "ContactPoint",
@@ -22,12 +39,7 @@ export function organizationJsonLd(settings?: SiteSettings | null) {
       areaServed: "Worldwide",
       availableLanguage: ["English"],
     },
-    address: contact.address
-      ? {
-          "@type": "PostalAddress",
-          streetAddress: contact.address,
-        }
-      : undefined,
+    address: postalAddress(contact.address),
   };
 }
 
@@ -61,3 +73,5 @@ export function faqJsonLd(faqs?: FaqItem[]) {
     })),
   };
 }
+
+

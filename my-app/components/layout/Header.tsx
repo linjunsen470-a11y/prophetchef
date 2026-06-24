@@ -9,6 +9,7 @@ import { navigation } from "@/data/navigation";
 import { Button } from "@/components/common/Button";
 import { getSiteName } from "@/lib/site-settings";
 import { resolveSanityImage, shouldSkipNextOptimization } from "@/lib/images";
+import { sanitizeHref } from "@/lib/urls";
 import styles from "./Header.module.css";
 
 import { SiteSettings } from "@/sanity/types";
@@ -22,7 +23,7 @@ export const Header = ({ settings }: HeaderProps) => {
   const logo = settings?.logoLight || settings?.logo;
   const logoSrc = logo ? resolveSanityImage(logo, { width: 320, quality: 85 }) : undefined;
   const mainNavigation = settings?.mainNavigation?.length
-    ? settings.mainNavigation.map((item) => ({ name: item.label, href: item.href }))
+    ? settings.mainNavigation.map((item) => ({ name: item.label, href: sanitizeHref(item.href, "/") }))
     : navigation;
   const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);

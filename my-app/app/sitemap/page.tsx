@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import type { Metadata } from "next";
 import { Container } from "@/components/common/Container";
 import { groupSitemapEntries } from "@/lib/sitemap";
@@ -14,7 +14,9 @@ export const metadata: Metadata = {
 
 const groupTitles = {
   Core: "Main Pages",
+  Categories: "Product Categories",
   Products: "Products",
+  Applications: "Applications",
   News: "News",
 };
 
@@ -50,3 +52,5 @@ export default async function SitemapPage() {
     </section>
   );
 }
+
+

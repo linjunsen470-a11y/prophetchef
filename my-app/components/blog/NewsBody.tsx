@@ -1,6 +1,7 @@
 import type { NewsBlock } from "@/sanity/types";
 import { PortableText } from "@portabletext/react";
 import type { PortableTextComponents } from "@portabletext/react";
+import { sanitizeHref } from "@/lib/urls";
 
 interface NewsBodyProps {
   blocks?: NewsBlock[];
@@ -36,7 +37,7 @@ export function NewsBody({ blocks, fallback }: NewsBodyProps) {
     },
     marks: {
       link: ({ children, value }) => {
-        const href = value?.href || "";
+        const href = sanitizeHref(value?.href, "#");
         const isExternal = !href.startsWith("/") && !href.startsWith("#");
         return (
           <a

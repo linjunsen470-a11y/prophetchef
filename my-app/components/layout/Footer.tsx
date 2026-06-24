@@ -9,12 +9,12 @@ import { sanitizeHref } from "@/lib/urls";
 import styles from "./Footer.module.css";
 
 const productLinks = [
-  ["Tabletop & Built-in Induction Equipment", "/products?category=tabletop-built-in-induction-equipment"],
-  ["Automatic Cooking Machines", "/products?category=automatic-cooking-machines"],
-  ["Steamers, Ovens & Soup Kettles", "/products?category=steamers-ovens-soup-kettles"],
-  ["Freestanding Wok & Soup Cookers", "/products?category=freestanding-wok-soup-cookers"],
-  ["Freestanding Induction Line", "/products?category=freestanding-induction-line"],
-  ["Specialty Cooking Equipment", "/products?category=specialty-cooking-equipment"],
+  ["Tabletop & Built-in Induction Equipment", "/products/category/tabletop-built-in-induction-equipment"],
+  ["Automatic Cooking Machines", "/products/category/automatic-cooking-machines"],
+  ["Steamers, Ovens & Soup Kettles", "/products/category/steamers-ovens-soup-kettles"],
+  ["Freestanding Wok & Soup Cookers", "/products/category/freestanding-wok-soup-cookers"],
+  ["Freestanding Induction Line", "/products/category/freestanding-induction-line"],
+  ["Specialty Cooking Equipment", "/products/category/specialty-cooking-equipment"],
 ];
 
 const companyLinks = [
@@ -39,10 +39,10 @@ export const Footer = ({ settings }: FooterProps) => {
   const contact = getContactInfo(settings);
   const socialLinks = settings?.socialLinks?.filter((link) => link.platform && link.url) || [];
   const products = settings?.footerProductLinks?.length
-    ? settings.footerProductLinks.map((link) => [link.label, link.href] as const)
+    ? settings.footerProductLinks.map((link) => [link.label, sanitizeHref(link.href, "/products")] as const)
     : productLinks;
   const company = settings?.footerCompanyLinks?.length
-    ? settings.footerCompanyLinks.map((link) => [link.label, link.href] as const)
+    ? settings.footerCompanyLinks.map((link) => [link.label, sanitizeHref(link.href, "/")] as const)
     : companyLinks;
   const badges = settings?.footerBadges?.length
     ? settings.footerBadges
@@ -101,7 +101,7 @@ export const Footer = ({ settings }: FooterProps) => {
         <div className={styles.footerLinks}>
           <h3>Products</h3>
           {products.map(([label, href]) => (
-            <Link href={href} key={href}>
+            <Link href={sanitizeHref(href)} key={href}>
               {label}
             </Link>
           ))}
@@ -110,7 +110,7 @@ export const Footer = ({ settings }: FooterProps) => {
         <div className={styles.footerLinks}>
           <h3>Company</h3>
           {company.map(([label, href]) => (
-            <Link href={href} key={href}>
+            <Link href={sanitizeHref(href)} key={href}>
               {label}
             </Link>
           ))}

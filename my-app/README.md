@@ -1,6 +1,6 @@
 # ProphetChef Frontend
 
-This directory contains the active Next.js frontend for the ProphetChef commercial kitchen equipment website. It renders the public marketing site, product catalog, news pages, contact flow, sitemap, and Sanity-powered content sections.
+This directory contains the active Next.js frontend for the ProphetChef commercial kitchen equipment website. It renders the public marketing site, product catalog, crawlable category and application pages, news pages, contact flow, sitemap, and Sanity-powered content sections.
 
 ## Stack
 
@@ -58,24 +58,76 @@ pnpm run start
 
 ```text
 app/
-  api/                 Route handlers such as the inquiry endpoint
-  products/            Product listing and detail routes
-  news/                News listing and detail routes
-  contact/             Contact page
-  sitemap.ts           Metadata sitemap route
-  robots.ts            Robots metadata route
+  api/                         Route handlers such as the inquiry endpoint
+  applications/                Application landing page and detail routes
+  products/                    Product listing, category, and detail routes
+  news/                        News listing and detail routes
+  contact/                     Contact page
+  sitemap.ts                   Metadata sitemap route
+  robots.ts                    Robots metadata route
 components/
-  blog/                News cards and body rendering
-  common/              Shared UI primitives and SEO helpers
-  contact/             Contact form client component
-  home/                Home page sections
-  layout/              Header and footer
-  product/             Product cards, gallery, and inquiry form
-data/                  Static fallback/site data
-lib/                   SEO, sitemap, URL, image, and site-setting helpers
-sanity/                Sanity client, queries, env, and frontend types
-styles/                Legacy/global style support
+  blog/                        News cards and body rendering
+  common/                      Shared UI primitives and JSON-LD helpers
+  contact/                     Contact form client component
+  home/                        Home page sections
+  layout/                      Header and footer
+  product/                     Product cards, gallery, and inquiry form
+data/                          Static fallback/site data
+lib/                           SEO, sitemap, URL, image, and site-setting helpers
+sanity/                        Sanity client, queries, env, and frontend types
+styles/                        Legacy/global style support
 ```
+
+## Public Routes
+
+Core static routes:
+
+```text
+/
+/products
+/factory
+/applications
+/certificates
+/news
+/contact
+/privacy
+/terms
+/sitemap
+/sitemap.xml
+/robots.txt
+```
+
+Sanity-powered generated routes:
+
+```text
+/products/[slug]
+/products/category/[slug]
+/applications/[slug]
+/news/[slug]
+```
+
+Product category and application detail pages are intentional SEO landing pages. Keep internal links, canonical URLs, structured data, and XML sitemap entries in sync when changing these route patterns.
+
+## SEO And Structured Data
+
+Shared metadata helpers live in:
+
+```text
+lib/seo.ts
+lib/seo-content.ts
+lib/structured-data.ts
+lib/sitemap.ts
+```
+
+Current SEO behavior:
+
+- `buildSeoMetadata()` strips trailing duplicate site names from CMS-provided titles.
+- Short CMS product descriptions fall back to richer procurement-focused descriptions from `lib/seo-content.ts`.
+- Product detail pages emit Product JSON-LD with brand, SKU/MPN, specifications, variants, breadcrumb data, FAQ data when available, and Offer availability for quotation-based procurement.
+- Category pages emit ItemList and BreadcrumbList JSON-LD.
+- Application detail pages emit Service and BreadcrumbList JSON-LD.
+- Organization JSON-LD includes Organization, LocalBusiness, and Manufacturer types plus contact details.
+- `lib/sitemap.ts` is the shared source for XML sitemap and HTML sitemap grouping.
 
 ## Environment
 
@@ -104,8 +156,8 @@ RESEND_TO_EMAIL=
 Frontend code should treat Sanity fields as optional unless the component has an explicit fallback. In particular:
 
 - Image fields may be missing a URL; render placeholders instead of passing an empty `src` to `next/image`.
-- Slugs, category names, and dates should be cleaned or validated before use in routes, metadata, or structured data.
-- Product tags, gallery arrays, FAQ arrays, and page settings should be guarded with safe defaults.
+- Slugs, category names, application names, and dates should be cleaned or validated before use in routes, metadata, or structured data.
+- Product tags, gallery arrays, FAQ arrays, category SEO fields, application SEO fields, and page settings should be guarded with safe defaults.
 - Studio schema changes live outside this app in `../studio-prophetchef` and should be coordinated with query/type updates.
 
 ## Security And Robustness Notes
@@ -141,8 +193,19 @@ For layout or styling changes, inspect these routes in a real browser:
 - `/`
 - `/products`
 - `/products/[slug]`
+- `/products/category/[slug]`
+- `/applications`
+- `/applications/[slug]`
 - `/news`
 - `/news/[slug]`
 - `/contact`
+
+For SEO changes, also verify:
+
+- duplicate brand titles are not emitted, for example avoid `ProphetChef | ProphetChef`
+- product meta descriptions are long enough to be useful
+- product/category/application JSON-LD still renders
+- `/sitemap.xml` includes generated product, category, application, and news URLs
+- `/robots.txt` points to the expected sitemap URL
 
 `pnpm run build` fetches Sanity data during prerendering. If the environment cannot resolve or reach the Sanity CDN, the build can fail during page-data collection even after bundling and TypeScript pass. Record the exact network error in the PR/testing notes rather than treating it as a code failure.

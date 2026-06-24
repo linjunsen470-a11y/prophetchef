@@ -1,5 +1,7 @@
-import {
+﻿import {
+  getApplications,
   getApplicationsPageSettings,
+  getCategories,
   getCertificatesPageSettings,
   getContactPageSettings,
   getFactoryPageSettings,
@@ -13,7 +15,7 @@ import {
 import { siteConfig } from "@/data/site";
 import { normalizeSiteUrl } from "@/lib/site-url";
 
-export type SitemapGroup = "Core" | "Products" | "News";
+export type SitemapGroup = "Core" | "Categories" | "Products" | "Applications" | "News";
 
 export interface SitemapEntry {
   path: string;
@@ -48,7 +50,9 @@ export function absoluteUrl(path: string, siteUrl?: string) {
 
 export async function getSitemapEntries(): Promise<SitemapEntry[]> {
   const [
+    categories,
     products,
+    applications,
     newsItems,
     settings,
     homePage,
@@ -59,7 +63,9 @@ export async function getSitemapEntries(): Promise<SitemapEntry[]> {
     newsPage,
     contactPage,
   ] = await Promise.all([
+    getCategories({ stega: false }),
     getProductSitemapEntries(),
+    getApplications({ stega: false }),
     getNewsSitemapEntries(),
     getSiteSettings({ stega: false }),
     getHomePageSettings({ stega: false }),
@@ -86,9 +92,20 @@ export async function getSitemapEntries(): Promise<SitemapEntry[]> {
 
   const mappedStaticEntries = staticEntries
     .filter((entry) => !noIndexPaths.has(entry.path))
-    .map(entry => ({
+    .map((entry) => ({
       ...entry,
-      lastModified: fallbackDate
+      lastModified: fallbackDate,
+    }));
+
+  const categoryEntries = categories
+    .filter((category) => !category.seo?.noIndex)
+    .map<SitemapEntry>((category) => ({
+      path: `/products/category/${category.slug}`,
+      title: category.name,
+      group: "Categories",
+      lastModified: category.updatedAt ? new Date(category.updatedAt) : fallbackDate,
+      changeFrequency: "monthly",
+      priority: 0.75,
     }));
 
   const productEntries = products
@@ -102,6 +119,17 @@ export async function getSitemapEntries(): Promise<SitemapEntry[]> {
       priority: 0.85,
     }));
 
+  const applicationEntries = applications
+    .filter((application) => !application.seo?.noIndex)
+    .map<SitemapEntry>((application) => ({
+      path: `/applications/${application.slug}`,
+      title: application.name,
+      group: "Applications",
+      lastModified: application.updatedAt ? new Date(application.updatedAt) : fallbackDate,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    }));
+
   const newsEntries = newsItems
     .filter((item) => !item.seo?.noIndex)
     .map<SitemapEntry>((item) => ({
@@ -113,7 +141,7 @@ export async function getSitemapEntries(): Promise<SitemapEntry[]> {
       priority: 0.65,
     }));
 
-  return [...mappedStaticEntries, ...productEntries, ...newsEntries];
+  return [...mappedStaticEntries, ...categoryEntries, ...productEntries, ...applicationEntries, ...newsEntries];
 }
 
 export async function groupSitemapEntries() {
@@ -124,6 +152,7 @@ export async function groupSitemapEntries() {
       groups[entry.group].push(entry);
       return groups;
     },
-    { Core: [], Products: [], News: [] },
+    { Core: [], Categories: [], Products: [], Applications: [], News: [] },
   );
 }
+

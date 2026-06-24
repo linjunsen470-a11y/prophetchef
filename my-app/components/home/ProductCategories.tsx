@@ -1,4 +1,4 @@
-import React from "react";
+﻿import React from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Container } from "../common/Container";
@@ -33,7 +33,7 @@ export const ProductCategories = ({ categories, header }: ProductCategoriesProps
           const name = cat.name;
           const description = cat.description;
           const image = typeof cat.image === "object" ? cat.image?.url : cat.image;
-          const href = `/products?category=${cat.slug}`;
+          const href = `/products/category/${cat.slug}`;
 
           return (
             <article key={name} className="bg-white border border-[color:var(--border)] rounded-[var(--radius)] shadow-[0_10px_26px_rgba(9,24,39,0.05)] overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_14px_30px_rgba(9,24,39,0.08)]">
@@ -62,3 +62,5 @@ export const ProductCategories = ({ categories, header }: ProductCategoriesProps
     </section>
   );
 };
+
+

@@ -93,14 +93,16 @@ const categoryFields = `
   _id,
   _type,
   "id": _id,
+  _updatedAt,
+  "updatedAt": _updatedAt,
   name,
   "slug": slug.current,
   description,
   "image": image {
     ${imageFields}
-  }
+  },
+  "seo": seo { ${seoFields} }
 `;
-
 const productListFields = `
   _id,
   "id": _id,
@@ -227,6 +229,8 @@ const applicationFields = `
   _id,
   _type,
   "id": _id,
+  _updatedAt,
+  "updatedAt": _updatedAt,
   name,
   "slug": slug.current,
   description,
@@ -235,9 +239,9 @@ const applicationFields = `
     ${imageFields}
   },
   quoteProductName,
-  orderRank
+  orderRank,
+  "seo": seo { ${seoFields} }
 `;
-
 const certificateFields = `
   _id,
   _type,
@@ -248,6 +252,8 @@ const certificateFields = `
   icon,
   orderRank
 `;
+
+const activeCategoryFilter = `_type == "category" && defined(slug.current) && _id in *[_type == "product" && defined(slug.current) && !isArchived && defined(category._ref)].category._ref`;
 
 export async function getProducts(options: QueryOptions = {}) {
   return sanityFetch<Product[]>({
@@ -282,7 +288,31 @@ export async function getRelatedProducts(categoryId: string | undefined, slug: s
 
 export async function getCategories(options: QueryOptions = {}) {
   return sanityFetch<Category[]>({
-    query: `*[_type == "category"] | order(orderRank asc, name asc) {${categoryFields}}`,
+    query: `*[${activeCategoryFilter}] | order(coalesce(orderRank, 9999) asc, name asc) {${categoryFields}}`,
+    ...options,
+  });
+}
+
+export async function getCategory(slug: string, options: QueryOptions = {}) {
+  return sanityFetch<Category | null>({
+    query: `*[_type == "category" && slug.current == $slug][0] {${categoryFields}}`,
+    params: { slug },
+    ...options,
+  });
+}
+
+export async function getCategorySlugs(): Promise<{ slug: string }[]> {
+  return sanityFetch<{ slug: string }[]>({
+    query: `*[${activeCategoryFilter}] {"slug": slug.current}`,
+    perspective: "published",
+    stega: false,
+  });
+}
+
+export async function getProductsByCategory(categoryId: string, options: QueryOptions = {}) {
+  return sanityFetch<Product[]>({
+    query: `*[_type == "product" && category._ref == $categoryId && defined(slug.current) && !isArchived] | order(coalesce(orderRank, 9999) asc, name asc) {${productListFields}}`,
+    params: { categoryId },
     ...options,
   });
 }
@@ -291,6 +321,22 @@ export async function getApplications(options: QueryOptions = {}) {
   return sanityFetch<Application[]>({
     query: `*[_type == "application" && defined(slug.current)] | order(coalesce(orderRank, 9999) asc, name asc) {${applicationFields}}`,
     ...options,
+  });
+}
+
+export async function getApplication(slug: string, options: QueryOptions = {}) {
+  return sanityFetch<Application | null>({
+    query: `*[_type == "application" && slug.current == $slug][0] {${applicationFields}}`,
+    params: { slug },
+    ...options,
+  });
+}
+
+export async function getApplicationSlugs(): Promise<{ slug: string }[]> {
+  return sanityFetch<{ slug: string }[]>({
+    query: `*[_type == "application" && defined(slug.current)] {"slug": slug.current}`,
+    perspective: "published",
+    stega: false,
   });
 }
 
@@ -366,7 +412,7 @@ export async function getNewsSitemapEntries(options: QueryOptions = {}) {
 
 export async function getHomePageSettings(options: QueryOptions = {}) {
   return sanityFetch<HomePageSettings | null>({
-    query: `*[_id == "homePage" || _type == "homePage"][0] {
+    query: `*[_id == "homePage"][0] {
       title,
       hero {
         eyebrow,
@@ -381,7 +427,7 @@ export async function getHomePageSettings(options: QueryOptions = {}) {
         "proofItems": proofItems[] { ${statFields} }
       },
       "categorySection": categorySection { ${sectionHeaderFields} },
-      "featuredCategories": featuredCategories[]-> { ${categoryFields} },
+      "featuredCategories": array::compact(featuredCategories[]->[defined(slug.current) && count(*[_type == "product" && defined(slug.current) && !isArchived && category._ref == ^._id]) > 0]) { ${categoryFields} },
       "featuredProductsSection": featuredProductsSection { ${sectionHeaderFields} },
       "featuredProducts": array::compact(featuredProducts[]->[defined(slug.current) && !isArchived]) { ${productListFields} },
       "factoryPreview": factoryPreview { ${mediaTextSectionFields} },
@@ -402,7 +448,7 @@ export async function getHomePageSettings(options: QueryOptions = {}) {
 
 export async function getSiteSettings(options: QueryOptions = {}) {
   return sanityFetch<SiteSettings | null>({
-    query: `*[_id == "siteSettings" || _type == "siteSettings"][0] {
+    query: `*[_id == "siteSettings"][0] {
       _updatedAt,
       title,
       legalName,
@@ -445,7 +491,7 @@ export async function getSiteSettings(options: QueryOptions = {}) {
 
 export async function getProductsPageSettings(options: QueryOptions = {}) {
   return sanityFetch<ProductsPageSettings | null>({
-    query: `*[_id == "productsPage" || _type == "productsPage"][0] {
+    query: `*[_id == "productsPage"][0] {
       _updatedAt,
       title,
       "hero": hero { ${pageHeroFields} },
@@ -458,7 +504,7 @@ export async function getProductsPageSettings(options: QueryOptions = {}) {
 
 export async function getNewsPageSettings(options: QueryOptions = {}) {
   return sanityFetch<NewsPageSettings | null>({
-    query: `*[_id == "newsPage" || _type == "newsPage"][0] {
+    query: `*[_id == "newsPage"][0] {
       _updatedAt,
       title,
       "hero": hero { ${pageHeroFields} },
@@ -470,7 +516,7 @@ export async function getNewsPageSettings(options: QueryOptions = {}) {
 
 export async function getFactoryPageSettings(options: QueryOptions = {}) {
   return sanityFetch<FactoryPageSettings | null>({
-    query: `*[_id == "factoryPage" || _type == "factoryPage"][0] {
+    query: `*[_id == "factoryPage"][0] {
       _updatedAt,
       title,
       "hero": hero { ${pageHeroFields} },
@@ -490,7 +536,7 @@ export async function getFactoryPageSettings(options: QueryOptions = {}) {
 
 export async function getApplicationsPageSettings(options: QueryOptions = {}) {
   return sanityFetch<ApplicationsPageSettings | null>({
-    query: `*[_id == "applicationsPage" || _type == "applicationsPage"][0] {
+    query: `*[_id == "applicationsPage"][0] {
       _updatedAt,
       title,
       "hero": hero { ${pageHeroFields} },
@@ -513,7 +559,7 @@ export async function getApplicationsPageSettings(options: QueryOptions = {}) {
 
 export async function getCertificatesPageSettings(options: QueryOptions = {}) {
   return sanityFetch<CertificatesPageSettings | null>({
-    query: `*[_id == "certificatesPage" || _type == "certificatesPage"][0] {
+    query: `*[_id == "certificatesPage"][0] {
       _updatedAt,
       title,
       "hero": hero { ${pageHeroFields} },
@@ -534,7 +580,7 @@ export async function getCertificatesPageSettings(options: QueryOptions = {}) {
 
 export async function getContactPageSettings(options: QueryOptions = {}) {
   return sanityFetch<ContactPageSettings | null>({
-    query: `*[_id == "contactPage" || _type == "contactPage"][0] {
+    query: `*[_id == "contactPage"][0] {
       _updatedAt,
       title,
       "hero": hero { ${pageHeroFields} },

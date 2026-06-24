@@ -1,4 +1,4 @@
-import { HeroSection } from "@/components/home/HeroSection";
+﻿import { HeroSection } from "@/components/home/HeroSection";
 import { ProductCategories } from "@/components/home/ProductCategories";
 import { FeaturedProducts } from "@/components/home/FeaturedProducts";
 import { FactoryPreview } from "@/components/home/FactoryPreview";
@@ -18,8 +18,9 @@ export async function generateMetadata(): Promise<Metadata> {
     getHomePageSettings({ stega: false }),
     getSiteSettings({ stega: false }),
   ]);
-  const seo = settings?.seo;
-  const title = settings?.title || siteConfig.title;
+  const rawSeo = settings?.seo;
+  const seo = rawSeo?.metaTitle?.trim().toLowerCase() === "prophetchef homepage" ? { ...rawSeo, metaTitle: undefined } : rawSeo;
+  const title = siteConfig.title;
   const description = seo?.metaDescription || siteConfig.description;
   return buildSeoMetadata({
     seo,
@@ -53,3 +54,6 @@ export default async function Home() {
     </>
   );
 }
+
+
+

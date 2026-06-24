@@ -1,9 +1,10 @@
-import React from "react";
+﻿import React from "react";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import { stegaClean } from "next-sanity";
 import { getSiteName, getSiteUrl } from "@/lib/site-settings";
 import { buildSeoMetadata } from "@/lib/seo";
+import { buildProductSeoDescription } from "@/lib/seo-content";
 import { breadcrumbJsonLd, faqJsonLd } from "@/lib/structured-data";
 import { Breadcrumb } from "@/components/common/Breadcrumb";
 import { Container } from "@/components/common/Container";
@@ -74,10 +75,11 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
   if (!product) return {};
 
   const seo = product.seo;
+  const description = buildProductSeoDescription(product);
   return buildSeoMetadata({
     seo,
     title: product.name,
-    description: product.description,
+    description,
     canonical: `${getSiteUrl(settings)}/products/${slug}`,
     image: seo?.openGraphImage || product.coverImage,
     siteName: getSiteName(settings),
@@ -111,13 +113,14 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
   const productUrl = `${siteUrl}/products/${stegaClean(product.slug)}`;
   const variants = product.variants || [];
   const displayTags = getDisplayTags(product.tags, categoryName);
+  const productSeoDescription = buildProductSeoDescription(product);
   
   const jsonLd = {
     "@context": "https://schema.org/",
     "@type": "Product",
     "name": product.name,
     "image": productImageUrl ? [productImageUrl] : [],
-    "description": product.description,
+    "description": productSeoDescription,
     "sku": product.modelCode || variants[0]?.modelCode || undefined,
     "mpn": product.modelCode || variants[0]?.modelCode || undefined,
     "category": categoryName,
@@ -127,6 +130,20 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
       "name": siteName
     },
     "url": productUrl,
+    "offers": {
+      "@type": "Offer",
+      "url": productUrl,
+      "availability": "https://schema.org/InStock",
+      "seller": {
+        "@type": "Organization",
+        "name": siteName,
+        "url": siteUrl
+      },
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "description": "Contact ProphetChef for project quotation based on model configuration, order quantity and destination market."
+      }
+    },
     "additionalProperty": product.specifications?.map((spec) => ({
       "@type": "PropertyValue",
       "name": spec.label,
@@ -140,11 +157,13 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
         }))
       : undefined,
   };
-  const breadcrumbSchema = breadcrumbJsonLd([
+  const breadcrumbItems = [
     { name: "Home", url: siteUrl },
     { name: "Products", url: `${siteUrl}/products` },
+    ...(categorySlug ? [{ name: categoryName, url: `${siteUrl}/products/category/${stegaClean(categorySlug)}` }] : []),
     { name: product.name, url: productUrl },
-  ]);
+  ];
+  const breadcrumbSchema = breadcrumbJsonLd(breadcrumbItems);
   const faqSchema = faqJsonLd(product.faqs);
   const schemas = faqSchema ? [jsonLd, breadcrumbSchema, faqSchema] : [jsonLd, breadcrumbSchema];
 
@@ -155,7 +174,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
       <Breadcrumb 
         items={[
           { name: "Products", href: "/products" },
-          { name: categoryName, href: categorySlug ? `/products?category=${encodeURIComponent(stegaClean(categorySlug))}` : "/products" },
+          { name: categoryName, href: categorySlug ? `/products/category/${encodeURIComponent(stegaClean(categorySlug))}` : "/products" },
           { name: product.name }
         ]} 
       />
@@ -320,3 +339,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
     </>
   );
 }
+
+
+
+

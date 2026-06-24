@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import type { SeoData } from "@/sanity/types";
 
 interface BuildSeoMetadataOptions {
@@ -14,6 +14,31 @@ interface BuildSeoMetadataOptions {
   type?: "website" | "article";
 }
 
+const MIN_USEFUL_DESCRIPTION_LENGTH = 70;
+
+function escapeRegExp(value: string) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function stripTrailingBrand(title: string, siteName?: string) {
+  if (!siteName) return title;
+
+  const normalizedSiteName = siteName.trim();
+  if (!normalizedSiteName) return title;
+
+  return title
+    .replace(new RegExp(`\\s*[|\\-:]\\s*${escapeRegExp(normalizedSiteName)}\\s*$`, "i"), "")
+    .trim();
+}
+
+function resolveDescription(primary: string | undefined, fallback: string) {
+  const trimmedPrimary = primary?.trim();
+  if (trimmedPrimary && trimmedPrimary.length >= MIN_USEFUL_DESCRIPTION_LENGTH) {
+    return trimmedPrimary;
+  }
+  return fallback;
+}
+
 export function buildSeoMetadata({
   seo,
   title,
@@ -23,10 +48,10 @@ export function buildSeoMetadata({
   siteName,
   type = "website",
 }: BuildSeoMetadataOptions): Metadata {
-  const metaTitle = seo?.metaTitle || title;
-  const metaDescription = seo?.metaDescription || description;
-  const ogTitle = seo?.openGraphTitle || metaTitle;
-  const ogDescription = seo?.openGraphDescription || metaDescription;
+  const metaTitle = stripTrailingBrand(seo?.metaTitle || title, siteName);
+  const metaDescription = resolveDescription(seo?.metaDescription, description);
+  const ogTitle = seo?.openGraphTitle || (siteName ? `${metaTitle} | ${siteName}` : metaTitle);
+  const ogDescription = resolveDescription(seo?.openGraphDescription, metaDescription);
   const ogImage = seo?.openGraphImage || image;
   const resolvedCanonical = seo?.canonicalUrl || canonical;
 
@@ -67,3 +92,4 @@ export function buildSeoMetadata({
     },
   };
 }
+
